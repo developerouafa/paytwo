@@ -174,6 +174,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         // End spatie
 
+        // JWT
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -194,6 +196,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         // End spatie
+
+        // jwt
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
 
     ])->toArray(),
 

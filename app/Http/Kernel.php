@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+
         ],
 
         'api' => [
@@ -69,5 +70,14 @@ class Kernel extends HttpKernel
         // Roles Spatie
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        // Localization
+        \App\Http\Middleware\SetLocale::class,
+    ];
+
+    protected $middlewarePriority = [
+        // ...
+        \Illuminate\Session\Middleware\StartSession::class,
+        \App\Http\Middleware\SetLocale::class,
+        // ...
     ];
 }

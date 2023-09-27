@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             },
             'language' => function () {
                 return translations(
-                    resource_path('langfrontend/'. app()->getLocale() .'.json')
+                    resource_path('lang/'. app()->getLocale() .'.json')
                 );
             },
         ]);

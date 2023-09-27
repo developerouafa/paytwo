@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Translatable\HasTranslations;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,7 @@ class User extends Authenticatable implements JWTSubject
         'UserStatus',
     ];
 
+    public $translatable = ['name'];
     /**
      * The attributes that should be hidden for serialization.
      *

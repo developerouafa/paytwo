@@ -8,7 +8,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import Layout from './Layouts/Dashboard/MainLayout.vue';
 import { translations } from './Mixins/base';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
     resolve: name => {

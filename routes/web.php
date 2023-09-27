@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,11 +17,22 @@ use Inertia\Inertia;
 |
 */
 
-// Route::group(['middleware' => [ 'setLocale']], function(){
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call(' view:clear');
+    Artisan::call('route:clear');
+    return"Cleared!";
+});
+
+Route::group(['middleware' => [ 'setLocale']], function(){
+
     Route::get('/language/{language}', function ($language) {
         Session()->put('locale', $language);
         return redirect()->back();
     })->name('language');
+
     Route::get('/', function () {
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
@@ -40,6 +52,6 @@ use Inertia\Inertia;
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-// });
+});
 
 require __DIR__.'/auth.php';

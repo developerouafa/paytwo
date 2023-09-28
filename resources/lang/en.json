@@ -1,3 +1,13 @@
 {
-    "ar": "Arabic"
+    "ar" : "Arabic",
+    "en" : "الانجليزية",
+    "title" : "Electronic billing and payment management system",
+    "titletwo" : "Billing management",
+            "Welcome back!" : "Welcome back!",
+            "Please sign in to continue." : "Please sign in to continue.",
+            "Email" : "Email",
+            "Password" : "Password",
+            "Remembre Me" : "Remembre Me",
+            "Sign In" : "Sign In",
+            "These credentials do not match our records." : "These credentials do not match our records."
 }

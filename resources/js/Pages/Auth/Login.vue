@@ -46,30 +46,30 @@
                         <div class="row">
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
-                                    <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="assets/img/brand/favicon.png" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1></div>
+                                    <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="assets/img/brand/favicon.png" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">{{ __('title') }}</h1></div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <h2>Welcome back!</h2>
-                                            <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
+                                            <h2>{{ __('Welcome back!') }}</h2>
+                                            <h5 class="font-weight-semibold mb-4">{{__('Please sign in to continue.')}}</h5>
                                             <languageselector/>
                                             <form @submit.prevent="submit">
                                                 <div class="form-group">
-                                                    <label for="email">Email<span class="text-primary">*</span></label>
+                                                    <label for="email">{{__('Email')}}<span class="text-danger">*</span></label>
                                                     <input id="email" type="email" class="form-control" v-model="form.email" required autofocus autocomplete="username" placeholder="example@gmail.com">
                                                     <InputError class="mt-2" :message="form.errors.email" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Password</label>
+                                                    <label>{{__('Password')}}<span class="text-danger">*</span></label>
                                                     <input id="password" class="form-control" v-model="form.password" placeholder="Enter your password" type="password" required autocomplete="current-password">
                                                     <InputError class="mt-2" :message="form.errors.password" />
                                                 </div>
                                                 <div class="block mt-4">
                                                     <label for="remember_me" class="inline-flex items-center">
                                                     <Checkbox id="remember_me" name="remember" v-model:checked="form.remember" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" />
-                                                        <span class="ml-3 text-gray-600">Remembre Me</span>
+                                                        <span class="ml-3 mr-3 text-gray-600">  {{__('Remembre Me')}}</span>
                                                     </label>
                                                 </div>
-                                                <button class="btn btn-main-primary btn-block">Sign In</button>
+                                                <button class="btn btn-main-primary btn-block">{{__('Sign In')}}</button>
                                             </form>
                                         </div>
                                     </div>

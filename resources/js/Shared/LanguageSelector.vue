@@ -24,10 +24,4 @@
 
 <script setup>
 import Icon from './Icon.vue';
-// export default {
-//     name: "LanguageSelector",
-//     components: {
-//         Icon,
-//     },
-// }
 </script>

@@ -176,6 +176,9 @@ return [
 
         // JWT
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
+        // Chartjs
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
     ])->toArray(),
 
     /*

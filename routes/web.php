@@ -31,7 +31,7 @@ use Inertia\Inertia;
         return redirect()->back();
     })->name('language');
 
-    Route::group(['prefix' => app()->getLocale(), 'middleware' => ['auth', 'setLocale', 'xss', 'UserStatus']], function(){
+    Route::group(['middleware' => ['auth', 'setLocale', 'xss', 'UserStatus']], function(){
             Route::get('/', function () {
                 return Inertia::render('Welcome', [
                     'canLogin' => Route::has('login'),

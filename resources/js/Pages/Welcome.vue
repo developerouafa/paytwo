@@ -3,12 +3,6 @@ import { Head, useForm } from '@inertiajs/vue3';
 
 </script>
 <template>
-    <head>
-        <!--  Owl-carousel css-->
-        <link href="assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-        <!-- Maps css -->
-        <link href="assets/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
-    </head>
     <Head title="Dashboard" />
 
     <!-- breadcrumb -->

@@ -41,7 +41,7 @@ use Inertia\Inertia;
                 ]);
 
             Route::get('/dashboard', function () {
-                return Inertia::render('Dashboard');
+                return Inertia::render('Welcome');
             })->name('dashboard');
 
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

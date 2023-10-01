@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('section');
-            $table->text('description')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
+            $table->tinyInteger('status')->default(0);
+            $table->bigInteger('user_id' )->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

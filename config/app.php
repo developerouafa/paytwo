@@ -179,6 +179,10 @@ return [
 
         // Chartjs
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+
+        // Toastr
+        Yoeunes\Toastr\ToastrServiceProvider::class,
+
     ])->toArray(),
 
     /*

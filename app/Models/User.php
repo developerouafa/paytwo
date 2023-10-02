@@ -56,6 +56,12 @@ class User extends Authenticatable implements JWTSubject
         'roles_name' => 'array',
     ];
 
+    /*-------------------- Relations --------------------*/
+    public function image()
+    {
+        return $this->hasOne(imageuser::class);
+    }
+
     // Rest omitted for brevity
 
     /**

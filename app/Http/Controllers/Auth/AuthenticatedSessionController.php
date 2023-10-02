@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('signin');
+        return view('Dashboard.auth.signin');
     }
 
     /**

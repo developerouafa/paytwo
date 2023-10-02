@@ -37,8 +37,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-            // Localization
-            \App\Http\Middleware\SetLocale::class,
         ],
 
         'api' => [
@@ -87,8 +85,6 @@ class Kernel extends HttpKernel
 
     protected $middlewarePriority = [
         // ...
-        \Illuminate\Session\Middleware\StartSession::class,
-        \App\Http\Middleware\SetLocale::class,
         // ...
     ];
 }

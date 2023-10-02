@@ -5,6 +5,6 @@ return [
     'Main'=>'Main',
     'index'=>'Dashboard',
     'sections'=>'Sections',
-    'view_all' => 'View All'
-
+    'view_all' => 'View All',
+    'view_allchildren' => 'Children Section',
 ];

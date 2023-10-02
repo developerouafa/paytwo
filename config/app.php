@@ -183,6 +183,9 @@ return [
         // Toastr
         Yoeunes\Toastr\ToastrServiceProvider::class,
 
+        // Repository
+        App\Providers\RepositoryServiceProvider::class,
+
     ])->toArray(),
 
     /*

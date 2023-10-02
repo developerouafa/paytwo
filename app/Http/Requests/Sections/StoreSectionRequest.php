@@ -23,18 +23,18 @@ class StoreSectionRequest extends FormRequest
     {
         // validations
         return [
-            'section_en' => 'required|unique:section,section->en',
-            'section_ar' => 'required|unique:section,section->ar',
+            'name_en' => 'required|unique:sections,name->en',
+            'name_ar' => 'required|unique:sections,name->ar',
         ];
     }
 
     public function messages()
     {
         return [
-            'section_en.required' =>__('sectionenrequired'),
-            'section_en.unique' =>__('sectionenunique'),
-            'section_ar.required' =>__('sectionenrequired'),
-            'section_ar.unique' =>__('sectionenrequired'),
+            'name_en.required' =>__('Dashboard/sections_trans.nameenrequired'),
+            'name_en.unique' =>__('Dashboard/sections_trans.nameenunique'),
+            'name_ar.required' =>__('Dashboard/sections_trans.namearrequired'),
+            'name_ar.unique' =>__('Dashboard/sections_trans.namearunique'),
         ];
     }
 }

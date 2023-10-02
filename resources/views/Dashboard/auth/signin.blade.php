@@ -22,7 +22,7 @@
 							<div class="row">
 								<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
 									<div class="card-sigin">
-										<div class="mb-1 d-flex">
+										<div class="mb-5 d-flex">
                                             <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">
                                                 <span>{{__('Dashboard/login_trans.valex')}}</span>
                                             </h1>
@@ -40,6 +40,7 @@
                                         @endforeach
 										<div class="card-sigin">
 											<div class="main-signup-header">
+                                                <br/>
 												<h2>{{trans('Dashboard/login_trans.Welcome')}}</h2>
                                                 @if ($errors->any())
                                                     <div class="alert alert-danger">

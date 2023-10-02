@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'valex' => 'Electronic billing and payment management system',
     'Welcome' =>'Welcome back',
     'Select_Enter' =>'Select the entry method',
@@ -14,4 +13,5 @@ return [
     'SignIn' => 'Sign In',
     'Email' => 'Email',
     'Password' => 'Password',
+    'logout' => "Logout"
 ];

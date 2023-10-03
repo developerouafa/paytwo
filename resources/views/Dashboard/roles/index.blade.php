@@ -1,6 +1,6 @@
 @extends('Dashboard/layouts.master')
 @section('title')
-{{__('message.userpermissions')}}
+{{__('Dashboard/permissions.userpermissions')}}
 @endsection
 @section('css')
     <!--Internal   Notify -->
@@ -11,8 +11,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">{{__('message.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                {{__('message.userpermissions')}}</span>
+            <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                {{__('Dashboard/permissions.userpermissions')}}</span>
         </div>
     </div>
 </div>
@@ -66,7 +66,7 @@
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-right">
                             {{-- @can('اضافة صلاحية') --}}
-                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">{{__('message.add')}}</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">{{__('Dashboard/permissions.add')}}</a>
                             {{-- @endcan --}}
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>{{__('message.name')}}</th>
-                                <th>{{__('message.processes')}}</th>
+                                <th>{{__('Dashboard/permissions.name')}}</th>
+                                <th>{{__('Dashboard/permissions.PROCESSES')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,19 +92,19 @@
                                     <td>
                                         {{-- @can('عرض صلاحية') --}}
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('roles.show', $role->id) }}">{{__('message.show')}}</a>
+                                                href="{{ route('roles.show', $role->id) }}">{{__('Dashboard/permissions.show')}}</a>
                                         {{-- @endcan --}}
 
                                         {{-- @can('تعديل صلاحية') --}}
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('roles.edit', $role->id) }}">{{__('message.modify')}}</a>
+                                                href="{{ route('roles.edit', $role->id) }}">{{__('Dashboard/permissions.modify')}}</a>
                                         {{-- @endcan --}}
 
                                         @if ($role->name !== 'owner')
                                             {{-- @can('حذف صلاحية') --}}
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
-                                                <input type="submit" class="btn btn-danger btn-sm" value="{{__('message.deletee')}}">
+                                                <input type="submit" class="btn btn-danger btn-sm" value="{{__('Dashboard/permissions.delete')}}">
                                                 {{-- {!! Form::submit('حذف', ['class' => 'btn btn-danger btn-sm']) !!} --}}
                                                 {!! Form::close() !!}
                                             {{-- @endcan --}}

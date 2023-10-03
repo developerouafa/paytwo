@@ -22,19 +22,16 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'phone',
         'email',
         'password',
-        'phone',
-        'clienType',
-        'nationalIdNumber',
-        'commercialRegistrationNumber',
-        'taxNumber',
-        'adderss',
         'roles_name',
         'UserStatus',
+        'Status'
     ];
 
     public $translatable = ['name'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,6 +57,11 @@ class User extends Authenticatable implements JWTSubject
     public function image()
     {
         return $this->hasOne(imageuser::class);
+    }
+
+    public function profileuser()
+    {
+        return $this->hasOne(profileuser::class);
     }
 
     // Rest omitted for brevity

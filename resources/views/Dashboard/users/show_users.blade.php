@@ -1,29 +1,27 @@
 @extends('Dashboard/layouts.master')
 @section('title')
-{{__('message.users')}}
+{{__('Dashboard/users.users')}}
 @endsection
 @section('css')
-<!-- Internal Data table css -->
-
-<link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
-<link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
-<link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
-<!--Internal   Notify -->
-<link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
-
+    <!-- Internal Data table css -->
+    <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @endsection
 @section('page-header')
-<!-- breadcrumb -->
-<div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-        <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">{{__('message.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('message.users')}}</span>
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/users.users')}}</span>
+            </div>
         </div>
     </div>
-</div>
-<!-- breadcrumb -->
+    <!-- breadcrumb -->
 @endsection
 
 @section('content')
@@ -41,7 +39,7 @@
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
                     {{-- @can('اضافة مستخدم') --}}
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('message.addauser')}}</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
                     {{-- @endcan --}}
                 </div>
             </div>
@@ -51,21 +49,21 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                {{-- <th class="wd-15p border-bottom-0"> {{__('message.First Name')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('message.last Name')}} </th>
-                                <th class="wd-20p border-bottom-0"> {{__('message.Email')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('message.userstatus')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('message.usertype')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('message.userolestaus')}} </th>
-                                <th class="wd-10p border-bottom-0"> {{__('message.processes')}} </th> --}}
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.name')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.phone')}} </th>
+                                <th class="wd-20p border-bottom-0"> {{__('Dashboard/users.email')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userstatus')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.usertype')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userolestaus')}} </th>
+                                <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $user)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    {{-- <td>{{ $user->profileuser->firstname }}</td>
-                                    <td>{{ $user->profileuser->lastname }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->phone }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         @if ($user->UserStatus == 1)
@@ -100,13 +98,13 @@
                                     </td>
 
                                     <td>
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="تعديل"><i class="las la-pen"></i></a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-user_id="{{ $user->id }}" data-username="{{ $user->profileuser->firstname }} {{ $user->profileuser->lastname }}"
-                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
-                                                    class="las la-trash"></i></a>
-                                    </td> --}}
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
+                                            title="تعديل"><i class="las la-pen"></i></a>
+                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                            data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                class="las la-trash"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -122,20 +120,20 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">{{__('message.deletetheuser')}}</h6><button aria-label="Close" class="close"
+                    <h6 class="modal-title">{{__('Dashboard/users.deletetheuser')}}</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="{{ route('users.destroy', 'test') }}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
-                        <p>{{__('message.aresureofthedeleting')}}</p><br>
+                        <p>{{__('Dashboard/users.aresureofthedeleting')}}</p><br>
                         <input type="hidden" name="user_id" id="user_id" value="">
                         <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('message.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger">{{__('message.save')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/users.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger">{{__('Dashboard/users.save')}}</button>
                     </div>
             </div>
             </form>

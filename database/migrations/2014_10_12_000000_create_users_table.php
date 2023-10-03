@@ -15,16 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('clienType')->nullable();
-            $table->string('nationalIdNumber')->nullable();
-            $table->string('commercialRegistrationNumber')->nullable();
-            $table->string('taxNumber')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('adderss')->nullable();
             $table->text('roles_name')->nullable();
             $table->tinyInteger('UserStatus')->default(0);
+            $table->tinyInteger('Status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

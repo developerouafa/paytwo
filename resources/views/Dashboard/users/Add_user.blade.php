@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('Dashboard/layouts.master')
 @section('title')
-{{__('message.addauser')}}
+{{__('Dashboard/users.addauser')}}
 @endsection
 @section('css')
 <!-- Internal Nice-select css  -->
@@ -12,7 +12,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">{{__('message.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{__('message.addauser')}}
+            <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{__('Dashboard/users.addauser')}}
                 </span>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong>{{__('message.err')}}</strong>
+                <strong>{{__('Dashboard/users.err')}}</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -44,7 +44,7 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{__('message.back')}}</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{__('Dashboard/users.back')}}</a>
                     </div>
                 </div><br>
                 <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
@@ -55,42 +55,35 @@
 
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.firstenglish')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="firstname" required="" type="text">
+                                <label>{{__('Dashboard/users.nameen')}} <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nameen" required="" type="text">
                             </div>
 
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.firstarabe')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="firstnamear" required="" type="text">
+                                <label>{{__('Dashboard/users.namear')}} <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="namear" required="" type="text">
                             </div>
 
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.lastenglish')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="lastname" required="" type="text">
+                                <label>{{__('Dashboard/users.phone')}} <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required="" type="text">
                             </div>
-
-                            <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.lastarabe')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="lastnamear" required="" type="text">
-                            </div>
-
                         </div>
 
                     </div>
 
                     <div class="">
-
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>{{__('message.Email')}}<span class="tx-danger">*</span></label>
+                                <label>{{__('Dashboard/users.email')}}<span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
                                     data-parsley-class-handler="#lnWrapper" name="email" required="" type="email">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">{{__('message.userolestaus')}}</label>
+                                <label class="form-label">{{__('Dashboard/users.userolestaus')}}</label>
                                 <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
-                                    <option value="1">{{__('message.active')}}</option>
-                                    <option value="0">{{__('message.noactive')}}</option>
+                                    <option value="1">{{__('Dashboard/users.active')}}</option>
+                                    <option value="0">{{__('Dashboard/users.noactive')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -99,13 +92,13 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('message.Password')}}<span class="tx-danger">*</span></label>
+                            <label>{{__('Dashboard/users.password')}}<span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="password" required="" type="password">
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('message.confirmpassword')}}<span class="tx-danger">*</span></label>
+                            <label>{{__('Dashboard/users.confirmpassword')}}<span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="confirm-password" required="" type="password">
                         </div>
@@ -114,13 +107,13 @@
                     <div class="row mg-b-20">
                         <div class="col-xs-12 col-md-12">
                             <div class="form-group">
-                                <label class="form-label"> {{__('message.uservalidity')}}<span class="tx-danger">*</span></label>
+                                <label class="form-label"> {{__('Dashboard/users.uservalidity')}}<span class="tx-danger">*</span></label>
                                 {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple','required')) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button class="btn btn-main-primary pd-x-20" type="submit">{{__('message.save')}}</button>
+                        <button class="btn btn-main-primary pd-x-20" type="submit">{{__('Dashboard/users.save')}}</button>
                     </div>
                 </form>
             </div>

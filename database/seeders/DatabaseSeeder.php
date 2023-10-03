@@ -20,11 +20,5 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        $section = section::create([
-            'section' => "sectionone",
-            'description' => "descriptionone",
-            'user_id' => "1"
-        ]);
     }
 }

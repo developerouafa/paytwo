@@ -35,9 +35,9 @@ class RolesController extends Controller
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ],[
-            'name.required' =>__('messagevalidation.users.namepermissionrequired'),
-            'name.unique' =>__('messagevalidation.users.nameunique'),
-            'permission.required' =>__('messagevalidation.users.permissionrequired'),
+            'name.required' =>__('Dashboard/permissions.namepermissionrequired'),
+            'name.unique' =>__('Dashboard/permissions.nameunique'),
+            'permission.required' =>__('Dashboard/permissions.permissionrequired'),
         ]);
 
         try{
@@ -45,11 +45,11 @@ class RolesController extends Controller
             $role = Role::create(['name' => $request->input('name')]);
             $role->syncPermissions($request->input('permission'));
             DB::commit();
-            toastr()->success(trans('message.create'));
+            toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('roles.index');
         }catch(\Exception $execption){
             DB::rollBack();
-            toastr()->error(trans('message.error'));
+            toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('roles.index');
         }
     }
@@ -79,8 +79,8 @@ class RolesController extends Controller
             'name' => 'required',
             'permission' => 'required',
         ],[
-            'name.required' =>__('messagevalidation.users.namepermissionrequired'),
-            'permission.required' =>__('messagevalidation.users.permissionrequired'),
+            'name.required' =>__('Dashboard/permissions.namepermissionrequired'),
+            'permission.required' =>__('Dashboard/permissions.permissionrequired'),
         ]);
 
         try{
@@ -91,7 +91,7 @@ class RolesController extends Controller
             if($b_exists){
                 $role->syncPermissions($request->input('permission'));
                 DB::commit();
-                toastr()->success(trans('message.update'));
+                toastr()->success(trans('Dashboard/messages.update'));
                 return redirect()->route('roles.index');
             }
             else{
@@ -99,12 +99,12 @@ class RolesController extends Controller
                 $role->save();
                 $role->syncPermissions($request->input('permission'));
                 DB::commit();
-                toastr()->success(trans('message.update'));
+                toastr()->success(trans('Dashboard/messages.edit'));
                 return redirect()->route('roles.index');
             }
         }catch(\Exception $execption){
             DB::rollBack();
-            toastr()->error(trans('message.error'));
+            toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('roles.index');
         }
     }
@@ -115,11 +115,11 @@ class RolesController extends Controller
             DB::beginTransaction();
             DB::table('roles')->where('id',$id)->delete();
             DB::commit();
-            toastr()->success(trans('message.delete'));
+            toastr()->success(trans('Dashboard/messages.delete'));
             return redirect()->route('roles.index');
         }catch(\Exception $execption){
             DB::rollBack();
-            toastr()->error(trans('message.error'));
+            toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('roles.index');
         }
     }

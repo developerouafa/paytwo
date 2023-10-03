@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('imageusers', function (Blueprint $table) {
+        Schema::create('profileusers', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('clienType')->nullable();
+            $table->string('nationalIdNumber')->nullable();
+            $table->string('commercialRegistrationNumber')->nullable();
+            $table->string('taxNumber')->nullable();
+            $table->string('adderss')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('imageusers');
+        Schema::dropIfExists('profileusers');
     }
 };

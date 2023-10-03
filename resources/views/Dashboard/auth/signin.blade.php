@@ -1,4 +1,7 @@
 @extends('Dashboard/layouts.master2')
+@section('title')
+{{__('Dashboard/login_trans.SignIn')}}
+@endsection
 @section('css')
 <!-- Sidemenu-respoansive-tabs css -->
 <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">

@@ -15,7 +15,7 @@ return [
     'Warning'=>'Are Sure Of The Deleting Process ?',
     'user' => 'User',
     'nameenrequired'=>'English section required',
-    'nameenunique'=>'The section in English is available',
+    'nameenunique'=>'The section in English is exists',
     'namearrequired'=>'Arabic section required',
     'namearunique'=>'The section in Arabic exists',
     'namerequired'=>'Section required',

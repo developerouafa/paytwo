@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('Dashboard/layouts.master')
 @section('title')
-{{__('message.modifyauser')}}
+{{__('Dashboard/users.modifyauser')}}
 @endsection
 @section('css')
 <!-- Internal Nice-select css  -->
@@ -11,8 +11,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">{{__('message.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                {{__('message.modifyauser')}}</span>
+            <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                {{__('Dashboard/users.modifyauser')}}</span>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
             <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>{{__('message.err')}}</strong>
+            <strong>{{__('Dashboard/users.err')}}</strong>
             <ul>
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -41,7 +41,7 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{__('message.back')}}</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{__('Dashboard/users.back')}}</a>
                     </div>
                 </div><br>
 
@@ -49,13 +49,12 @@
                     <div class="">
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.First Name')}}  <span class="tx-danger">*</span></label>
-                                <input value="{{$user->profileuser->firstname}}" class="form-control" required name="firstname_{{app()->getLocale()}}" id="firstname" type="text"  autocomplete="off" >
+                                <label>{{__('Dashboard/users.name')}}  <span class="tx-danger">*</span></label>
+                                <input value="{{$user->name}}" class="form-control" required name="name_{{app()->getLocale()}}" type="text"  autocomplete="off" >
                             </div>
-                            <input type="hidden" name="idprofile" value="{{$user->profileuser->id}}">
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('message.last Name')}}  <span class="tx-danger">*</span></label>
-                                <input value="{{$user->profileuser->lastname}}" class="form-control" required name="lastname_{{app()->getLocale()}}" id="lastname" type="text"  autocomplete="off" >
+                                <label>{{__('Dashboard/users.phone')}}  <span class="tx-danger">*</span></label>
+                                <input value="{{$user->phone}}" class="form-control" required name="phone" type="text"  autocomplete="off" >
                             </div>
                         </div>
                     </div>
@@ -63,21 +62,21 @@
                     <div class="">
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>{{__('message.Email')}} <span class="tx-danger">*</span></label>
+                                <label>{{__('Dashboard/users.email')}} <span class="tx-danger">*</span></label>
                                 {!! Form::text('email', $user->email, array('class' => 'form-control','required')) !!}
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">{{__('message.userolestaus')}}</label>
+                                <label class="form-label">{{__('Dashboard/users.userolestaus')}}</label>
                                 <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
                                     <option value="{{ $user->Status}}">
                                         @if ($user->Status == 1)
-                                            {{__('message.active')}}
+                                            {{__('Dashboard/users.active')}}
                                         @else
-                                            {{__('message.noactive')}}
+                                            {{__('Dashboard/users.noactive')}}
                                         @endif
                                     </option>
-                                    <option value="1">{{__('message.active')}}</option>
-                                    <option value="0">{{__('message.noactive')}}</option>
+                                    <option value="1">{{__('Dashboard/users.active')}}</option>
+                                    <option value="0">{{__('Dashboard/users.noactive')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -85,12 +84,12 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('message.Password')}} <span class="tx-danger">*</span></label>
+                            <label>{{__('Dashboard/users.password')}} <span class="tx-danger">*</span></label>
                             {!! Form::password('password', array('class' => 'form-control')) !!}
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('message.currentpassword')}} <span class="tx-danger">*</span></label>
+                            <label>{{__('Dashboard/users.currentpassword')}} <span class="tx-danger">*</span></label>
                             {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
                         </div>
                     </div>
@@ -98,14 +97,14 @@
                     <div class="row mg-b-20">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>{{__('message.usertype')}}</strong>
+                                <strong>{{__('Dashboard/users.usertype')}}</strong>
                                 {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))
                                 !!}
                             </div>
                         </div>
                     </div>
                     <div class="mg-t-30">
-                        <button class="btn btn-main-primary pd-x-20" type="submit">{{__('message.buttonupdate')}}</button>
+                        <button class="btn btn-main-primary pd-x-20" type="submit">{{__('Dashboard/users.update')}}</button>
                     </div>
                 {!! Form::close() !!}
             </div>

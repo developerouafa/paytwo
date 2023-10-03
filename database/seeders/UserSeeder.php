@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\profileuser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -17,19 +18,24 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'ouafa',
+            'name' => ['en' => 'ouafa', 'ar' => 'وفاء'],
             'phone' => '0682201021',
             'email' => 'ouafa@gmail.com',
             'password' => Hash::make('123456'),
             'roles_name' => ["Admin"]
         ]);
 
-            $role = Role::create(['name' => 'Admin']);
+        $user_id = User::latest()->first()->id;
+        profileuser::create([
+            'user_id' => $user_id,
+        ]);
 
-            $permissions = Permission::pluck('id','id')->all();
+        $role = Role::create(['name' => 'Admin']);
 
-            $role->syncPermissions($permissions);
+        $permissions = Permission::pluck('id','id')->all();
 
-            $user->assignRole([$role->id]);
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
     }
 }

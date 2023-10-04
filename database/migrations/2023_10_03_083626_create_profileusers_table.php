@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profileusers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('clienType')->nullable();
             $table->string('nationalIdNumber')->nullable();
             $table->string('commercialRegistrationNumber')->nullable();

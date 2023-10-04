@@ -55,6 +55,11 @@
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userstatus')}} </th>
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.usertype')}} </th>
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userolestaus')}} </th>
+                                {{-- <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.clienType')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.nationalIdNumber')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.commercialRegistrationNumber')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.taxNumber')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.adderss')}} </th> --}}
                                 <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>
@@ -76,7 +81,6 @@
                                             </span>
                                         @endif
                                     </td>
-
                                     <td>
                                         @if (!empty($user->getRoleNames()))
                                             @foreach ($user->getRoleNames() as $v)
@@ -84,7 +88,6 @@
                                             @endforeach
                                         @endif
                                     </td>
-
                                     <td>
                                         @if ($user->Status == 1)
                                             <span class="label text-success d-flex">
@@ -96,7 +99,21 @@
                                             </span>
                                         @endif
                                     </td>
-
+                                    {{-- <td>
+                                        @if (!empty($user->profileuser->clienType == 1))
+                                            <span class="label text-black d-flex">
+                                                {{__('Dashboard/users.individual')}}
+                                            </span>
+                                        @else
+                                            <span class="label text-black d-flex">
+                                                {{__('Dashboard/users.individual')}}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $user->profileuser->nationalIdNumber }}</td>
+                                    <td>{{ $user->profileuser->commercialRegistrationNumber }}</td>
+                                    <td>{{ $user->profileuser->taxNumber }}</td>
+                                    <td>{{ $user->profileuser->adderss }}</td> --}}
                                     <td>
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
                                             title="تعديل"><i class="las la-pen"></i></a>

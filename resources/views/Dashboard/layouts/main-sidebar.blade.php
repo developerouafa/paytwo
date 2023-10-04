@@ -12,12 +12,19 @@
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">
-						<div class="">
-							<img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('assets/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
-						</div>
+                        <div class="">
+                            <?php
+                                use App\Models\User;
+                                $img = User::query()->select('id')->where('id', '=', Auth::user()->id)->with('image')->first();
+                            ?>
+                            @if (empty($img->image->image))
+                                <img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('assets/img/faces/6.jpg')}}"><span class="avatar-status profile-status bg-green"></span>
+                            @else
+                                <img alt="user-img" class="avatar avatar-xl brround" src="{{URL::asset('storage/'.$img->image->image)}}"><span class="avatar-status profile-status bg-green"></span>
+                            @endif
+                        </div>
 						<div class="user-info">
-							<h4 class="font-weight-semibold mt-3 mb-0">Petey Cruiser</h4>
-							<span class="mb-0 text-muted">Premium Member</span>
+							<h4 class="font-weight-semibold mt-3 mb-0">{{Auth::user()->name}}</h4>
 						</div>
 					</div>
 				</div>

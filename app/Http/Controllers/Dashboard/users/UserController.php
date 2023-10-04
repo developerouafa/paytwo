@@ -31,20 +31,25 @@ class UserController extends Controller
     {
         try{
             DB::beginTransaction();
-                User::create([
+                $user = User::create([
                     'name' => ['en' => $request->nameen, 'ar' => $request->namear],
                     'phone' => $request->phone,
                     'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'roles_name' => $request->input('roles_name')
+                    'password' => Hash::make($request->password)
                 ]);
+                $user->assignRole($request->input('roles_name'));
                 $user_id = User::latest()->first()->id;
                 profileuser::create([
+                    'clienType' => $request->clienType,
+                    'nationalIdNumber' => $request->nationalIdNumber,
+                    'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
+                    'taxNumber' => $request->taxNumber,
+                    'adderss' => $request->adderss,
                     'user_id' => $user_id,
                 ]);
-                imageuser::create([
-                    'user_id' => $user_id,
-                ]);
+                // imageuser::create([
+                //     'user_id' => $user_id,
+                // ]);
             DB::commit();
             toastr()->success(__('Dashboard/messages.add'));
             return redirect()->route('users.index');

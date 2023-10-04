@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait GeneralTrait
+trait GeneralTraitt
 {
 
     public function getCurrentLang(){

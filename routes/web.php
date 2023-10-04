@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Dashboard\profiles\ProfileController;
 use App\Http\Controllers\Dashboard\roles\RolesController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\users\UserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ImageuserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -26,24 +27,34 @@ Route::get('/clear', function() {
     Artisan::call('route:clear');
     return"Cleared!";
 });
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
 
-    Route::get('/', function () {
-        return view('Dashboard/index');
+//* To access these pages, you must log in first
+    Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
+
+        Route::get('/', function () {
+            return view('Dashboard/index');
+        });
+
+        Route::get('/dashboard', function () {
+            return view('Dashboard/index');
+        })->name('dashboard');
+
+        Route::resource('roles', RolesController::class);
+        Route::resource('users', UserController::class);
+
+        Route::group(['prefix' => 'Profile'], function(){
+            Route::controller(ProfileController::class)->group(function() {
+                Route::get('/profile', 'edit')->name('profile.edit');
+                Route::patch('/profile', 'updateprofile')->name('profile.update');
+            });
+            Route::controller(ImageuserController::class)->group(function() {
+                Route::post('/imageuser', 'store')->name('imageuser.store');
+                Route::patch('/imageuser', 'update')->name('imageuser.update');
+                Route::get('/imageuser', 'destroy')->name('imageuser.delete');
+            });
+        });
+
+        Route::resource('Sections', SectionController::class);
+
     });
-
-    Route::get('/dashboard', function () {
-        return view('Dashboard/index');
-    })->name('dashboard');
-
-    Route::resource('roles', RolesController::class);
-    Route::resource('users', UserController::class);
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::resource('Sections', SectionController::class);
-
-});
-require __DIR__.'/auth.php';
+    require __DIR__.'/auth.php';

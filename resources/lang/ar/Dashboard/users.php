@@ -37,4 +37,11 @@ return [
     'passwordsame' => 'رجاء تاكيد كلمة السر',
     'rolesnamerequired' => 'اسم الأدوار مطلوب',
     'phonerequired' => 'رقم الهاتفي مطلوب',
+    'clienType' => 'نوع العميل',
+    'individual' => 'فرد',
+    'company' => 'شركة',
+    'nationalIdNumber' => 'رقم الهوية الوطنية',
+    'commercialRegistrationNumber' => 'رقم السجل التجاري',
+    'taxNumber' => 'الرقم الضريبي',
+    'adderss' => 'العنوان',
 ];

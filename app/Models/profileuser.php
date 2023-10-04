@@ -15,6 +15,7 @@ class profileuser extends Model
         'commercialRegistrationNumber',
         'taxNumber',
         'adderss',
+        'user_id'
     ];
 
     /*-------------------- Relations --------------------*/

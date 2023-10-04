@@ -52,24 +52,56 @@
                     {{csrf_field()}}
 
                     <div class="">
-
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.nameen')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nameen" required="" type="text">
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nameen" required="" type="text" autofocus>
                             </div>
 
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.namear')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="namear" required="" type="text">
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="namear" required="" type="text" autofocus>
+                            </div>
+                        </div>
+                        <div class="row mg-b-20">
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>{{__('Dashboard/users.phone')}} <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required="" type="text" autofocus>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">{{__('Dashboard/users.clienType')}}</label>
+                                <select name="clienType" id="select-beast" class="form-control  nice-select  custom-select">
+                                    <option value="1">{{__('Dashboard/users.individual')}}</option>
+                                    <option value="0">{{__('Dashboard/users.company')}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="row mg-b-20">
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>{{__('Dashboard/users.nationalIdNumber')}}</label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nationalIdNumber" type="text" autofocus>
                             </div>
 
                             <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>{{__('Dashboard/users.phone')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required="" type="text">
+                                <label>{{__('Dashboard/users.commercialRegistrationNumber')}}</label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="commercialRegistrationNumber" type="text" autofocus>
                             </div>
                         </div>
+                        <div class="row mg-b-20">
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>{{__('Dashboard/users.taxNumber')}}</label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="taxNumber" type="text" autofocus>
+                            </div>
 
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>{{__('Dashboard/users.adderss')}}</label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="adderss" type="text" autofocus>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="">
@@ -77,7 +109,7 @@
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                                 <label>{{__('Dashboard/users.email')}}<span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
-                                    data-parsley-class-handler="#lnWrapper" name="email" required="" type="email">
+                                    data-parsley-class-handler="#lnWrapper" name="email" required type="email">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">{{__('Dashboard/users.userolestaus')}}</label>
@@ -87,20 +119,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row mg-b-20">
+                            <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                <label>{{__('Dashboard/users.password')}}<span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
+                                    name="password" required="" type="password">
+                            </div>
 
-                    </div>
-
-                    <div class="row mg-b-20">
-                        <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('Dashboard/users.password')}}<span class="tx-danger">*</span></label>
-                            <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
-                                name="password" required="" type="password">
-                        </div>
-
-                        <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{__('Dashboard/users.confirmpassword')}}<span class="tx-danger">*</span></label>
-                            <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
-                                name="confirm-password" required="" type="password">
+                            <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                <label>{{__('Dashboard/users.confirmpassword')}}<span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
+                                    name="confirm-password" required="" type="password">
+                            </div>
                         </div>
                     </div>
 
@@ -112,6 +142,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button class="btn btn-main-primary pd-x-20" type="submit">{{__('Dashboard/users.save')}}</button>
                     </div>

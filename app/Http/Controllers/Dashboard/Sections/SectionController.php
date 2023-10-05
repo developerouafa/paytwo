@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Sections\StoreSectionRequest;
@@ -44,5 +44,15 @@ class SectionController extends Controller
     public function destroy(Request $request)
     {
         return $this->Sections->destroy($request);
+    }
+
+    public function editstatusdéactive($id)
+    {
+        return $this->Sections->editstatusdéactive($id);
+    }
+
+    public function editstatusactive($id)
+    {
+        return $this->Sections->editstatusactive($id);
     }
 }

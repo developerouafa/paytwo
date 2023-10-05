@@ -48,6 +48,7 @@
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">#</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.name_sections')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.status')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.user')}}</th>
                                                 <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
                                                 <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.Processes')}}</th>
@@ -59,6 +60,14 @@
                                                     <td>{{$loop->iteration}}</td>
                                                     {{-- <td><a href="{{route('Sections.show',$section->id)}}">{{$section->name}}</a> </td> --}}
                                                     <td><a href="#">{{$section->name}}</a> </td>
+                                                    <td>
+                                                        @if ($section->status == 0)
+                                                            <a href="{{route('editstatusdéactive', $section->id)}}">{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                        @endif
+                                                        @if ($section->status == 1)
+                                                            <a href="{{route('editstatusactive', $section->id)}}">{{__('Dashboard/sections_trans.active')}}</a>
+                                                        @endif
+                                                    </td>
                                                     <td><a href="#">{{$section->user->name}}</a> </td>
                                                     <td>{{ $section->created_at->diffForHumans() }}</td>
                                                     <td>

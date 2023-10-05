@@ -20,4 +20,9 @@ interface SectionRepositoryInterface
     // destroy Sections
     public function show($id);
 
+    // Hide Section
+    public function editstatusdéactive($id);
+
+    // show Section
+    public function editstatusactive($id);
 }

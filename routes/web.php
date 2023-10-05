@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Dashboard\profiles\ProfileController;
 use App\Http\Controllers\Dashboard\roles\RolesController;
-use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\Sections\SectionController;
 use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use Illuminate\Support\Facades\Artisan;
@@ -54,7 +54,22 @@ Route::get('/clear', function() {
             });
         });
 
-        Route::resource('Sections', SectionController::class);
+        Route::group(['prefix' => 'Sections'], function(){
+            // Route::resource('Sections', SectionController::class);
+            Route::get('/index', [SectionController::class, 'index'])->name('Sections.index');
+            Route::post('/create', [SectionController::class, 'store'])->name('Sections.store');
+            Route::patch('/update', [SectionController::class, 'update'])->name('Sections.update');
+            Route::delete('/destroy', [SectionController::class, 'destroy'])->name('Sections.destroy');
+            Route::get('editstatusdéactive/{id}', [SectionController::class, 'editstatusdéactive'])->name('editstatusdéactive');
+            Route::get('editstatusactive/{id}', [SectionController::class, 'editstatusactive'])->name('editstatusactive');
+
+            // Route::controller(ChildrensectionController::class)->group(function() {
+            //     Route::get('/child', 'index')->name('childcat_index');
+            //     Route::post('/createchild', 'store')->name('childcat.create');
+            //     Route::patch('/updatechild', 'update')->name('childcat.update');
+            //     Route::delete('/deletechild', 'delete')->name('childcat.delete');
+            // });
+        });
 
     });
     require __DIR__.'/auth.php';

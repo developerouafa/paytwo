@@ -15,6 +15,7 @@ class section extends Model
     protected $fillable = [
         'id',
         'name',
+        'status',
         'user_id',
         'parent_id',
     ];
@@ -40,7 +41,7 @@ class section extends Model
 
         public function scopeSelectchildrens(mixed $query)
         {
-            return $query->select('id', 'name', 'description', 'user_id', 'parent_id');
+            return $query->select('id', 'name', 'user_id', 'status', 'parent_id');
         }
 
         public function scopeWithchildrens(mixed $query)

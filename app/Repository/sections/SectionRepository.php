@@ -81,4 +81,39 @@ class SectionRepository implements SectionRepositoryInterface
 
     }
 
+    public function editstatusdéactive($id)
+    {
+        try{
+            $Section = Section::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 1,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Sections.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Sections.index');
+        }
+    }
+
+    public function editstatusactive($id)
+    {
+        try{
+            $Section = Section::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 0,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Sections.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Sections.index');
+        }
+    }
 }

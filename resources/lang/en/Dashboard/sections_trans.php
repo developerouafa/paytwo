@@ -8,6 +8,8 @@ return [
     'section_arabic'=>'Section In Arabic',
     'edit_sections'=>'Edit Sections',
     'delete_sections'=>'Delete Sections',
+    'delete'=>'Delete',
+    'aresuredeleting'=>'Are you sure deleting!',
     'created_at'=>'Created_at',
     'Processes'=>'Processes',
     'submit'=>'Submit',
@@ -20,7 +22,9 @@ return [
     'namearrequired'=>'Arabic section required',
     'namearunique'=>'The section in Arabic exists',
     'namerequired'=>'Section required',
+    'namechrequired'=>'Children Section required',
     'nameunique'=>'The section exists',
+    'namechunique'=>'The children section exists',
     'disabled' => 'Disabled',
     'active' => 'Active',
     'childrens' => 'Childrens  Sections',
@@ -31,4 +35,6 @@ return [
     'childrenar' => 'Children Arabic',
     'sections' => 'Sections',
     'nosectionyet' => 'No Sections yet',
+    'sectionidrequired' => 'Section Is Required'
+
 ];

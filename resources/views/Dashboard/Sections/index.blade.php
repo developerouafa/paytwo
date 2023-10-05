@@ -50,7 +50,7 @@
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.name_sections')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.status')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
-                                                <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                {{-- <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th> --}}
                                                 <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.Processes')}}</th>
                                             </tr>
                                             </thead>
@@ -69,7 +69,7 @@
                                                         @endif
                                                     </td>
                                                     <td><a href="#">{{$section->user->name}}</a> </td>
-                                                    <td>{{ $section->created_at->diffForHumans() }}</td>
+                                                    {{-- <td>{{ $section->created_at->diffForHumans() }}</td> --}}
                                                     <td>
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>

@@ -69,7 +69,7 @@ Route::get('/clear', function() {
                 Route::get('/child', 'index')->name('childcat_index');
                 Route::post('/createchild', 'store')->name('childcat.create');
                 Route::patch('/updatechild', 'update')->name('childcat.update');
-                Route::delete('/deletechild', 'delete')->name('childcat.delete');
+                Route::delete('/deletechild', 'destroy')->name('childcat.delete');
             });
         });
 

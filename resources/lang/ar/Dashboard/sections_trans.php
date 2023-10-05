@@ -7,7 +7,8 @@ return [
     'section_english'=>'القسم بالانجليزية',
     'section_arabic'=>'القسم بالعربية',
     'edit_sections'=>'تعديل قسم',
-    'delete_sections'=>'حذف قسم',
+    'delete'=>'حذف',
+    'aresuredeleting'=>'!هل أنت متأكد من الحذف',
     'created_at'=>'تاريخ الاضافة',
     'Processes'=>'العمليات',
     'submit'=>'تاكيد',
@@ -20,7 +21,9 @@ return [
     'namearrequired'=>'القسم بالعربية مطلوب',
     'namearunique'=>'القسم بالعربية موجود',
     'namerequired'=>'القسم مطلوب',
+    'namechrequired'=>'اسم طفل القسم مطلوب',
     'nameunique'=>'القسم موجود',
+    'namechunique'=>'اسم طفل القسم يوجد',
     'disabled' => 'تعطيل',
     'active' => 'تفعيل',
     'childrens' => 'أقسام الأطفال',
@@ -31,4 +34,5 @@ return [
     'childrenar' => 'طفل القسم بالعربية',
     'sections' => 'الاقسام',
     'nosectionyet' => 'لا يوجد اقسام',
+    'sectionidrequired' => 'القسم مطلوب'
 ];

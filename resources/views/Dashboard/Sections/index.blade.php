@@ -49,7 +49,7 @@
                                                 <th class="wd-15p border-bottom-0">#</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.name_sections')}}</th>
                                                 <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.status')}}</th>
-                                                <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.user')}}</th>
+                                                <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
                                                 <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
                                                 <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.Processes')}}</th>
                                             </tr>
@@ -62,7 +62,7 @@
                                                     <td><a href="#">{{$section->name}}</a> </td>
                                                     <td>
                                                         @if ($section->status == 0)
-                                                            <a href="{{route('editstatusdéactive', $section->id)}}">{{__('Dashboard/sections_trans.disable')}}</a>
+                                                            <a href="{{route('editstatusdéactive', $section->id)}}">{{__('Dashboard/sections_trans.disabled')}}</a>
                                                         @endif
                                                         @if ($section->status == 1)
                                                             <a href="{{route('editstatusactive', $section->id)}}">{{__('Dashboard/sections_trans.active')}}</a>

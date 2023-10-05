@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\childrens\childrenController;
 use App\Http\Controllers\Dashboard\profiles\ProfileController;
 use App\Http\Controllers\Dashboard\roles\RolesController;
 use App\Http\Controllers\Dashboard\Sections\SectionController;
@@ -55,20 +56,21 @@ Route::get('/clear', function() {
         });
 
         Route::group(['prefix' => 'Sections'], function(){
-            // Route::resource('Sections', SectionController::class);
-            Route::get('/index', [SectionController::class, 'index'])->name('Sections.index');
-            Route::post('/create', [SectionController::class, 'store'])->name('Sections.store');
-            Route::patch('/update', [SectionController::class, 'update'])->name('Sections.update');
-            Route::delete('/destroy', [SectionController::class, 'destroy'])->name('Sections.destroy');
-            Route::get('editstatusdéactive/{id}', [SectionController::class, 'editstatusdéactive'])->name('editstatusdéactive');
-            Route::get('editstatusactive/{id}', [SectionController::class, 'editstatusactive'])->name('editstatusactive');
+            Route::controller(SectionController::class)->group(function() {
+                Route::get('/index', 'index')->name('Sections.index');
+                Route::post('/create', 'store')->name('Sections.store');
+                Route::patch('/update', 'update')->name('Sections.update');
+                Route::delete('/destroy', 'destroy')->name('Sections.destroy');
+                Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
+                Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+            });
 
-            // Route::controller(ChildrensectionController::class)->group(function() {
-            //     Route::get('/child', 'index')->name('childcat_index');
-            //     Route::post('/createchild', 'store')->name('childcat.create');
-            //     Route::patch('/updatechild', 'update')->name('childcat.update');
-            //     Route::delete('/deletechild', 'delete')->name('childcat.delete');
-            // });
+            Route::controller(childrenController::class)->group(function() {
+                Route::get('/child', 'index')->name('childcat_index');
+                Route::post('/createchild', 'store')->name('childcat.create');
+                Route::patch('/updatechild', 'update')->name('childcat.update');
+                Route::delete('/deletechild', 'delete')->name('childcat.delete');
+            });
         });
 
     });

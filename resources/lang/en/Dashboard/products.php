@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'addproducts'=>'Add Products',
+    'name_products'=>'Name products',
+    'product_english'=>'Product In English',
+    'product_arabic'=>'Product In Arabic',
+    'edit_products'=>'Edit products',
+    'delete_products'=>'Delete products',
+    'delete'=>'Delete',
+    'aresuredeleting'=>'Are you sure deleting!',
+    'created_at'=>'Created_at',
+    'Processes'=>'Processes',
+    'submit'=>'Submit',
+    'Close'=>'Close',
+    'Warning'=>'Are Sure Of The Deleting Process ?',
+    'userproduct' => 'Product Create by This User',
+    'nameenrequired'=>'English product required',
+    'nameenunique'=>'The product in English is exists',
+    'namearrequired'=>'Arabic product required',
+    'namearunique'=>'The product in Arabic exists',
+    'namerequired'=>'Product required',
+    'nameunique'=>'The product exists',
+    'disabled' => 'Disabled',
+    'active' => 'Active',
+    'product' => 'Product',
+    'products' => 'Products',
+    'description' => 'Description',
+    'status'=>'Status',
+    'section' => 'Section',
+    'children' => 'Children Section',
+    'price' => 'Price'
+];

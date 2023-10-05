@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'addproducts'=>'اضافة منتج',
+    'name_products'=>'اسم المنتج',
+    'product_english'=>'المنتج بالانجليزية',
+    'product_arabic'=>'المنتج بالعربية',
+    'edit_products'=>'تعديل المنتج',
+    'delete'=>'حذف',
+    'aresuredeleting'=>'!هل أنت متأكد من الحذف',
+    'created_at'=>'تاريخ الاضافة',
+    'Processes'=>'العمليات',
+    'submit'=>'تاكيد',
+    'Close'=>'اغلاق',
+    'Warning'=>'هل انت متاكد من عملية الحذف ؟',
+    'userproduct' => 'المنتج انشئ من طرف المستخدم',
+    'nameenrequired'=>'المنتج بالانجليزية مطلوب',
+    'nameenunique'=>'المنتج بالانجليزية يوجد',
+    'namearrequired'=>'المنتج بالعربية مطلوب',
+    'namearunique'=>'المنتج بالعربية موجود',
+    'namerequired'=>'المنتج مطلوب',
+    'nameunique'=>'المنتج موجود',
+    'disabled' => 'تعطيل',
+    'active' => 'تفعيل',
+    'product' => 'المنتج',
+    'products' => 'المنتجات',
+    'description' => 'الوصف',
+    'status'=>'حالة المنتج',
+    'section' => 'القسم',
+    'children' => 'طفل القسم',
+    'price' => 'الثمن'
+];

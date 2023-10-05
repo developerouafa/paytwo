@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'add_sections'=>'اضافة قسم',
     'name_sections'=>'اسم القسم',
     'section_english'=>'القسم بالانجليزية',
@@ -28,11 +27,12 @@ return [
     'active' => 'تفعيل',
     'childrens' => 'أقسام الأطفال',
     'addchildren' => 'إضافة الأطفال في القسم',
-    'children' => 'طفل',
-    'section' => 'قسم',
+    'children' => 'طفل القسم',
+    'section' => 'القسم',
     'childrenen' => 'طفل القسم بالانجليزية',
     'childrenar' => 'طفل القسم بالعربية',
     'sections' => 'الاقسام',
     'nosectionyet' => 'لا يوجد اقسام',
-    'sectionidrequired' => 'القسم مطلوب'
+    'sectionidrequired' => 'القسم مطلوب',
+    'status'=>'حالة القسم'
 ];

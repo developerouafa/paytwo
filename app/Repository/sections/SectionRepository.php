@@ -11,7 +11,6 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function index()
     {
-    //   $sections = Section::all();
       $sections = Section::query()->selectsections()->withsections()->parent()->get();
       return view('Dashboard.Sections.index',compact('sections'));
     }

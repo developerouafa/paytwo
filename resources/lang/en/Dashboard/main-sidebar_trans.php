@@ -7,4 +7,5 @@ return [
     'sections'=>'Sections',
     'view_all' => 'View All',
     'view_allchildren' => 'Children Section',
+    'products'=>'Products',
 ];

@@ -29,12 +29,12 @@ return [
     'active' => 'Active',
     'childrens' => 'Childrens  Sections',
     'addchildren' => 'Add Children In Section',
-    'children' => 'Children',
+    'children' => 'Children Section',
     'section' => 'Section',
     'childrenen' => 'Children English',
     'childrenar' => 'Children Arabic',
     'sections' => 'Sections',
     'nosectionyet' => 'No Sections yet',
-    'sectionidrequired' => 'Section Is Required'
-
+    'sectionidrequired' => 'Section Is Required',
+    'status'=>'Status'
 ];

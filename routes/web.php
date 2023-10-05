@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\childrens\childrenController;
 use App\Http\Controllers\Dashboard\profiles\ProfileController;
 use App\Http\Controllers\Dashboard\roles\RolesController;
 use App\Http\Controllers\Dashboard\Sections\SectionController;
+use App\Http\Controllers\Dashboard\Products\ProductController;
 use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use Illuminate\Support\Facades\Artisan;
@@ -70,6 +71,16 @@ Route::get('/clear', function() {
                 Route::post('/createchild', 'store')->name('childcat.create');
                 Route::patch('/updatechild', 'update')->name('childcat.update');
                 Route::delete('/deletechild', 'destroy')->name('childcat.delete');
+            });
+        });
+
+        Route::group(['prefix' => 'Products'], function(){
+            Route::controller(ProductController::class)->group(function() {
+                Route::get('/index', 'index')->name('Products.index');
+                Route::get('/create', 'create')->name('product.createprod');
+                Route::post('/store', 'store')->name('product.store');
+                // Route::patch('/update', 'update')->name('Sections.update');
+                // Route::delete('/destroy', 'destroy')->name('Sections.destroy');
             });
         });
 

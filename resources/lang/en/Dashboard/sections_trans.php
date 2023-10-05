@@ -20,4 +20,6 @@ return [
     'namearunique'=>'The section in Arabic exists',
     'namerequired'=>'Section required',
     'nameunique'=>'The section exists',
+    'disabled' => 'Disabled',
+    'active' => 'Active',
 ];

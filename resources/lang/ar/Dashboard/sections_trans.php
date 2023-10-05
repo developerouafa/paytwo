@@ -20,4 +20,6 @@ return [
     'namearunique'=>'القسم بالعربية موجود',
     'namerequired'=>'القسم مطلوب',
     'nameunique'=>'القسم موجود',
+    'disable' => 'تعطيل',
+    'active' => 'Active',
 ];

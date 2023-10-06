@@ -1,10 +1,14 @@
 <?php
 
 return [
-    'addproducts'=>'اضافة منتج',
+    'updateproduct'=>'تعديل المنتج',
+    'addproduct'=>'اضافة منتج',
+    'addproducts'=>'اضافة منتجات',
     'name_products'=>'اسم المنتج',
     'product_english'=>'المنتج بالانجليزية',
     'product_arabic'=>'المنتج بالعربية',
+    'descriptionen' => 'الوصف بالانجليزية',
+    'descriptionar' => 'الوصف بالعربية',
     'edit_products'=>'تعديل المنتج',
     'delete'=>'حذف',
     'aresuredeleting'=>'!هل أنت متأكد من الحذف',
@@ -20,6 +24,9 @@ return [
     'namearunique'=>'المنتج بالعربية موجود',
     'namerequired'=>'المنتج مطلوب',
     'nameunique'=>'المنتج موجود',
+    'pricerequired'=>'الثمن مطلوب',
+    'sectionrequired'=>'القسم مطلوب',
+    'childrenrequired'=>'طفل القسم مطلوب',
     'disabled' => 'تعطيل',
     'active' => 'تفعيل',
     'product' => 'المنتج',
@@ -28,5 +35,6 @@ return [
     'status'=>'حالة المنتج',
     'section' => 'القسم',
     'children' => 'طفل القسم',
-    'price' => 'الثمن'
+    'price' => 'الثمن',
+    'selectsection' => 'اختر قسم'
 ];

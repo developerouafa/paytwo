@@ -5,22 +5,28 @@ namespace App\Interfaces\Products;
 interface productRepositoryInterface
 {
 
-    // get All Products
+    //* get All Products
     public function index();
 
-    // store Products
+    //* store Products
     public function create();
 
-    // store Products
+    //* store Products
     public function store($request);
 
-    // // Update Products
-    // public function update($request);
+    //* DropDown Children
+    public function getchild($id);
 
-    // // destroy Products
-    // public function destroy($request);
+    //* Hide Product
+    public function editstatusdéactive($id);
 
-    // // destroy Products
-    // public function show($id);
+    //* show Product
+    public function editstatusactive($id);
+
+    //* Update Products
+    public function update($request);
+
+    //* destroy Product
+    public function destroy($request);
 
 }

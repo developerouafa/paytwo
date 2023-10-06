@@ -30,6 +30,10 @@ class productRepository implements productRepositoryInterface
             DB::beginTransaction();
             product::create([
                 'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
+                'description' => ['en' => $request->description_en, 'ar' => $request->description_ar],
+                'price' => $request->price,
+                'section_id' => $request->section,
+                'parent_id' => $request->children,
                 'user_id' => auth()->user()->id,
             ]);
             DB::commit();
@@ -43,47 +47,99 @@ class productRepository implements productRepositoryInterface
         }
     }
 
-    // public function update($request)
-    // {
-    //     try{
-    //         DB::beginTransaction();
-    //         $section = Section::findOrFail($request->id);
-    //         if(App::isLocale('en')){
-    //             $section->update([
-    //                 'name' => $request->name_en
-    //             ]);
-    //         }
-    //         elseif(App::isLocale('ar')){
-    //             $section->update([
-    //                 'name' => $request->name_ar
-    //             ]);
-    //         }
-    //         DB::commit();
-    //         toastr()->success(trans('Dashboard/messages.edit'));
-    //         return redirect()->route('Sections.index');
-    //     }
-    //     catch(\Exception $exception){
-    //         DB::rollBack();
-    //         toastr()->error(trans('Dashboard/messages.error'));
-    //         return redirect()->route('Sections.index');
-    //     }
-    // }
+    public function getchild($id)
+    {
+        $childrens = DB::table("sections")->where("parent_id", $id)->pluck('id', 'name');
+        return json_encode($childrens);
+    }
 
-    // public function destroy($request)
-    // {
-    //     try{
-    //         DB::beginTransaction();
-    //         Section::findOrFail($request->id)->delete();
-    //         DB::commit();
-    //         toastr()->success(trans('Dashboard/messages.delete'));
-    //         return redirect()->route('Sections.index');
-    //     }
-    //     catch(\Exception $exception){
-    //         DB::rollBack();
-    //         toastr()->error(trans('Dashboard/messages.error'));
-    //         return redirect()->route('Sections.index');
-    //     }
-    // }
+    public function editstatusdéactive($id)
+    {
+        try{
+            $Section = product::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 1,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Sections.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Products.index');
+        }
+    }
+
+    public function editstatusactive($id)
+    {
+        try{
+            $Section = product::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 0,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Sections.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Products.index');
+        }
+    }
+
+    public function update($request)
+    {
+        try{
+            DB::beginTransaction();
+            $section = product::findOrFail($request->id);
+            if(App::isLocale('en')){
+                $section->update([
+                    'name' => $request->name_en,
+                    'description' => $request->description_en,
+                    'price' => $request->price,
+                    'section_id' => $request->section,
+                    'parent_id' => $request->children,
+                    'user_id' => auth()->user()->id,
+                ]);
+            }
+            elseif(App::isLocale('ar')){
+                $section->update([
+                    'name' => $request->name_ar,
+                    'description' => $request->description_ar,
+                    'price' => $request->price,
+                    'section_id' => $request->section,
+                    'parent_id' => $request->children,
+                    'user_id' => auth()->user()->id,
+                ]);
+            }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Products.index');
+        }
+        catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Products.index');
+        }
+    }
+
+    public function destroy($request)
+    {
+        try{
+            DB::beginTransaction();
+            product::findOrFail($request->id)->delete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Products.index');
+        }
+        catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Products.index');
+        }
+    }
 
     // public function show($id)
     // {

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Products;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class StoreProductRequest extends FormRequest
     {
         // validations
         return [
-            'name_en' => 'required|unique:products,name->en',
-            'name_ar' => 'required|unique:products,name->ar',
+            'name_'.app()->getLocale() => 'required',
             'price' => 'required',
             'section' => 'required',
             'children' => 'required',
@@ -34,14 +33,10 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name_en.required' =>__('Dashboard/products.nameenrequired'),
-            'name_en.unique' =>__('Dashboard/products.nameenunique'),
-            'name_ar.required' =>__('Dashboard/products.namearrequired'),
-            'name_ar.unique' =>__('Dashboard/products.namearunique'),
+            'name_'.app()->getLocale().'.required' =>__('Dashboard/products.namerequired'),
             'price.required' =>__('Dashboard/products.pricerequired'),
             'section.required' =>__('Dashboard/products.sectionrequired'),
             'children.required' =>__('Dashboard/products.childrenrequired'),
-
         ];
     }
 }

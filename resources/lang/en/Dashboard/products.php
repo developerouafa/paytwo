@@ -1,10 +1,14 @@
 <?php
 
 return [
+    'updateproduct'=>'Update Product',
+    'addproduct'=>'Add Product',
     'addproducts'=>'Add Products',
     'name_products'=>'Name products',
     'product_english'=>'Product In English',
     'product_arabic'=>'Product In Arabic',
+    'descriptionen'=>'Description In English',
+    'discriptionar'=>'Description In Arabic',
     'edit_products'=>'Edit products',
     'delete_products'=>'Delete products',
     'delete'=>'Delete',
@@ -21,6 +25,9 @@ return [
     'namearunique'=>'The product in Arabic exists',
     'namerequired'=>'Product required',
     'nameunique'=>'The product exists',
+    'pricerequired'=>'Price required',
+    'sectionrequired'=>'Section required',
+    'childrenrequired'=>'Children Section required',
     'disabled' => 'Disabled',
     'active' => 'Active',
     'product' => 'Product',
@@ -29,5 +36,6 @@ return [
     'status'=>'Status',
     'section' => 'Section',
     'children' => 'Children Section',
-    'price' => 'Price'
+    'price' => 'Price',
+    'selectsection' => 'Select Section'
 ];

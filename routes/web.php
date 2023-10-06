@@ -79,10 +79,14 @@ Route::get('/clear', function() {
                 Route::get('/index', 'index')->name('Products.index');
                 Route::get('/create', 'create')->name('product.createprod');
                 Route::post('/store', 'store')->name('product.store');
-                // Route::patch('/update', 'update')->name('Sections.update');
-                // Route::delete('/destroy', 'destroy')->name('Sections.destroy');
+                Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
+                Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                Route::patch('/update', 'update')->name('product.update');
+                Route::delete('/destroy', 'destroy')->name('product.destroy');
             });
         });
+        Route::get('/section/{id}', [ProductController::class, 'getchild']);
+
 
     });
     require __DIR__.'/auth.php';

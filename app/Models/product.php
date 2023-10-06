@@ -25,7 +25,7 @@ class product extends Model
 
         // Scopes
         public function scopeProductwith($query){
-            return $query->with('section')->with('subsections');
+            return $query->with('section')->with('subsections')->with('user');
         }
 
         public function scopeProductselect($query){
@@ -43,6 +43,12 @@ class product extends Model
         }
 
         /*-------------------- Relations --------------------*/
+
+        public function user()
+        {
+            return $this->belongsTo(user::class);
+        }
+
         public function subsections(): BelongsTo
         {
             return $this->BelongsTo(section::class, 'parent_id')->child();

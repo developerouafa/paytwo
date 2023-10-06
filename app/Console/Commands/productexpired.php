@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\promotion;
 use Illuminate\Console\Command;
 
-class promotionproductexpiration extends Command
+class productexpired extends Command
 {
     /**
      * The name and signature of the console command.

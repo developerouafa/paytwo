@@ -2,6 +2,7 @@
 
 return [
     'updateproduct'=>'تعديل المنتج',
+    'updatepromotion'=>'تعديل التخفيض',
     'addproduct'=>'اضافة منتج',
     'addproducts'=>'اضافة منتجات',
     'name_products'=>'اسم المنتج',
@@ -36,5 +37,17 @@ return [
     'section' => 'القسم',
     'children' => 'طفل القسم',
     'price' => 'الثمن',
-    'selectsection' => 'اختر قسم'
+    'selectsection' => 'اختر قسم',
+    'promotion' => 'تخفيض',
+    'thereisanpromotionfortheproduct' => '* يوجد تخفيض للمنتج',
+    'promotioniscancel' => '* تم إلغاء العرض تخفيضي',
+    'addpromotion' => 'أضف تخفيض',
+    'updatepricepromotion' => 'سعر تخفيض',
+    'start_time' => 'وقت البدء',
+    'start_timerequired' => 'وقت البدء مطلوب',
+    'end_time' => 'وقت النهاية',
+    'end_timerequired' => 'وقت الانتهاء مطلوب',
+    'expired' => 'الصلاحية',
+    'updatepromotion' => 'تعديل تخفيض',
+    'deletepromotion' => 'حذف تخفيض',
 ];

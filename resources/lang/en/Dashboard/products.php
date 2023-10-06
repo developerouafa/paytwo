@@ -2,6 +2,7 @@
 
 return [
     'updateproduct'=>'Update Product',
+    'updatepromotion'=>'Update Promotion',
     'addproduct'=>'Add Product',
     'addproducts'=>'Add Products',
     'name_products'=>'Name products',
@@ -37,5 +38,17 @@ return [
     'section' => 'Section',
     'children' => 'Children Section',
     'price' => 'Price',
-    'selectsection' => 'Select Section'
+    'selectsection' => 'Select Section',
+    'promotion' => 'Promotion',
+    'thereisanpromotionfortheproduct' => '* There is an promotion for the Product',
+    'promotioniscancel' => '* Promotion Is Cancel',
+    'addpromotion' => 'Add Promotion',
+    'updatepricepromotion' => 'promotion price',
+    'start_time' => 'Start_time',
+    'start_timerequired' => 'Start_time Is Required',
+    'end_time' => 'End_time',
+    'end_timerequired' => 'End_time Is Required',
+    'expired' => 'Expired',
+    'updatepromotion' => 'Update Promotion',
+    'deletepromotion' => 'Delete Promotion',
 ];

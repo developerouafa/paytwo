@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Sections\SectionController;
 use App\Http\Controllers\Dashboard\Products\ProductController;
 use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
+use App\Http\Controllers\Dashboard\Products\PromotionController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -83,6 +84,15 @@ Route::get('/clear', function() {
                 Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
                 Route::patch('/update', 'update')->name('product.update');
                 Route::delete('/destroy', 'destroy')->name('product.destroy');
+            });
+
+            Route::prefix('promotions')->group(function (){
+                Route::get('/promotions/{id}', [PromotionController::class, 'index']);
+                Route::post('/createpromotion', [PromotionController::class, 'store'])->name('promotions.create');
+                Route::patch('/promotionupdate', [PromotionController::class, 'update'])->name('promotions.update');
+                Route::get('/promotions/editstatusdéactive/{id}', [PromotionController::class, 'editstatusdéactive'])->name('promotions.editstatusdéactive');
+                Route::get('/promotions/editstatusactive/{id}', [PromotionController::class, 'editstatusactive'])->name('promotions.editstatusactive');
+                Route::delete('/deletepromotion', [PromotionController::class, 'destroy'])->name('promotion.destroy');
             });
         });
         Route::get('/section/{id}', [ProductController::class, 'getchild']);

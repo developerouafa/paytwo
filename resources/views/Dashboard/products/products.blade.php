@@ -56,8 +56,9 @@
                                         <th scope="col">{{__('Dashboard/products.children')}}</th>
                                         <th scope="col">{{__('Dashboard/products.status')}}</th>
                                         <th scope="col">{{__('Dashboard/products.userproduct')}}</th>
-                                        {{-- <th scope="col"></th>
-                                        <th scope="col"></th> --}}
+                                        <th scope="col">{{__('Dashboard/products.promotion')}}</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,6 +81,23 @@
                                                 </td>
                                                 <td> {{$x->user->name}} </td>
                                                 <td>
+                                                    @forelse ($x->promotion as $promo)
+                                                        @if ($promo->expired == 0)
+                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
+                                                                {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
+                                                                {{__('Dashboard/products.promotioniscancel')}}
+                                                            </a>
+                                                        @endif
+                                                    @empty
+                                                        <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
+                                                        href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
+                                                    @endforelse ()
+                                                </td>
+                                                <td>
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                             data-id="{{ $x->id }}" data-name="{{ $x->name }}"
                                                             data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
@@ -100,6 +118,41 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <!-- Add Promotion -->
+            <div class="modal" id="modaldemopromotion">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-content-demo">
+                        <div class="modal-header">
+                            <h6 class="modal-title">{{__('Dashboard/products.addpromotion')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                            <div class="modal-body">
+                                <form action="{{route('promotions.create')}}" method="post" enctype="multipart/form-data" autocomplete="off">
+                                    @csrf
+                                        <div class="form-group">
+                                            <input type="hidden" name="id" id="id">
+                                            <label for="price">{{__('Dashboard/products.updatepricepromotion')}}</label>
+                                            <input placeholder="{{__('Dashboard/products.updatepricepromotion')}}" class="form-control" name="price" id="price" type="text">
+                                            <br>
+                                            <label for="price">{{__('Dashboard/products.start_time')}}</label>
+                                            <input class="form-control fc-datepicker" name="start_time" placeholder="{{__('Dashboard/products.start_time')}}"
+                                            type="date" value="{{ date('Y-m-d') }}" id="start_time">
+                                            <br>
+                                            <label for="price">{{__('Dashboard/products.end_time')}}</label>
+                                            <input class="form-control fc-datepicker" name="end_time" placeholder="{{__('Dashboard/products.end_time')}}"
+                                            type="date" id="end_time">
+                                            <br>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn ripple btn-primary" type="submit">{{__('Dashboard/products.submit')}}</button>
+                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{__('Dashboard/products.Close')}}</button>
+                                        </div>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>

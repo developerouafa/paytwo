@@ -11,7 +11,6 @@ use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use App\Http\Controllers\Dashboard\Products\PromotionController;
 use App\Http\Controllers\Dashboard\Products\StockproductController;
-use App\Models\multipimage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -80,7 +79,6 @@ Route::get('/clear', function() {
         });
 
         Route::group(['prefix' => 'Products'], function(){
-
             Route::controller(ProductController::class)->group(function() {
                 Route::get('/index', 'index')->name('Products.index');
                 Route::get('/create', 'create')->name('product.createprod');
@@ -106,19 +104,15 @@ Route::get('/clear', function() {
             Route::get('stock/editstockexist/{id}', [StockproductController::class, 'editstockexist'])->name('stock.editstockexist');
 
             Route::prefix('images')->group(function (){
-                Route::controller(MainimageproductController::class)->group(function() {
-                    // Route::get('/images/{id}','index');
-                    // Route::post('/createimage','store')->name('image.create');
-                    // Route::patch('/imageuser','edit')->name('image.edit');
-                    // Route::delete('/deleteimage','delete')->name('image.delete');
-                });
 
-                Route::controller(MultipimageController::class)->group(function() {
-                    Route::get('/images/{id}','index');
-                    Route::post('/createimage','store')->name('image.create');
-                    Route::patch('/imageuser','edit')->name('image.edit');
-                    Route::delete('/deleteimage','delete')->name('image.delete');
-                });
+                Route::post('/createmain', [MainimageproductController::class, 'store'])->name('imagemain.create');
+                Route::patch('/editmain', [MainimageproductController::class, 'edit'])->name('imagemain.edit');
+                // Route::delete('/deletemain', [MainimageproductController::class, 'delete'])->name('imagemain.delete');
+
+                Route::get('/images/{id}', [MultipimageController::class, 'index']);
+                Route::post('/create', [MultipimageController::class, 'store'])->name('image.create');
+                Route::patch('/edit', [MultipimageController::class, 'edit'])->name('image.edit');
+                // Route::delete('/delete', [MultipimageController::class, 'delete'])->name('image.delete');
             });
 
         });

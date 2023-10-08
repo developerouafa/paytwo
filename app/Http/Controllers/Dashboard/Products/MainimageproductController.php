@@ -3,64 +3,31 @@
 namespace App\Http\Controllers\Dashboard\Products;
 
 use App\Http\Controllers\Controller;
-use App\Models\mainimageproduct;
+use App\Http\Requests\Products\validationimageProductRequest;
+use App\Interfaces\Products\mainRepositoryInterface;
 use Illuminate\Http\Request;
 
 class MainimageproductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    private $Mainimage;
+
+    public function __construct(mainRepositoryInterface $Mainimage)
     {
-        //
+        $this->Mainimage = $Mainimage;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(validationimageProductRequest $request)
     {
-        //
+      return  $this->Mainimage->store($request);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit(validationimageProductRequest $request)
     {
-        //
+      return  $this->Mainimage->edit($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(mainimageproduct $mainimageproduct)
+    public function delete(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(mainimageproduct $mainimageproduct)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, mainimageproduct $mainimageproduct)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(mainimageproduct $mainimageproduct)
-    {
-        //
+      return  $this->Mainimage->delete($request);
     }
 }

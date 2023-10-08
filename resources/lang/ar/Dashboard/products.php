@@ -60,4 +60,7 @@ return [
     'uploadmoreimages' => 'تحميل المزيد من الصور',
     'mainimage' => 'الصور الرئيسية',
     'imagerequired' => 'الصورة مطلوبة',
+    'addimagesmain' => 'إضافة الصورة الرئيسية',
+    'uploadmoreimage' => 'تحميل الصورة الرئيسية',
+
 ];

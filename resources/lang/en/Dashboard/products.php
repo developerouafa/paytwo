@@ -62,4 +62,7 @@ return [
     'mainimage' => 'Main Images',
     'galleryimages' => 'Product photo gallery',
     'imagerequired' => 'Image Is Required',
+    'addimagesmain' => 'Add Image Main',
+    'uploadmoreimage' => 'Upload Image Main',
+
 ];

@@ -84,24 +84,24 @@ class multipimageRepository implements multipeRepositoryInterface
         }
     }
 
-    // //* function delete Image
-    // public function delete(Request $request)
-    // {
-    //     try{
-    //         $id = $request->id;
-    //         $img = image::findorFail($id);
-    //         DB::beginTransaction();
-    //             $img->delete();
-    //             $image = $img->multimg;
-    //             if(!$image) abort(404);
-    //             unlink(public_path('storage/'.$image));
-    //         DB::commit();
-    //             toastr()->success(trans('message.delete'));
-    //             return redirect()->back();
-    //     }catch(\Exception $execption){
-    //         DB::rollBack();
-    //         toastr()->error(trans('message.error'));
-    //         return redirect()->back();
-    //     }
-    // }
+    //* function delete Image
+    public function delete($request)
+    {
+        // try{
+            $id = $request->id;
+            $img = multipimage::findorFail($id);
+            // DB::beginTransaction();
+                $img->delete();
+                $image = $img->multimg;
+                if(!$image) abort(404);
+                unlink(public_path('storage/'.$image));
+            // DB::commit();
+                toastr()->success(trans('message.delete'));
+                return redirect()->back();
+        // }catch(\Exception $execption){
+        //     DB::rollBack();
+        //     toastr()->error(trans('message.error'));
+        //     return redirect()->back();
+        // }
+    }
 }

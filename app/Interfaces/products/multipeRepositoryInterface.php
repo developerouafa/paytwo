@@ -12,4 +12,7 @@ interface multipeRepositoryInterface
 
     //* function Store Multipe Update
     public function edit($request);
+
+    //* function delete Image
+    public function delete($request);
 }

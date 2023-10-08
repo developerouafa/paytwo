@@ -30,4 +30,9 @@ class MultipimageController extends Controller
     {
       return  $this->Multipeimage->edit($request);
     }
+
+    public function delete(Request $request)
+    {
+      return  $this->Multipeimage->delete($request);
+    }
 }

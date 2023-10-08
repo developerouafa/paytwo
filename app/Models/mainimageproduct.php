@@ -10,7 +10,7 @@ class mainimageproduct extends Model
     use HasFactory;
 
     protected $fillable = [
-        'mmainimageain',
+        'mainimage',
         'product_id',
     ];
 

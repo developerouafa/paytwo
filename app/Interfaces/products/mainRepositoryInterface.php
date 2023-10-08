@@ -5,10 +5,12 @@ namespace App\Interfaces\Products;
 interface mainRepositoryInterface
 {
 
-    //* No Exist In Stock
-    public function editstocknoexist($id);
+    //* function store Image
+    public function store($request);
 
-    //* Exist In Stock
-    public function editstockexist($id);
+    //* function Update Image
+    public function edit($request);
 
+    //* function delete Image
+    public function delete($request);
 }

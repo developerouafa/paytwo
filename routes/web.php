@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\Products\ProductController;
 use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use App\Http\Controllers\Dashboard\Products\PromotionController;
+use App\Http\Controllers\Dashboard\Products\StockproductController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -94,9 +95,12 @@ Route::get('/clear', function() {
                 Route::get('/promotions/editstatusactive/{id}', [PromotionController::class, 'editstatusactive'])->name('promotions.editstatusactive');
                 Route::delete('/deletepromotion', [PromotionController::class, 'destroy'])->name('promotion.destroy');
             });
-        });
-        Route::get('/section/{id}', [ProductController::class, 'getchild']);
 
+            Route::get('stock/editstocknoexist/{id}', [StockproductController::class, 'editstocknoexist'])->name('stock.editstocknoexist');
+            Route::get('stock/editstockexist/{id}', [StockproductController::class, 'editstockexist'])->name('stock.editstockexist');
+
+            Route::get('/section/{id}', [ProductController::class, 'getchild']);
+        });
 
     });
     require __DIR__.'/auth.php';

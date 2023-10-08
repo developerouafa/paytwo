@@ -50,4 +50,7 @@ return [
     'expired' => 'الصلاحية',
     'updatepromotion' => 'تعديل تخفيض',
     'deletepromotion' => 'حذف تخفيض',
+    "stock" => "مخزون",
+    'existinstock' => "هذا موجود في المخزن",
+    'noexistinstock' => 'هذا غير موجود في المخزن',
 ];

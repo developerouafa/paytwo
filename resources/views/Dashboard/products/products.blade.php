@@ -54,6 +54,7 @@
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.status')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.userproduct')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.promotion')}}</th>
+                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.stock')}}</th>
                                         <th scope="wd-15p border-bottom-0"></th>
                                         <th scope="wd-15p border-bottom-0"></th>
                                     </tr>
@@ -93,6 +94,18 @@
                                                         data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
                                                         href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
                                                     @endforelse ()
+                                                </td>
+                                                <td>
+                                                    @foreach ($stockproduct as $ss)
+                                                        @if ($ss->product_id == $x->id)
+                                                            @if ($ss->stock == "0")
+                                                                <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                                            @endif
+                                                            @if ($ss->stock == "1")
+                                                                <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
                                                 </td>
                                                 <td>
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"

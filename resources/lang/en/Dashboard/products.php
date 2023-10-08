@@ -51,4 +51,7 @@ return [
     'expired' => 'Expired',
     'updatepromotion' => 'Update Promotion',
     'deletepromotion' => 'Delete Promotion',
+    'stock' => 'Stock',
+    'existinstock' => 'This Exist In Stock',
+    'noexistinstock' => 'This No Exist In Stock',
 ];

@@ -70,7 +70,7 @@ class productRepository implements productRepositoryInterface
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('Sections.index');
+            return redirect()->route('Products.index');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
@@ -88,7 +88,7 @@ class productRepository implements productRepositoryInterface
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('Sections.index');
+            return redirect()->route('Products.index');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
@@ -147,10 +147,5 @@ class productRepository implements productRepositoryInterface
             return redirect()->route('Products.index');
         }
     }
-
-    // public function show($id)
-    // {
-
-    // }
 
 }

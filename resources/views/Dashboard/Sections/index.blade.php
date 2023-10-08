@@ -58,8 +58,8 @@
                                             @foreach($sections as $section)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
-                                                    {{-- <td><a href="{{route('Sections.show',$section->id)}}">{{$section->name}}</a> </td> --}}
-                                                    <td><a href="#">{{$section->name}}</a> </td>
+                                                    <td><a href="{{route('Sections.show',$section->id)}}">{{$section->name}}</a> </td>
+                                                    {{-- <td><a href="#">{{$section->name}}</a> </td> --}}
                                                     <td>
                                                         @if ($section->status == 0)
                                                             <a href="{{route('editstatusdéactive', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>

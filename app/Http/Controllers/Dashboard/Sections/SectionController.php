@@ -34,7 +34,6 @@ class SectionController extends Controller
         return $this->Sections->store($request);
     }
 
-
     public function update(UpdateSectionRequest $request)
     {
         return $this->Sections->update($request);

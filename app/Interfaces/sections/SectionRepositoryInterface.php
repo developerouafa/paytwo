@@ -5,24 +5,24 @@ namespace App\Interfaces\Sections;
 interface SectionRepositoryInterface
 {
 
-    // get All Sections
+    //* get All Sections
     public function index();
 
-    // store Sections
+    //* store Sections
     public function store($request);
 
-    // Update Sections
+    //* Update Sections
     public function update($request);
 
-    // destroy Sections
+    //* destroy Sections
     public function destroy($request);
 
-    // destroy Sections
+    //* destroy Sections
     public function show($id);
 
-    // Hide Section
+    //* Hide Section
     public function editstatusdéactive($id);
 
-    // show Section
+    //* show Section
     public function editstatusactive($id);
 }

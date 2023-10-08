@@ -63,6 +63,7 @@ Route::get('/clear', function() {
         Route::group(['prefix' => 'Sections'], function(){
             Route::controller(SectionController::class)->group(function() {
                 Route::get('/index', 'index')->name('Sections.index');
+                Route::get('/Show/{id}', 'show')->name('Sections.show');
                 Route::post('/create', 'store')->name('Sections.store');
                 Route::patch('/update', 'update')->name('Sections.update');
                 Route::delete('/destroy', 'destroy')->name('Sections.destroy');

@@ -64,5 +64,5 @@ return [
     'imagerequired' => 'Image Is Required',
     'addimagesmain' => 'Add Image Main',
     'uploadmoreimage' => 'Upload Image Main',
-
+    'section_products' => 'Show Products Section'
 ];

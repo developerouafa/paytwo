@@ -105,16 +105,19 @@ Route::get('/clear', function() {
 
             Route::prefix('images')->group(function (){
 
-                Route::post('/createmain', [MainimageproductController::class, 'store'])->name('imagemain.create');
-                Route::patch('/editmain', [MainimageproductController::class, 'edit'])->name('imagemain.edit');
-                Route::delete('/destroymain', [MainimageproductController::class, 'destroy'])->name('imagemain.destroy');
+                Route::controller(MainimageproductController::class)->group(function() {
+                    Route::post('/createmain', 'store')->name('imagemain.create');
+                    Route::patch('/editmain', 'edit')->name('imagemain.edit');
+                    Route::delete('/destroymain', 'destroy')->name('imagemain.destroy');
+                });
 
-                Route::get('/images/{id}', [MultipimageController::class, 'index'])->name('image.index');
-                Route::post('/create', [MultipimageController::class, 'store'])->name('image.create');
-                Route::patch('/edit', [MultipimageController::class, 'edit'])->name('image.edit');
-                Route::delete('/destroy', [MultipimageController::class, 'destroy'])->name('image.destroy');
+                Route::controller(MultipimageController::class)->group(function() {
+                    Route::get('/images/{id}', 'index')->name('image.index');
+                    Route::post('/create', 'store')->name('image.create');
+                    Route::patch('/edit', 'edit')->name('image.edit');
+                    Route::delete('/destroy', 'destroy')->name('image.destroy');
+                });
             });
-
         });
         Route::get('/section/{id}', [ProductController::class, 'getchild']);
 

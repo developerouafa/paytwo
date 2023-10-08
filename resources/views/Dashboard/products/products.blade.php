@@ -72,10 +72,10 @@
                                                 <td> {{$x->subsections->name}} </td>
                                                 <td>
                                                     @if ($x->status == 0)
-                                                        <a href="{{route('editstatusdéactive', $x->id)}}">{{__('Dashboard/products.disabled')}}</a>
+                                                        <a href="{{route('editstatusdéactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
                                                     @endif
                                                     @if ($x->status == 1)
-                                                        <a href="{{route('editstatusactive', $x->id)}}">{{__('Dashboard/products.active')}}</a>
+                                                        <a href="{{route('editstatusactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
                                                     @endif
                                                 </td>
                                                 <td> {{$x->user->name}} </td>

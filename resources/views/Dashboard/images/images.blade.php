@@ -68,10 +68,15 @@
                                                         {{-- <br>
                                                         <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
                                                     </form> --}}
+                                                    <br>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                     data-id="{{ $x->id }}" data-toggle="modal"
                                                     href="#exampleModal3" title="Update">
                                                     <i class="las la-pen"></i></a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                    data-id="{{ $x->id }}" data-toggle="modal"
+                                                    href="#exampleModal5" title="Delete">
+                                                    <i class="las la-trash"></i></a>
                                                 @empty
                                                     <b>
                                                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal"
@@ -88,10 +93,10 @@
                                                     data-id="{{ $x->id }}" data-toggle="modal"
                                                     href="#exampleModal2" title="Update">
                                                     <i class="las la-pen"></i></a>
-                                                    {{-- <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                     data-id="{{ $x->id }}" data-toggle="modal"
-                                                    href="#exampleModal4" title="delete">
-                                                    <i class="las la-pen"></i></a> --}}
+                                                    href="#exampleModal4" title="Delete">
+                                                    <i class="las la-trash"></i></a>
                                                 </td>
                                             @endforeach
                                         </tr>
@@ -218,8 +223,8 @@
             </div>
         <!-- End Basic modal -->
 
-        <!-- edit Multip Images -->
-            {{-- <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- delete Multip Images -->
+            <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -228,21 +233,48 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{route('image.delete')}}" method="post" >
+                            <form action="{{route('image.destroy')}}" method="post" >
                                 {{ method_field('delete') }}
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <input type="hidden" name="id" id="id">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">{{__('Dashboard/products.submit')}}</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                                    <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
+        <!-- End Basic modal -->
+
+        <!-- delete Main Images -->
+            <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{route('imagemain.destroy')}}" method="post" >
+                                {{ method_field('delete') }}
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <input type="hidden" name="id" id="id">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                                    <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <!-- End Basic modal -->
     </div>
     <!-- row closed -->
@@ -273,6 +305,15 @@
 
     <script>
         $('#exampleModal4').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+    </script>
+
+    <script>
+        $('#exampleModal5').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)

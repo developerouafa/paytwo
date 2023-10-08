@@ -107,12 +107,12 @@ Route::get('/clear', function() {
 
                 Route::post('/createmain', [MainimageproductController::class, 'store'])->name('imagemain.create');
                 Route::patch('/editmain', [MainimageproductController::class, 'edit'])->name('imagemain.edit');
-                // Route::delete('/deletemain', [MainimageproductController::class, 'delete'])->name('imagemain.delete');
+                Route::delete('/destroymain', [MainimageproductController::class, 'destroy'])->name('imagemain.destroy');
 
-                Route::get('/images/{id}', [MultipimageController::class, 'index']);
+                Route::get('/images/{id}', [MultipimageController::class, 'index'])->name('image.index');
                 Route::post('/create', [MultipimageController::class, 'store'])->name('image.create');
                 Route::patch('/edit', [MultipimageController::class, 'edit'])->name('image.edit');
-                // Route::delete('/delete', [MultipimageController::class, 'delete'])->name('image.delete');
+                Route::delete('/destroy', [MultipimageController::class, 'destroy'])->name('image.destroy');
             });
 
         });

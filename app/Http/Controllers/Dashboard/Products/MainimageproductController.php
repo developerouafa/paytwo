@@ -26,8 +26,8 @@ class MainimageproductController extends Controller
       return  $this->Mainimage->edit($request);
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
-      return  $this->Mainimage->delete($request);
+      return  $this->Mainimage->destroy($request);
     }
 }

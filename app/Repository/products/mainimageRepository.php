@@ -31,18 +31,18 @@ class mainimageRepository implements mainRepositoryInterface
                             'mainimage' => $image
                         ]);
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.create'));
+                    toastr()->success(trans('Dashboard/messages.add'));
                     return redirect()->back();
             }
             // No Add photo
             else{
-                toastr()->error(trans('messagevalidation.users.imagerequired'));
+                toastr()->error(trans('Dashboard/messages.imagerequired'));
                 return redirect()->back();
             }
         }
         catch(\Exception $exception){
             DB::rollBack();
-            toastr()->error(trans('message.error'));
+            toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->back();
         }
     }
@@ -64,7 +64,7 @@ class mainimageRepository implements mainRepositoryInterface
                     ]);
 
                 DB::commit();
-                toastr()->success(trans('Dashboard/messages.update'));
+                toastr()->success(trans('Dashboard/messages.edit'));
                 return redirect()->back();
             }
         }catch(\Exception $execption){
@@ -75,23 +75,22 @@ class mainimageRepository implements mainRepositoryInterface
     }
 
     //* function delete Image
-    public function delete($request)
+    public function destroy($request)
     {
-        // try{
-            $id = $request->id;
-            $img = mainimageproduct::findorFail($id);
-            // DB::beginTransaction();
+        try{
+            $img = mainimageproduct::findorFail($request->id);
+            DB::beginTransaction();
                 $img->delete();
-                $image = $img->multimg;
+                $image = $img->mainimage;
                 if(!$image) abort(404);
                 unlink(public_path('storage/'.$image));
-            // DB::commit();
-                // toastr()->success(trans('message.delete'));
+            DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->back();
-        // }catch(\Exception $execption){
-        //     DB::rollBack();
-        //     toastr()->error(trans('message.error'));
-        //     return redirect()->back();
-        // }
+        }catch(\Exception $execption){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->back();
+        }
     }
 }

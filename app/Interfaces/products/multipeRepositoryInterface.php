@@ -14,5 +14,5 @@ interface multipeRepositoryInterface
     public function edit($request);
 
     //* function delete Image
-    public function delete($request);
+    public function destroy($request);
 }

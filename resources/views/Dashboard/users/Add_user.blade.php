@@ -55,18 +55,18 @@
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.nameen')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nameen" required="" type="text" autofocus>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="nameen" required type="text" autofocus>
                             </div>
 
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.namear')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="namear" required="" type="text" autofocus>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="namear" required type="text" autofocus>
                             </div>
                         </div>
-                        <div class="row mg-b-20">
+                        {{-- <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.phone')}} <span class="tx-danger">*</span></label>
-                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required="" type="text" autofocus>
+                                <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required type="text" autofocus>
                             </div>
 
                             <div class="col-md-6">
@@ -76,10 +76,10 @@
                                     <option value="0">{{__('Dashboard/users.company')}}</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
-                    <div class="">
+                    {{-- <div class="">
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>{{__('Dashboard/users.nationalIdNumber')}}</label>
@@ -102,7 +102,7 @@
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="adderss" type="text" autofocus>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="">
                         <div class="row mg-b-20">
@@ -123,13 +123,13 @@
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                                 <label>{{__('Dashboard/users.password')}}<span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
-                                    name="password" required="" type="password">
+                                    name="password" required type="password">
                             </div>
 
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                                 <label>{{__('Dashboard/users.confirmpassword')}}<span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
-                                    name="confirm-password" required="" type="password">
+                                    name="confirm-password" required type="password">
                             </div>
                         </div>
                     </div>

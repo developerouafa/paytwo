@@ -6,6 +6,7 @@ return [
     'section_english'=>'القسم بالانجليزية',
     'section_arabic'=>'القسم بالعربية',
     'edit_sections'=>'تعديل قسم',
+    'delete_sections'=>'حذف القسم',
     'delete'=>'حذف',
     'aresuredeleting'=>'!هل أنت متأكد من الحذف',
     'created_at'=>'تاريخ الاضافة',

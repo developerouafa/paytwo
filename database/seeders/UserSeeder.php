@@ -28,6 +28,11 @@ class UserSeeder extends Seeder
         $user_id = User::latest()->first()->id;
         profileuser::create([
             'user_id' => $user_id,
+            // 'clienType' => 'clienType',
+            // 'nationalIdNumber' => 'nationalIdNumber',
+            // 'commercialRegistrationNumber' => 'commercialRegistrationNumber',
+            // 'taxNumber' => 'taxNumber',
+            // 'adderss' => 'adderss',
         ]);
 
         $role = Role::create(['name' => 'Admin']);

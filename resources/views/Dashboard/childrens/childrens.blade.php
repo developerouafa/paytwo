@@ -4,24 +4,9 @@
 @endsection
 @section('css')
     <!-- Internal Data table css -->
-    <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-
-    <!--- Internal Select2 css-->
-    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
-    <!---Internal Fileupload css-->
-    <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-    <!---Internal Fancy uploader css-->
-    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
-    <!--Internal Sumoselect css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
-
-    <!--Internal  Quill css -->
-    <link href="{{URL::asset('assets/plugins/quill/quill.snow.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/quill/quill.bubble.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -58,15 +43,15 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example1" class="table key-buttons text-md-nowrap">
+                                <table class="table text-md-nowrap" id="example2">
                                     <thead>
                                         <tr>
-                                            <th class="border-bottom-0">#</th>
-                                            <th class="border-bottom-0">{{__('Dashboard/sections_trans.children')}}</th>
-                                            <th class="border-bottom-0">{{__('Dashboard/sections_trans.section')}}</th>
-                                            <th class="border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
-                                            <th class="border-bottom-0">{{__('Dashboard/sections_trans.userchildren')}}</th>
-                                            <th class="border-bottom-0"></th>
+                                            <th class="wd-15p border-bottom-0">#</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.children')}}</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.section')}}</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.userchildren')}}</th>
+                                            <th class="wd-15p border-bottom-0"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -145,7 +130,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-children" id="exampleModalLabel">{{__('message.updatetitle')}}</h5>
+                                <h5 class="modal-children" id="exampleModalLabel">{{__('message.update')}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -216,27 +201,6 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-    <!-- Internal Data tables -->
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-    <!--Internal  Datatable js -->
-    <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-    <script src="{{URL::asset('assets/js/modal.js')}}"></script>
-
 
     <script>
         $('#exampleModal2').on('show.bs.modal', function(event) {
@@ -262,18 +226,7 @@
         })
     </script>
 
-    <!--Internal Fileuploads js-->
-    <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
-    <!--Internal Fancy uploader js-->
-    <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-
-    <!--Internal Sumoselect js-->
-    <script src="{{URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-    <!--Internal quill js -->
-    <script src="{{URL::asset('assets/plugins/quill/quill.min.js')}}"></script>
+    <!--Internal  Notify js -->
+    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
 @endsection

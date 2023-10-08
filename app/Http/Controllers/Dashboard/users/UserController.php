@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard\users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
-use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\imageuser;
 use App\Models\profileuser;
 use Illuminate\Http\Request;
@@ -18,9 +17,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->with('profileuser')->paginate(5);
-        return view('Dashboard/users.show_users',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $users = User::orderBy('id','DESC')->with('profileuser')->paginate(5);
+        return view('Dashboard/users.show_users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
+
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
@@ -38,13 +38,14 @@ class UserController extends Controller
                     'password' => Hash::make($request->password)
                 ]);
                 $user->assignRole($request->input('roles_name'));
+
                 $user_id = User::latest()->first()->id;
                 profileuser::create([
-                    'clienType' => $request->clienType,
-                    'nationalIdNumber' => $request->nationalIdNumber,
-                    'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
-                    'taxNumber' => $request->taxNumber,
-                    'adderss' => $request->adderss,
+                    // 'clienType' => $request->clienType,
+                    // 'nationalIdNumber' => $request->nationalIdNumber,
+                    // 'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
+                    // 'taxNumber' => $request->taxNumber,
+                    // 'adderss' => $request->adderss,
                     'user_id' => $user_id,
                 ]);
                 // imageuser::create([
@@ -84,7 +85,7 @@ class UserController extends Controller
                 'email.unique' =>__('Dashboard/users.emailunique'),
                 'password.required' =>__('Dashboard/users.passwordrequired'),
                 'password.same' =>__('Dashboard/users.passwordsame'),
-                'roles_name.required' =>__('Dashboard/users.rolesnamerequired'),
+                'roles.required' =>__('Dashboard/users.rolesnamerequired'),
                 'name.required' => __('Dashboard/users.namerequired')
             ]);
         try{
@@ -150,11 +151,12 @@ class UserController extends Controller
             $id = $request->user_id;
 
             $tableimageuser = imageuser::where('user_id',$id)->first();
-            $image = $tableimageuser->image;
+            if(!empty($tableimageuser)){
+                $image = $tableimageuser->image;
 
-            if(!$image) abort(404);
-            unlink(public_path('storage/'.$image));
-
+                if(!$image) abort(404);
+                unlink(public_path('storage/'.$image));
+            }
             DB::beginTransaction();
             User::find($id)->delete();
 

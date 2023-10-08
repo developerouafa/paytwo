@@ -25,7 +25,7 @@ class product extends Model
 
         // Scopes
         public function scopeProductwith($query){
-            return $query->with('section')->with('subsections')->with('user')->with('promotion');
+            return $query->with('section')->with('subsections')->with('user')->with('promotion')->with('stockproduct');
         }
 
         public function scopeProductselect($query){
@@ -62,5 +62,10 @@ class product extends Model
         public function promotion()
         {
             return $this->hasMany(promotion::class);
+        }
+
+        public function stockproduct()
+        {
+            return $this->hasMany(stockproduct::class);
         }
 }

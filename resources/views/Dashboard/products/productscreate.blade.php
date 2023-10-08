@@ -72,11 +72,11 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <label for="inputName1" class="control-label">{{__('Dashboard/products.descriptionen')}}<span class="tx-danger">*</span></label>
+                                    <label for="inputName1" class="control-label">{{__('Dashboard/products.descriptionen')}}</label>
                                     <textarea type="text" value="{{old('description_en')}}" class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en" cols="5" rows="1"></textarea>
                                 </div>
                                 <div class="col-lg-4">
-                                    <label for="inputName1" class="control-label">{{__('Dashboard/products.discriptionar')}}<span class="tx-danger">*</span></label>
+                                    <label for="inputName1" class="control-label">{{__('Dashboard/products.descriptionar')}}</label>
                                     <textarea type="text" value="{{old('description_ar')}}" class="form-control @error('description_ar') is-invalid @enderror" id="description_ar" name="description_ar" cols="5" rows="1"></textarea>
                                 </div>
                                 <div class="col-lg-4">

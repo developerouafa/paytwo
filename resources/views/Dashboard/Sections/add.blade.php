@@ -12,11 +12,11 @@
                 @csrf
                 <div class="modal-body">
                     <label for="name_en">{{trans('Dashboard/sections_trans.section_english')}}</label>
-                    <input type="text" class="form-control" value="{{old('name_en')}}" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en" placeholder="Section In English">
+                    <input type="text" class="form-control" value="{{old('name_en')}}" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en" placeholder="{{__('Dashboard/sections_trans.section_english')}}">
                 </div>
                 <div class="modal-body">
                     <label for="name_ar">{{trans('Dashboard/sections_trans.section_arabic')}}</label>
-                    <input type="text" class="form-control" class="form-control" value="{{old('name_ar')}}" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" placeholder="Section In Arabic">
+                    <input type="text" class="form-control" class="form-control" value="{{old('name_ar')}}" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" placeholder="{{__('Dashboard/sections_trans.section_english')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>

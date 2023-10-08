@@ -75,8 +75,11 @@
                                             {{__('Dashboard/users.noactive')}}
                                         @endif
                                     </option>
-                                    <option value="1">{{__('Dashboard/users.active')}}</option>
-                                    <option value="0">{{__('Dashboard/users.noactive')}}</option>
+                                    @if ($user->Status == 1)
+                                        <option value="0">{{__('Dashboard/users.noactive')}}</option>
+                                    @else
+                                        <option value="1">{{__('Dashboard/users.active')}}</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>

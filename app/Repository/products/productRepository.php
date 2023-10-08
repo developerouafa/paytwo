@@ -4,6 +4,7 @@ namespace App\Repository\Products;
 use App\Interfaces\Products\productRepositoryInterface;
 use App\Models\product;
 use App\Models\Section;
+use App\Models\stockproduct;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,8 @@ class productRepository implements productRepositoryInterface
         $products = product::query()->productselect()->productwith()->get();
         $childrens = Section::query()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::query()->selectsections()->withsections()->parent()->get();
-        return view('Dashboard/Products.products',compact('products', 'childrens', 'sections'));
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/Products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function create(){
@@ -35,6 +37,11 @@ class productRepository implements productRepositoryInterface
                 'section_id' => $request->section,
                 'parent_id' => $request->children,
                 'user_id' => auth()->user()->id,
+            ]);
+
+            $product_id = product::latest()->first()->id;
+            stockproduct::create([
+                'product_id'=> $product_id
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));

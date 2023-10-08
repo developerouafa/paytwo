@@ -15,7 +15,7 @@ class mainimageproduct extends Model
     ];
 
     /*-------------------- Scope --------------------*/
-    public function scopeSelectmain(mixed $query)
+    public function scopeSelectmainimage(mixed $query)
     {
         return $query->select('id', 'mainimage', 'product_id')->with('product');
     }

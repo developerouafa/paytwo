@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Products\mainRepositoryInterface;
+use App\Interfaces\Products\multipeRepositoryInterface;
 use App\Interfaces\Sections\childrenRepositoryInterface;
 use App\Interfaces\Sections\SectionRepositoryInterface;
 use App\Interfaces\Products\productRepositoryInterface;
 use App\Interfaces\Products\promotionRepositoryInterface;
 use App\Interfaces\Products\stockRepositoryInterface;
+use App\Repository\Products\mainimageRepository;
+use App\Repository\Products\multipimageRepository;
 use App\Repository\Sections\childrenRepository;
 use App\Repository\Sections\SectionRepository;
 use App\Repository\Products\productRepository;
@@ -27,6 +31,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(productRepositoryInterface::class, productRepository::class);
         $this->app->bind(promotionRepositoryInterface::class, promotionRepository::class);
         $this->app->bind(stockRepositoryInterface::class, stockRepository::class);
+        $this->app->bind(mainRepositoryInterface::class, mainimageRepository::class);
+        $this->app->bind(multipeRepositoryInterface::class, multipimageRepository::class);
     }
 
     /**

@@ -53,4 +53,11 @@ return [
     "stock" => "مخزون",
     'existinstock' => "هذا موجود في المخزن",
     'noexistinstock' => 'هذا غير موجود في المخزن',
+    'images' => 'الصور',
+    'viewimages' => 'مشاهدة الصور',
+    'addimagesgallary' => 'أضف الصور في المعرض',
+    'galleryimages' => 'معرض الصور الخاصة بالمنتج',
+    'uploadmoreimages' => 'تحميل المزيد من الصور',
+    'mainimage' => 'الصور الرئيسية',
+    'imagerequired' => 'الصورة مطلوبة',
 ];

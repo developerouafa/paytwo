@@ -54,4 +54,12 @@ return [
     'stock' => 'Stock',
     'existinstock' => 'This Exist In Stock',
     'noexistinstock' => 'This No Exist In Stock',
+    'images' => 'Images',
+    'viewimages' => 'View Images',
+    'addimagesgallary' => "Add photos in the gallery",
+    'addimagesgallary' => "Add photos in the gallery",
+    'uploadmoreimages' => 'Upload More Images',
+    'mainimage' => 'Main Images',
+    'galleryimages' => 'Product photo gallery',
+    'imagerequired' => 'Image Is Required',
 ];

@@ -15,7 +15,7 @@ class multipimage extends Model
     ];
 
     /*-------------------- Scope --------------------*/
-    public function scopeSelectmainimage(mixed $query)
+    public function scopeSelectmultipimage(mixed $query)
     {
         return $query->select('id', 'multipimage', 'product_id')->with('product');
     }

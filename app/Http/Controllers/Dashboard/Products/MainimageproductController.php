@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\Products;
 
+use App\Http\Controllers\Controller;
 use App\Models\mainimageproduct;
 use Illuminate\Http\Request;
 

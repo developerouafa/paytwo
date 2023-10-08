@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Dashboard\childrens\childrenController;
+use App\Http\Controllers\Dashboard\Products\MainimageproductController;
+use App\Http\Controllers\Dashboard\Products\MultipimageController;
 use App\Http\Controllers\Dashboard\profiles\ProfileController;
 use App\Http\Controllers\Dashboard\roles\RolesController;
 use App\Http\Controllers\Dashboard\Sections\SectionController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use App\Http\Controllers\Dashboard\Products\PromotionController;
 use App\Http\Controllers\Dashboard\Products\StockproductController;
+use App\Models\multipimage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -77,6 +80,7 @@ Route::get('/clear', function() {
         });
 
         Route::group(['prefix' => 'Products'], function(){
+
             Route::controller(ProductController::class)->group(function() {
                 Route::get('/index', 'index')->name('Products.index');
                 Route::get('/create', 'create')->name('product.createprod');
@@ -88,19 +92,37 @@ Route::get('/clear', function() {
             });
 
             Route::prefix('promotions')->group(function (){
-                Route::get('/promotions/{id}', [PromotionController::class, 'index']);
-                Route::post('/createpromotion', [PromotionController::class, 'store'])->name('promotions.create');
-                Route::patch('/promotionupdate', [PromotionController::class, 'update'])->name('promotions.update');
-                Route::get('/promotions/editstatusdéactive/{id}', [PromotionController::class, 'editstatusdéactive'])->name('promotions.editstatusdéactive');
-                Route::get('/promotions/editstatusactive/{id}', [PromotionController::class, 'editstatusactive'])->name('promotions.editstatusactive');
-                Route::delete('/deletepromotion', [PromotionController::class, 'destroy'])->name('promotion.destroy');
+                Route::controller(PromotionController::class)->group(function() {
+                    Route::get('/promotions/{id}', 'index');
+                    Route::post('/createpromotion', 'store')->name('promotions.create');
+                    Route::patch('/promotionupdate', 'update')->name('promotions.update');
+                    Route::get('/promotions/editstatusdéactive/{id}', 'editstatusdéactive')->name('promotions.editstatusdéactive');
+                    Route::get('/promotions/editstatusactive/{id}', 'editstatusactive')->name('promotions.editstatusactive');
+                    Route::delete('/deletepromotion', 'destroy')->name('promotion.destroy');
+                });
             });
 
             Route::get('stock/editstocknoexist/{id}', [StockproductController::class, 'editstocknoexist'])->name('stock.editstocknoexist');
             Route::get('stock/editstockexist/{id}', [StockproductController::class, 'editstockexist'])->name('stock.editstockexist');
 
-            Route::get('/section/{id}', [ProductController::class, 'getchild']);
+            Route::prefix('images')->group(function (){
+                Route::controller(MainimageproductController::class)->group(function() {
+                    // Route::get('/images/{id}','index');
+                    // Route::post('/createimage','store')->name('image.create');
+                    // Route::patch('/imageuser','edit')->name('image.edit');
+                    // Route::delete('/deleteimage','delete')->name('image.delete');
+                });
+
+                Route::controller(MultipimageController::class)->group(function() {
+                    Route::get('/images/{id}','index');
+                    Route::post('/createimage','store')->name('image.create');
+                    Route::patch('/imageuser','edit')->name('image.edit');
+                    Route::delete('/deleteimage','delete')->name('image.delete');
+                });
+            });
+
         });
+        Route::get('/section/{id}', [ProductController::class, 'getchild']);
 
     });
     require __DIR__.'/auth.php';

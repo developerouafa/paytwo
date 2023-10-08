@@ -53,6 +53,7 @@
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.children')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.status')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.userproduct')}}</th>
+                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.images')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.promotion')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.stock')}}</th>
                                         <th scope="wd-15p border-bottom-0"></th>
@@ -78,6 +79,7 @@
                                                     @endif
                                                 </td>
                                                 <td> {{$x->user->name}} </td>
+                                                <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
                                                 <td>
                                                     @forelse ($x->promotion as $promo)
                                                         @if ($promo->expired == 0)

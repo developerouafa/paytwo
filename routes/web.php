@@ -63,7 +63,7 @@ Route::get('/clear', function() {
         Route::group(['prefix' => 'Sections'], function(){
             Route::controller(SectionController::class)->group(function() {
                 Route::get('/index', 'index')->name('Sections.index');
-                Route::get('/Show/{id}', 'show')->name('Sections.show');
+                Route::get('/Show_by_Section/{id}', 'showsection')->name('Sections.showsection');
                 Route::post('/create', 'store')->name('Sections.store');
                 Route::patch('/update', 'update')->name('Sections.update');
                 Route::delete('/destroy', 'destroy')->name('Sections.destroy');
@@ -72,10 +72,11 @@ Route::get('/clear', function() {
             });
 
             Route::controller(childrenController::class)->group(function() {
-                Route::get('/child', 'index')->name('childcat_index');
-                Route::post('/createchild', 'store')->name('childcat.create');
-                Route::patch('/updatechild', 'update')->name('childcat.update');
-                Route::delete('/deletechild', 'destroy')->name('childcat.delete');
+                Route::get('/child', 'index')->name('Children_index');
+                Route::get('/Show_by_Children/{id}', 'showchildren')->name('Children.showchildren');
+                Route::post('/createchild', 'store')->name('Children.create');
+                Route::patch('/updatechild', 'update')->name('Children.update');
+                Route::delete('/deletechild', 'destroy')->name('Children.delete');
             });
         });
 

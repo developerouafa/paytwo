@@ -5,15 +5,18 @@ namespace App\Interfaces\Sections;
 interface childrenRepositoryInterface
 {
 
-    // get All Childrens
+    //* get All Childrens
     public function index();
 
-    // store Childrens
+    //* store Childrens
     public function store($request);
 
-    // Update Sections
+    //* Update Sections
     public function update($request);
 
-    // destroy Sections
+    //* Show Children Products
+    public function showchildren($id);
+
+    //* destroy Sections
     public function destroy($request);
 }

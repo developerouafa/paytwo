@@ -59,7 +59,7 @@
                                             @if ($x->status == 0)
                                                 <tr>
                                                     <td>{{$x->id}}</td>
-                                                    <td>{{$x->name}}</td>
+                                                    <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
                                                     <td>{{$x->section->name}}</td>
                                                     <td>{{$x->section->user->name}}</td>
                                                     <td>{{$x->user->name}}</td>
@@ -94,7 +94,7 @@
                                 <h6 class="modal-children">{{__('Dashboard/sections_trans.addchildren')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                             </div>
                                 <div class="modal-body">
-                                    <form action="{{route('childcat.create')}}" method="post" enctype="multipart/form-data" autocomplete="off">
+                                    <form action="{{route('Children.create')}}" method="post" enctype="multipart/form-data" autocomplete="off">
                                         @csrf
                                             <div class="form-group">
                                                 <input placeholder="{{__('Dashboard/sections_trans.childrenen')}}" type="text" value="{{old('name_en')}}" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en">
@@ -130,13 +130,13 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-children" id="exampleModalLabel">{{__('message.update')}}</h5>
+                                <h5 class="modal-children" id="exampleModalLabel">{{__('Dashboard/products.update')}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{route('childcat.update')}}" enctype="multipart/form-data" method="post" autocomplete="off">
+                                <form action="{{route('Children.update')}}" enctype="multipart/form-data" method="post" autocomplete="off">
                                     {{ method_field('patch') }}
                                     {{ csrf_field() }}
                                     <div class="form-group">
@@ -176,7 +176,7 @@
                             <h6 class="modal-children">{{__('Dashboard/sections_trans.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
                                 type="button"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <form action="{{route('childcat.delete')}}" method="post">
+                        <form action="{{route('Children.delete')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
                             <div class="modal-body">

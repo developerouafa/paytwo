@@ -77,11 +77,11 @@ class SectionRepository implements SectionRepositoryInterface
         }
     }
 
-    public function show($id)
+    public function showsection($id)
     {
         $section = Section::findOrFail($id);
         $products = product::where('section_id', $id)->get();
-        return view('Dashboard.Sections.showproduct',compact('section', 'products'));
+        return view('Dashboard/Sections.showproduct',compact('section', 'products'));
     }
 
     public function editstatusdéactive($id)

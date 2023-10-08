@@ -2,6 +2,7 @@
 namespace App\Repository\Sections;
 
 use App\Interfaces\Sections\childrenRepositoryInterface;
+use App\Models\product;
 use App\Models\Section;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -61,6 +62,13 @@ class childrenRepository implements childrenRepositoryInterface
             toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('childcat_index');
         }
+    }
+
+    public function showchildren($id)
+    {
+        $section = Section::findOrFail($id);
+        $products = product::where('parent_id', $id)->get();
+        return view('Dashboard/childrens.showproduct',compact('section', 'products'));
     }
 
     public function destroy($request)

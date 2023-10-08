@@ -24,10 +24,11 @@ class SectionController extends Controller
 
     }
 
-    public function show($id)
+    public function showsection($id)
     {
-       return $this->Sections->show($id);
+       return $this->Sections->showsection($id);
     }
+
 
     public function store(StoreSectionRequest $request)
     {

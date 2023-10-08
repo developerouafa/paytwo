@@ -33,6 +33,11 @@ class childrenController extends Controller
         return $this->Sections->update($request);
     }
 
+    public function showchildren($id)
+    {
+       return $this->Sections->showchildren($id);
+    }
+
     public function destroy(Request $request)
     {
         return $this->Sections->destroy($request);

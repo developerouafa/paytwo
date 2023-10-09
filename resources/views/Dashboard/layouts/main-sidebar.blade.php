@@ -14,7 +14,7 @@
             @endif
 
             {{-- @if(\Auth::guard('client')->check())
-                @include('Dashboard.layouts.main-sidebar.doctor-sidebar-main')
+                @include('Dashboard.layouts.main-sidebar.client-sidebar-main')
             @endif --}}
 		</aside>
 <!-- main-sidebar -->

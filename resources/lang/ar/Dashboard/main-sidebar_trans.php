@@ -8,4 +8,5 @@ return [
     'view_all'=>'عرض الكل',
     'view_allchildren'=>'ابناء الاقسام',
     'products'=>'المنتجات',
+    'clients'=>'العملاء'
 ];

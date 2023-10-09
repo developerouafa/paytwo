@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('phone')->unique();
             $table->tinyInteger('UserStatus')->default(0);
             $table->tinyInteger('Status')->default(0);
-            $table->string('phone')->unique();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

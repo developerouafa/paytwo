@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
+use App\Models\profileclient;
 use App\Models\profileuser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -26,13 +28,9 @@ class UserSeeder extends Seeder
         ]);
 
         $user_id = User::latest()->first()->id;
-        profileuser::create([
-            'user_id' => $user_id,
-            // 'clienType' => 'clienType',
-            // 'nationalIdNumber' => 'nationalIdNumber',
-            // 'commercialRegistrationNumber' => 'commercialRegistrationNumber',
-            // 'taxNumber' => 'taxNumber',
-            // 'adderss' => 'adderss',
+        Client::create([
+            'phone' => '0582201021',
+            'user_id' => $user_id
         ]);
 
         $role = Role::create(['name' => 'Admin']);

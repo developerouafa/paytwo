@@ -11,15 +11,28 @@ class Client extends Model
 
     protected $fillable = [
         'id',
-        'name',
         'phone',
         'UserStatus',
-        'Status'
+        'Status',
+        'user_id'
     ];
 
+    /*-------------------- Scopes --------------------*/
+        public function scopeClientwith($query){
+            return $query->with('user')->with('profileclient');
+        }
+
+        public function scopeClientselect($query){
+            return $query->select('id', 'phone', 'Status', 'UserStatus', 'user_id');
+        }
     /*-------------------- Relations --------------------*/
-    public function profileclient()
-    {
-        return $this->hasOne(profileclient::class);
-    }
+        public function user()
+        {
+            return $this->belongsTo(user::class);
+        }
+
+        public function profileclient()
+        {
+            return $this->hasOne(profileclient::class);
+        }
 }

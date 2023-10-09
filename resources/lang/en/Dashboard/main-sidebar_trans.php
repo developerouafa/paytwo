@@ -8,4 +8,5 @@ return [
     'view_all' => 'View All',
     'view_allchildren' => 'Children Section',
     'products'=>'Products',
+    'clients'=>'Clients',
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Sections\ClientRequest;
 use App\Interfaces\Clients\ClientRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class ClientController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
         return $this->Clients->store($request);
     }

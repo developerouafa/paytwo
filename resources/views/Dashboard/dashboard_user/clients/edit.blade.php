@@ -16,7 +16,7 @@
                 <div class="modal-body">
                     <label for="phone">{{trans('Dashboard/clients_trans.phone')}}</label>
                     <input type="hidden" name="id" value="{{ $client->id }}">
-                    <input type="text" name="phone" value="{{ $client->phone }}" class="form-control" id="phone">
+                    <input type="number" max="10" min="10" name="phone" value="{{ $client->phone }}" class="form-control" id="phone">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/clients_trans.Close')}}</button>

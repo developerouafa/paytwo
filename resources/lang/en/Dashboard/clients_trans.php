@@ -12,4 +12,5 @@ return [
     'edit_client'=>'Edit Client',
     'delete_client'=>'Delete Client',
     'Warning'=>'Are Sure Of The Deleting Process ?',
+    'phoneisrequired'=>'Phone Is Required'
 ];

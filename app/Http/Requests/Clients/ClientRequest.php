@@ -4,7 +4,7 @@ namespace App\Http\Requests\Sections;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSectionRequest extends FormRequest
+class ClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,18 +23,15 @@ class StoreSectionRequest extends FormRequest
     {
         // validations
         return [
-        //     'name_en' => 'required|unique:sections,name->en',
-        //     'name_ar' => 'required|unique:sections,name->ar',
+            'phone' => 'required|unique:clients,phone|regex:/(0)[0-9]{6}/',
         ];
     }
 
     public function messages()
     {
-        // return [
-        //     'name_en.required' =>__('Dashboard/sections_trans.nameenrequired'),
-        //     'name_en.unique' =>__('Dashboard/sections_trans.nameenunique'),
-        //     'name_ar.required' =>__('Dashboard/sections_trans.namearrequired'),
-        //     'name_ar.unique' =>__('Dashboard/sections_trans.namearunique'),
-        // ];
+        return [
+            'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
+            'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
+        ];
     }
 }

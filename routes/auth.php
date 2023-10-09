@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ClientController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -59,4 +60,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                     ->name('logout');
     });
+
+    //################################## Route client ##############################################
+
+    Route::post('/login/client', [ClientController::class, 'store'])->middleware('guest')->name('login.client');
+
+    Route::post('/logout/client', [ClientController::class, 'destroy'])->middleware('auth:client')->name('logout.client');
+
+    //#############################################################################################
 });

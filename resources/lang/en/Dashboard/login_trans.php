@@ -5,9 +5,11 @@ return [
     'Welcome' =>'Welcome back',
     'Select_Enter' =>'Select the entry method',
     'Choose_list' =>'Choose from the list',
-    'admin' =>'SignIn as a Admin',
+    'admin' =>'User',
     'SignIn' => 'Sign In',
     'Email' => 'Email',
     'Password' => 'Password',
-    'logout' => "Logout"
+    'logout' => "Logout",
+    'client' => 'Client',
+    'phone' => 'Phone'
 ];

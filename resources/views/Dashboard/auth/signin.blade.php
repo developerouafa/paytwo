@@ -3,8 +3,14 @@
 {{__('Dashboard/login_trans.SignIn')}}
 @endsection
 @section('css')
-<!-- Sidemenu-respoansive-tabs css -->
-<link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
+
+    <style>
+        .panel {display: none;}
+    </style>
+
+
+    <!-- Sidemenu-respoansive-tabs css -->
+    <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
 @endsection
 @section('content')
 		<div class="container-fluid">
@@ -54,16 +60,40 @@
                                                         </ul>
                                                     </div>
                                                 @endif
-                                                <form method="POST" action="{{ route('login') }}">
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label>{{trans('Dashboard/login_trans.Email')}}</label> <input  class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="Enter your password"   type="password"name="password" required autocomplete="current-password" >
-                                                    </div>
-                                                    <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login_trans.SignIn')}}</button>
-                                                </form>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlSelect1">{{trans('Dashboard/login_trans.Select_Enter')}}</label>
+                                                    <select class="form-control" id="sectionChooser">
+                                                        <option value="" selected disabled>{{trans('Dashboard/login_trans.Choose_list')}}</option>
+                                                        <option value="user">{{trans('Dashboard/login_trans.admin')}}</option>
+                                                        <option value="client">{{trans('Dashboard/login_trans.client')}}</option>
+                                                    </select>
+                                                </div>
+                                                {{--form user--}}
+                                                <div class="panel" id="user">
+                                                    <h2>{{trans('Dashboard/login_trans.admin')}}</h2>
+                                                    <form method="POST" action="{{ route('login') }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label>{{trans('Dashboard/login_trans.Email')}}</label> <input  class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="Enter your password"   type="password"name="password" required autocomplete="current-password" >
+                                                        </div>
+                                                        <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login_trans.SignIn')}}</button>
+                                                    </form>
+                                                </div>
+
+                                                {{--form client--}}
+                                                <div class="panel" id="client">
+                                                    <h2>{{trans('Dashboard/login_trans.client')}}</h2>
+                                                    <form method="POST" action="{{ route('login.client') }}">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label>{{trans('Dashboard/login_trans.phone')}}</label> <input  class="form-control" type="number" name="phone" :value="old('phone')" required autofocus>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login_trans.SignIn')}}</button>
+                                                    </form>
+                                                </div>
 											</div>
 										</div>
 									</div>
@@ -76,4 +106,12 @@
 		</div>
 @endsection
 @section('js')
+    <script>
+        $('#sectionChooser').change(function(){
+            var myID = $(this).val();
+            $('.panel').each(function(){
+                myID === $(this).attr('id') ? $(this).show() : $(this).hide();
+            });
+        });
+    </script>
 @endsection

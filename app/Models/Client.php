@@ -5,22 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class profileuser extends Model
+class Client extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'clienType',
-        'nationalIdNumber',
-        'commercialRegistrationNumber',
-        'taxNumber',
-        'adderss',
-        'user_id'
+        'id',
+        'name',
+        'phone',
+        'UserStatus',
+        'Status'
     ];
 
     /*-------------------- Relations --------------------*/
-    public function user()
+    public function profileclient()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(profileclient::class);
     }
 }

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profileusers', function (Blueprint $table) {
+        Schema::create('profileclients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('client_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('clienType')->nullable();
             $table->string('nationalIdNumber')->nullable();
             $table->string('commercialRegistrationNumber')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profileusers');
+        Schema::dropIfExists('profileclients');
     }
 };

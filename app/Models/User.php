@@ -60,11 +60,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(imageuser::class);
     }
 
-    public function profileuser()
-    {
-        return $this->hasOne(profileuser::class);
-    }
-
     // Rest omitted for brevity
 
     /**

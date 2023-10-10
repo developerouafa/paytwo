@@ -24,8 +24,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-// Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
-
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),

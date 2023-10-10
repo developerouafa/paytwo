@@ -131,16 +131,15 @@ Route::get('/clear', function() {
         //############################# end Products route ######################################
 
         //############################# Clients route ##########################################
+            Route::prefix('Clients')->group(function (){
+                Route::resource('Clients', ClientController::class);
+                Route::controller(ClientController::class)->group(function() {
+                    Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
+                    Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                });
 
-        Route::prefix('Clients')->group(function (){
-            Route::resource('Clients', ClientController::class);
-            Route::controller(ClientController::class)->group(function() {
-                Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
-                Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+
             });
-
-
-        });
         //############################# end Clients route ######################################
 
     });

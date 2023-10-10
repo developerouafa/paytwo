@@ -13,8 +13,8 @@
                 @include('Dashboard.layouts.main-sidebar.user-sidebar-main')
             @endif
 
-            {{-- @if(\Auth::guard('client')->check())
+            @if(\Auth::guard('client')->check())
                 @include('Dashboard.layouts.main-sidebar.client-sidebar-main')
-            @endif --}}
+            @endif
 		</aside>
 <!-- main-sidebar -->

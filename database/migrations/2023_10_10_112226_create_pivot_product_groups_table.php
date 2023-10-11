@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pivot_product_groups', function (Blueprint $table) {
+        Schema::create('Product_Group', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('groupprodcut_id')->references('id')->on('groupprodcuts')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pivot_product_groups');
+        Schema::dropIfExists('Product_Group');
     }
 };

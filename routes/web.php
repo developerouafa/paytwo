@@ -143,5 +143,11 @@ Route::get('/clear', function() {
         //############################# end Clients route ######################################
 
         Route::view('counter', 'livewire.counterr')->name('counter');
+
+        //############################# GroupProducts route ##########################################
+
+            Route::view('Add_GroupProducts','livewire.GroupProducts.include_create')->name('Add_GroupProducts');
+
+        //############################# end GroupProducts route ######################################
     });
     require __DIR__.'/auth.php';

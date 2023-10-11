@@ -27,12 +27,12 @@ class childrenRepository implements childrenRepositoryInterface
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('childcat_index');
+            return redirect()->route('Children_index');
         }
         catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('childcat_index');
+            return redirect()->route('Children_index');
         }
     }
 
@@ -56,11 +56,11 @@ class childrenRepository implements childrenRepositoryInterface
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.edit'));
-                return redirect()->route('childcat_index');
+                return redirect()->route('Children_index');
         }catch(\Exception $execption){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('childcat_index');
+            return redirect()->route('Children_index');
         }
     }
 
@@ -80,11 +80,11 @@ class childrenRepository implements childrenRepositoryInterface
                 $children->delete();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('childcat_index');
+            return redirect()->route('Children_index');
         }catch(\Exception $execption){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('childcat_index');
+            return redirect()->route('Children_index');
         }
     }
 }

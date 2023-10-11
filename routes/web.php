@@ -142,5 +142,6 @@ Route::get('/clear', function() {
             });
         //############################# end Clients route ######################################
 
+        Route::view('counter', 'livewire.counterr')->name('counter');
     });
     require __DIR__.'/auth.php';

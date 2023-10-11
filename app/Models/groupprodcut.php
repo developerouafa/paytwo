@@ -13,9 +13,9 @@ class groupprodcut extends Model
     public $fillable= ['name', 'notes', 'Total_before_discount','discount_value','Total_after_discount','tax_rate','Total_with_tax'];
     public $translatable = ['name', 'notes'];
 
-    public function product_groups()
+    public function product_group()
     {
-        return $this->belongsToMany(product::class,'product_groups')->withPivot('quantity');
+        return $this->belongsToMany(product::class,'pivot_product_groups')->withPivot('quantity');
     }
 
 }

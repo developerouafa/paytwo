@@ -8,5 +8,10 @@ return [
     'view_all'=>'عرض الكل',
     'view_allchildren'=>'ابناء الاقسام',
     'products'=>'المنتجات',
-    'clients'=>'العملاء'
+    'clients'=>'العملاء',
+    'services' => 'خدمات',
+    'group_services' => 'مجموعة خدمات',
+    'Singleservicebill' => 'فاتورة خدمة واحدة',
+    'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
+    'invoices' => 'الفواتير'
 ];

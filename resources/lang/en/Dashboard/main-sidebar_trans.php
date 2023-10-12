@@ -9,4 +9,9 @@ return [
     'view_allchildren' => 'Children Section',
     'products'=>'Products',
     'clients'=>'Clients',
+    'services' => 'Services',
+    'group_services' => 'Group Services',
+    'Singleservicebill' => 'Single service bill',
+    'Servicepackageinvoice' => 'Service package invoice',
+    'invoices' => 'Invoices'
 ];

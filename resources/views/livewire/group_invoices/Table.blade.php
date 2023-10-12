@@ -1,19 +1,19 @@
-<button class="btn btn-primary pull-right" wire:click="show_form_add" type="button">اضافة فاتورة جديدة </button><br><br>
+<button class="btn btn-primary pull-right" wire:click="show_form_add" type="button"> {{__('Dashboard/services.addotheinvoice')}} </button><br><br>
 <div class="table-responsive">
     <table class="table text-md-nowrap" id="example1" data-page-length="50"style="text-align: center">
         <thead>
             <tr>
                 <th>#</th>
-                <th>اسم الخدمة</th>
-                <th>اسم العميل</th>
-                <th>تاريخ الفاتورة</th>
-                <th>سعر الخدمة</th>
-                <th>قيمة الخصم</th>
-                <th>نسبة الضريبة</th>
-                <th>قيمة الضريبة</th>
-                <th>الاجمالي مع الضريبة</th>
-                <th>نوع الفاتورة</th>
-                <th>العمليات</th>
+                <th> {{__('Dashboard/services.nameservice')}} </th>
+                <th> {{__('Dashboard/services.client')}} </th>
+                <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                <th> {{__('Dashboard/services.priceservice')}} </th>
+                <th> {{__('Dashboard/services.discountvalue')}} </th>
+                <th> {{__('Dashboard/services.Taxrate')}} </th>
+                <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                <th> {{__('Dashboard/services.Processes')}} </th>
             </tr>
         </thead>
         <tbody>

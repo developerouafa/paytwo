@@ -8,11 +8,11 @@
     @endif
 
     @if ($InvoiceSaved)
-        <div class="alert alert-info">تم حفظ البيانات بنجاح.</div>
+        <div class="alert alert-info"> {{__('Dashboard/services.dataaddsuccessfully')}} </div>
     @endif
 
     @if ($InvoiceUpdated)
-        <div class="alert alert-info">تم تعديل البيانات بنجاح.</div>
+        <div class="alert alert-info"> {{__('Dashboard/services.dataeditsuccessfully')}}</div>
     @endif
 
     @if($show_table)
@@ -25,9 +25,9 @@
             @csrf
             <div class="row">
                 <div class="col">
-                    <label>اسم العميل</label>
+                    <label> {{__('Dashboard/services.client')}} </label>
                     <select wire:model="client_id" class="form-control" required>
-                        <option value=""  >-- اختار من القائمة --</option>
+                        <option value=""  >-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
                         @foreach($Clients as $Client)
                             <option value="{{$Client->id}}">{{$Client->name}}</option>
                         @endforeach
@@ -35,11 +35,11 @@
                 </div>
 
                 <div class="col">
-                    <label>نوع الفاتورة</label>
+                    <label> {{__('Dashboard/services.Invoicetype')}} </label>
                     <select wire:model="type" class="form-control" {{$updateMode == true ? 'disabled':''}}>
-                        <option value="" >-- اختار من القائمة --</option>
-                        <option value="1">نقدي</option>
-                        <option value="2">اجل</option>
+                        <option value="" >-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
+                        <option value="1"> {{__('Dashboard/services.monetary')}} </option>
+                        <option value="2"> {{__('Dashboard/services.Okay')}} </option>
                     </select>
                 </div>
 
@@ -60,20 +60,20 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>اسم الخدمة</th>
-                                        <th>سعر الخدمة</th>
-                                        <th>قيمة الخصم</th>
-                                        <th>نسبة الضريبة</th>
-                                        <th>قيمة الضريبة</th>
-                                        <th>الاجمالي مع الضريبة</th>
+                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">#</th>
                                         <td>
                                             <select wire:model="product_id" class="form-control" wire:change="get_price" id="exampleFormControlSelect1">
-                                                <option value="">-- اختار الخدمة --</option>
+                                                <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
                                                 @foreach($Products as $Product)
                                                     <option value="{{$Product->id}}">{{$Product->name}}</option>
                                                 @endforeach
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <input class="btn btn-outline-success" type="submit" value="تاكيد البيانات">
+            <input class="btn btn-outline-success" type="submit" value=" {{__('Dashboard/services.save')}} ">
         </form>
 
     @endif

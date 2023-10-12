@@ -155,5 +155,13 @@ Route::get('/clear', function() {
             Route::view('Print_single_invoices','livewire.single_invoices.print')->name('Print_single_invoices');
 
         //############################# end single_invoices route ######################################
+
+        //############################# group_invoices route ##########################################
+
+            Route::view('group_invoices','livewire.Group_invoices.index')->name('group_invoices');
+
+            Route::view('group_Print_single_invoices','livewire.Group_invoices.print')->name('group_Print_single_invoices');
+
+        //############################# end group_invoices route ######################################
     });
     require __DIR__.'/auth.php';

@@ -23,6 +23,7 @@ class ClientRequest extends FormRequest
     {
         // validations
         return [
+            'name' => 'required',
             'phone' => 'required|unique:clients,phone|regex:/(0)[0-9]{6}/',
         ];
     }
@@ -30,6 +31,7 @@ class ClientRequest extends FormRequest
     public function messages()
     {
         return [
+            'name' => __('Dashboard/clients_trans.nameisrequired'),
             'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
             'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
         ];

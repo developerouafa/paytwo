@@ -14,6 +14,10 @@
                 {{ csrf_field() }}
                 @csrf
                 <div class="modal-body">
+                    <label for="inputName1" class="control-label">{{__('Dashboard/clients_trans.name')}}<span class="tx-danger">*</span></label>
+                    <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
+                </div>
+                <div class="modal-body">
                     <label for="phone">{{trans('Dashboard/clients_trans.phone')}}</label>
                     <input type="hidden" name="id" value="{{ $client->id }}">
                     <input type="number" max="10" min="10" name="phone" value="{{ $client->phone }}" class="form-control" id="phone">

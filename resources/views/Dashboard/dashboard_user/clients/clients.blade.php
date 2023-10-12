@@ -47,6 +47,7 @@
                                 <thead>
                                     <tr>
                                         <th class="wd-15p border-bottom-0">#</th>
+                                        <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
                                         <th class="wd-20p border-bottom-0">{{__('Dashboard/clients_trans.user_id')}}</th>
@@ -57,6 +58,7 @@
                                     @foreach($clients as $client)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>{{$client->name}}</td>
                                             <td>{{$client->phone}}</td>
                                             <td>
                                                 @if ($client->Status == 0)

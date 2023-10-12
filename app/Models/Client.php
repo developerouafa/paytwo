@@ -11,6 +11,7 @@ class Client extends Model
 
     protected $fillable = [
         'id',
+        'name',
         'phone',
         'UserStatus',
         'Status',
@@ -23,7 +24,7 @@ class Client extends Model
         }
 
         public function scopeClientselect($query){
-            return $query->select('id', 'phone', 'Status', 'UserStatus', 'user_id');
+            return $query->select('id', 'name', 'phone', 'Status', 'UserStatus', 'user_id');
         }
     /*-------------------- Relations --------------------*/
         public function user()

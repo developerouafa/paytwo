@@ -26,6 +26,7 @@ class ClientRepository implements ClientRepositoryInterface
         try{
             DB::beginTransaction();
             Client::create([
+                'name' => $request->name,
                 'phone' => $request->phone,
                 'user_id' => auth()->user()->id,
             ]);
@@ -46,6 +47,7 @@ class ClientRepository implements ClientRepositoryInterface
             DB::beginTransaction();
             $Client = Client::findOrFail($request->id);
                 $Client->update([
+                    'name' => $request->name,
                     'phone' => $request->phone
                 ]);
             DB::commit();

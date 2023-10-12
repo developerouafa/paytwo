@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class client_account extends Model
 {
     use HasFactory;
-
+    public $guarded=[];
     public function invoice()
     {
         return $this->belongsTo(invoice::class,'invoice_id');

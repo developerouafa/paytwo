@@ -6,7 +6,7 @@ use App\Events\MyEvent;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
-use App\Models\Invoice;
+use App\Models\invoice;
 use App\Models\product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -30,7 +30,7 @@ class SingleInvoices extends Component
     public function render()
     {
         return view('livewire.single_invoices.single-invoices', [
-            'single_invoices'=>Invoice::where('invoice_number',1)->get(),
+            'single_invoices'=>invoice::where('invoice_number',1)->get(),
             'Clients'=> Client::all(),
             'Products'=> product::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
@@ -51,7 +51,7 @@ class SingleInvoices extends Component
 
         $this->show_table = false;
         $this->updateMode = true;
-        $single_invoice = Invoice::findorfail($id);
+        $single_invoice = invoice::findorfail($id);
         $this->single_invoice_id = $single_invoice->id;
         $this->client_id = $single_invoice->client_id;
         $this->product_id = $single_invoice->product_id;
@@ -71,7 +71,7 @@ class SingleInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
 
-                    $single_invoices = Invoice::findorfail($this->single_invoice_id);
+                    $single_invoices = invoice::findorfail($this->single_invoice_id);
                     $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
@@ -100,7 +100,7 @@ class SingleInvoices extends Component
                 // في حالة الاضافة
                 else{
 
-                    $single_invoices = new Invoice();
+                    $single_invoices = new invoice();
                     $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
@@ -148,7 +148,7 @@ class SingleInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
 
-                    $single_invoices = Invoice::findorfail($this->single_invoice_id);
+                    $single_invoices = invoice::findorfail($this->single_invoice_id);
                     $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
@@ -179,7 +179,7 @@ class SingleInvoices extends Component
                 // في حالة الاضافة
                 else{
 
-                    $single_invoices = new Invoice();
+                    $single_invoices = new invoice();
                     $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
@@ -221,7 +221,7 @@ class SingleInvoices extends Component
 
     public function print($id)
     {
-        $single_invoice = Invoice::findorfail($id);
+        $single_invoice = invoice::findorfail($id);
         return Redirect::route('Print_single_invoices',[
             'invoice_date' => $single_invoice->invoice_date,
             'Clientname' => $single_invoice->Client->name,
@@ -241,7 +241,7 @@ class SingleInvoices extends Component
     }
 
     public function destroy(){
-        Invoice::destroy($this->single_invoice_id);
+        invoice::destroy($this->single_invoice_id);
         return redirect()->to('/single_invoices');
     }
 }

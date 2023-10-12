@@ -217,4 +217,20 @@ class GroupInvoices extends Component
         Invoice::destroy($this->group_invoice_id);
         return redirect()->to('/group_invoices');
     }
+
+    public function print($id)
+    {
+        $single_invoice = invoice::findorfail($id);
+        return Redirect::route('group_Print_single_invoices',[
+            'invoice_date' => $single_invoice->invoice_date,
+            'Clientname' => $single_invoice->Client->name,
+            'Clientphone' => $single_invoice->Client->phone,
+            'Group_id' => $single_invoice->Group->name,
+            'type' => $single_invoice->type,
+            'price' => $single_invoice->price,
+            'discount_value' => $single_invoice->discount_value,
+            'tax_rate' => $single_invoice->tax_rate,
+            'total_with_tax' => $single_invoice->total_with_tax,
+        ]);
+    }
 }

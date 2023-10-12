@@ -9,29 +9,37 @@ class invoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'invoice_number',
-        'invoice_date',
-        'invoice_type',
-        'invoice_status',
-        'user_id',
-        'singleinvoice_id',
-        'groupinvoice_id'
-    ];
 
-    public function user()
-    {
-        return $this->belongsTo(user::class);
-    }
+        protected $fillable =[
+            'id',
+            'invoice_number',
+            'invoice_date',
+            'type',
+            'invoice_status',
+            'client_id',
+            'groupprodcut_id',
+            'product_id',
+            'price',
+            'discount_value',
+            'tax_rate',
+            'tax_value',
+            'total_with_tax',
+        ];
 
-    public function singleinvoice()
-    {
-        return $this->belongsTo(singleinvoice::class);
-    }
+        /*-------------------- Relations --------------------*/
+            public function Group()
+            {
+                return $this->belongsTo(groupprodcut::class,'groupprodcut_id');
+            }
 
-    public function groupinvoice()
-    {
-        return $this->belongsTo(groupinvoice::class);
-    }
+            public function Service()
+            {
+                return $this->belongsTo(product::class,'product_id');
+            }
+
+            public function Client()
+            {
+                return $this->belongsTo(Client::class,'client_id');
+            }
+
 }

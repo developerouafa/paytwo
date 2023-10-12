@@ -9,7 +9,7 @@ return [
     'product_english'=>'المنتج بالانجليزية',
     'product_arabic'=>'المنتج بالعربية',
     'descriptionen' => 'الوصف بالانجليزية',
-    'descriptionar' => 'الوصف بالعربية',
+    'discriptionar' => 'الوصف بالعربية',
     'edit_products'=>'تعديل المنتج',
     'delete'=>'حذف',
     'aresuredeleting'=>'!هل أنت متأكد من الحذف',

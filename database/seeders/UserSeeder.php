@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
 
         $user_id = User::latest()->first()->id;
         Client::create([
+            'name' => 'client',
             'phone' => '0582201021',
             'user_id' => $user_id
         ]);

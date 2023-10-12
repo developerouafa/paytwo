@@ -142,12 +142,18 @@ Route::get('/clear', function() {
             });
         //############################# end Clients route ######################################
 
-        Route::view('counter', 'livewire.counterr')->name('counter');
-
         //############################# GroupProducts route ##########################################
 
             Route::view('Add_GroupProducts','livewire.GroupProducts.include_create')->name('Add_GroupProducts');
 
         //############################# end GroupProducts route ######################################
+
+        //############################# single_invoices route ##########################################
+
+            Route::view('single_invoices','livewire.single_invoices.index')->name('single_invoices');
+
+            Route::view('Print_single_invoices','livewire.single_invoices.print')->name('Print_single_invoices');
+
+        //############################# end single_invoices route ######################################
     });
     require __DIR__.'/auth.php';

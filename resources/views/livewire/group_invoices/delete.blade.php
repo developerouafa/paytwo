@@ -11,7 +11,7 @@
             </div>
 
             <div class="modal-body">
-               هل انت متاكد من عملية الحذف
+               !هل انت متاكد من عملية الحذف
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>

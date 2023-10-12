@@ -148,4 +148,13 @@ class GroupInvoices extends Component
             }
         }
     }
+
+    public function delete($id){
+        $this->group_invoice_id = $id;
+    }
+
+    public function destroy(){
+        Invoice::destroy($this->group_invoice_id);
+        return redirect()->to('/group_invoices');
+    }
 }

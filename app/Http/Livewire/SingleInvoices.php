@@ -2,21 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\CreateInvoice;
 use App\Events\MyEvent;
 use App\Models\Client;
 use App\Models\client_account;
-use App\Models\Doctor;
 use App\Models\fund_account;
-use App\Models\FundAccount;
 use App\Models\Invoice;
-use App\Models\Notification;
-use App\Models\Patient;
-use App\Models\PatientAccount;
 use App\Models\product;
-use App\Models\Service;
-use App\Models\single_invoice;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -56,6 +47,19 @@ class SingleInvoices extends Component
         $this->price = product::where('id', $this->product_id)->first()->price;
     }
 
+    public function edit($id){
+
+        $this->show_table = false;
+        $this->updateMode = true;
+        $single_invoice = Invoice::findorfail($id);
+        $this->single_invoice_id = $single_invoice->id;
+        $this->client_id = $single_invoice->client_id;
+        $this->product_id = $single_invoice->product_id;
+        $this->price = $single_invoice->price;
+        $this->discount_value = $single_invoice->discount_value;
+        $this->type = $single_invoice->type;
+    }
+
     public function store(){
 
         // في حالة كانت الفاتورة نقدي
@@ -67,6 +71,29 @@ class SingleInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
 
+                    $single_invoices = Invoice::findorfail($this->single_invoice_id);
+                    $single_invoices->invoice_number = 1;
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->save();
+
+                    $fund_accounts = fund_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
 
                 }
 
@@ -121,7 +148,31 @@ class SingleInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
 
+                    $single_invoices = Invoice::findorfail($this->single_invoice_id);
+                    $single_invoices->invoice_number = 1;
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->save();
 
+
+                    $client_accounts = client_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $client_accounts->date = date('Y-m-d');
+                    $client_accounts->invoice_id = $single_invoices->id;
+                    $client_accounts->client_id = $single_invoices->client_id;
+                    $client_accounts->Debit = $single_invoices->total_with_tax;
+                    $client_accounts->credit = 0.00;
+                    $client_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
 
                 }
 
@@ -144,13 +195,13 @@ class SingleInvoices extends Component
                     $single_invoices->invoice_status = 1;
                     $single_invoices->save();
 
-                    $patient_accounts = new client_account();
-                    $patient_accounts->date = date('Y-m-d');
-                    $patient_accounts->invoice_id = $single_invoices->id;
-                    $patient_accounts->client_id = $single_invoices->client_id;
-                    $patient_accounts->Debit = $single_invoices->total_with_tax;
-                    $patient_accounts->credit = 0.00;
-                    $patient_accounts->save();
+                    $client_accounts = new client_account();
+                    $client_accounts->date = date('Y-m-d');
+                    $client_accounts->invoice_id = $single_invoices->id;
+                    $client_accounts->client_id = $single_invoices->client_id;
+                    $client_accounts->Debit = $single_invoices->total_with_tax;
+                    $client_accounts->credit = 0.00;
+                    $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
                 }

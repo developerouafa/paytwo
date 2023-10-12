@@ -52,15 +52,15 @@ class GroupInvoices extends Component
 
         $this->show_table = false;
         $this->updateMode = true;
-        $group_invoices = Invoice::findorfail($id);
-        $this->group_invoice_id = $group_invoices->id;
-        $this->client_id = $group_invoices->client_id;
-        $this->groupprodcut_id = $group_invoices->groupprodcut_id;
-        $this->price = $group_invoices->price;
-        $this->discount_value = $group_invoices->discount_value;
-        $this->tax_rate = $group_invoices->tax_rate;
-        $this->tax_value = $group_invoices->tax_value;
-        $this->type = $group_invoices->type;
+        $group_invoice = Invoice::findorfail($id);
+        $this->group_invoice_id = $group_invoice->id;
+        $this->client_id = $group_invoice->client_id;
+        $this->groupprodcut_id = $group_invoice->groupprodcut_id;
+        $this->price = $group_invoice->price;
+        $this->discount_value = $group_invoice->discount_value;
+        $this->tax_rate = $group_invoice->tax_rate;
+        $this->tax_value = $group_invoice->tax_value;
+        $this->type = $group_invoice->type;
     }
 
     public function store()
@@ -75,7 +75,29 @@ class GroupInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
 
+                    $group_invoices = Invoice::findorfail($this->group_invoice_id);
+                    $group_invoices->invoice_number = 2;
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->save();
 
+                    $fund_accounts = fund_account::where('invoice_id',$this->group_invoice_id)->first();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $group_invoices->id;
+                    $fund_accounts->Debit = $group_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
 
                 }
 
@@ -124,8 +146,30 @@ class GroupInvoices extends Component
             try {
                 // في حالة التعديل
                 if($this->updateMode){
+                    $group_invoices = invoice::findorfail($this->group_invoice_id);
+                    $group_invoices->invoice_number = 2;
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->save();
 
-
+                    $client_accounts = client_account::where('invoice_id',$this->group_invoice_id)->first();
+                    $client_accounts->date = date('Y-m-d');
+                    $client_accounts->invoice_id = $group_invoices->id;
+                    $client_accounts->patient_id = $group_invoices->patient_id;
+                    $client_accounts->Debit = $group_invoices->total_with_tax;
+                    $client_accounts->credit = 0.00;
+                    $client_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
                 }
 
                 // في حالة الاضافة

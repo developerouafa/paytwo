@@ -24,6 +24,7 @@ class GroupInvoices extends Component
     public $client_id,$type;
     public $discount_value = 0;
     public $tax_rate = 0;
+    public $tax_value = 0;
 
     public function render()
     {
@@ -45,6 +46,21 @@ class GroupInvoices extends Component
         $this->price = groupprodcut::where('id', $this->groupprodcut_id)->first()->Total_before_discount;
         $this->discount_value = groupprodcut::where('id', $this->groupprodcut_id)->first()->discount_value;
         $this->tax_rate = groupprodcut::where('id', $this->groupprodcut_id)->first()->tax_rate;
+    }
+
+    public function edit($id){
+
+        $this->show_table = false;
+        $this->updateMode = true;
+        $group_invoices = Invoice::findorfail($id);
+        $this->group_invoice_id = $group_invoices->id;
+        $this->client_id = $group_invoices->client_id;
+        $this->groupprodcut_id = $group_invoices->groupprodcut_id;
+        $this->price = $group_invoices->price;
+        $this->discount_value = $group_invoices->discount_value;
+        $this->tax_rate = $group_invoices->tax_rate;
+        $this->tax_value = $group_invoices->tax_value;
+        $this->type = $group_invoices->type;
     }
 
     public function store()

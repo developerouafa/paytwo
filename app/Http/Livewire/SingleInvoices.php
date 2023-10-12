@@ -168,6 +168,23 @@ class SingleInvoices extends Component
 
     }
 
+    public function print($id)
+    {
+        $single_invoice = Invoice::findorfail($id);
+        return Redirect::route('Print_single_invoices',[
+            'invoice_date' => $single_invoice->invoice_date,
+            'Clientname' => $single_invoice->Client->name,
+            'Clientphone' => $single_invoice->Client->phone,
+            'Service_id' => $single_invoice->Service->name,
+            'type' => $single_invoice->type,
+            'price' => $single_invoice->price,
+            'discount_value' => $single_invoice->discount_value,
+            'tax_rate' => $single_invoice->tax_rate,
+            'total_with_tax' => $single_invoice->total_with_tax,
+        ]);
+
+    }
+
     public function delete($id){
         $this->single_invoice_id = $id;
     }

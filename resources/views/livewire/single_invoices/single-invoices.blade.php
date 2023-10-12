@@ -29,7 +29,7 @@
                     <select wire:model="client_id" class="form-control" required>
                         <option value=""  >-- اختار من القائمة --</option>
                         @foreach($Clients as $Client)
-                            <option value="{{$Client->id}}">{{$Client->phone}}</option>
+                            <option value="{{$Client->id}}">{{$Client->name}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Sections\ClientRequest;
+use App\Http\Requests\Clients\ClientRequest;
 use App\Interfaces\Clients\ClientRepositoryInterface;
 use Illuminate\Http\Request;
 

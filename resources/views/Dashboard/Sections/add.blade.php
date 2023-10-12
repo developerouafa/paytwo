@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
                     <label for="name_ar">{{trans('Dashboard/sections_trans.section_arabic')}}</label>
-                    <input type="text" class="form-control" class="form-control" value="{{old('name_ar')}}" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" placeholder="{{__('Dashboard/sections_trans.section_english')}}">
+                    <input type="text" class="form-control" class="form-control" value="{{old('name_ar')}}" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar" placeholder="{{__('Dashboard/sections_trans.section_arabic')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>

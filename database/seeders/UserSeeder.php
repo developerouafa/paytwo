@@ -34,6 +34,10 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456'),
             'user_id' => $user_id
         ]);
+        $client_id = Client::latest()->first()->id;
+        profileclient::create([
+            'client_id' => $client_id
+        ]);
 
         $role = Role::create(['name' => 'Admin']);
 

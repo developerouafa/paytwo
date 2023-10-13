@@ -267,21 +267,23 @@
 											</div>
 										</div>
 									</div>
-									<a class="dropdown-item" href="{{ route('profile.edit')  }}"><i class="bx bx-user-circle"></i>Profile</a>
-									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
+                                    @if(auth('web')->check())
+                                        <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user-circle"></i>Profile</a>
+                                    @elseif(auth('client')->check())
+                                        <a class="dropdown-item" href="{{ route('profileclient.edit') }}"><i class="bx bx-user-circle"></i>Profileaa</a>
+                                    @endif
+									<a class="dropdown-item" href=""><i class="bx bx-cog"></i>Edit Profile</a>
 									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
                                     @if(auth('web')->check())
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @elseif(auth('client')->check())
-                                            <form method="POST" action="{{ route('logout.client') }}">
-                                                @endif
-                                                @csrf
-                                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();"><i class="bx bx-log-out"></i>{{__('Dashboard/login_trans.logout')}}</a>
-                                            </form>
-                                    </a>
-									{{-- <a class="dropdown-item" href="{{ route('logout') }}"><i class="bx bx-log-out"></i> Sign Out</a> --}}
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @elseif(auth('client')->check())
+                                                <form method="POST" action="{{ route('logout.client') }}">
+                                                    @endif
+                                                    @csrf
+                                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();"><i class="bx bx-log-out"></i>{{__('Dashboard/login_trans.logout')}}</a>
+                                        </form>
 								</div>
 							</div>
 							<div class="dropdown main-header-message right-toggle">

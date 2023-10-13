@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Dashboard\Clients\profiles\ProfileclientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,16 @@ Route::group(
         return view('Dashboard.dashboard_client.dashboard');
     })->name('dashboard.client');
     //################################ end dashboard patient #####################################
+
+    //############################# Start Partie Client route ##########################################
+
+        Route::group(['prefix' => 'ProfileClient'], function(){
+            Route::controller(ProfileclientController::class)->group(function() {
+                Route::get('/profile', 'edit')->name('profileclient.edit');
+                Route::patch('/profile', 'updateprofile')->name('profileclient.update');
+            });
+        });
+    //############################# end Partie Client route ######################################
 
         //############################# clients route ##########################################
 

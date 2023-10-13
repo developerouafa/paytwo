@@ -46,22 +46,26 @@ Route::get('/clear', function() {
             return view('Dashboard/index');
         })->name('dashboard');
 
-        //############################# Partie User|permissions|roles route ##########################################
+        //############################# Start Partie User|permissions|roles route ##########################################
             Route::resource('roles', RolesController::class);
             Route::resource('users', UserController::class);
+        //############################# end Partie User|permissions|roles route ######################################
+
+        //############################# Start Partie Profile User ##########################################
 
             Route::group(['prefix' => 'Profile'], function(){
                 Route::controller(ProfileController::class)->group(function() {
                     Route::get('/profile', 'edit')->name('profile.edit');
                     Route::patch('/profile', 'updateprofile')->name('profile.update');
                 });
+
                 Route::controller(ImageuserController::class)->group(function() {
                     Route::post('/imageuser', 'store')->name('imageuser.store');
                     Route::patch('/imageuser', 'update')->name('imageuser.update');
                     Route::get('/imageuser', 'destroy')->name('imageuser.delete');
                 });
             });
-        //############################# end Partie User|permissions|roles route ######################################
+        //############################# end Partie Profile User ######################################
 
         //############################# Section & Children Section route ##########################################
             Route::group(['prefix' => 'Sections'], function(){

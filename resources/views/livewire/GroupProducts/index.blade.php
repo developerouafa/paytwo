@@ -1,14 +1,16 @@
 
-<button class="btn btn-primary pull-right" wire:click="show_form_add" type="button">اضافة مجموعة خدمات </button><br><br>
+<button class="btn btn-primary pull-right" wire:click="show_form_add" type="button">
+    {{__('Dashboard/services.addsubservice')}}
+</button><br><br>
 <div class="table-responsive">
         <table class="table text-md-nowrap" id="example1" data-page-length="50"style="text-align: center">
         <thead>
             <tr>
                 <th>#</th>
-                <th>الاسم</th>
-                <th>اجمالي العرض شامل الضريبة</th>
-                <th>الملاحظات</th>
-                <th>العمليات</th>
+                <th> {{__('Dashboard/services.nameservice')}} </th>
+                <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
+                <th>{{__('Dashboard/services.description')}}</th>
+                <th>{{__('Dashboard/services.Processes')}}</th>
             </tr>
         </thead>
         <tbody>

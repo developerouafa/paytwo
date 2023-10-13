@@ -11,19 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
-    public function store(ClientLoginRequest $request): RedirectResponse
+    public function store(ClientLoginRequest $request)
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::Client);
-
-        // if ($request->authenticate()) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended(RouteServiceProvider::Client);
-        // }
-        // return redirect()->back()->withErrors(['phone' => (trans('Dashboard/messages.error'))]);
+        if ($request->authenticate()) {
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::Client);
+        }
+        return redirect()->back()->withErrors(['name' => (trans('Dashboard/messages.error'))]);
     }
 
 

@@ -65,7 +65,7 @@
                                         <td>1</td>
                                         <td class="tx-12">{{ Request::get('Group_id') }}</td>
                                         <td class="tx-center">{{ Request::get('price') }}</td>
-                                        <td class="tx-right">{{Request::get('type') == 1 ? '{{__('Dashboard/services.monetary')}}' : '{{__('Dashboard/services.Okay')}}'}}</td>
+                                        <td class="tx-right">{{Request::get('type') == 1 ? 'نقدي' : 'اجل' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="valign-middle" colspan="2" rowspan="4">

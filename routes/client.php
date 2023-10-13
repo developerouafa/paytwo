@@ -1,14 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\ClientController;
-use App\Http\Controllers\Dashboard_Doctor\DiagnosticController;
-use App\Http\Controllers\Dashboard_Doctor\LaboratorieController;
-use App\Http\Controllers\Dashboard_Doctor\RayController;
-use App\Http\Controllers\Dashboard_Doctor\PatientDetailsController;
-use App\Http\Controllers\Dashboard_Patient\PatientController;
-use App\Http\Controllers\Dashboard_Ray_Employee\InvoiceController;
-use App\Http\Livewire\Chat\Createchat;
-use App\Http\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

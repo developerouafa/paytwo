@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
         Client::create([
             'name' => 'client',
             'phone' => '0582201021',
+            'password' => Hash::make('123456'),
             'user_id' => $user_id
         ]);
 

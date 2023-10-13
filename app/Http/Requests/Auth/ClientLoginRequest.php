@@ -28,7 +28,7 @@ class ClientLoginRequest extends FormRequest
     {
         return [
             'phone' => ['required'],
-            // 'password' => ['required', 'string'],
+            'password' => ['required', 'string'],
         ];
     }
 
@@ -39,9 +39,10 @@ class ClientLoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
+
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('phone'), $this->boolean('remember'))) {
+        if (! Auth::guard('client')->attempt($this->only('phone', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

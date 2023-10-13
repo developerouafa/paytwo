@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Client extends Authenticatable
 {
     use HasFactory;
 
@@ -13,6 +14,7 @@ class Client extends Model
         'id',
         'name',
         'phone',
+        'password',
         'UserStatus',
         'Status',
         'user_id'
@@ -36,4 +38,19 @@ class Client extends Model
         {
             return $this->hasOne(profileclient::class);
         }
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'phone_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }

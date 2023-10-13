@@ -20,7 +20,6 @@
 @endsection
 @section('css')
     <!-- Internal Select2 css -->
-
         <!--- Internal Select2 css-->
         <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
         <!---Internal Fileupload css-->
@@ -29,8 +28,6 @@
         <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
         <!--Internal Sumoselect css-->
         <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
-
-
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -182,7 +179,6 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-
     <!--Internal  Chart.bundle js -->
     <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
     <!-- Internal Select2.min js -->

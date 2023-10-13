@@ -8,6 +8,7 @@ use App\Models\profileclient;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Type\NullType;
 
 class ProfileclientRepository implements ProfileclientRepositoryInterface
 {
@@ -24,11 +25,21 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
             $client_id = $request->client_id;
             $client = Client::findOrFail($client_id);
             $profileclient = profileclient::findOrFail($id);
-                    DB::beginTransaction();
-                        $client->update([
-                            'name' =>  $request->name,
-                            'phone' => $request->phone,
+                DB::beginTransaction();
+                    $client->update([
+                        'name' =>  $request->name,
+                        'phone' => $request->phone,
+                    ]);
+                    if($request->clienType == '1'){
+                        $profileclient->update([
+                            'adderss' => $request->address,
+                            'clienType' => $request->clienType,
+                            'commercialRegistrationNumber' => Null,
+                            'nationalIdNumber' => $request->nationalIdNumber,
+                            'taxNumber' => $request->taxNumber,
                         ]);
+                    }
+                    if($request->clienType == '0'){
                         $profileclient->update([
                             'adderss' => $request->address,
                             'clienType' => $request->clienType,
@@ -36,9 +47,10 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
                             'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
                             'taxNumber' => $request->taxNumber,
                         ]);
-                    DB::commit();
-                    toastr()->success(trans('Dashboard/messages.edit'));
-                    return redirect()->route('profileclient.edit');
+                    }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.edit'));
+                return redirect()->route('profileclient.edit');
         // }catch(\Exception $execption){
         //     DB::rollBack();
         //     toastr()->error(trans('Dashboard/messages.error'));

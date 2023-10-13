@@ -16,9 +16,13 @@
 </x-Dashboard-app-layout> --}}
 @extends('Dashboard/layouts.master')
 @section('title')
-{{__('Dashboard/profile.Edit-Profile')}}
+    {{__('Dashboard/profile.Edit-Profile')}}
 @endsection
 @section('css')
+    <style>
+        .panel {display: none;}
+    </style>
+
     <!-- Internal Select2 css -->
 
         <!--- Internal Select2 css-->
@@ -71,7 +75,14 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-
+    <script>
+        $('#sectionChooser').change(function(){
+            var myID = $(this).val();
+            $('.panel').each(function(){
+                myID === $(this).attr('id') ? $(this).show() : $(this).hide();
+            });
+        });
+    </script>
     <!--Internal  Chart.bundle js -->
     <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
     <!-- Internal Select2.min js -->

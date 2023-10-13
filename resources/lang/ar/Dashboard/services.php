@@ -40,7 +40,7 @@ return [
     'submit' => 'تاكيد',
     'number' => 'العدد',
     'addsubservice' => 'اضافة خدمة فرعية',
-    '' => '',
+    'deletegroupservice' => 'حذف مجموعة خدمات',
     '' => '',
     '' => '',
     '' => '',

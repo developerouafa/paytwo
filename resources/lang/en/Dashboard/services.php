@@ -39,7 +39,7 @@ return [
     'submit' => 'Submit',
     'number' => 'Number',
     'addsubservice' => 'Add a subservice',
-    '' => '',
+    'deletegroupservice' => 'Delete Group services',
     '' => '',
     '' => '',
     '' => '',

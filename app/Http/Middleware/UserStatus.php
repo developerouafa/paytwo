@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Client;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -24,6 +25,13 @@ class UserStatus
                 'UserStatus' => 1,
             ]);
         }
+        // if (auth('client')->check()){
+        //     $id = Auth::user()->id;
+        //     $client = Client::findorFail($id);
+        //     $client->update([
+        //         'UserStatus' => 1,
+        //     ]);
+        // }
         return $next($request);
     }
 }

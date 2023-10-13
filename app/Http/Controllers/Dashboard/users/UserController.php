@@ -38,18 +38,6 @@ class UserController extends Controller
                 ]);
                 $user->assignRole($request->input('roles_name'));
 
-                $user_id = User::latest()->first()->id;
-                // profileuser::create([
-                //     // 'clienType' => $request->clienType,
-                //     // 'nationalIdNumber' => $request->nationalIdNumber,
-                //     // 'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
-                //     // 'taxNumber' => $request->taxNumber,
-                //     // 'adderss' => $request->adderss,
-                //     'user_id' => $user_id,
-                // ]);
-                // imageuser::create([
-                //     'user_id' => $user_id,
-                // ]);
             DB::commit();
             toastr()->success(__('Dashboard/messages.add'));
             return redirect()->route('users.index');
@@ -59,11 +47,13 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
     }
+
     public function show($id)
     {
         $user = User::find($id);
         return view('Dashboard/users.show',compact('user'));
     }
+
     public function edit($id)
     {
         $user = User::find($id);
@@ -71,6 +61,7 @@ class UserController extends Controller
         $userRole = $user->roles->pluck('name','name')->all();
         return view('Dashboard/users.edit',compact('user','roles','userRole'));
     }
+
     public function update(Request $request, $id)
     {
         // Validation
@@ -144,6 +135,7 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
     }
+
     public function destroy(Request $request)
     {
         try{

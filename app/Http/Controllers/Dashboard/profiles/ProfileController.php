@@ -19,9 +19,6 @@ class ProfileController extends Controller
     //* Display the user's profile form
     public function edit(Request $request): View
     {
-        // $id = Auth::user()->id;
-        // $imageuser = User::query()->select('id')->where('id', '=', $id)->with('image')->with('profileuser')->get();
-        // return view('profile.edit', ['user' => $request->user(),], compact('imageuser'));
         $id = Auth::user()->id;
         $imageuser = User::query()->select('id')->where('id', '=', $id)->with('image')->get();
         return view('profile.edit', ['user' => $request->user(),], compact('imageuser'));

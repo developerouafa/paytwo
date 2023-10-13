@@ -60,10 +60,6 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
 
     public function destroy($request)
     {
-        // $request->validateWithBag('userDeletion', [
-        //     'password' => ['required', 'current_password'],
-        // ]);
-
         $user = $request->user();
 
         Auth::logout();

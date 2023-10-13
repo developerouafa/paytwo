@@ -33,7 +33,7 @@ Route::group(
         Route::group(['prefix' => 'ProfileClient'], function(){
             Route::controller(ProfileclientController::class)->group(function() {
                 Route::get('/profile', 'edit')->name('profileclient.edit');
-                Route::patch('/profile', 'updateprofile')->name('profileclient.update');
+                Route::patch('/profile', 'update')->name('profileclient.update');
             });
         });
     //############################# end Partie Client route ######################################

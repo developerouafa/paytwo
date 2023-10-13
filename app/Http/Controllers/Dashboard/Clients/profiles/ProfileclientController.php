@@ -22,8 +22,8 @@ class ProfileclientController extends Controller
       return  $this->Profile_Clients->edit($request);
     }
 
-    public function updateprofileclient(ProfileclientRequest $request)
+    public function update(ProfileclientRequest $request)
     {
-      return  $this->Profile_Clients->edit($request);
+      return  $this->Profile_Clients->update($request);
     }
 }

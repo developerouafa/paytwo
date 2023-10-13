@@ -13,8 +13,8 @@
                             <div class="col-md-9">
                                 <input type="text" name="name" required="" class="form-control" value="{{Auth::user()->name}}"  autofocus autocomplete="name" >
                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                                <input type="hidden" name="profileid" value="{{Auth::user()->profileclient->id}}">
-                                <input type="hidden" name="user_id" value="{{Auth::user()->profileclient->client_id}}">
+                                <input type="hidden" name="profileclientid" value="{{Auth::user()->profileclient->id}}">
+                                <input type="hidden" name="client_id" value="{{Auth::user()->profileclient->client_id}}">
                             </div>
                         </div>
                     </div>
@@ -50,17 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="form-label">{{__('Dashboard/profile.nationalIdNumber')}}</label>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="text" name="nationalIdNumber" class="form-control" value="{{Auth::user()->profileclient->nationalIdNumber}}" autofocus autocomplete="nationalIdNumber" >
-                                <x-input-error class="mt-2" :messages="$errors->get('nationalIdNumber')" />
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="form-group ">
                         <div class="row">
                             <div class="col-md-3">
@@ -69,6 +59,18 @@
                             <div class="col-md-9">
                                 <input type="text" name="commercialRegistrationNumber" class="form-control" value="{{Auth::user()->profileclient->commercialRegistrationNumber}}" autofocus autocomplete="commercialRegistrationNumber" >
                                 <x-input-error class="mt-2" :messages="$errors->get('commercialRegistrationNumber')" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">{{__('Dashboard/profile.nationalIdNumber')}}</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="nationalIdNumber" class="form-control" value="{{Auth::user()->profileclient->nationalIdNumber}}" autofocus autocomplete="nationalIdNumber" >
+                                <x-input-error class="mt-2" :messages="$errors->get('nationalIdNumber')" />
                             </div>
                         </div>
                     </div>

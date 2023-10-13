@@ -9,5 +9,5 @@ interface ProfileclientRepositoryInterface
     public function edit($request);
 
     //* Post Update Profile Client
-    public function updateprofileclient($request);
+    public function update($request);
 }

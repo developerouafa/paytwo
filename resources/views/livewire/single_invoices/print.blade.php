@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    طباعه الفواتير
+    {{__('Dashboard/services.printinvoices')}}
 @stop
 @section('css')
     <style>
@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ طباعه الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/services.invoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.printinvoices')}}</span>
             </div>
         </div>
     </div>
@@ -30,21 +30,20 @@
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
-                            <h1 class="invoice-title">فاتوره خدمه مفرده</h1>
+                            <h1 class="invoice-title"> {{__('Dashboard/services.Singleservicebill')}} </h1>
                             <div class="billed-from">
-                                <h6>فاتوره خدمه مفرده</h6>
+                                <h6> {{__('Dashboard/services.Singleservicebill')}} </h6>
                                 <p>201 المهندسين<br>
                                     Tel No: 0111111111<br>
                                     Email: Admin@gmail.com</p>
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">
-
                             <div class="col-md">
-                                <label class="tx-gray-600">معلومات الفاتوره</label>
-                                <p class="invoice-info-row"><span>اسم الخدمه</span> <span>{{ Request::get('Service_id') }}</span></p>
-                                <p class="invoice-info-row"><span>اسم العميل و رقمه</span> <span>{{ Request::get('Clientname') }} - {{ Request::get('Clientphone') }}</span></p>
-                                <p class="invoice-info-row"><span>تاريخ الفاتوره</span> <span>{{ Request::get('invoice_date') }}</span></p>
+                                <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{ Request::get('Group_id') }}</span></p>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{ Request::get('Clientname') }} - {{ Request::get('Clientphone') }}</span></p>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span>{{ Request::get('invoice_date') }}</span></p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">
@@ -52,9 +51,9 @@
                                 <thead>
                                 <tr>
                                     <th class="wd-20p">#</th>
-                                    <th class="wd-40p">اسم الخدمه</th>
-                                    <th class="tx-center">سعر الخدمه</th>
-                                    <th class="tx-right">نوع الفاتوره</th>
+                                    <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
+                                    <th class="tx-center"> {{__('Dashboard/services.priceservice')}} </th>
+                                    <th class="tx-right"> {{__('Dashboard/services.Invoicetype')}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +61,7 @@
                                     <td>1</td>
                                     <td class="tx-12">{{ Request::get('Service_id') }}</td>
                                     <td class="tx-center">{{ Request::get('price') }}</td>
-                                    <td class="tx-right">{{Request::get('type') == 1 ? 'نقدي' : 'اجل'}}</td>
+                                    <td class="tx-right">{{Request::get('type') == 1 ? '{{__('Dashboard/services.monetary')}}' : '{{__('Dashboard/services.Okay')}}'}}</td>
                                 </tr>
                                 <tr>
                                     <td class="valign-middle" colspan="2" rowspan="4">
@@ -70,19 +69,19 @@
                                             <label class="main-content-label tx-13"></label>
                                         </div><!-- invoice-notes -->
                                     </td>
-                                    <td class="tx-right">الاجمالي</td>
+                                    <td class="tx-right"> {{__('Dashboard/services.Total')}} </td>
                                     <td class="tx-right" colspan="2"> {{number_format(Request::get('price'), 2)}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tx-right">قيمة الخصم</td>
+                                    <td class="tx-right"> {{__('Dashboard/services.discountvalue')}} </td>
                                     <td class="tx-right" colspan="2">{{Request::get('discount_value')}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tx-right">نسبة الضريبة</td>
+                                    <td class="tx-right"> {{__('Dashboard/services.Taxrate')}} </td>
                                     <td class="tx-right" colspan="2">% {{Request::get('tax_rate')}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">الاجمالي شامل الضريبه</td>
+                                    <td class="tx-right tx-uppercase tx-bold tx-inverse"> {{__('Dashboard/services.totalincludingtax')}} </td>
                                     <td class="tx-right" colspan="2">
                                         <h4 class="tx-primary tx-bold">{{number_format(Request::get('total_with_tax'), 2)}}</h4>
 
@@ -93,7 +92,7 @@
                         </div>
                         <hr class="mg-b-40">
                         <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
-                            <i class="mdi mdi-printer ml-1"></i>طباعه
+                            <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}
                         </a>
                     </div>
                 </div>

@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\groupprodcut;
 use App\Models\product;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateGroupProducts extends Component

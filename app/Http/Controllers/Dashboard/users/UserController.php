@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard\users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
 use App\Models\imageuser;
-use App\Models\profileuser;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
@@ -17,7 +16,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::orderBy('id','DESC')->with('profileuser')->paginate(5);
+        $users = User::orderBy('id','DESC')->paginate(5);
         return view('Dashboard/users.show_users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -40,14 +39,14 @@ class UserController extends Controller
                 $user->assignRole($request->input('roles_name'));
 
                 $user_id = User::latest()->first()->id;
-                profileuser::create([
-                    // 'clienType' => $request->clienType,
-                    // 'nationalIdNumber' => $request->nationalIdNumber,
-                    // 'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
-                    // 'taxNumber' => $request->taxNumber,
-                    // 'adderss' => $request->adderss,
-                    'user_id' => $user_id,
-                ]);
+                // profileuser::create([
+                //     // 'clienType' => $request->clienType,
+                //     // 'nationalIdNumber' => $request->nationalIdNumber,
+                //     // 'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
+                //     // 'taxNumber' => $request->taxNumber,
+                //     // 'adderss' => $request->adderss,
+                //     'user_id' => $user_id,
+                // ]);
                 // imageuser::create([
                 //     'user_id' => $user_id,
                 // ]);

@@ -1,10 +1,10 @@
 <div>
     @if ($ServiceSaved)
-        <div class="alert alert-info">تم حفظ البيانات بنجاح.</div>
+        <div class="alert alert-info"> {{__('Dashboard/services.dataaddsuccessfully')}} </div>
     @endif
 
     @if ($ServiceUpdated)
-        <div class="alert alert-info">تم تعديل البيانات بنجاح.</div>
+        <div class="alert alert-info"> {{__('Dashboard/services.dataeditsuccessfully')}} </div>
     @endif
 
     @if($show_table)
@@ -13,16 +13,16 @@
         <form wire:submit.prevent="saveGroup" autocomplete="off">
             @csrf
             <div class="form-group">
-                <label>اسم المجموعة</label>
+                <label> {{__('Dashboard/services.namegroupen')}}</label>
                 <input wire:model="name_group_en" type="text" name="name_group_en" class="form-control">
-                <label>اسم المجموعة</label>
+                <label> {{__('Dashboard/services.namegroupar')}}</label>
                 <input wire:model="name_group_ar" type="text" name="name_group_ar" class="form-control">
             </div>
 
             <div class="form-group">
-                <label>ملاحظات</label>
+                <label> {{__('Dashboard/services.descen')}}</label>
                 <textarea wire:model="notes_en" name="notes_en" class="form-control" rows="5"></textarea>
-                <label>ملاحظات</label>
+                <label> {{__('Dashboard/services.descar')}}</label>
                 <textarea wire:model="notes_ar" name="notes_ar" class="form-control" rows="5"></textarea>
             </div>
 
@@ -30,7 +30,8 @@
                 <div class="card-header">
                     <div class="col-md-12">
                         <button class="btn btn-outline-primary"
-                                wire:click.prevent="addService">اضافة خدمة فرعية
+                                wire:click.prevent="addService">
+                                {{__('Dashboard/services.addsubservice')}}
                         </button>
                     </div>
                 </div>
@@ -41,9 +42,9 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr class="table-primary">
-                                <th>اسم الخدمة</th>
-                                <th width="200">العدد</th>
-                                <th width="200">العمليات</th>
+                                <th>{{__('Dashboard/services.nameservice')}}</th>
+                                <th width="200">{{__('Dashboard/services.number')}}</th>
+                                <th width="200"> {{__('Dashboard/services.Processes')}} </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,7 +62,7 @@
                                             <select name="GroupsItems[{{$index}}][id]"
                                                     class="form-control{{ $errors->has('GroupsItems.' . $index) ? ' is-invalid' : '' }}"
                                                     wire:model="GroupsItems.{{$index}}.id">
-                                                <option value="">-- choose product --</option>
+                                                <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
                                                 @foreach ($allProducts as $service)
                                                     <option value="{{ $service->id }}">
                                                         {{ App\Models\product::pluck('name')->first() }}
@@ -90,16 +91,16 @@
                                         @if($groupItem['is_saved'])
                                             <button class="btn btn-sm btn-primary"
                                                     wire:click.prevent="editService({{$index}})">
-                                                تعديل
+                                                    {{__('Dashboard/services.update')}}
                                             </button>
                                         @elseif($groupItem['id'])
                                             <button class="btn btn-sm btn-success mr-1"
                                                     wire:click.prevent="saveService({{$index}})">
-                                                تاكيد
+                                                    {{__('Dashboard/services.submit')}}
                                             </button>
                                         @endif
                                         <button class="btn btn-sm btn-danger"
-                                                wire:click.prevent="removeService({{$index}})">حذف
+                                                wire:click.prevent="removeService({{$index}})">{{__('Dashboard/services.delete')}}
                                         </button>
                                     </td>
                                 </tr>
@@ -112,32 +113,32 @@
                     <div class="col-lg-4 ml-auto text-right">
                         <table class="table pull-right">
                             <tr>
-                                <td style="color: red">الاجمالي</td>
+                                <td style="color: red">{{__('Dashboard/services.Total')}}</td>
                                 <td>{{ number_format($subtotal, 2) }}</td>
                             </tr>
                             <tr>
-                                <td style="color: red">قيمة الخصم</td>
+                                <td style="color: red">{{__('Dashboard/services.discountvalue')}}</td>
                                 <td width="125">
                                     <input type="number" name="discount_value" class="form-control w-75 d-inline"
                                            wire:model="discount_value">
                                 </td>
                             </tr>
                             <tr>
-                                <td style="color: red">نسبة الضريبة</td>
+                                <td style="color: red"{{__('Dashboard/services.Taxrate')}}</td>
                                 <td>
                                     <input type="number" name="taxes" class="form-control w-75 d-inline" min="0"
                                            max="100" wire:model="taxes"> %
                                 </td>
                             </tr>
                             <tr>
-                                <td style="color: red">الاجمالي مع الضريبة</td>
+                                <td style="color: red"{{__('Dashboard/services.Totalwithtax')}}</td>
                                 <td>{{ number_format($total, 2) }}</td>
                             </tr>
                         </table>
                     </div>
                     <br/>
                     <div>
-                        <input class="btn btn-outline-success" type="submit" value="تاكيد البيانات">
+                        <input class="btn btn-outline-success" type="submit" value="{{__('Dashboard/services.save')}}">
                     </div>
                 </div>
             </div>

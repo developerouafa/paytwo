@@ -18,6 +18,7 @@ return [
     'commercialRegistrationNumber' => 'رقم السجل التجاري',
     'taxNumber' => 'الرقم الضريبي',
     'adderss' => 'العنوان',
-    'Update Profile' => 'تحديث الملف'
-
+    'Update Profile' => 'تحديث الملف',
+    'delete' => 'حذف',
+    'delete_account' => 'حذف الحساب'
 ];

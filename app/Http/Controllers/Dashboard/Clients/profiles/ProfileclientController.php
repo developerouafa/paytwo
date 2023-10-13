@@ -26,4 +26,9 @@ class ProfileclientController extends Controller
     {
       return  $this->Profile_Clients->update($request);
     }
+
+    public function destroy(Request $request)
+    {
+      return  $this->Profile_Clients->destroy($request);
+    }
 }

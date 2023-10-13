@@ -34,6 +34,7 @@ Route::group(
             Route::controller(ProfileclientController::class)->group(function() {
                 Route::get('/profile', 'edit')->name('profileclient.edit');
                 Route::patch('/profile', 'update')->name('profileclient.update');
+                Route::delete('/profile', 'destroy')->name('profileclient.destroy');
             });
         });
     //############################# end Partie Client route ######################################

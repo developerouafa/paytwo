@@ -18,5 +18,7 @@ return [
     'commercialRegistrationNumber' => 'Commercial Registration Number',
     'taxNumber' => 'Tax Number',
     'adderss' => 'Address',
-    'Update Profile' => 'Update Profile'
+    'Update Profile' => 'Update Profile',
+    'delete' => 'Delete',
+    'delete_account' => 'Delete Account'
 ];

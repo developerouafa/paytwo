@@ -8,6 +8,10 @@ interface ProfileclientRepositoryInterface
     //* get All Profile Client
     public function edit($request);
 
-    //* Post Update Profile Client
+    //* Patch Update Profile Client
     public function update($request);
+
+    //* delete Profile Client
+    public function destroy($request);
+
 }

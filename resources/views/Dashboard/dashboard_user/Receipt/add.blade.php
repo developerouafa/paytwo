@@ -22,7 +22,53 @@
 @section('content')
 
     <!-- row -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('Receipt.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="pd-30 pd-sm-40 bg-gray-200">
 
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-1">
+                                    <label>client</label>
+                                </div>
+                                <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                   <select name="client_id" class="form-control select2" required>
+                                      @foreach($Clients as $Client)
+                                           <option value=""></option>
+                                           <option value="{{$Client->id}}">{{$Client->name}}</option>
+                                      @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-1">
+                                    <label>المبلغ</label>
+                                </div>
+                                <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="Debit" type="number">
+                                </div>
+                            </div>
+
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-1">
+                                    <label>البيان</label>
+                                </div>
+                                <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                    <textarea class="form-control" name="description" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">{{ trans('Doctors.submit') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- row closed -->
     </div>
     <!-- Container closed -->

@@ -4,6 +4,7 @@
 namespace App\Repository\dashboard_user\Finances;
 
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
+use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\receipt_account;
@@ -20,7 +21,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function create()
     {
-        $Clients = receipt_account::all();
+        $Clients = Client::all();
         return view('Dashboard.dashboard_user.Receipt.add',compact('Clients'));
     }
 

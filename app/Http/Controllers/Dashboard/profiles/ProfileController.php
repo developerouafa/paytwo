@@ -24,61 +24,52 @@ class ProfileController extends Controller
         return view('profile.edit', ['user' => $request->user(),], compact('imageuser'));
     }
 
-        //* function Update Information User
-        public function updateprofile(ProfileUpdateRequest $request)
-        {
-            try{
-                $id = $request->profileid;
-                $user_id = $request->user_id;
-                $user = User::findOrFail($user_id);
-                    DB::beginTransaction();
-                    if(App::isLocale('en')){
-                        $user->update([
-                            'name' =>  $request->name_en,
-                            'phone' => $request->phone,
-                        ]);
-                    }
-                    elseif(App::isLocale('ar')){
-                        $user->update([
-                            'name' =>  $request->name_ar,
-                            'phone' => $request->phone,
-                        ]);
-                    }
-                    DB::commit();
-                    toastr()->success(trans('Dashboard/messages.edit'));
-                    return redirect()->route('profile.edit');
-            }catch(\Exception $execption){
-                DB::rollBack();
-                toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('profile.edit');
-            }
-        }
-
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    //* function Update Information User
+    public function updateprofile(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        try{
+            $user_id = Auth::user()->id;
+            $user = User::findOrFail($user_id);
+                DB::beginTransaction();
+                if(App::isLocale('en')){
+                    $user->update([
+                        'name' =>  $request->name_en,
+                        'phone' => $request->phone,
+                    ]);
+                }
+                elseif(App::isLocale('ar')){
+                    $user->update([
+                        'name' =>  $request->name_ar,
+                        'phone' => $request->phone,
+                    ]);
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.edit'));
+                return redirect()->route('profile.edit');
+        }catch(\Exception $execption){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('profile.edit');
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
+
+    // public function update(ProfileUpdateRequest $request): RedirectResponse
+    // {
+    //     $request->user()->fill($request->validated());
+
+    //     if ($request->user()->isDirty('email')) {
+    //         $request->user()->email_verified_at = null;
+    //     }
+
+    //     $request->user()->save();
+
+    //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    // }
+
+    //* function Delete Information User
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
         $user = $request->user();
 
         Auth::logout();

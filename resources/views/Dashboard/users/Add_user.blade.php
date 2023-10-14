@@ -135,7 +135,11 @@
                     </div>
 
                     <div class="row mg-b-20">
-                        <div class="col-xs-12 col-md-12">
+                        <div class="parsley-input col-md-6" id="fnWrapper">
+                            <label>{{__('Dashboard/users.phone')}} <span class="tx-danger">*</span></label>
+                            <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="phone" required type="text" autofocus>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label class="form-label"> {{__('Dashboard/users.uservalidity')}}<span class="tx-danger">*</span></label>
                                 {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple','required')) !!}

@@ -24,7 +24,7 @@ class ProfileclientRequest extends FormRequest
     public function messages()
     {
         return [
-            'name' => __('Dashboard/clients_trans.nameisrequired'),
+            'name.required' => __('Dashboard/clients_trans.nameisrequired'),
             'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
             'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
         ];

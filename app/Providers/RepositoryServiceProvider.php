@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Interfaces\Clients\ClientRepositoryInterface;
-use App\Interfaces\Clients\ProfileclientRepositoryInterface;
 use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface as ProfilesProfileclientRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use App\Interfaces\Products\mainRepositoryInterface;
@@ -15,7 +14,7 @@ use App\Interfaces\Products\promotionRepositoryInterface;
 use App\Interfaces\Products\stockRepositoryInterface;
 use App\Repository\Clients\ClientRepository;
 use App\Repository\Clients\Profiles\ProfileclientRepository;
-use App\Repository\Finance\ReceiptRepository;
+use App\Repository\dashboard_user\Finances\ReceiptRepository;
 use App\Repository\Products\mainimageRepository;
 use App\Repository\Products\multipimageRepository;
 use App\Repository\Sections\childrenRepository;

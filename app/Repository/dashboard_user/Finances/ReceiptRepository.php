@@ -1,8 +1,7 @@
 <?php
 
 
-namespace App\Repository\Finance;
-
+namespace App\Repository\dashboard_user\Finances;
 
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use App\Models\client_account;

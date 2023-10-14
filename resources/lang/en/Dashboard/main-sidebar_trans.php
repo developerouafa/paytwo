@@ -13,5 +13,6 @@ return [
     'group_services' => 'Group Services',
     'Singleservicebill' => 'Single service bill',
     'Servicepackageinvoice' => 'Service package invoice',
-    'invoices' => 'Invoices'
+    'invoices' => 'Invoices',
+    'Catch Receipt' => 'Catch Receipt',
 ];

@@ -13,5 +13,6 @@ return [
     'group_services' => 'مجموعة خدمات',
     'Singleservicebill' => 'فاتورة خدمة واحدة',
     'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
-    'invoices' => 'الفواتير'
+    'invoices' => 'الفواتير',
+    'Catch Receipt' => 'سند قبض',
 ];

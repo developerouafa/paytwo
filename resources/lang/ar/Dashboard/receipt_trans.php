@@ -24,11 +24,5 @@ return [
     'print' => 'مطبعة',
     'Print preview' => 'معاينة الطباعة',
     'Print a document' => 'طباعه سند',
-    'Catch Receipt' => 'سند قبض',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'Catch Receipt' => 'سند قبض'
 ];

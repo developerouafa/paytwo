@@ -24,11 +24,5 @@ return [
     'print' => 'Print',
     'Print preview' => 'Print preview',
     'Print a document' => 'Print a document',
-    'Catch Receipt' => 'Catch Receipt',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'Catch Receipt' => 'Catch Receipt'
 ];

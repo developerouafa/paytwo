@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Dashboard_users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\dashboard_user\receiptRequest;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ReceiptAccountController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(receiptRequest $request)
     {
        return $this->Receipt->store($request);
     }
@@ -45,7 +46,7 @@ class ReceiptAccountController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(receiptRequest $request)
     {
         return $this->Receipt->update($request);
     }

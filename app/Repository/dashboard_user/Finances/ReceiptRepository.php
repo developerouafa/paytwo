@@ -16,19 +16,19 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     public function index()
     {
         $receipts =  receipt_account::all();
-        return view('Dashboard.Receipt.index',compact('receipts'));
+        return view('Dashboard.dashboard_user.Receipt.index',compact('receipts'));
     }
 
     public function create()
     {
         $Clients = receipt_account::all();
-        return view('Dashboard.Receipt.add',compact('Clients'));
+        return view('Dashboard.dashboard_user.Receipt.add',compact('Clients'));
     }
 
     public function show($id)
     {
         $receipt = receipt_account::findorfail($id);
-        return view('Dashboard.Receipt.print',compact('receipt'));
+        return view('Dashboard.dashboard_user.Receipt.print',compact('receipt'));
     }
 
     public function store($request)

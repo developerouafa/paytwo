@@ -3,64 +3,56 @@
 namespace App\Http\Controllers\Dashboard\Dashboard_users;
 
 use App\Http\Controllers\Controller;
-use App\Models\receipt_account;
+use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ReceiptAccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $Receipt;
+
+    public function __construct(ReceiptRepositoryInterface $Receipt)
+    {
+        $this->Receipt = $Receipt;
+    }
+
+
     public function index()
     {
-        //
+        return $this->Receipt->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return $this->Receipt->create();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //
+       return $this->Receipt->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(receipt_account $receipt_account)
+
+    public function show($id)
     {
-        //
+        return $this->Receipt->show($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(receipt_account $receipt_account)
+
+    public function edit($id)
     {
-        //
+        return $this->Receipt->edit($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, receipt_account $receipt_account)
+
+    public function update(Request $request)
     {
-        //
+        return $this->Receipt->update($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(receipt_account $receipt_account)
+
+    public function destroy(Request $request)
     {
-        //
+        return $this->Receipt->destroy($request);
     }
 }

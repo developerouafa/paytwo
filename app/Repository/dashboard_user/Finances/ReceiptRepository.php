@@ -35,6 +35,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     {
         try{
             DB::beginTransaction();
+
                 // store receipt_accounts
                 $receipt_accounts = new receipt_account();
                 $receipt_accounts->date =date('y-m-d');
@@ -131,7 +132,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         }
         catch (\Exception $exception) {
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Sections.destroy');
+            return redirect()->route('Receipt.destroy');
         }
     }
 }

@@ -33,9 +33,8 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function store($request)
     {
-        // DB::beginTransaction();
-
-        // try {
+        try{
+            DB::beginTransaction();
 
             // store Payment_accounts
             $payment_accounts = new PaymentAccount();
@@ -63,14 +62,14 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->save();
 
             DB::commit();
-            session()->flash('add');
+            toastr()->success(trans('Dashboard/messages.add'));
+            return redirect()->route('Payment.index');
+        }
+        catch (\Exception $exception) {
+            DB::rollback();
+            toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('Payment.create');
-
-        // }
-        // catch (\Exception $e) {
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        // }
+        }
     }
 
     public function edit($id)
@@ -82,9 +81,8 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function update($request)
     {
-        // DB::beginTransaction();
-
-        // try {
+        try{
+            DB::beginTransaction();
 
             // update Payment_accounts
             $payment_accounts = PaymentAccount::findorfail($request->id);
@@ -112,25 +110,27 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->save();
 
             DB::commit();
-            session()->flash('edit');
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.index');
-
-        // }
-        // catch (\Exception $e) {
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        // }
+        }
+        catch (\Exception $exception) {
+            DB::rollback();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Payment.edit');
+        }
     }
 
     public function destroy($request)
     {
         try {
+            DB::beginTransaction();
             PaymentAccount ::destroy($request->id);
-            session()->flash('delete');
+            toastr()->success(trans('Dashboard/messages.delete'));
             return redirect()->back();
         }
-        catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        catch (\Exception $exception) {
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Payment.destroy');
         }
     }
 }

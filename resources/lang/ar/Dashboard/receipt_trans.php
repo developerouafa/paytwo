@@ -10,6 +10,7 @@ return [
     'delete'=>'حذف',
     'Warning'=>'هل انت متاكد من عملية الحذف ؟',
     'phoneisrequired'=>'الرقم مطلوب',
+    'phoneisunique'=>'الرقم موجود',
     'nameclient' => 'اسم العميل',
     'nameisrequired'=>'اسم العميل مطلوب',
     'receipt' => 'سندات القبض',

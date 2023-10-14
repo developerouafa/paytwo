@@ -1,7 +1,7 @@
     <div class="modal-header">
         <h5 class="modal-title">{{trans('Dashboard/profile.delete_account')}}</h5>
     </div>
-    <form action="{{ route('profileclient.destroy', 'test') }}" method="post">
+    <form action="{{ route('profile.destroy', 'test') }}" method="post">
         {{ method_field('delete') }}
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{ auth()->user()->id }}">

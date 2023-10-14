@@ -57,6 +57,7 @@ Route::get('/clear', function() {
                 Route::controller(ProfileController::class)->group(function() {
                     Route::get('/profile', 'edit')->name('profile.edit');
                     Route::patch('/profile', 'updateprofile')->name('profile.update');
+                    Route::delete('/profile', 'destroy')->name('profile.destroy');
                 });
 
                 Route::controller(ImageuserController::class)->group(function() {

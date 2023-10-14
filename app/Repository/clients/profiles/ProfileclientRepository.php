@@ -15,7 +15,7 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
 {
     public function edit($request)
     {
-        return view('Dashboard/dashboard_client/profile.edit', ['user' => $request->user()]);
+        return view('Dashboard.dashboard_client.profile_client.edit', ['user' => $request->user()]);
     }
 
     public function update($request)

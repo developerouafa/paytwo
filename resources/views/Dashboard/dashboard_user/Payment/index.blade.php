@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    سندات الصرف
+    {{__('Dashboard/receipt_trans.payment')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -21,7 +21,7 @@
         <div class="breadcrumb-header justify-content-between">
             <div class="my-auto">
                 <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">الحسابات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ سندات الصرف</span>
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/payment_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.payment')}}</span>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button"
-                                aria-pressed="true">اضافة سند جديد</a>
+                                aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -45,11 +45,11 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>اسم </th>
-                                    <th>المبلغ</th>
-                                    <th>البيان</th>
+                                    <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
+                                    <th> {{__('Dashboard/payment_trans.price')}} </th>
+                                    <th> {{__('Dashboard/payment_trans.descr')}} </th>
                                     {{-- <th>تاريخ الاضافة</th> --}}
-                                    <th>العمليات</th>
+                                    <th> {{__('Dashboard/payment_trans.Processes')}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -63,7 +63,7 @@
                                             <td>
                                                 <a href="{{route('Payment.edit',$payment->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$payment->id}}"><i class="las la-trash"></i></a>
-                                                <a href="{{route('Payment.show',$payment->id)}}" class="btn btn-primary btn-sm" target="_blank" title="طباعه سند صرف"><i class="fas fa-print"></i></a>
+                                                <a href="{{route('Payment.show',$payment->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
 
                                             </td>
                                         </tr>

@@ -15,7 +15,7 @@ class PaymentRequest extends FormRequest
     {
         return [
             'client_id' => ['required'],
-            'Debit' => ['required'],
+            'credit' => ['required'],
             'description' => ['required'],
         ];
     }
@@ -23,9 +23,9 @@ class PaymentRequest extends FormRequest
     public function messages()
     {
         return [
-            'client_id.required' => __('Dashboard/receipt_trans.nameisrequired'),
-            'Debit.required' =>__('Dashboard/receipt_trans.amountisrequired'),
-            'description.required' =>__('Dashboard/receipt_trans.descisunique'),
+            'client_id.required' => __('Dashboard/payment_trans.nameisrequired'),
+            'credit.required' =>__('Dashboard/payment_trans.amountisrequired'),
+            'description.required' =>__('Dashboard/payment_trans.descisunique'),
         ];
     }
 }

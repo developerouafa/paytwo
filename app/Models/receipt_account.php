@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class receipt_account extends Model
 {
     use HasFactory;
+    public $guarded=[];
 
     public function clients()
     {

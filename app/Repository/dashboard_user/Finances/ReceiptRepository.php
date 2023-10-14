@@ -75,8 +75,8 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     public function edit($id)
     {
         $receipt_accounts = receipt_account::findorfail($id);
-        $Clients = client_account::all();
-        return view('Dashboard.Receipt.edit',compact('receipt_accounts','Clients'));
+        $Clients = Client::all();
+        return view('Dashboard.dashboard_user.Receipt.edit',compact('receipt_accounts','Clients'));
     }
 
     public function update($request)

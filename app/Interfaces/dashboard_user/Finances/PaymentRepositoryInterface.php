@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Interfaces\dashboard_user\Finance;
+namespace App\Interfaces\dashboard_user\Finances;
 
 
 interface PaymentRepositoryInterface

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Repository\Finance;
+namespace App\Repository\dashboard_user\Finances;
 
-use App\Interfaces\dashboard_user\Finance\PaymentRepositoryInterface;
+use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;

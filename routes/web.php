@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use App\Http\Controllers\Dashboard\Products\PromotionController;
 use App\Http\Controllers\Dashboard\Products\StockproductController;
+use App\Http\Controllers\PaymentaccountController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -175,6 +176,12 @@ Route::get('/clear', function() {
             Route::resource('Receipt', ReceiptAccountController::class);
 
         //############################# end Receipt route ######################################
+
+        //############################# Payment route ##########################################
+
+            Route::resource('Payment', PaymentaccountController::class);
+
+        //############################# end Payment route ######################################
 
     });
     require __DIR__.'/auth.php';

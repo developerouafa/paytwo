@@ -31,7 +31,7 @@ class SectionRepository implements SectionRepositoryInterface
         catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Sections.index');
+            return redirect()->route('Sections.store');
         }
     }
 
@@ -57,7 +57,7 @@ class SectionRepository implements SectionRepositoryInterface
         catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Sections.index');
+            return redirect()->route('Sections.update');
         }
     }
 
@@ -73,7 +73,7 @@ class SectionRepository implements SectionRepositoryInterface
         catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Sections.index');
+            return redirect()->route('Sections.delete');
         }
     }
 

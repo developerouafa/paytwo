@@ -33,9 +33,8 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function store($request)
     {
-        DB::beginTransaction();
-
         try{
+            DB::beginTransaction();
             // store receipt_accounts
             $receipt_accounts = new receipt_account();
             $receipt_accounts->date =date('y-m-d');
@@ -60,13 +59,14 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             $client_accounts->save();
 
             DB::commit();
-            session()->flash('add');
-            return redirect()->route('Receipt.create');
+            toastr()->success(trans('Dashboard/messages.add'));
+            return redirect()->route('Receipt.index');
         }
 
-        catch (\Exception $e) {
+        catch (\Exception $exception) {
             DB::rollback();
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Receipt.create');
         }
 
     }
@@ -81,9 +81,8 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function update($request)
     {
-        DB::beginTransaction();
-
         try{
+            DB::beginTransaction();
             // store receipt_accounts
             $receipt_accounts = receipt_account::findorfail($request->id);
             $receipt_accounts->date =date('y-m-d');
@@ -109,25 +108,29 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
 
             DB::commit();
-            session()->flash('edit');
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Receipt.index');
         }
 
-        catch (\Exception $e) {
+        catch (\Exception $exception) {
             DB::rollback();
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Receipt.edit');
         }
     }
 
     public function destroy($request)
     {
         try {
-            receipt_account ::destroy($request->id);
-            session()->flash('delete');
+            DB::beginTransaction();
+                receipt_account ::destroy($request->id);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
             return redirect()->back();
         }
-        catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        catch (\Exception $exception) {
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Sections.destroy');
         }
     }
 }

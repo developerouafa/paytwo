@@ -33,9 +33,9 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function store($request)
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
+        // try {
 
             // store Payment_accounts
             $payment_accounts = new PaymentAccount();
@@ -56,7 +56,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             // store client_accounts
             $client_accounts = new client_account();
             $client_accounts->date =date('y-m-d');
-            $client_accounts->cient_id = $request->cient_id;
+            $client_accounts->client_id = $request->client_id;
             $client_accounts->Payment_id = $payment_accounts->id;
             $client_accounts->Debit = $request->credit;
             $client_accounts->credit = 0.00;
@@ -66,11 +66,11 @@ class PaymentRepository implements PaymentRepositoryInterface
             session()->flash('add');
             return redirect()->route('Payment.create');
 
-        }
-        catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        // }
+        // catch (\Exception $e) {
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        // }
     }
 
     public function edit($id)

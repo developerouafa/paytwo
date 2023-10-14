@@ -82,9 +82,9 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function update($request)
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
+        // try {
 
             // update Payment_accounts
             $payment_accounts = PaymentAccount::findorfail($request->id);
@@ -115,11 +115,11 @@ class PaymentRepository implements PaymentRepositoryInterface
             session()->flash('edit');
             return redirect()->route('Payment.index');
 
-        }
-        catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        // }
+        // catch (\Exception $e) {
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        // }
     }
 
     public function destroy($request)

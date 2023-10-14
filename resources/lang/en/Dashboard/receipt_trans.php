@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'phone'=>'Phone',
     'status'=>'Status',
     'user_id'=>'Receipt Create by This User',
     'addreceipt'=>'Create New Receipt',
@@ -10,14 +9,12 @@ return [
     'edit'=>'Edit',
     'delete'=>'Delete',
     'Warning'=>'Are Sure Of The Deleting Process ?',
-    'phoneisrequired'=>'Phone Is Required',
-    'phoneisrequired'=>'Phone Is Required',
-    'phoneisunique'=>'Phone In Exist',
+    'amountisrequired'=>'Amount Is Required',
+    'descisunique'=>'Description Is Required',
     'receipt' => 'Receipt',
     'theaccounts' => 'The Accounts',
-    'Addanewdocument' => 'Add a New Document',
     'nameclient' => 'Name Client',
-    'price' => 'Price',
+    'price' => 'Amount',
     'descr' => 'Description',
     'Processes'=>'Processes',
     'Deletereceipt' => 'Delete a receipt voucher',

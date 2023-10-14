@@ -15,7 +15,7 @@ class receiptRequest extends FormRequest
     {
         return [
             'client_id' => ['required'],
-            'amount' => ['required'],
+            'Debit' => ['required'],
             'description' => ['required'],
         ];
     }
@@ -24,8 +24,8 @@ class receiptRequest extends FormRequest
     {
         return [
             'client_id.required' => __('Dashboard/receipt_trans.nameisrequired'),
-            'amount.required' =>__('Dashboard/receipt_trans.phoneisrequired'),
-            'description.required' =>__('Dashboard/receipt_trans.phoneisunique'),
+            'Debit.required' =>__('Dashboard/receipt_trans.amountisrequired'),
+            'description.required' =>__('Dashboard/receipt_trans.descisunique'),
         ];
     }
 }

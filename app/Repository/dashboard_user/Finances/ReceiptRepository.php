@@ -35,34 +35,35 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     {
         try{
             DB::beginTransaction();
-            // store receipt_accounts
-            $receipt_accounts = new receipt_account();
-            $receipt_accounts->date =date('y-m-d');
-            $receipt_accounts->client_id = $request->client_id;
-            $receipt_accounts->amount = $request->Debit;
-            $receipt_accounts->description = $request->description;
-            $receipt_accounts->save();
-            // store fund_accounts
-            $fund_accounts = new fund_account();
-            $fund_accounts->date =date('y-m-d');
-            $fund_accounts->receipt_id = $receipt_accounts->id;
-            $fund_accounts->Debit = $request->Debit;
-            $fund_accounts->credit = 0.00;
-            $fund_accounts->save();
-            // store client_accounts
-            $client_accounts = new client_account();
-            $client_accounts->date =date('y-m-d');
-            $client_accounts->client_id = $request->client_id;
-            $client_accounts->receipt_id = $receipt_accounts->id;
-            $client_accounts->Debit = 0.00;
-            $client_accounts->credit =$request->Debit;
-            $client_accounts->save();
+                // store receipt_accounts
+                $receipt_accounts = new receipt_account();
+                $receipt_accounts->date =date('y-m-d');
+                $receipt_accounts->client_id = $request->client_id;
+                $receipt_accounts->amount = $request->Debit;
+                $receipt_accounts->description = $request->description;
+                $receipt_accounts->save();
+
+                // store fund_accounts
+                $fund_accounts = new fund_account();
+                $fund_accounts->date =date('y-m-d');
+                $fund_accounts->receipt_id = $receipt_accounts->id;
+                $fund_accounts->Debit = $request->Debit;
+                $fund_accounts->credit = 0.00;
+                $fund_accounts->save();
+
+                // store client_accounts
+                $client_accounts = new client_account();
+                $client_accounts->date =date('y-m-d');
+                $client_accounts->client_id = $request->client_id;
+                $client_accounts->receipt_id = $receipt_accounts->id;
+                $client_accounts->Debit = 0.00;
+                $client_accounts->credit =$request->Debit;
+                $client_accounts->save();
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Receipt.index');
         }
-
         catch (\Exception $exception) {
             DB::rollback();
             toastr()->error(trans('Dashboard/messages.error'));

@@ -37,7 +37,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
-                                aria-pressed="true"> {{__('Dashboard/receipt_trans.Addanewdocument')}}</a>
+                                aria-pressed="true"> {{__('Dashboard/receipt_trans.addreceipt')}}</a>
                         </div>
                     </div>
                     <div class="card-body">

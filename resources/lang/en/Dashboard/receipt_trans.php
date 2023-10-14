@@ -20,7 +20,7 @@ return [
     'price' => 'Price',
     'descr' => 'Description',
     'Processes'=>'Processes',
-    '' => '',
+    'Deletereceipt' => 'Delete a receipt voucher',
     '' => '',
     '' => '',
     '' => '',

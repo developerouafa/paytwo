@@ -20,5 +20,17 @@ return [
     'adderss' => 'العنوان',
     'Update Profile' => 'تحديث الملف',
     'delete' => 'حذف',
-    'delete_account' => 'حذف الحساب'
+    'delete_account' => 'حذف الحساب',
+    'UpdatePassword' => 'تعديل كلمة المرور',
+    'Ensureyouraccountsecure' => 'تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية ليظل آمنًا.',
+    'CurrentPassword' => 'كلمة السر الحالية',
+    'NewPassword' => 'كلمة المرور الجديدة',
+    'ConfirmPassword' => 'تأكيد كلمة المرور',
+    'Saved' => 'حفظ',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

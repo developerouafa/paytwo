@@ -2,11 +2,11 @@
     <div class="card-body">
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Update Password') }}
+                {{ __('Dashboard/profile.UpdatePassword') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('Ensure your account is using a long, random password to stay secure.') }}
+                {{ __('Dashboard/profile.Ensureyouraccountsecure') }}
             </p>
         </header>
 
@@ -17,7 +17,7 @@
             <div class="form-group ">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="current_password" class="form-label">{{__('Current Password')}}</label>
+                        <label for="current_password" class="form-label">{{ __('Dashboard/profile.CurrentPassword') }}</label>
                     </div>
                     <div class="col-md-9">
                         <x-text-input class="form-control"  id="current_password" name="current_password" type="password" autocomplete="current-password" />
@@ -29,7 +29,7 @@
             <div class="form-group ">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="password" class="form-label">{{__('New Password')}}</label>
+                        <label for="password" class="form-label">{{ __('Dashboard/profile.NewPassword') }}</label>
                     </div>
                     <div class="col-md-9">
                         <x-text-input class="form-control"  id="password" name="password" type="password" autocomplete="new-password" />
@@ -41,7 +41,7 @@
             <div class="form-group ">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="password_confirmation" class="form-label">{{__('Confirm Password')}}</label>
+                        <label for="password_confirmation" class="form-label">{{__('Dashboard/profile.ConfirmPassword')}}</label>
                     </div>
                     <div class="col-md-9">
                         <x-text-input class="form-control"  id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" />
@@ -52,6 +52,7 @@
 
             <div class="flex items-center gap-4">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
+
                 @if (session('status') === 'password-updated')
                     <p
                         x-data="{ show: true }"
@@ -59,7 +60,7 @@
                         x-transition
                         x-init="setTimeout(() => show = false, 2000)"
                         class="text-sm text-gray-600"
-                    >{{ __('Saved.') }}</p>
+                    >{{ __('Dashboard/profile.Saved') }}</p>
                 @endif
             </div>
         </form>

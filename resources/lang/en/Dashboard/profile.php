@@ -20,5 +20,17 @@ return [
     'adderss' => 'Address',
     'Update Profile' => 'Update Profile',
     'delete' => 'Delete',
-    'delete_account' => 'Delete Account'
+    'delete_account' => 'Delete Account',
+    'UpdatePassword' => 'Update Password',
+    'Ensureyouraccountsecure' => 'Ensure your account is using a long, random password to stay secure.',
+    'CurrentPassword' => 'Current Password',
+    'NewPassword' => 'New Password',
+    'ConfirmPassword' => 'Confirm Password',
+    'Saved' => 'Saved.',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

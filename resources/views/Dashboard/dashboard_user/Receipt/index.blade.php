@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    سندات القبض
+    {{__('Dashboard/receipt_trans.receipt')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -21,7 +21,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">الحسابات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ سندات القبض</span>
+							<h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.receipt')}} </span>
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
-                                aria-pressed="true">اضافة سند جديد</a>
+                                aria-pressed="true"> {{__('Dashboard/receipt_trans.Addanewdocument')}}</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -46,11 +46,11 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>client</th>
-                                    <th>المبلغ</th>
-                                    <th>البيان</th>
+                                    <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
+                                    <th> {{__('Dashboard/receipt_trans.price')}} </th>
+                                    <th> {{__('Dashboard/receipt_trans.descr')}} </th>
                                     {{-- <th>تاريخ الاضافة</th> --}}
-                                    <th>العمليات</th>
+                                    <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>

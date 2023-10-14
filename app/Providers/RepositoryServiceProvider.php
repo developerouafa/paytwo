@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Interfaces\Clients\ClientRepositoryInterface;
 use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface as ProfilesProfileclientRepositoryInterface;
-use App\Interfaces\dashboard_user\Finance\PaymentRepositoryInterface;
+use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use App\Interfaces\Products\mainRepositoryInterface;
 use App\Interfaces\Products\multipeRepositoryInterface;
@@ -15,8 +15,8 @@ use App\Interfaces\Products\promotionRepositoryInterface;
 use App\Interfaces\Products\stockRepositoryInterface;
 use App\Repository\Clients\ClientRepository;
 use App\Repository\Clients\Profiles\ProfileclientRepository;
+use App\Repository\dashboard_user\Finances\PaymentRepository;
 use App\Repository\dashboard_user\Finances\ReceiptRepository;
-use App\Repository\Finance\PaymentRepository;
 use App\Repository\Products\mainimageRepository;
 use App\Repository\Products\multipimageRepository;
 use App\Repository\Sections\childrenRepository;

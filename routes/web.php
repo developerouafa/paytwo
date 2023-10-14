@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\Clients\ClientController;
 use App\Http\Controllers\Dashboard\childrens\childrenController;
+use App\Http\Controllers\Dashboard\Dashboard_users\PaymentaccountController;
 use App\Http\Controllers\Dashboard\Dashboard_users\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\Products\MainimageproductController;
 use App\Http\Controllers\Dashboard\Products\MultipimageController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\Dashboard\users\UserController;
 use App\Http\Controllers\ImageuserController;
 use App\Http\Controllers\Dashboard\Products\PromotionController;
 use App\Http\Controllers\Dashboard\Products\StockproductController;
-use App\Http\Controllers\PaymentaccountController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

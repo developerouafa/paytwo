@@ -18,7 +18,7 @@ return [
     'descr' => 'Description',
     'Processes'=>'Processes',
     'Deletereceipt' => 'Delete a receipt voucher',
-    '' => '',
+    'Amendingreceiptvoucher' => 'Amending a receipt voucher',
     '' => '',
     '' => '',
     '' => '',

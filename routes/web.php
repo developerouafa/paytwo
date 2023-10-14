@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\Clients\ClientController;
 use App\Http\Controllers\Dashboard\childrens\childrenController;
+use App\Http\Controllers\Dashboard\Dashboard_users\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\Products\MainimageproductController;
 use App\Http\Controllers\Dashboard\Products\MultipimageController;
 use App\Http\Controllers\Dashboard\profiles\ProfileController;
@@ -168,5 +169,12 @@ Route::get('/clear', function() {
             Route::view('group_Print_single_invoices','livewire.Group_invoices.print')->name('group_Print_single_invoices');
 
         //############################# end group_invoices route ######################################
+
+        //############################# Receipt route ##########################################
+
+            Route::resource('Receipt', ReceiptAccountController::class);
+
+        //############################# end Receipt route ######################################
+
     });
     require __DIR__.'/auth.php';

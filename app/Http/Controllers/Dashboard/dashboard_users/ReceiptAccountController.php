@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\Dashboard_users;
 
+use App\Http\Controllers\Controller;
 use App\Models\receipt_account;
 use Illuminate\Http\Request;
 

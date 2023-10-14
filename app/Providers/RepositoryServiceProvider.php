@@ -32,7 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Section
         $this->app->bind(SectionRepositoryInterface::class, SectionRepository::class);
         $this->app->bind(childrenRepositoryInterface::class, childrenRepository::class);
         $this->app->bind(productRepositoryInterface::class, productRepository::class);

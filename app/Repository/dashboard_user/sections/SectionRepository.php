@@ -13,7 +13,7 @@ class SectionRepository implements SectionRepositoryInterface
     public function index()
     {
       $sections = Section::query()->selectsections()->withsections()->parent()->get();
-      return view('Dashboard.Sections.index',compact('sections'));
+      return view('Dashboard/dashboard_user.Sections.index',compact('sections'));
     }
 
     public function store($request)
@@ -81,7 +81,7 @@ class SectionRepository implements SectionRepositoryInterface
     {
         $section = Section::findOrFail($id);
         $products = product::where('section_id', $id)->get();
-        return view('Dashboard/Sections.showproduct',compact('section', 'products'));
+        return view('Dashboard/dashboard_user/Sections.showproduct',compact('section', 'products'));
     }
 
     public function editstatusdéactive($id)

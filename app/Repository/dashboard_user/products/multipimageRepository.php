@@ -18,7 +18,7 @@ class multipimageRepository implements multipeRepositoryInterface
         $Product = product::where('id',$id)->firstOrFail();
         $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
         $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
-        return view('Dashboard/images.images',compact('Product', 'mainimage','multimg'));
+        return view('Dashboard/dashboard_user/images.images',compact('Product', 'mainimage','multimg'));
     }
 
     //* function store Image

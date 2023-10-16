@@ -13,7 +13,7 @@ class promotionRepository implements promotionRepositoryInterface
     {
         $promotion = promotion::query()->where('product_id', $id)->withPromotion()->get();
         $product = product::where('id', $id)->first();
-        return view('Dashboard/promotions.promotions', compact('promotion', 'product'));
+        return view('Dashboard/dashboard_user/promotions.promotions', compact('promotion', 'product'));
     }
 
 

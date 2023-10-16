@@ -17,13 +17,13 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::orderBy('id','DESC')->paginate(5);
-        return view('Dashboard/users.show_users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('Dashboard/dashboard_user/users.show_users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('Dashboard/users.Add_user',compact('roles'));
+        return view('Dashboard/dashboard_user/users.Add_user',compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('Dashboard/users.show',compact('user'));
+        return view('Dashboard/dashboard_user/users.show',compact('user'));
     }
 
     public function edit($id)
@@ -59,7 +59,7 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
-        return view('Dashboard/users.edit',compact('user','roles','userRole'));
+        return view('Dashboard/dashboard_user/users.edit',compact('user','roles','userRole'));
     }
 
     public function update(Request $request, $id)

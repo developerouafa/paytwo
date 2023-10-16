@@ -13,7 +13,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         $childrens = Section::selectchildrens()->withchildrens()->child()->get();
         $sections = Section::selectsections()->Withsections()->parent()->get();
-        return view('Dashboard.childrens.childrens', compact('childrens', 'sections'));
+        return view('Dashboard/dashboard_user.childrens.childrens', compact('childrens', 'sections'));
     }
 
     public function store($request)
@@ -68,7 +68,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         $section = Section::findOrFail($id);
         $products = product::where('parent_id', $id)->get();
-        return view('Dashboard/childrens.showproduct',compact('section', 'products'));
+        return view('Dashboard/dashboard_user/childrens.showproduct',compact('section', 'products'));
     }
 
     public function destroy($request)

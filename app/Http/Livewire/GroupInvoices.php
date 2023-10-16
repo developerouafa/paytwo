@@ -117,6 +117,7 @@ class GroupInvoices extends Component
                     // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
                     $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
                     $group_invoices->type = $this->type;
+                    $group_invoices->user_id = auth()->user()->id;
                     $group_invoices->save();
 
                     $fund_accounts = new fund_account();
@@ -124,6 +125,7 @@ class GroupInvoices extends Component
                     $fund_accounts->invoice_id = $group_invoices->id;
                     $fund_accounts->Debit = $group_invoices->total_with_tax;
                     $fund_accounts->credit = 0.00;
+                    $fund_accounts->user_id = auth()->user()->id;
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
@@ -189,6 +191,7 @@ class GroupInvoices extends Component
                     // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
                     $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
                     $group_invoices->type = $this->type;
+                    $group_invoices->user_id = auth()->user()->id;
                     $group_invoices->save();
 
                     $client_accounts = new client_account();
@@ -197,6 +200,7 @@ class GroupInvoices extends Component
                     $client_accounts->client_id = $group_invoices->client_id;
                     $client_accounts->Debit = $group_invoices->total_with_tax;
                     $client_accounts->credit = 0.00;
+                    $client_accounts->user_id = auth()->user()->id;
                     $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;

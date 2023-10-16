@@ -42,6 +42,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $payment_accounts->client_id = $request->client_id;
             $payment_accounts->amount = $request->credit;
             $payment_accounts->description = $request->description;
+            $payment_accounts->user_id = auth()->user()->id;
             $payment_accounts->save();
 
             // store fund_accounts
@@ -49,6 +50,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $fund_accounts->date =date('y-m-d');
             $fund_accounts->Payment_id = $payment_accounts->id;
             $fund_accounts->credit = $request->credit;
+            $fund_accounts->user_id = auth()->user()->id;
             $fund_accounts->Debit = 0.00;
             $fund_accounts->save();
 
@@ -58,6 +60,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->client_id = $request->client_id;
             $client_accounts->Payment_id = $payment_accounts->id;
             $client_accounts->Debit = $request->credit;
+            $client_accounts->user_id = auth()->user()->id;
             $client_accounts->credit = 0.00;
             $client_accounts->save();
 

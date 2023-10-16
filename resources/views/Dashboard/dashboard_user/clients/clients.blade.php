@@ -50,7 +50,7 @@
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/clients_trans.user_id')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                         <th class="wd-20p border-bottom-0"></th>
                                     </tr>
                                 </thead>

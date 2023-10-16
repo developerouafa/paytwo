@@ -52,10 +52,10 @@
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.section')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.children')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.status')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.userproduct')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.images')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.promotion')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.stock')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                         <th scope="wd-15p border-bottom-0"></th>
                                         <th scope="wd-15p border-bottom-0"></th>
                                     </tr>
@@ -78,7 +78,6 @@
                                                         <a href="{{route('editstatusactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
                                                     @endif
                                                 </td>
-                                                <td> {{$x->user->name}} </td>
                                                 <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
                                                 <td>
                                                     @forelse ($x->promotion as $promo)
@@ -109,20 +108,21 @@
                                                         @endif
                                                     @endforeach
                                                 </td>
+                                                <td><a href="#">{{$x->user->name}}</a> </td>
                                                 <td>
-                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                            data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                            data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
-                                                            href="#exampleModal2" title="Update">
-                                                            <i class="las la-pen"></i>
-                                                        </a>
+                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
+                                                        data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
+                                                        href="#exampleModal2" title="Update">
+                                                        <i class="las la-pen"></i>
+                                                    </a>
                                                 </td>
                                                 <td>
-                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                            <i class="las la-trash"></i>
-                                                        </a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
+                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                        <i class="las la-trash"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endif

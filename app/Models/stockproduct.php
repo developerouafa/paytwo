@@ -9,7 +9,7 @@ class stockproduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'product_id', 'stock'];
+    protected $fillable = ['id', 'product_id', 'stock', 'user_id'];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectstock(mixed $query)
@@ -18,6 +18,12 @@ class stockproduct extends Model
     }
 
     /*-------------------- Relations --------------------*/
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(product::class);

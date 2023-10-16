@@ -48,6 +48,7 @@
                                     <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
                                     <th> {{__('Dashboard/payment_trans.price')}} </th>
                                     <th> {{__('Dashboard/payment_trans.descr')}} </th>
+                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                     {{-- <th>تاريخ الاضافة</th> --}}
                                     <th> {{__('Dashboard/payment_trans.Processes')}} </th>
                                 </tr>
@@ -60,6 +61,7 @@
                                             <td>{{ number_format($payment->amount, 2) }}</td>
                                             <td>{{ \Str::limit($payment->description, 50) }}</td>
                                             {{-- <td>{{ $payment->created_at->diffForHumans() }}</td> --}}
+                                            <td><a href="#">{{$payment->user->name}}</a> </td>
                                             <td>
                                                 <a href="{{route('Payment.edit',$payment->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$payment->id}}"><i class="las la-trash"></i></a>

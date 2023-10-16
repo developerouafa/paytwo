@@ -22,7 +22,8 @@ class mainimageRepository implements mainRepositoryInterface
 
                         mainimageproduct::create([
                             'product_id' => $request->product_id,
-                            'mainimage' => $image
+                            'mainimage' => $image,
+                            'user_id' => auth()->user()->id,
                         ]);
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.add'));

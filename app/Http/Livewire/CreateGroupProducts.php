@@ -161,6 +161,8 @@ class CreateGroupProducts extends Component
             // حفظ الترجمة
             $Groups->name= ['en' => $this->name_group_en, 'ar' => $this->name_group_ar];
             $Groups->notes= ['en' => $this->notes_en, 'ar' => $this->notes_ar];
+            $Groups->user_id = auth()->user()->id;
+
             $Groups->save();
 
             // حفظ العلاقة

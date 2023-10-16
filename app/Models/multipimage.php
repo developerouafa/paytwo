@@ -12,6 +12,7 @@ class multipimage extends Model
     protected $fillable = [
         'multipimage',
         'product_id',
+        'user_id'
     ];
 
     /*-------------------- Scope --------------------*/
@@ -21,6 +22,12 @@ class multipimage extends Model
     }
 
     /*-------------------- Relations --------------------*/
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(product::class);

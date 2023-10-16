@@ -3,9 +3,9 @@
 return [
     'Edit-Profile' => "Edit-Profile",
     'Pages' => 'Pages',
-    'imageuser' => '',
+    'imageuser' => 'Image User',
     'saveimageuser' => 'Save photo',
-    'imageuserupdate' => '',
+    'imageuserupdate' => 'Update Image User',
     'Attachmentformat' => 'Attachment format',
     'CONTACTINFO' => 'Contact Info',
     'phone' => 'Phone',
@@ -27,10 +27,4 @@ return [
     'NewPassword' => 'New Password',
     'ConfirmPassword' => 'Confirm Password',
     'Saved' => 'Saved.',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
 ];

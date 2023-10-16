@@ -3,7 +3,6 @@
 return [
     'phone'=>'Phone',
     'status'=>'Status',
-    'user_id'=>'Product Create by This User',
     'add_clients'=>'Create New Client',
     'disabled'=>'Disabled',
     'active'=>'Active',

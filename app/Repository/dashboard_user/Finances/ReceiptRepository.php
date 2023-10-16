@@ -42,6 +42,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $receipt_accounts->client_id = $request->client_id;
                 $receipt_accounts->amount = $request->Debit;
                 $receipt_accounts->description = $request->description;
+                $receipt_accounts->user_id = auth()->user()->id;
                 $receipt_accounts->save();
 
                 // store fund_accounts
@@ -49,6 +50,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $fund_accounts->date =date('y-m-d');
                 $fund_accounts->receipt_id = $receipt_accounts->id;
                 $fund_accounts->Debit = $request->Debit;
+                $fund_accounts->user_id = auth()->user()->id;
                 $fund_accounts->credit = 0.00;
                 $fund_accounts->save();
 
@@ -57,6 +59,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $client_accounts->date =date('y-m-d');
                 $client_accounts->client_id = $request->client_id;
                 $client_accounts->receipt_id = $receipt_accounts->id;
+                $client_accounts->user_id = auth()->user()->id;
                 $client_accounts->Debit = 0.00;
                 $client_accounts->credit =$request->Debit;
                 $client_accounts->save();

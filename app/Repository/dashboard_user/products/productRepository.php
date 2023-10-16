@@ -41,7 +41,8 @@ class productRepository implements productRepositoryInterface
 
             $product_id = product::latest()->first()->id;
             stockproduct::create([
-                'product_id'=> $product_id
+                'product_id'=> $product_id,
+                'user_id' => auth()->user()->id,
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -108,7 +109,6 @@ class productRepository implements productRepositoryInterface
                     'price' => $request->price,
                     'section_id' => $request->section,
                     'parent_id' => $request->children,
-                    'user_id' => auth()->user()->id,
                 ]);
             }
             elseif(App::isLocale('ar')){
@@ -118,7 +118,6 @@ class productRepository implements productRepositoryInterface
                     'price' => $request->price,
                     'section_id' => $request->section,
                     'parent_id' => $request->children,
-                    'user_id' => auth()->user()->id,
                 ]);
             }
             DB::commit();

@@ -44,4 +44,5 @@ return [
     'commercialRegistrationNumber' => 'Commercial Registration Number',
     'taxNumber' => 'Tax Number',
     'adderss' => 'Address',
+    'createdbyuser' => 'Create by This User',
 ];

@@ -114,6 +114,7 @@ class SingleInvoices extends Component
                     $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
                     $single_invoices->type = $this->type;
                     $single_invoices->invoice_status = 1;
+                    $single_invoices->user_id = auth()->user()->id;
                     $single_invoices->save();
 
                     $fund_accounts = new fund_account();
@@ -121,6 +122,7 @@ class SingleInvoices extends Component
                     $fund_accounts->invoice_id = $single_invoices->id;
                     $fund_accounts->Debit = $single_invoices->total_with_tax;
                     $fund_accounts->credit = 0.00;
+                    $fund_accounts->user_id = auth()->user()->id;
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;

@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class client_account extends Model
 {
     use HasFactory;
+
     public $guarded=[];
+
+    /*-------------------- Relations --------------------*/
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function invoice()
     {
         return $this->belongsTo(invoice::class,'invoice_id');
@@ -18,7 +27,6 @@ class client_account extends Model
     {
         return $this->belongsTo(receipt_account::class,'receipt_id');
     }
-
 
     public function PaymentAccount()
     {

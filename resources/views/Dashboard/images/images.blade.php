@@ -52,6 +52,7 @@
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/products.products')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/products.mainimage')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/products.galleryimages')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,6 +100,7 @@
                                                     <i class="las la-trash"></i></a>
                                                 </td>
                                             @endforeach
+                                            <td><a href="#">{{$mainimage->user->name}}</a> </td>
                                         </tr>
                                 </tbody>
                             </table>

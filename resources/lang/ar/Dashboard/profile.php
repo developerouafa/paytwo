@@ -2,10 +2,10 @@
 
 return [
     'Edit-Profile' => 'تعديل الملف الشخصي',
-    'Pages' => 'Pages',
-    'imageuser' => '',
+    'Pages' => 'الصفحات',
+    'imageuser' => 'مستخدم الصورة',
     'saveimageuser' => 'حفظ الصورة',
-    'imageuserupdate' => '',
+    'imageuserupdate' => 'تحديث صورة المستخدم',
     'Attachmentformat' => ' صيغة المرفق',
     'CONTACTINFO' => 'معلومات الاتصال',
     'phone' => 'هاتف',
@@ -27,10 +27,4 @@ return [
     'NewPassword' => 'كلمة المرور الجديدة',
     'ConfirmPassword' => 'تأكيد كلمة المرور',
     'Saved' => 'حفظ',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
 ];

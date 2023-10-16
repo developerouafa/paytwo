@@ -37,11 +37,11 @@
                             </thead>
                             <tbody>
                             @foreach($products as $product)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{$section->name}}</td>
-                                <td>{{ $product->name }}</td>
-                            </tr>
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{$section->name}}</td>
+                                    <td>{{ $product->name }}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

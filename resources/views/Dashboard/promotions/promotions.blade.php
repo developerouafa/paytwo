@@ -49,6 +49,7 @@
                                         <th class="border-bottom-0">{{__('Dashboard/products.end_time')}}</th>
                                         <th class="border-bottom-0">{{__('Dashboard/products.products')}}</th>
                                         <th class="border-bottom-0">{{__('Dashboard/products.expired')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                         <th class="border-bottom-0"></th>
                                     </tr>
                                 </thead>
@@ -68,6 +69,7 @@
                                                     <a href="{{route('promotions.editstatusdéactive', $x->id)}}">{{__('Dashboard/products.active')}}</a>
                                                 @endif
                                             </td>
+                                            <td><a href="#">{{$x->user->name}}</a> </td>
                                             <td>
                                                 <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale"
                                                     data-id="{{ $x->id }}" data-start_time="{{ $x->start_time }}" data-end_time="{{ $x->end_time }}" data-price="{{ $x->price }}" data-toggle="modal"

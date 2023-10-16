@@ -49,6 +49,7 @@
                                     <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
                                     <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                     <th> {{__('Dashboard/receipt_trans.descr')}} </th>
+                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                     {{-- <th>تاريخ الاضافة</th> --}}
                                     <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                 </tr>
@@ -60,6 +61,7 @@
                                         <td>{{ $receipt->clients->name }}</td>
                                         <td>{{ number_format($receipt->amount, 2) }}</td>
                                         <td>{{ \Str::limit($receipt->description, 50) }}</td>
+                                        <td><a href="#">{{$receipt->user->name}}</a> </td>
                                         {{-- <td>{{ $receipt->created_at->diffForHumans() }}</td> --}}
                                         <td>
                                             <a href="{{route('Receipt.edit',$receipt->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>

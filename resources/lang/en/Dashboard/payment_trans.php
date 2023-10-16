@@ -2,7 +2,6 @@
 
 return [
     'status'=>'Status',
-    'user_id'=>'payment Create by This User',
     'addpayment'=>'Create New payment',
     'submit'=>'Submit',
     'Close'=>'Close',

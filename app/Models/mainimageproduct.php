@@ -12,6 +12,7 @@ class mainimageproduct extends Model
     protected $fillable = [
         'mainimage',
         'product_id',
+        'user_id'
     ];
 
     /*-------------------- Scope --------------------*/
@@ -21,6 +22,12 @@ class mainimageproduct extends Model
     }
 
     /*-------------------- Relations --------------------*/
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(product::class);

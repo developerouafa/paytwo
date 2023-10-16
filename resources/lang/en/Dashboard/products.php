@@ -19,7 +19,6 @@ return [
     'submit'=>'Submit',
     'Close'=>'Close',
     'Warning'=>'Are Sure Of The Deleting Process ?',
-    'userproduct' => 'Product Create by This User',
     'nameenrequired'=>'English product required',
     'nameenunique'=>'The product in English is exists',
     'namearrequired'=>'Arabic product required',

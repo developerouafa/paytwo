@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('groupprodcut_id')->nullable()->references('id')->on('groupprodcuts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->double('price', 8, 2)->default(0);
             $table->double('discount_value', 8, 2)->default(0);
             $table->string('tax_rate');

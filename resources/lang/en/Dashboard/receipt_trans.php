@@ -2,7 +2,6 @@
 
 return [
     'status'=>'Status',
-    'user_id'=>'Receipt Create by This User',
     'addreceipt'=>'Create New Receipt',
     'submit'=>'Submit',
     'Close'=>'Close',

@@ -27,7 +27,8 @@ class promotionRepository implements promotionRepositoryInterface
                     'start_time' => $request->start_time,
                     'end_time' => $request->end_time,
                     'price' => $request->price,
-                    'product_id' => $product->id
+                    'product_id' => $product->id,
+                    'user_id' => auth()->user()->id,
                 ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));

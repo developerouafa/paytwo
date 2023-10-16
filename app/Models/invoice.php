@@ -24,9 +24,16 @@ class invoice extends Model
             'tax_rate',
             'tax_value',
             'total_with_tax',
+            'user_id'
         ];
 
         /*-------------------- Relations --------------------*/
+
+            public function user()
+            {
+                return $this->belongsTo(user::class);
+            }
+
             public function Group()
             {
                 return $this->belongsTo(groupprodcut::class,'groupprodcut_id');

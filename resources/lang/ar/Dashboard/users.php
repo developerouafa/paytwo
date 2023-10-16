@@ -44,4 +44,5 @@ return [
     'commercialRegistrationNumber' => 'رقم السجل التجاري',
     'taxNumber' => 'الرقم الضريبي',
     'adderss' => 'العنوان',
+    'createdbyuser' => 'انشئ من طرف المستخدم',
 ];

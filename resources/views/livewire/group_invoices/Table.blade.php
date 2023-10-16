@@ -13,6 +13,7 @@
                 <th> {{__('Dashboard/services.Taxvalue')}} </th>
                 <th> {{__('Dashboard/services.Totalwithtax')}} </th>
                 <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                <th> {{__('Dashboard/users.createdbyuser')}} </th>
                 <th> {{__('Dashboard/services.Processes')}} </th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                     <td>{{ number_format($group_invoice->tax_value, 2) }}</td>
                     <td>{{ number_format($group_invoice->total_with_tax, 2) }}</td>
                     <td>{{ $group_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
+                    <td>{{$group_invoice->user->name}}</td>
                     <td>
                         <button wire:click="edit({{ $group_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $group_invoice->id }})" ><i class="fa fa-trash"></i></button>

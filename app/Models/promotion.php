@@ -15,12 +15,13 @@ class promotion extends Model
         'price',
         'expired',
         'product_id',
+        'user_id',
     ];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectpromotion(mixed $query)
     {
-        return $query->select('id', 'start_time', 'end_time', 'price', 'expired', 'product_id');
+        return $query->select('id', 'start_time', 'end_time', 'price', 'expired', 'product_id', 'user_id');
     }
 
     public function scopeWithpromotion(mixed $query)
@@ -29,6 +30,12 @@ class promotion extends Model
     }
 
     /*-------------------- Relations --------------------*/
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(product::class);

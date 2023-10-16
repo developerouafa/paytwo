@@ -33,7 +33,8 @@ class multipimageRepository implements multipeRepositoryInterface
 
                         multipimage::create([
                             'product_id' => $request->product_id,
-                            'multipimage' => $image
+                            'multipimage' => $image,
+                            'user_id' => auth()->user()->id,
                         ]);
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.add'));

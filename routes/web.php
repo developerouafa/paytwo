@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\Dashboard\Clients\ClientController;
-use App\Http\Controllers\Dashboard\childrens\childrenController;
-use App\Http\Controllers\Dashboard\Dashboard_users\PaymentaccountController;
-use App\Http\Controllers\Dashboard\Dashboard_users\ReceiptAccountController;
-use App\Http\Controllers\Dashboard\Products\MainimageproductController;
-use App\Http\Controllers\Dashboard\Products\MultipimageController;
-use App\Http\Controllers\Dashboard\profiles\ProfileController;
-use App\Http\Controllers\Dashboard\roles\RolesController;
-use App\Http\Controllers\Dashboard\Sections\SectionController;
-use App\Http\Controllers\Dashboard\Products\ProductController;
-use App\Http\Controllers\Dashboard\users\UserController;
-use App\Http\Controllers\ImageuserController;
-use App\Http\Controllers\Dashboard\Products\PromotionController;
-use App\Http\Controllers\Dashboard\Products\StockproductController;
+use App\Http\Controllers\Dashboard\dashboard_users\Clients\ClientController;
+use App\Http\Controllers\Dashboard\dashboard_users\childrens\childrenController;
+use App\Http\Controllers\Dashboard\dashboard_users\PaymentaccountController;
+use App\Http\Controllers\Dashboard\dashboard_users\ReceiptAccountController;
+use App\Http\Controllers\Dashboard\dashboard_users\Products\MainimageproductController;
+use App\Http\Controllers\Dashboard\dashboard_users\Products\MultipimageController;
+use App\Http\Controllers\Dashboard\dashboard_users\profiles\ProfileController;
+use App\Http\Controllers\Dashboard\dashboard_users\roles\RolesController;
+use App\Http\Controllers\Dashboard\dashboard_users\Sections\SectionController;
+use App\Http\Controllers\Dashboard\dashboard_users\Products\ProductController;
+use App\Http\Controllers\Dashboard\dashboard_users\users\UserController;
+use App\Http\Controllers\Dashboard\dashboard_users\users\ImageuserController;
+use App\Http\Controllers\Dashboard\dashboard_users\Products\PromotionController;
+use App\Http\Controllers\Dashboard\dashboard_users\Products\StockproductController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

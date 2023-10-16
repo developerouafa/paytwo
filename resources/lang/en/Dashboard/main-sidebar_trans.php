@@ -15,4 +15,6 @@ return [
     'Servicepackageinvoice' => 'Service package invoice',
     'invoices' => 'Invoices',
     'Catch Receipt' => 'Catch Receipt',
+    'theaccounts' => 'The Accounts',
+    'Catch payment' => 'Catch payment'
 ];

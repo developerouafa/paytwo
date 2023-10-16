@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Dashboard_users;
+namespace App\Http\Controllers\Dashboard\dashboard_users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\PaymentRequest;

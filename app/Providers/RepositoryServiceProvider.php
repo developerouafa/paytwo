@@ -2,28 +2,28 @@
 
 namespace App\Providers;
 
-use App\Interfaces\Clients\ClientRepositoryInterface;
-use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface as ProfilesProfileclientRepositoryInterface;
+use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface;
+use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
-use App\Interfaces\Products\mainRepositoryInterface;
-use App\Interfaces\Products\multipeRepositoryInterface;
-use App\Interfaces\Sections\childrenRepositoryInterface;
-use App\Interfaces\Sections\SectionRepositoryInterface;
-use App\Interfaces\Products\productRepositoryInterface;
-use App\Interfaces\Products\promotionRepositoryInterface;
-use App\Interfaces\Products\stockRepositoryInterface;
-use App\Repository\Clients\ClientRepository;
+use App\Interfaces\dashboard_user\Products\mainRepositoryInterface;
+use App\Interfaces\dashboard_user\Products\multipeRepositoryInterface;
+use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
+use App\Interfaces\dashboard_user\Products\promotionRepositoryInterface;
+use App\Interfaces\dashboard_user\Products\stockRepositoryInterface;
+use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
+use App\Interfaces\dashboard_user\Sections\SectionRepositoryInterface;
 use App\Repository\Clients\Profiles\ProfileclientRepository;
+use App\Repository\dashboard_user\Clients\ClientRepository;
 use App\Repository\dashboard_user\Finances\PaymentRepository;
 use App\Repository\dashboard_user\Finances\ReceiptRepository;
-use App\Repository\Products\mainimageRepository;
-use App\Repository\Products\multipimageRepository;
-use App\Repository\Sections\childrenRepository;
-use App\Repository\Sections\SectionRepository;
-use App\Repository\Products\productRepository;
-use App\Repository\Products\promotionRepository;
-use App\Repository\Products\stockRepository;
+use App\Repository\dashboard_user\Products\mainimageRepository;
+use App\Repository\dashboard_user\Products\multipimageRepository;
+use App\Repository\dashboard_user\Products\productRepository;
+use App\Repository\dashboard_user\Products\promotionRepository;
+use App\Repository\dashboard_user\Products\stockRepository;
+use App\Repository\dashboard_user\Sections\childrenRepository;
+use App\Repository\dashboard_user\Sections\SectionRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -41,7 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(mainRepositoryInterface::class, mainimageRepository::class);
         $this->app->bind(multipeRepositoryInterface::class, multipimageRepository::class);
         $this->app->bind(ClientRepositoryInterface::class, ClientRepository::class);
-        $this->app->bind(ProfilesProfileclientRepositoryInterface::class, ProfileclientRepository::class);
+        $this->app->bind(ProfileclientRepositoryInterface::class, ProfileclientRepository::class);
         $this->app->bind(ReceiptRepositoryInterface::class, ReceiptRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
     }

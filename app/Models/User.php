@@ -28,7 +28,9 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'roles_name',
         'UserStatus',
-        'Status'
+        'Status',
+        'created_at',
+        'updated_at'
     ];
 
     public $translatable = ['name'];

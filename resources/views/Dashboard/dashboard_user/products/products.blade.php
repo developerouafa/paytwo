@@ -56,7 +56,8 @@
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.promotion')}}</th>
                                         <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.stock')}}</th>
                                         <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th scope="wd-15p border-bottom-0"></th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
                                         <th scope="wd-15p border-bottom-0"></th>
                                     </tr>
                                 </thead>
@@ -109,6 +110,8 @@
                                                     @endforeach
                                                 </td>
                                                 <td><a href="#">{{$x->user->name}}</a> </td>
+                                                <td> {{ $x->created_at->diffForHumans() }} </td>
+                                                <td> {{ $x->updated_at->diffForHumans() }} </td>
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                         data-id="{{ $x->id }}" data-name="{{ $x->name }}"
@@ -116,8 +119,6 @@
                                                         href="#exampleModal2" title="Update">
                                                         <i class="las la-pen"></i>
                                                     </a>
-                                                </td>
-                                                <td>
                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                         data-id="{{ $x->id }}" data-name="{{ $x->name }}"
                                                         data-toggle="modal" href="#modaldemo9" title="Delete">

@@ -51,6 +51,8 @@
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.section')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.userchildren')}}</th>
+                                            <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
                                             <th class="wd-15p border-bottom-0"></th>
                                         </tr>
                                     </thead>
@@ -63,6 +65,8 @@
                                                     <td>{{$x->section->name}}</td>
                                                     <td>{{$x->section->user->name}}</td>
                                                     <td>{{$x->user->name}}</td>
+                                                    <td> {{ $x->created_at->diffForHumans() }} </td>
+                                                    <td> {{ $x->updated_at->diffForHumans() }} </td>
                                                     <td>
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                             data-id="{{ $x->id }}" data-children="{{ $x->name }}"

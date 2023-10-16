@@ -16,12 +16,14 @@ class promotion extends Model
         'expired',
         'product_id',
         'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectpromotion(mixed $query)
     {
-        return $query->select('id', 'start_time', 'end_time', 'price', 'expired', 'product_id', 'user_id');
+        return $query->select('id', 'start_time', 'end_time', 'price', 'expired', 'product_id', 'user_id', 'created_at', 'updated_at');
     }
 
     public function scopeWithpromotion(mixed $query)

@@ -14,6 +14,8 @@
             <th> {{__('Dashboard/services.Totalwithtax')}} </th>
             <th> {{__('Dashboard/services.Invoicetype')}} </th>
             <th> {{__('Dashboard/users.createdbyuser')}} </th>
+            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
             <th> {{__('Dashboard/services.Processes')}} </th>
         </tr>
         </thead>
@@ -31,6 +33,8 @@
                 <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
                 <td>{{ $single_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
                 <td>{{$single_invoice->user->name}}</td>
+                <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                 <td>
                     <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" ><i class="fa fa-trash"></i></button>

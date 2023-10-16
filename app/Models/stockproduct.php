@@ -9,12 +9,12 @@ class stockproduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'product_id', 'stock', 'user_id'];
+    protected $fillable = ['id', 'product_id', 'stock', 'user_id', 'created_at', 'updated_at'];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectstock(mixed $query)
     {
-        return $query->select('id', 'product_id', 'stock')->with('product');
+        return $query->select('id', 'product_id', 'stock', 'created_at', 'updated_at')->with('product');
     }
 
     /*-------------------- Relations --------------------*/

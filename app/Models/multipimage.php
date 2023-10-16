@@ -12,13 +12,15 @@ class multipimage extends Model
     protected $fillable = [
         'multipimage',
         'product_id',
-        'user_id'
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectmultipimage(mixed $query)
     {
-        return $query->select('id', 'multipimage', 'product_id')->with('product');
+        return $query->select('id', 'multipimage', 'product_id', 'created_at', 'updated_at')->with('product');
     }
 
     /*-------------------- Relations --------------------*/

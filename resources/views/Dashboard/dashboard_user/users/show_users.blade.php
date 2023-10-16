@@ -51,11 +51,6 @@
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userstatus')}} </th>
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.usertype')}} </th>
                                 <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userolestaus')}} </th>
-                                {{-- <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.clienType')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.nationalIdNumber')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.commercialRegistrationNumber')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.taxNumber')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.adderss')}} </th> --}}
                                 <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>

@@ -50,7 +50,8 @@
                                     <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                     <th> {{__('Dashboard/receipt_trans.descr')}} </th>
                                     <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                    {{-- <th>تاريخ الاضافة</th> --}}
+                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
                                     <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                 </tr>
                                 </thead>
@@ -63,11 +64,12 @@
                                         <td>{{ \Str::limit($receipt->description, 50) }}</td>
                                         <td><a href="#">{{$receipt->user->name}}</a> </td>
                                         {{-- <td>{{ $receipt->created_at->diffForHumans() }}</td> --}}
+                                        <td> {{ $receipt->created_at->diffForHumans() }} </td>
+                                        <td> {{ $receipt->updated_at->diffForHumans() }} </td>
                                         <td>
                                             <a href="{{route('Receipt.edit',$receipt->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$receipt->id}}"><i class="las la-trash"></i></a>
                                             <a href="{{route('Receipt.show',$receipt->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
-
                                         </td>
                                     </tr>
                                     @include('Dashboard.dashboard_user.Receipt.delete')

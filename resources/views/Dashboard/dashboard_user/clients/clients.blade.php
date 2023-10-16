@@ -51,6 +51,8 @@
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
                                         <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
                                         <th class="wd-20p border-bottom-0"></th>
                                     </tr>
                                 </thead>
@@ -70,6 +72,8 @@
                                             </td>
                                             {{-- <td><a href="{{route('Sections.showsection',$client->id)}}">{{$client->user->phone}}</a> </td> --}}
                                             <td><a href="#">{{$client->user->name}}</a> </td>
+                                            <td> {{ $client->created_at->diffForHumans() }} </td>
+                                            <td> {{ $client->updated_at->diffForHumans() }} </td>
                                             <td>
                                                 <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$client->id}}"><i class="las la-pen"></i></a>
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$client->id}}"><i class="las la-trash"></i></a>

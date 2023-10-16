@@ -53,6 +53,8 @@
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/products.mainimage')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/products.galleryimages')}}</th>
                                         <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,6 +103,8 @@
                                                 </td>
                                             @endforeach
                                             <td><a href="#">{{$mainimage->user->name}}</a> </td>
+                                            <td> {{ $mainimage->created_at->diffForHumans() }} </td>
+                                            <td> {{ $mainimage->updated_at->diffForHumans() }} </td>
                                         </tr>
                                 </tbody>
                             </table>

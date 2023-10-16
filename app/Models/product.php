@@ -20,6 +20,8 @@ class product extends Model
         'section_id',
         'parent_id',
         'user_id',
+        'created_at',
+        'updated_at'
     ];
     public $translatable = ['name', 'description'];
 
@@ -29,7 +31,7 @@ class product extends Model
         }
 
         public function scopeProductselect($query){
-            return $query->select('id', 'name', 'description', 'price', 'status', 'section_id', 'parent_id', 'user_id');
+            return $query->select('id', 'name', 'description', 'price', 'status', 'section_id', 'parent_id', 'user_id', 'created_at', 'updated_at');
         }
 
         public function scopeParent(mixed $query)

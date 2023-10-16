@@ -11,6 +11,8 @@
                 <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                 <th>{{__('Dashboard/services.description')}}</th>
                 <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
                 <th>{{__('Dashboard/services.Processes')}}</th>
             </tr>
         </thead>
@@ -22,6 +24,8 @@
                     <td>{{ number_format($group->Total_with_tax, 2) }}</td>
                     <td>{{ $group->notes }}</td>
                     <td>{{$group->user->name}}</td>
+                    <td> {{ $group->created_at->diffForHumans() }} </td>
+                    <td> {{ $group->updated_at->diffForHumans() }} </td>
                     <td>
                         <button wire:click="edit({{ $group->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteGroup{{$group->id}}"><i class="fa fa-trash"></i></button>

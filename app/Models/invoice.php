@@ -24,7 +24,9 @@ class invoice extends Model
             'tax_rate',
             'tax_value',
             'total_with_tax',
-            'user_id'
+            'user_id',
+            'created_at',
+            'updated_at'
         ];
 
         /*-------------------- Relations --------------------*/

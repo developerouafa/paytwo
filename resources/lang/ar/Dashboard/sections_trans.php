@@ -10,6 +10,7 @@ return [
     'delete'=>'حذف',
     'aresuredeleting'=>'!هل أنت متأكد من الحذف',
     'created_at'=>'تاريخ الاضافة',
+    'updated_at'=>'تاريخ التعديل',
     'Processes'=>'العمليات',
     'submit'=>'تاكيد',
     'Close'=>'اغلاق',

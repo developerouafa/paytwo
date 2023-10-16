@@ -11,6 +11,7 @@ return [
     'delete'=>'Delete',
     'aresuredeleting'=>'Are you sure deleting!',
     'created_at'=>'Created_at',
+    'updated_at'=>'Updated_at',
     'Processes'=>'Processes',
     'submit'=>'Submit',
     'Close'=>'Close',

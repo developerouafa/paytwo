@@ -15,7 +15,9 @@ class profileclient extends Model
         'commercialRegistrationNumber',
         'taxNumber',
         'adderss',
-        'client_id'
+        'client_id',
+        'created_at',
+        'updated_at'
     ];
 
     /*-------------------- Relations --------------------*/

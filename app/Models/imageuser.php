@@ -9,7 +9,7 @@ class imageuser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'image', 'user_id'];
+    protected $fillable = ['id', 'image', 'user_id', 'created_at', 'updated_at'];
 
     /*-------------------- Relations --------------------*/
     public function user()

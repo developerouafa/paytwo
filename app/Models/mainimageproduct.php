@@ -12,13 +12,15 @@ class mainimageproduct extends Model
     protected $fillable = [
         'mainimage',
         'product_id',
-        'user_id'
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 
     /*-------------------- Scope --------------------*/
     public function scopeSelectmainimage(mixed $query)
     {
-        return $query->select('id', 'mainimage', 'product_id')->with('product');
+        return $query->select('id', 'mainimage', 'product_id', 'created_at', 'updated_at')->with('product');
     }
 
     /*-------------------- Relations --------------------*/

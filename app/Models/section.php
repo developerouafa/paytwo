@@ -18,6 +18,8 @@ class section extends Model
         'status',
         'user_id',
         'parent_id',
+        'created_at',
+        'updated_at'
     ];
 
     public $translatable = ['name'];
@@ -36,12 +38,12 @@ class section extends Model
 
         public function scopeSelectsections(mixed $query)
         {
-            return $query->select('id', 'name', 'user_id', 'status', 'parent_id');
+            return $query->select('id', 'name', 'user_id', 'status', 'parent_id', 'created_at', 'updated_at');
         }
 
         public function scopeSelectchildrens(mixed $query)
         {
-            return $query->select('id', 'name', 'user_id', 'status', 'parent_id');
+            return $query->select('id', 'name', 'user_id', 'status', 'parent_id', 'created_at', 'updated_at');
         }
 
         public function scopeWithchildrens(mixed $query)
@@ -58,6 +60,7 @@ class section extends Model
         {
             return $query->with('user');
         }
+
         // /*-------------------- Relations --------------------*/
 
         public function user()
@@ -75,4 +78,9 @@ class section extends Model
             return $this->BelongsTo(section::class, 'parent_id')->parent();
         }
 
+
+        protected $casts = [
+            'created_at' => 'datetime:Y-m-d H:i:s',
+            'updated_at' => 'datetime:Y-m-d H:i:s',
+        ];
 }

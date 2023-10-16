@@ -3,13 +3,12 @@
 namespace App\Http\Middleware;
 
 use App\Models\Client;
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserStatus
+class ClientStatus
 {
     /**
      * Handle an incoming request.
@@ -18,11 +17,11 @@ class UserStatus
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard('web')->check()){
+        if (Auth::guard('client')->check()){
             $id = Auth::user()->id;
-            $user = User::findorFail($id);
-            $user->update([
-                'UserStatus' => 1,
+            $client = Client::findorFail($id);
+            $client->update([
+                'ClientStatus' => 1,
             ]);
         }
         return $next($request);

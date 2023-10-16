@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('phone_verification_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('UserStatus')->default(0);
+            $table->tinyInteger('ClientStatus')->default(0);
             $table->tinyInteger('Status')->default(0);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();

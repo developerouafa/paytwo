@@ -68,6 +68,9 @@ class Kernel extends HttpKernel
 
         // User en Ligne OR of Ligne
         'UserStatus' => \App\Http\Middleware\UserStatus::class,
+        // User en Ligne OR of Ligne
+        'ClientStatus' => \App\Http\Middleware\ClientStatus::class,
+
         // Security
         'xss' => \App\Http\Middleware\xss::class,
 

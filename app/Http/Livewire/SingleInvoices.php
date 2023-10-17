@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\MyEvent;
+use App\Events\MyEventData;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -127,6 +127,12 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
+                    $data=[
+                        'client_id'=> $this->client_id,
+                        'invoice_id'=> $fund_accounts->invoice_id
+                    ];
+                    event(new MyEventData($data));
+
                 }
                 DB::commit();
             }
@@ -195,6 +201,7 @@ class SingleInvoices extends Component
                     $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
                     $single_invoices->type = $this->type;
                     $single_invoices->invoice_status = 1;
+                    $single_invoices->user_id = auth()->user()->id;
                     $single_invoices->save();
 
                     $client_accounts = new client_account();
@@ -203,9 +210,11 @@ class SingleInvoices extends Component
                     $client_accounts->client_id = $single_invoices->client_id;
                     $client_accounts->Debit = $single_invoices->total_with_tax;
                     $client_accounts->credit = 0.00;
+                    $client_accounts->user_id = auth()->user()->id;
                     $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+
                 }
 
                 DB::commit();

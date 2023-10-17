@@ -15,6 +15,7 @@
         "laravelcollective/html": "^6.4",
         "livewire/livewire": "^2.12",
         "mcamara/laravel-localization": "^1.8",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.11",
         "spatie/laravel-translatable": "^6.5",
         "tightenco/ziggy": "^1.0",

@@ -3,7 +3,7 @@
     {{__('Dashboard/services.addsubservice')}}
 </button><br><br>
 <div class="table-responsive">
-        <table class="table text-md-nowrap" id="example1" data-page-length="50"style="text-align: center">
+    <table id="example" class="table key-buttons text-md-nowrap">
         <thead>
             <tr>
                 <th>#</th>

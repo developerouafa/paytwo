@@ -43,17 +43,17 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table text-md-nowrap" id="example2">
+                                        <table id="example" class="table key-buttons text-md-nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th class="wd-15p border-bottom-0">#</th>
-                                                    <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.name_sections')}}</th>
-                                                    <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.status')}}</th>
-                                                    <th class="wd-15p border-bottom-0">{{__('Dashboard/sections_trans.usersection')}}</th>
-                                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.Processes')}}</th>
+                                                    <th>#</th>
+                                                    <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
+                                                    <th>{{__('Dashboard/sections_trans.status')}}</th>
+                                                    <th>{{__('Dashboard/sections_trans.usersection')}}</th>
+                                                    <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                                    <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                    <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                    <th>{{__('Dashboard/sections_trans.Processes')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

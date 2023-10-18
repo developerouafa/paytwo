@@ -3,13 +3,7 @@
     {{__('Dashboard/products.promotion')}}
 @endsection
 @section('css')
-    <!-- Internal Data table css -->
-    <link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -40,19 +34,19 @@
                 <div class="card mg-b-20">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example2" class="table key-buttons text-md-nowrap">
+                            <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                     <tr>
-                                        <th class="border-bottom-0">#</th>
-                                        <th class="border-bottom-0">{{__('Dashboard/products.products')}}</th>
-                                        <th class="border-bottom-0">{{__('Dashboard/products.start_time')}}</th>
-                                        <th class="border-bottom-0">{{__('Dashboard/products.end_time')}}</th>
-                                        <th class="border-bottom-0">{{__('Dashboard/products.products')}}</th>
-                                        <th class="border-bottom-0">{{__('Dashboard/products.expired')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th class="border-bottom-0"></th>
+                                        <th>#</th>
+                                        <th>{{__('Dashboard/products.products')}}</th>
+                                        <th>{{__('Dashboard/products.start_time')}}</th>
+                                        <th>{{__('Dashboard/products.end_time')}}</th>
+                                        <th>{{__('Dashboard/products.products')}}</th>
+                                        <th>{{__('Dashboard/products.expired')}}</th>
+                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -166,26 +160,6 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-    <!-- Internal Data tables -->
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
-    <!--Internal  Datatable js -->
-    <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
-    <script src="{{URL::asset('assets/js/modal.js')}}"></script>
 
     <script>
         $('#exampleModal2').on('show.bs.modal', function(event) {

@@ -46,9 +46,9 @@ class PromotionController extends Controller
         return $this->Promotion->destroy($request);
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
-      return  $this->Promotion->deletetruncate();
+      return  $this->Promotion->deleteall();
     }
 
 }

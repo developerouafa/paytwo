@@ -156,7 +156,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         }
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
         DB::table('paymentaccounts')->delete();
         return redirect()->route('Payment.index');

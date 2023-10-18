@@ -41,7 +41,7 @@
                             <a class="modal-effect btn btn-primary" data-effect="effect-scale" data-toggle="modal"
                             href="#modaldemo8" title="Update">
                             {{__('Dashboard/products.addimagesgallary')}}</a>
-                            <a class="btn btn-danger" href="{{route('image.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            <a class="btn btn-danger" href="{{route('image.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                         </div>
                     </div>
                     <div class="card-body">

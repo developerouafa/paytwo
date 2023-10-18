@@ -39,7 +39,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
                                 {{__('Dashboard/clients_trans.add_clients')}}
                             </button>
-                            <a class="btn btn-danger" href="{{route('Clients.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            <a class="btn btn-danger" href="{{route('Clients.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>

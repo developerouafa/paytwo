@@ -57,8 +57,8 @@ class ProductController extends Controller
         return $this->Products->destroy($request);
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
-        return $this->Products->deletetruncate();
+        return $this->Products->deleteall();
     }
 }

@@ -82,7 +82,7 @@ Route::get('/clear', function() {
                     Route::delete('/destroy', 'destroy')->name('Sections.destroy');
                     Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
-                    Route::get('/deletetruncate', 'deletetruncate')->name('Sections.deletetruncate');
+                    Route::get('/deleteall', 'deleteall')->name('Sections.deleteall');
                 });
 
                 Route::controller(childrenController::class)->group(function() {
@@ -105,7 +105,7 @@ Route::get('/clear', function() {
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
                     Route::patch('/update', 'update')->name('product.update');
                     Route::delete('/destroy', 'destroy')->name('product.destroy');
-                    Route::get('/deletetruncate', 'deletetruncate')->name('product.deletetruncate');
+                    Route::get('/deleteall', 'deleteall')->name('product.deleteall');
                 });
 
                 Route::prefix('promotions')->group(function (){
@@ -116,7 +116,7 @@ Route::get('/clear', function() {
                         Route::get('/promotions/editstatusdéactive/{id}', 'editstatusdéactive')->name('promotions.editstatusdéactive');
                         Route::get('/promotions/editstatusactive/{id}', 'editstatusactive')->name('promotions.editstatusactive');
                         Route::delete('/deletepromotion', 'destroy')->name('promotion.destroy');
-                        Route::get('/deletetruncate', 'deletetruncate')->name('promotions.deletetruncate');
+                        Route::get('/deleteall', 'deleteall')->name('promotions.deleteall');
                     });
                 });
 
@@ -136,7 +136,7 @@ Route::get('/clear', function() {
                         Route::post('/create', 'store')->name('image.create');
                         Route::patch('/edit', 'edit')->name('image.edit');
                         Route::delete('/destroy', 'destroy')->name('image.destroy');
-                        Route::get('/deletetruncate', 'deletetruncate')->name('image.deletetruncate');
+                        Route::get('/deleteall', 'deleteall')->name('image.deleteall');
                     });
                 });
             });
@@ -149,7 +149,7 @@ Route::get('/clear', function() {
                 Route::controller(ClientController::class)->group(function() {
                     Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
-                    Route::get('/deletetruncate', 'deletetruncate')->name('Clients.deletetruncate');
+                    Route::get('/deleteall', 'deleteall')->name('Clients.deleteall');
                 });
             });
         //############################# end Clients route ######################################
@@ -179,14 +179,14 @@ Route::get('/clear', function() {
         //############################# Receipt route ##########################################
 
             Route::resource('Receipt', ReceiptAccountController::class);
-            Route::get('/deletetruncate', [ReceiptAccountController::class, 'deletetruncate'])->name('Receipt.deletetruncate');
+            Route::get('/deleteall', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteall');
 
         //############################# end Receipt route ######################################
 
         //############################# Payment route ##########################################
 
             Route::resource('Payment', PaymentaccountController::class);
-            Route::get('/deletetruncate', [PaymentaccountController::class, 'deletetruncate'])->name('Payment.deletetruncate');
+            Route::get('/deleteall', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteall');
 
         //############################# end Payment route ######################################
 

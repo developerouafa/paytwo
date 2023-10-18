@@ -36,8 +36,8 @@ class MultipimageController extends Controller
       return  $this->Multipeimage->destroy($request);
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
-      return  $this->Multipeimage->deletetruncate();
+      return  $this->Multipeimage->deleteall();
     }
 }

@@ -28,5 +28,5 @@ interface ReceiptRepositoryInterface
     public function destroy($request);
 
     //* delete All Receipt
-    public function deletetruncate();
+    public function deleteall();
 }

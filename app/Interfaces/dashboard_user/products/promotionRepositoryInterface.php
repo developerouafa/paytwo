@@ -24,6 +24,6 @@ interface promotionRepositoryInterface
     public function destroy($request);
 
     //* function delete all Promotion
-    public function deletetruncate();
+    public function deleteall();
 
 }

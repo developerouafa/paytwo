@@ -29,5 +29,5 @@ interface ClientRepositoryInterface
     public function editstatusactive($id);
 
     //* delete All Client
-    public function deletetruncate();
+    public function deleteall();
 }

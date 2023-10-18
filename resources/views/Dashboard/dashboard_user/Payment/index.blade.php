@@ -36,7 +36,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button" aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
-                            <a class="btn btn-danger" href="{{route('Payment.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            <a class="btn btn-danger" href="{{route('Payment.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>

@@ -27,5 +27,5 @@ interface SectionRepositoryInterface
     public function editstatusactive($id);
 
     //* delete All Section
-    public function deletetruncate();
+    public function deleteall();
 }

@@ -17,5 +17,5 @@ interface multipeRepositoryInterface
     public function destroy($request);
 
     //* delete All MultipeImage
-    public function deletetruncate();
+    public function deleteall();
 }

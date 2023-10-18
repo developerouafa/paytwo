@@ -30,5 +30,5 @@ interface productRepositoryInterface
     public function destroy($request);
 
     //* delete All Product
-    public function deletetruncate();
+    public function deleteall();
 }

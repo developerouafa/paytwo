@@ -56,8 +56,8 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->destroy($request);
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
-        return $this->Receipt->deletetruncate();
+        return $this->Receipt->deleteall();
     }
 }

@@ -135,7 +135,7 @@ class ClientRepository implements ClientRepositoryInterface
         }
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
         DB::table('clients')->delete();
         return redirect()->route('Clients.index');

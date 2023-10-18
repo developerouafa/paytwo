@@ -61,8 +61,8 @@ class ClientController extends Controller
         return $this->Clients->editstatusactive($id);
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
-        return $this->Clients->deletetruncate();
+        return $this->Clients->deleteall();
     }
 }

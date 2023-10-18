@@ -28,5 +28,5 @@ interface PaymentRepositoryInterface
     public function destroy($request);
 
     //* delete All Payment
-    public function deletetruncate();
+    public function deleteall();
 }

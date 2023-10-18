@@ -148,7 +148,7 @@ class promotionRepository implements promotionRepositoryInterface
     }
 
     //* function delete all Promotion
-    public function deletetruncate()
+    public function deleteall()
     {
         DB::table('promotions')->delete();
         return redirect()->back();

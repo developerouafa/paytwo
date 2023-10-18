@@ -142,7 +142,6 @@ class UserController extends Controller
         if($request->page_id==1){
             try{
                 $id = $request->user_id;
-
                 $tableimageuser = imageuser::where('user_id',$id)->first();
                 if(!empty($tableimageuser)){
                     $image = $tableimageuser->image;
@@ -151,8 +150,7 @@ class UserController extends Controller
                     unlink(public_path('storage/'.$image));
                 }
                 DB::beginTransaction();
-                User::find($id)->delete();
-
+                    User::find($id)->delete();
                 DB::commit();
                 toastr()->success(__('Dashboard/messages.delete'));
                 return redirect()->route('users.index');
@@ -165,9 +163,7 @@ class UserController extends Controller
         // Delete Group Request
         else{
             try{
-
                 $delete_select_id = explode(",", $request->delete_select_id);
-
                 $tableimageuser = imageuser::where('user_id',$delete_select_id)->first();
                 if(!empty($tableimageuser)){
                     $image = $tableimageuser->image;
@@ -175,8 +171,6 @@ class UserController extends Controller
                     if(!$image) abort(404);
                     unlink(public_path('storage/'.$image));
                 }
-
-
                 DB::beginTransaction();
                     User::destroy($delete_select_id);
                 DB::commit();

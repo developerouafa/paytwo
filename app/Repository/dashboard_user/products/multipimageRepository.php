@@ -101,7 +101,7 @@ class multipimageRepository implements multipeRepositoryInterface
     }
 
     //* function delete All Image
-    public function deletetruncate()
+    public function deleteall()
     {
         DB::table('multipimages')->delete();
         return redirect()->back();

@@ -137,7 +137,7 @@ class SectionRepository implements SectionRepositoryInterface
         }
     }
 
-    public function deletetruncate()
+    public function deleteall()
     {
         DB::table('sections')->delete();
         return redirect()->route('Sections.index');

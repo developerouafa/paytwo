@@ -45,4 +45,10 @@ class PromotionController extends Controller
     {
         return $this->Promotion->destroy($request);
     }
+
+    public function deletetruncate()
+    {
+      return  $this->Promotion->deletetruncate();
+    }
+
 }

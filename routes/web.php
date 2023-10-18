@@ -115,6 +115,7 @@ Route::get('/clear', function() {
                         Route::get('/promotions/editstatusdéactive/{id}', 'editstatusdéactive')->name('promotions.editstatusdéactive');
                         Route::get('/promotions/editstatusactive/{id}', 'editstatusactive')->name('promotions.editstatusactive');
                         Route::delete('/deletepromotion', 'destroy')->name('promotion.destroy');
+                        Route::get('/deletetruncate', 'deletetruncate')->name('promotions.deletetruncate');
                     });
                 });
 

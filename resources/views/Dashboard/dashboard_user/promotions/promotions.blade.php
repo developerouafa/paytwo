@@ -34,6 +34,7 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                            <a class="btn btn-danger" href="{{route('promotions.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>

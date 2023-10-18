@@ -42,16 +42,16 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-md-nowrap" id="example1">
+                            <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
                                     <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                     <th> {{__('Dashboard/receipt_trans.descr')}} </th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                    <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                    <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                    <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
                                     <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                 </tr>
                                 </thead>

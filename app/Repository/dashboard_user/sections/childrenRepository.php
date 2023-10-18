@@ -73,18 +73,37 @@ class childrenRepository implements childrenRepositoryInterface
 
     public function destroy($request)
     {
-        try{
-            $id = $request->id;
-            $children = Section::findorFail($id);
-            DB::beginTransaction();
-                $children->delete();
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('Children_index');
-        }catch(\Exception $execption){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Children_index');
+
+        if($request->page_id==1){
+            try{
+                $id = $request->id;
+                $children = Section::findorFail($id);
+                DB::beginTransaction();
+                    $children->delete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Children_index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Children_index');
+            }
+        }
+        //---------------------------------------------------------------
+        else{
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                    Section::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Children_index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Children_index');
+            }
+
         }
     }
 }

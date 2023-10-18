@@ -39,6 +39,7 @@
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
                                 <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">{{__('Dashboard/sections_trans.addchildren')}}</a>
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -47,6 +48,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             <th>{{__('Dashboard/sections_trans.children')}}</th>
                                             <th>{{__('Dashboard/sections_trans.section')}}</th>
                                             <th>{{__('Dashboard/sections_trans.usersection')}}</th>
@@ -61,6 +63,9 @@
                                             @if ($x->status == 0)
                                                 <tr>
                                                     <td>{{$x->id}}</td>
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                    </td>
                                                     <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
                                                     <td>{{$x->section->name}}</td>
                                                     <td>{{$x->section->user->name}}</td>
@@ -80,6 +85,7 @@
                                                     </td>
                                                 </tr>
                                             @endif
+                                            @include('Dashboard/dashboard_user/childrens.delete_select')
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -186,6 +192,7 @@
                             <div class="modal-body">
                                 <p>{{__('Dashboard/sections_trans.aresuredeleting')}}</p><br>
                                 <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="1" name="page_id">
                                 <input class="form-control" name="children" id="children" type="text" readonly>
                             </div>
                             <div class="modal-footer">
@@ -228,6 +235,44 @@
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #children').val(children);
         })
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
     </script>
 
     <!--Internal  Notify js -->

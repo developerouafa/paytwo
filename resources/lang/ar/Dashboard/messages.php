@@ -18,4 +18,5 @@ return [
     'delete' => 'تم حذف البيانات بنجاح',
     'error' => 'هناك شيء خاطئ',
     'imageuserrequired' => 'اختر صورة',
+    'Deletegroup' => 'حذف المجموعة'
 ];

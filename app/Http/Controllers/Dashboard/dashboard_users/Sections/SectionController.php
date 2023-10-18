@@ -55,4 +55,9 @@ class SectionController extends Controller
     {
         return $this->Sections->editstatusactive($id);
     }
+
+    public function deletetruncate()
+    {
+        return $this->Sections->deletetruncate();
+    }
 }

@@ -82,6 +82,7 @@ Route::get('/clear', function() {
                     Route::delete('/destroy', 'destroy')->name('Sections.destroy');
                     Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                    Route::get('/deletetruncate', 'deletetruncate')->name('Sections.deletetruncate');
                 });
 
                 Route::controller(childrenController::class)->group(function() {
@@ -149,8 +150,6 @@ Route::get('/clear', function() {
                     Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
                 });
-
-
             });
         //############################# end Clients route ######################################
 

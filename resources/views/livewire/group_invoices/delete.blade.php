@@ -11,7 +11,8 @@
             </div>
 
             <div class="modal-body">
-                {{__('Dashboard/services.surdelete')}} 
+                {{__('Dashboard/services.surdelete')}}
+                <input type="hidden" value="1" name="page_id">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Dashboard/services.close')}} </button>

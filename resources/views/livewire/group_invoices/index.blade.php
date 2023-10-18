@@ -35,5 +35,41 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
+<script>
+    $(function() {
+        jQuery("[name=select_all]").click(function(source) {
+            checkboxes = jQuery("[name=delete_select]");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>
 
+<script>
+    $(function() {
+        jQuery("[name=select_all]").click(function(source) {
+            checkboxes = jQuery("[name=delete_select]");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btn_delete_all").click(function () {
+            var selected = [];
+            $("#example input[name=delete_select]:checked").each(function () {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#delete_select').modal('show')
+                $('input[id="delete_select_id"]').val(selected);
+            }
+        });
+    });
+</script>
 @endsection

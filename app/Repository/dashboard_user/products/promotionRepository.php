@@ -116,18 +116,34 @@ class promotionRepository implements promotionRepositoryInterface
     //* function delete other Promotion
     public function destroy($request)
     {
-        try{
-            $id = $request->id;
-            $promotion = promotion::findorFail($id);
-            DB::beginTransaction();
-                $promotion->delete();
-            DB::commit();
+        // Delete One Request
+        if($request->page_id==1){
+            try{
+                DB::beginTransaction();
+                    promotion::findorFail($request->id)->delete();
+                DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->back();
-        }catch(\Exception $execption){
-            DB::rollBack();
+            }catch(\Exception $execption){
+                DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
                 return redirect()->back();
+            }
+        }
+        // Delete Group Request
+        else{
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                    promotion::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
         }
     }
 }

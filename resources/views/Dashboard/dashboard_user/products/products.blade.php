@@ -37,7 +37,8 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <a class="btn btn-outline-primary btn-block" href="{{route('product.createprod')}}">{{__('Dashboard/products.addproduct')}}</a>
+                            <a class="btn btn-primary" href="{{route('product.createprod')}}">{{__('Dashboard/products.addproduct')}}</a>
+                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -46,6 +47,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         <th>{{__('Dashboard/products.product')}}</th>
                                         <th>{{__('Dashboard/products.description')}}</th>
                                         <th>{{__('Dashboard/products.price')}}</th>
@@ -66,6 +68,9 @@
                                         @if ($x->section->status == 0)
                                             <tr>
                                                 <td> {{$x->id}} </td>
+                                                <td>
+                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                </td>
                                                 <td> {{$x->name}} </td>
                                                 <td> {{$x->description}} </td>
                                                 <td> {{$x->price}}</td>

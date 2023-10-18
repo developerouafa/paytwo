@@ -32,12 +32,18 @@
             {{-- Index --}}
             <div class="col-xl-12">
                 <div class="card mg-b-20">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         <th>{{__('Dashboard/products.products')}}</th>
                                         <th>{{__('Dashboard/products.start_time')}}</th>
                                         <th>{{__('Dashboard/products.end_time')}}</th>
@@ -53,6 +59,9 @@
                                     @foreach ($promotion as $x)
                                         <tr>
                                             <td>{{$x->id}}</td>
+                                            <td>
+                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                            </td>
                                             <td><a>{{$product->name}}</a></td>
                                             <td><a>{{$x->start_time}}</a></td>
                                             <td><a>{{$x->end_time}}</a></td>
@@ -82,6 +91,7 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        @include('Dashboard.dashboard_user.promotions.delete_select')
                                     @endforeach
                                 </tbody>
                             </table>
@@ -142,6 +152,7 @@
                             <div class="modal-body">
                                 <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
                                 <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="1" name="page_id">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
@@ -160,6 +171,44 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
+    </script>
 
     <script>
         $('#exampleModal2').on('show.bs.modal', function(event) {

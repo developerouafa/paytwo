@@ -33,9 +33,10 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header pb-0">
-                <div class="col-sm-1 col-md-2">
+                <div class="d-flex justify-content-between">
                     {{-- @can('اضافة مستخدم') --}}
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
+                        <a class="btn btn-primary" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
+                        <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                     {{-- @endcan --}}
                 </div>
             </div>
@@ -45,6 +46,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                 <th> {{__('Dashboard/users.name')}} </th>
                                 <th> {{__('Dashboard/users.phone')}} </th>
                                 <th> {{__('Dashboard/users.email')}} </th>
@@ -58,6 +60,9 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{ ++$i }}</td>
+                                    <td>
+                                        <input type="checkbox" name="delete_select" value="{{$user->id}}" class="delete_select">
+                                    </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->phone }}</td>
                                     <td>{{ $user->email }}</td>
@@ -114,6 +119,7 @@
                                                 class="las la-trash"></i></a>
                                     </td>
                                 </tr>
+                                @include('Dashboard.dashboard_user.users.delete_select')
                             @endforeach
                         </tbody>
                     </table>
@@ -136,6 +142,7 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>{{__('Dashboard/users.aresureofthedeleting')}}</p><br>
+                        <input type="hidden" value="1" name="page_id">
                         <input type="hidden" name="user_id" id="user_id" value="">
                         <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
@@ -157,6 +164,44 @@
 <!-- main-content closed -->
 @endsection
 @section('js')
+
+<script>
+    $(function() {
+        jQuery("[name=select_all]").click(function(source) {
+            checkboxes = jQuery("[name=delete_select]");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>
+
+<script>
+    $(function() {
+        jQuery("[name=select_all]").click(function(source) {
+            checkboxes = jQuery("[name=delete_select]");
+            for(var i in checkboxes){
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btn_delete_all").click(function () {
+            var selected = [];
+            $("#example input[name=delete_select]:checked").each(function () {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#delete_select').modal('show')
+                $('input[id="delete_select_id"]').val(selected);
+            }
+        });
+    });
+</script>
 <!--Internal  Notify js -->
 <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>

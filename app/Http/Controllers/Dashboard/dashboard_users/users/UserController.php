@@ -138,26 +138,56 @@ class UserController extends Controller
 
     public function destroy(Request $request)
     {
-        try{
-            $id = $request->user_id;
+        // Delete One Request
+        if($request->page_id==1){
+            try{
+                $id = $request->user_id;
 
-            $tableimageuser = imageuser::where('user_id',$id)->first();
-            if(!empty($tableimageuser)){
-                $image = $tableimageuser->image;
+                $tableimageuser = imageuser::where('user_id',$id)->first();
+                if(!empty($tableimageuser)){
+                    $image = $tableimageuser->image;
 
-                if(!$image) abort(404);
-                unlink(public_path('storage/'.$image));
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
+                DB::beginTransaction();
+                User::find($id)->delete();
+
+                DB::commit();
+                toastr()->success(__('Dashboard/messages.delete'));
+                return redirect()->route('users.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(__('Dashboard/messages.error'));
+                return redirect()->route('users.index');
             }
-            DB::beginTransaction();
-            User::find($id)->delete();
-
-            DB::commit();
-            toastr()->success(__('Dashboard/messages.delete'));
-            return redirect()->route('users.index');
-        }catch(\Exception $execption){
-            DB::rollBack();
-            toastr()->error(__('Dashboard/messages.error'));
-            return redirect()->route('users.index');
         }
+        // Delete Group Request
+        else{
+            try{
+
+                $delete_select_id = explode(",", $request->delete_select_id);
+
+                $tableimageuser = imageuser::where('user_id',$delete_select_id)->first();
+                if(!empty($tableimageuser)){
+                    $image = $tableimageuser->image;
+
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
+
+
+                DB::beginTransaction();
+                    User::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('users.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(__('Dashboard/messages.error'));
+                return redirect()->route('users.index');
+            }
+        }
+
     }
 }

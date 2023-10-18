@@ -61,17 +61,34 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function destroy($request)
     {
-        try{
-            DB::beginTransaction();
-            Client::findOrFail($request->id)->delete();
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('Clients.index');
+        // Delete One Request
+        if($request->page_id==1){
+            try{
+                DB::beginTransaction();
+                    Client::findOrFail($request->id)->delete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Children_index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Children_index');
+            }
         }
-        catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Clients.index');
+        // Delete Group Request
+        else{
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                    Client::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Clients.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Clients.index');
+            }
         }
     }
 

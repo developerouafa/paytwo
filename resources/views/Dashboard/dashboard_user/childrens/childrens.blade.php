@@ -38,7 +38,9 @@
                     <div class="card mg-b-20">
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
-                                <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal" href="#modaldemo8">{{__('Dashboard/sections_trans.addchildren')}}</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaldemo8">
+                                    {{__('Dashboard/sections_trans.addchildren')}}
+                                </button>
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             </div>
                         </div>
@@ -85,7 +87,7 @@
                                                     </td>
                                                 </tr>
                                             @endif
-                                            @include('Dashboard/dashboard_user/childrens.delete_select')
+                                            @include('Dashboard.dashboard_user.childrens.delete_select')
                                         @endforeach
                                     </tbody>
                                 </table>

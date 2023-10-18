@@ -13,6 +13,7 @@
                 {{ method_field('delete') }}
                 {{ csrf_field() }}
             <div class="modal-body">
+                <input type="hidden" value="1" name="page_id">
                 <input type="hidden" name="id" value="{{ $client->id }}">
                 <h5>{{trans('Dashboard/clients_trans.Warning')}}</h5>
             </div>

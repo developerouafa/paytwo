@@ -39,6 +39,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
                                 {{__('Dashboard/clients_trans.add_clients')}}
                             </button>
+                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -47,6 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th class="wd-15p border-bottom-0">#</th>
+                                        <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                         <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
@@ -60,6 +62,9 @@
                                     @foreach($clients as $client)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>
+                                                <input type="checkbox" name="delete_select" value="{{$client->id}}" class="delete_select">
+                                            </td>
                                             <td>{{$client->name}}</td>
                                             <td>{{$client->phone}}</td>
                                             <td>
@@ -82,6 +87,7 @@
 
                                         @include('Dashboard.dashboard_user.clients.edit')
                                         @include('Dashboard.dashboard_user.clients.delete')
+                                        @include('Dashboard.dashboard_user.clients.delete_select')
 
                                     @endforeach
                                 </tbody>
@@ -103,7 +109,43 @@
 <!-- main-content closed -->
 @endsection
 @section('js')
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
 
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
+    </script>
 
     <!--Internal  Notify js -->
     <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>

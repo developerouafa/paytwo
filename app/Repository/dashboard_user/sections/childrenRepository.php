@@ -73,13 +73,11 @@ class childrenRepository implements childrenRepositoryInterface
 
     public function destroy($request)
     {
-
+        // Delete One Request
         if($request->page_id==1){
             try{
-                $id = $request->id;
-                $children = Section::findorFail($id);
                 DB::beginTransaction();
-                    $children->delete();
+                    Section::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Children_index');
@@ -89,7 +87,7 @@ class childrenRepository implements childrenRepositoryInterface
                 return redirect()->route('Children_index');
             }
         }
-        //---------------------------------------------------------------
+        // Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -103,7 +101,6 @@ class childrenRepository implements childrenRepositoryInterface
                 toastr()->error(trans('Dashboard/messages.error'));
                 return redirect()->route('Children_index');
             }
-
         }
     }
 }

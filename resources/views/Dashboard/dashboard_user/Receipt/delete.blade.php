@@ -14,6 +14,7 @@
                 {{ csrf_field() }}
             <div class="modal-body">
                 <input type="hidden" name="id" value="{{ $receipt->id }}">
+                <input type="hidden" value="1" name="page_id">
                 <h5>{{trans('Dashboard/sections_trans.Warning')}}<span style="color: red"> {{ $receipt->clients->name }}</span></h5>
             </div>
             <div class="modal-footer">

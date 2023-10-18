@@ -95,21 +95,6 @@
                                             </span>
                                         @endif
                                     </td>
-                                    {{-- <td>
-                                        @if (!empty($user->profileuser->clienType == 1))
-                                            <span class="label text-black d-flex">
-                                                {{__('Dashboard/users.individual')}}
-                                            </span>
-                                        @else
-                                            <span class="label text-black d-flex">
-                                                {{__('Dashboard/users.individual')}}
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $user->profileuser->nationalIdNumber }}</td>
-                                    <td>{{ $user->profileuser->commercialRegistrationNumber }}</td>
-                                    <td>{{ $user->profileuser->taxNumber }}</td>
-                                    <td>{{ $user->profileuser->adderss }}</td> --}}
                                     <td>
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
                                             title="تعديل"><i class="las la-pen"></i></a>

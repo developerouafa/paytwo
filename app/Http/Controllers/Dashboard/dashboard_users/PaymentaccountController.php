@@ -50,9 +50,13 @@ class PaymentaccountController extends Controller
         return $this->Payment->update($request);
     }
 
-
     public function destroy(Request $request)
     {
         return $this->Payment->destroy($request);
+    }
+
+    public function deletetruncate()
+    {
+        return $this->Payment->deletetruncate();
     }
 }

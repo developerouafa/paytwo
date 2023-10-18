@@ -60,4 +60,9 @@ class ClientController extends Controller
     {
         return $this->Clients->editstatusactive($id);
     }
+
+    public function deletetruncate()
+    {
+        return $this->Clients->deletetruncate();
+    }
 }

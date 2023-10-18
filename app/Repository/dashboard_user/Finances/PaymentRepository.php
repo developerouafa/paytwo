@@ -155,4 +155,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             }
         }
     }
+
+    public function deletetruncate()
+    {
+        DB::table('paymentaccounts')->delete();
+        return redirect()->route('Payment.index');
+    }
 }

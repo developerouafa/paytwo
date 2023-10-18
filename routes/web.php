@@ -149,6 +149,7 @@ Route::get('/clear', function() {
                 Route::controller(ClientController::class)->group(function() {
                     Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                    Route::get('/deletetruncate', 'deletetruncate')->name('Clients.deletetruncate');
                 });
             });
         //############################# end Clients route ######################################
@@ -184,6 +185,7 @@ Route::get('/clear', function() {
         //############################# Payment route ##########################################
 
             Route::resource('Payment', PaymentaccountController::class);
+            Route::get('/deletetruncate', [PaymentaccountController::class, 'deletetruncate'])->name('Payment.deletetruncate');
 
         //############################# end Payment route ######################################
 

@@ -4,7 +4,6 @@ namespace App\Interfaces\dashboard_user\Clients;
 
 interface ClientRepositoryInterface
 {
-
     //* get All Clients
     public function index();
 
@@ -20,12 +19,15 @@ interface ClientRepositoryInterface
     //* destroy Clients
     public function destroy($request);
 
-    //* show Section Products
+    //* show Client
     public function showsection($id);
 
-    //* Hide Section
+    //* Hide Client
     public function editstatusdéactive($id);
 
-    //* show Section
+    //* show Client
     public function editstatusactive($id);
+
+    //* delete All Client
+    public function deletetruncate();
 }

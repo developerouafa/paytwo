@@ -42,23 +42,23 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-md-nowrap" id="example2">
+                            <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                     <tr>
-                                        <th scope="wd-15p border-bottom-0">#</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.product')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.description')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.price')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.section')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.children')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.status')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.images')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.promotion')}}</th>
-                                        <th scope="wd-15p border-bottom-0">{{__('Dashboard/products.stock')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th scope="wd-15p border-bottom-0"></th>
+                                        <th>#</th>
+                                        <th>{{__('Dashboard/products.product')}}</th>
+                                        <th>{{__('Dashboard/products.description')}}</th>
+                                        <th>{{__('Dashboard/products.price')}}</th>
+                                        <th>{{__('Dashboard/products.section')}}</th>
+                                        <th>{{__('Dashboard/products.children')}}</th>
+                                        <th>{{__('Dashboard/products.status')}}</th>
+                                        <th>{{__('Dashboard/products.images')}}</th>
+                                        <th>{{__('Dashboard/products.promotion')}}</th>
+                                        <th>{{__('Dashboard/products.stock')}}</th>
+                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

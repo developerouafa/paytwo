@@ -37,6 +37,7 @@
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button"
                                 aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
+                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -45,6 +46,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                     <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
                                     <th> {{__('Dashboard/payment_trans.price')}} </th>
                                     <th> {{__('Dashboard/payment_trans.descr')}} </th>
@@ -58,6 +60,9 @@
                                     @foreach($payments as $payment)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>
+                                                <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
+                                            </td>
                                             <td>{{ $payment->clients->name }}</td>
                                             <td>{{ number_format($payment->amount, 2) }}</td>
                                             <td>{{ \Str::limit($payment->description, 50) }}</td>
@@ -72,6 +77,8 @@
                                             </td>
                                         </tr>
                                             @include('Dashboard.dashboard_user.Payment.delete')
+                                            @include('Dashboard.dashboard_user.Payment.delete_select')
+
                                     @endforeach
                                 </tbody>
                             </table>
@@ -91,7 +98,43 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
 
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
+    </script>
 
     <!--Internal  Notify js -->
     <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>

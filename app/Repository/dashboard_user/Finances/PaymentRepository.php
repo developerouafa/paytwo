@@ -125,15 +125,34 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function destroy($request)
     {
-        try {
-            DB::beginTransaction();
-            PaymentAccount ::destroy($request->id);
-            toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->back();
+        // Delete One Request
+        if($request->page_id==1){
+            try {
+                DB::beginTransaction();
+                    PaymentAccount::findorFail($request->id)->delete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Payment.index');
+            }
+            catch (\Exception $exception) {
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Payment.destroy');
+            }
         }
-        catch (\Exception $exception) {
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Payment.destroy');
+        // Delete Group Request
+        else{
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                PaymentAccount::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Payment.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Payment.destroy');
+            }
         }
     }
 }

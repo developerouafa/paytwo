@@ -127,6 +127,7 @@
                                                 </td>
                                             </tr>
                                         @endif
+                                        @include('Dashboard.dashboard_user.products.delete_select')
                                     @endforeach
                                 </tbody>
                             </table>
@@ -235,6 +236,7 @@
                             <div class="modal-body">
                                 <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
                                 <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="1" name="page_id">
                                 <input class="form-control" name="name" id="name" type="text" readonly>
                             </div>
                             <div class="modal-footer">
@@ -321,5 +323,43 @@
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
         })
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_all]").click(function(source) {
+                checkboxes = jQuery("[name=delete_select]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = [];
+                $("#example input[name=delete_select]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
     </script>
 @endsection

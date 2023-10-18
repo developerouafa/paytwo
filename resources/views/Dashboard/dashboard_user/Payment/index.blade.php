@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/receipt_trans.payment')}}
+    {{__('Dashboard/payment_trans.payment')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -21,7 +21,7 @@
         <div class="breadcrumb-header justify-content-between">
             <div class="my-auto">
                 <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/payment_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.payment')}}</span>
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/payment_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/payment_trans.payment')}}</span>
                 </div>
             </div>
         </div>
@@ -41,16 +41,16 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-md-nowrap" id="example1">
+                            <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
                                     <th> {{__('Dashboard/payment_trans.price')}} </th>
                                     <th> {{__('Dashboard/payment_trans.descr')}} </th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                    <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                    <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                    <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                    <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
                                     <th> {{__('Dashboard/payment_trans.Processes')}} </th>
                                 </tr>
                                 </thead>

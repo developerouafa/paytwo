@@ -45,32 +45,28 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-md-nowrap" id="example2">
+                            <table id="example" class="table key-buttons text-md-nowrap">
                                 <thead>
                                     <tr>
-                                        <th class="wd-15p border-bottom-0">#</th>
-                                        <th class="wd-15p border-bottom-0">{{__('Dashboard/products.products')}}</th>
-                                        <th class="wd-15p border-bottom-0">{{__('Dashboard/products.mainimage')}}</th>
-                                        <th class="wd-15p border-bottom-0">{{__('Dashboard/products.galleryimages')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th>#</th>
+                                        <th>{{__('Dashboard/products.products')}}</th>
+                                        <th>{{__('Dashboard/products.mainimage')}}</th>
+                                        {{-- <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th> --}}
+                                        <th>{{__('Dashboard/products.galleryimages')}}</th>
+                                        {{-- <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                         <tr>
                                             <td>{{$Product->id}}</td>
                                             <td>{{$Product->name}}</td>
-                                            <td>
-                                                @forelse ($mainimage as $x)
-                                                    {{-- <form action="{{route('imagemain.delete')}}" method="post">
-                                                        {{ method_field('delete') }}
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" value="{{$x->id}}" name="id"> --}}
-                                                        <img src="{{asset('storage/'.$x->mainimage)}}" alt="" style="width: 80px; height:80px;">
-                                                        {{-- <br>
-                                                        <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
-                                                    </form> --}}
+                                            @forelse ($mainimage as $x)
+                                                <td>
+                                                    <img src="{{asset('storage/'.$x->mainimage)}}" alt="" style="width: 80px; height:80px;">
                                                     <br>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                                     data-id="{{ $x->id }}" data-toggle="modal"
@@ -80,14 +76,17 @@
                                                     data-id="{{ $x->id }}" data-toggle="modal"
                                                     href="#exampleModal5" title="Delete">
                                                     <i class="las la-trash"></i></a>
-                                                @empty
-                                                    <b>
-                                                        <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal"
-                                                        href="#modaldemo9" title="Update">
-                                                        {{__('Dashboard/products.addimagesmain')}}</a>
-                                                    </b>
-                                                @endforelse ()
-                                            </td>
+                                                </td>
+                                                {{-- <td><a href="#">{{$mainimage->user->name}}</a> </td>
+                                                <td> {{ $mainimage->created_at->diffForHumans() }} </td>
+                                                <td> {{ $mainimage->updated_at->diffForHumans() }} </td> --}}
+                                            @empty
+                                                <b>
+                                                    <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal"
+                                                    href="#modaldemo9" title="Update">
+                                                    {{__('Dashboard/products.addimagesmain')}}</a>
+                                                </b>
+                                            @endforelse ()
                                             @foreach ($multimg as $x)
                                                 <td>
                                                     <img src="{{asset('storage/'.$x->multipimage)}}" alt="" style="width: 80px; height:80px;">
@@ -101,10 +100,10 @@
                                                     href="#exampleModal4" title="Delete">
                                                     <i class="las la-trash"></i></a>
                                                 </td>
+                                                {{-- <td><a href="#">{{$multimg->user->name}}</a> </td>
+                                                <td> {{ $multimg->created_at->diffForHumans() }} </td>
+                                                <td> {{ $multimg->updated_at->diffForHumans() }} </td> --}}
                                             @endforeach
-                                            <td><a href="#">{{$mainimage->user->name}}</a> </td>
-                                            <td> {{ $mainimage->created_at->diffForHumans() }} </td>
-                                            <td> {{ $mainimage->updated_at->diffForHumans() }} </td>
                                         </tr>
                                 </tbody>
                             </table>

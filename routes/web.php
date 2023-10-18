@@ -104,6 +104,7 @@ Route::get('/clear', function() {
                     Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
                     Route::patch('/update', 'update')->name('product.update');
                     Route::delete('/destroy', 'destroy')->name('product.destroy');
+                    Route::get('/deletetruncate', 'deletetruncate')->name('product.deletetruncate');
                 });
 
                 Route::prefix('promotions')->group(function (){

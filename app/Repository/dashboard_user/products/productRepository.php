@@ -164,4 +164,10 @@ class productRepository implements productRepositoryInterface
             }
         }
     }
+
+    public function deletetruncate()
+    {
+        DB::table('products')->delete();
+        return redirect()->route('Products.index');
+    }
 }

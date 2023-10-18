@@ -18,5 +18,6 @@ return [
     'delete' => 'The data has been deleted successfully',
     'error' => 'There is something wrong',
     'imageuserrequired' => 'Choose a picture',
-    'Deletegroup' => 'Delete Group'
+    'Deletegroup' => 'Delete Group',
+    'Deleteall' => 'Delete All'
 ];

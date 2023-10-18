@@ -41,17 +41,17 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table text-md-nowrap" id="example2">
+                    <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.name')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.phone')}} </th>
-                                <th class="wd-20p border-bottom-0"> {{__('Dashboard/users.email')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userstatus')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.usertype')}} </th>
-                                <th class="wd-15p border-bottom-0"> {{__('Dashboard/users.userolestaus')}} </th>
-                                <th class="wd-10p border-bottom-0"></th>
+                                <th>#</th>
+                                <th> {{__('Dashboard/users.name')}} </th>
+                                <th> {{__('Dashboard/users.phone')}} </th>
+                                <th> {{__('Dashboard/users.email')}} </th>
+                                <th> {{__('Dashboard/users.userstatus')}} </th>
+                                <th> {{__('Dashboard/users.usertype')}} </th>
+                                <th> {{__('Dashboard/users.userolestaus')}} </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

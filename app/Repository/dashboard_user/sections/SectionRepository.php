@@ -63,17 +63,34 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function destroy($request)
     {
-        try{
-            DB::beginTransaction();
-            Section::findOrFail($request->id)->delete();
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('Sections.index');
+        // Delete One Request
+        if($request->page_id==1){
+            try{
+                DB::beginTransaction();
+                    Section::findorFail($request->id)->delete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Sections.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Sections.index');
+            }
         }
-        catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Sections.delete');
+        // Delete Group Request
+        else{
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                    Section::destroy($delete_select_id);
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Sections.index');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Sections.index');
+            }
         }
     }
 

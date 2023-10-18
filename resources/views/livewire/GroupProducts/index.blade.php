@@ -22,7 +22,7 @@
                     <td>{{ $loop->iteration}}</td>
                     <td>{{ $group->name }}</td>
                     <td>{{ number_format($group->Total_with_tax, 2) }}</td>
-                    <td>{{ $group->notes }}</td>
+                    <td>{{ \Str::limit($group->notes, 50) }}</td>
                     <td>{{$group->user->name}}</td>
                     <td> {{ $group->created_at->diffForHumans() }} </td>
                     <td> {{ $group->updated_at->diffForHumans() }} </td>

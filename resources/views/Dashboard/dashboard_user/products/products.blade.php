@@ -72,7 +72,7 @@
                                                     <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                 </td>
                                                 <td> {{$x->name}} </td>
-                                                <td> {{$x->description}} </td>
+                                                <td>{{ \Str::limit($x->description, 50) }}</td>
                                                 <td> {{$x->price}}</td>
                                                 <td> {{$x->section->name}} </td>
                                                 <td> {{$x->subsections->name}} </td>

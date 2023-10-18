@@ -68,7 +68,6 @@
                                         <td>{{ number_format($receipt->amount, 2) }}</td>
                                         <td>{{ \Str::limit($receipt->description, 50) }}</td>
                                         <td><a href="#">{{$receipt->user->name}}</a> </td>
-                                        {{-- <td>{{ $receipt->created_at->diffForHumans() }}</td> --}}
                                         <td> {{ $receipt->created_at->diffForHumans() }} </td>
                                         <td> {{ $receipt->updated_at->diffForHumans() }} </td>
                                         <td>

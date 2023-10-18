@@ -156,4 +156,10 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             }
         }
     }
+
+    public function deletetruncate()
+    {
+        DB::table('receipt_accounts')->delete();
+        return redirect()->route('Receipt.index');
+    }
 }

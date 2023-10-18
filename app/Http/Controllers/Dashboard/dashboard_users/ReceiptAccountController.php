@@ -51,9 +51,13 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->update($request);
     }
 
-
     public function destroy(Request $request)
     {
         return $this->Receipt->destroy($request);
+    }
+
+    public function deletetruncate()
+    {
+        return $this->Receipt->deletetruncate();
     }
 }

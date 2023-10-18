@@ -38,6 +38,7 @@
                         <div class="d-flex justify-content-between">
                             <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
                                 aria-pressed="true"> {{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                            <a class="btn btn-danger" href="{{route('Receipt.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                         </div>
                     </div>

@@ -6,24 +6,27 @@ namespace App\Interfaces\dashboard_user\Finances;
 
 interface ReceiptRepositoryInterface
 {
-    // get All Receipt
+    //* get All Receipt
     public function index();
 
-    // show form add
+    //* show form add
     public function create();
 
-    // store Receipt
+    //* store Receipt
     public function store($request);
 
-    // edit Receipt
+    //* edit Receipt
     public function edit($id);
 
-    // show Receipt
+    //* show Receipt
     public function show($id);
 
-    // Update Receipt
+    //* Update Receipt
     public function update($request);
 
-    // destroy Receipt
+    //* destroy Receipt
     public function destroy($request);
+
+    //* delete All Receipt
+    public function deletetruncate();
 }

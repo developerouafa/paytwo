@@ -179,6 +179,7 @@ Route::get('/clear', function() {
         //############################# Receipt route ##########################################
 
             Route::resource('Receipt', ReceiptAccountController::class);
+            Route::get('/deletetruncate', [ReceiptAccountController::class, 'deletetruncate'])->name('receipt.deletetruncate');
 
         //############################# end Receipt route ######################################
 

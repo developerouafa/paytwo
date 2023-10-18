@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('Debit',8,2)->nullable();
             $table->decimal('credit',8,2)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

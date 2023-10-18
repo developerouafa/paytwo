@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('tax_rate');
             $table->decimal('Total_with_tax',8,2);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

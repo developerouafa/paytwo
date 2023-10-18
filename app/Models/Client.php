@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'id',

@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class groupprodcut extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     public $fillable= ['name', 'notes', 'Total_before_discount','discount_value','Total_after_discount','tax_rate','Total_with_tax', 'user_id', 'created_at', 'updated_at'];
     public $translatable = ['name', 'notes'];

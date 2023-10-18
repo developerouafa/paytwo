@@ -20,6 +20,7 @@ return new class extends Migration
             $table->tinyInteger('ClientStatus')->default(0);
             $table->tinyInteger('Status')->default(0);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

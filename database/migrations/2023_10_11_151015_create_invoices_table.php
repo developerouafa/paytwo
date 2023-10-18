@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('tax_rate');
             $table->string('tax_value');
             $table->double('total_with_tax', 8, 2)->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

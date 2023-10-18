@@ -1,7 +1,12 @@
 
-<button class="btn btn-primary pull-right" wire:click="show_form_add" type="button">
-    {{__('Dashboard/services.addsubservice')}}
-</button><br><br>
+<div class="d-flex justify-content-between pb-1">
+    <button class="btn btn-primary pull-right" wire:click="show_form_add" type="button">
+        {{__('Dashboard/services.addsubservice')}}
+    </button><br><br>
+    <button class="btn btn-danger pull-left" wire:click="deleteall" type="button">
+        {{__('Dashboard/messages.Deleteall')}}
+    </button><br><br>
+</div>
 <div class="table-responsive">
     <table id="example" class="table key-buttons text-md-nowrap">
         <thead>
@@ -10,7 +15,7 @@
                 <th> {{__('Dashboard/services.nameservice')}} </th>
                 <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                 <th>{{__('Dashboard/services.description')}}</th>
-                <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                <th>{{__('Dashboard/users.createdbyuser')}}</th>
                 <th>{{__('Dashboard/sections_trans.created_at')}}</th>
                 <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
                 <th>{{__('Dashboard/services.Processes')}}</th>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\groupprodcut;
 use App\Models\product;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateGroupProducts extends Component
@@ -212,4 +213,9 @@ class CreateGroupProducts extends Component
         return redirect()->to('/Add_GroupProducts');
     }
 
+    public function deleteall()
+    {
+        DB::table('groupprodcuts')->delete();
+        return redirect()->to('/Add_GroupProducts');
+    }
 }

@@ -56,7 +56,6 @@ return [
     'images' => 'Images',
     'viewimages' => 'View Images',
     'addimagesgallary' => "Add photos in the gallery",
-    'addimagesgallary' => "Add photos in the gallery",
     'uploadmoreimages' => 'Upload More Images',
     'mainimage' => 'Main Images',
     'galleryimages' => 'Product photo gallery',

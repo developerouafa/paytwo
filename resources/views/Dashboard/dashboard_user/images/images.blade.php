@@ -38,9 +38,10 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale" data-toggle="modal"
+                            <a class="modal-effect btn btn-primary" data-effect="effect-scale" data-toggle="modal"
                             href="#modaldemo8" title="Update">
                             {{__('Dashboard/products.addimagesgallary')}}</a>
+                            <a class="btn btn-danger" href="{{route('image.deletetruncate')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -145,7 +146,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content modal-content-demo">
                         <div class="modal-header">
-                            <h6 class="modal-title">{{__('Dashboard/products.addimages')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title">{{__('Dashboard/products.addimagesgallary')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                         </div>
                             <div class="modal-body">
                                 <form action="{{route('image.create')}}" method="post" enctype="multipart/form-data" autocomplete="off">

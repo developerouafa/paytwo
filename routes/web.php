@@ -135,6 +135,7 @@ Route::get('/clear', function() {
                         Route::post('/create', 'store')->name('image.create');
                         Route::patch('/edit', 'edit')->name('image.edit');
                         Route::delete('/destroy', 'destroy')->name('image.destroy');
+                        Route::get('/deletetruncate', 'deletetruncate')->name('image.deletetruncate');
                     });
                 });
             });

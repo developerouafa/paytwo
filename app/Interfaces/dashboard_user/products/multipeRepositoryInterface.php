@@ -10,9 +10,12 @@ interface multipeRepositoryInterface
     //* function Store Multipe Image
     public function store($request);
 
-    //* function Store Multipe Update
+    //* function Update Multipe Image
     public function edit($request);
 
-    //* function delete Image
+    //* function delete MultipeImage
     public function destroy($request);
+
+    //* delete All MultipeImage
+    public function deletetruncate();
 }

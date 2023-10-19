@@ -36,5 +36,7 @@ return [
     'sections' => 'Sections',
     'nosectionyet' => 'No Sections yet',
     'sectionidrequired' => 'Section Is Required',
-    'status'=>'Status'
+    'status'=>'Status',
+    'nosection' => 'No Section',
+    'nochildsection' => 'No Child Section',
 ];

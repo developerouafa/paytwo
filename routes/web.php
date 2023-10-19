@@ -103,8 +103,8 @@ Route::get('/clear', function() {
                     Route::get('/index', 'index')->name('Products.index');
                     Route::get('/create', 'create')->name('product.createprod');
                     Route::post('/store', 'store')->name('product.store');
-                    Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
-                    Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                    Route::get('editstatusdéactivepr/{id}', 'editstatusdéactive')->name('editstatusdéactivepr');
+                    Route::get('editstatusactivepr/{id}', 'editstatusactive')->name('editstatusactivepr');
                     Route::patch('/update', 'update')->name('product.update');
                     Route::delete('/destroy', 'destroy')->name('product.destroy');
                     Route::get('/deleteall', 'deleteall')->name('product.deleteall');
@@ -115,8 +115,8 @@ Route::get('/clear', function() {
                         Route::get('/promotions/{id}', 'index');
                         Route::post('/createpromotion', 'store')->name('promotions.create');
                         Route::patch('/promotionupdate', 'update')->name('promotions.update');
-                        Route::get('/promotions/editstatusdéactive/{id}', 'editstatusdéactive')->name('promotions.editstatusdéactive');
-                        Route::get('/promotions/editstatusactive/{id}', 'editstatusactive')->name('promotions.editstatusactive');
+                        Route::get('editstatusdéactiveprm/{id}', 'editstatusdéactive')->name('editstatusdéactiveprm');
+                        Route::get('editstatusactiveprm/{id}', 'editstatusactive')->name('editstatusactiveprm');
                         Route::delete('/deletepromotion', 'destroy')->name('promotion.destroy');
                         Route::get('/deleteall', 'deleteall')->name('promotions.deleteall');
                     });

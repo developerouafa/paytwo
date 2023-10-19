@@ -69,10 +69,10 @@
                                             <td><a>{{$x->price}}</a></td>
                                             <td>
                                                 @if ($x->expired == 1)
-                                                    <a href="{{route('promotions.editstatusactive', $x->id)}}">{{__('Dashboard/products.disabled')}}</a>
+                                                    <a href="{{route('editstatusactiveprm', $x->id)}}">{{__('Dashboard/products.disabled')}}</a>
                                                 @endif
                                                 @if ($x->expired == 0)
-                                                    <a href="{{route('promotions.editstatusdéactive', $x->id)}}">{{__('Dashboard/products.active')}}</a>
+                                                    <a href="{{route('editstatusdéactiveprm', $x->id)}}">{{__('Dashboard/products.active')}}</a>
                                                 @endif
                                             </td>
                                             <td><a href="#">{{$x->user->name}}</a> </td>

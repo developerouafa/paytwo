@@ -36,5 +36,7 @@ return [
     'sections' => 'الاقسام',
     'nosectionyet' => 'لا يوجد اقسام',
     'sectionidrequired' => 'القسم مطلوب',
-    'status'=>'حالة القسم'
+    'status'=>'حالة القسم',
+    'nosection' => 'لا يوجد قسم لهدا المنتج',
+    'nochildsection' => 'لا يوجد قسم الطفل لهدا المنتج',
 ];

@@ -38,6 +38,16 @@ class childrenController extends Controller
        return $this->Sections->showchildren($id);
     }
 
+    public function editstatusdéactive($id)
+    {
+        return $this->Sections->editstatusdéactive($id);
+    }
+
+    public function editstatusactive($id)
+    {
+        return $this->Sections->editstatusactive($id);
+    }
+
     public function destroy(Request $request)
     {
         return $this->Sections->destroy($request);

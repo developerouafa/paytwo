@@ -52,6 +52,7 @@
                                             <th>#</th>
                                             <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             <th>{{__('Dashboard/sections_trans.children')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.status')}}</th>
                                             <th>{{__('Dashboard/sections_trans.section')}}</th>
                                             <th>{{__('Dashboard/sections_trans.usersection')}}</th>
                                             <th>{{__('Dashboard/sections_trans.userchildren')}}</th>
@@ -62,13 +63,21 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($childrens as $x)
-                                            @if ($x->status == 0)
+                                            @if ($x->section->status == 0)
                                                 <tr>
                                                     <td>{{$x->id}}</td>
                                                     <td>
                                                         <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                     </td>
                                                     <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
+                                                    <td>
+                                                        @if ($x->status == 0)
+                                                            <a href="{{route('editstatusdéactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                        @endif
+                                                        @if ($x->status == 1)
+                                                            <a href="{{route('editstatusactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
+                                                        @endif
+                                                    </td>
                                                     <td>{{$x->section->name}}</td>
                                                     <td>{{$x->section->user->name}}</td>
                                                     <td>{{$x->user->name}}</td>

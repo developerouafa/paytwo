@@ -26,8 +26,8 @@ class StoreProductRequest extends FormRequest
             'name_en' => 'required|unique:products,name->en',
             'name_ar' => 'required|unique:products,name->ar',
             'price' => 'required',
-            'section' => 'required',
-            'children' => 'required',
+            // 'section' => 'required',
+            // 'children' => 'required',
         ];
     }
 
@@ -39,9 +39,8 @@ class StoreProductRequest extends FormRequest
             'name_ar.required' =>__('Dashboard/products.namearrequired'),
             'name_ar.unique' =>__('Dashboard/products.namearunique'),
             'price.required' =>__('Dashboard/products.pricerequired'),
-            'section.required' =>__('Dashboard/products.sectionrequired'),
-            'children.required' =>__('Dashboard/products.childrenrequired'),
-
+            // 'section.required' =>__('Dashboard/products.sectionrequired'),
+            // 'children.required' =>__('Dashboard/products.childrenrequired'),
         ];
     }
 }

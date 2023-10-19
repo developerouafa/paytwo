@@ -25,8 +25,8 @@ class UpdateProductRequest extends FormRequest
         return [
             'name_'.app()->getLocale() => 'required',
             'price' => 'required',
-            'section' => 'required',
-            'children' => 'required',
+            // 'section' => 'required',
+            // 'children' => 'required',
         ];
     }
 
@@ -35,8 +35,8 @@ class UpdateProductRequest extends FormRequest
         return [
             'name_'.app()->getLocale().'.required' =>__('Dashboard/products.namerequired'),
             'price.required' =>__('Dashboard/products.pricerequired'),
-            'section.required' =>__('Dashboard/products.sectionrequired'),
-            'children.required' =>__('Dashboard/products.childrenrequired'),
+            // 'section.required' =>__('Dashboard/products.sectionrequired'),
+            // 'children.required' =>__('Dashboard/products.childrenrequired'),
         ];
     }
 }

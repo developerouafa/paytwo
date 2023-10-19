@@ -17,6 +17,12 @@ interface childrenRepositoryInterface
     //* Show Children Products
     public function showchildren($id);
 
-    //* destroy Sections
+    //* Hide Children
+    public function editstatusdéactive($id);
+
+    //* show Children
+    public function editstatusactive($id);
+
+    //* destroy Children
     public function destroy($request);
 }

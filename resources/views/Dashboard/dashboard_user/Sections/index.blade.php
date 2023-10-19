@@ -52,7 +52,6 @@
                                         <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
                                         <th>{{__('Dashboard/sections_trans.status')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.usersection')}}</th>
                                         <th>{{__('Dashboard/users.createdbyuser')}}</th>
                                         <th>{{__('Dashboard/sections_trans.created_at')}}</th>
                                         <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
@@ -69,13 +68,12 @@
                                         <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
                                         <td>
                                             @if ($section->status == 0)
-                                                <a href="{{route('editstatusdéactive', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                <a href="{{route('editstatusdéactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
                                             @endif
                                             @if ($section->status == 1)
-                                                <a href="{{route('editstatusactive', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
+                                                <a href="{{route('editstatusactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
                                             @endif
                                         </td>
-                                        <td> <a href="#">{{$section->user->name}}</a> </td>
                                         <td> <a href="#">{{$section->user->name}}</a> </td>
                                         <td> {{ $section->created_at->diffForHumans() }} </td>
                                         <td> {{ $section->updated_at->diffForHumans() }} </td>

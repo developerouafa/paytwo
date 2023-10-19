@@ -71,6 +71,42 @@ class childrenRepository implements childrenRepositoryInterface
         return view('Dashboard/dashboard_user/childrens.showproduct',compact('section', 'products'));
     }
 
+    public function editstatusdéactive($id)
+    {
+        try{
+            $Section = Section::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 1,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Children_index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Children_index');
+        }
+    }
+
+    public function editstatusactive($id)
+    {
+        try{
+            $Section = Section::findorFail($id);
+            DB::beginTransaction();
+            $Section->update([
+                'status' => 0,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Children_index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Children_index');
+        }
+    }
+
     public function destroy($request)
     {
         // Delete One Request

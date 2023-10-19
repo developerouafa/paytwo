@@ -80,8 +80,8 @@ Route::get('/clear', function() {
                     Route::post('/create', 'store')->name('Sections.store');
                     Route::patch('/update', 'update')->name('Sections.update');
                     Route::delete('/destroy', 'destroy')->name('Sections.destroy');
-                    Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
-                    Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                    Route::get('editstatusdéactivesec/{id}', 'editstatusdéactive')->name('editstatusdéactivesec');
+                    Route::get('editstatusactivesec/{id}', 'editstatusactive')->name('editstatusactivesec');
                     Route::get('/deleteall', 'deleteall')->name('Sections.deleteall');
                 });
 
@@ -91,6 +91,8 @@ Route::get('/clear', function() {
                     Route::post('/createchild', 'store')->name('Children.create');
                     Route::patch('/updatechild', 'update')->name('Children.update');
                     Route::delete('/deletechild', 'destroy')->name('Children.delete');
+                    Route::get('editstatusdéactivech/{id}', 'editstatusdéactive')->name('editstatusdéactivech');
+                    Route::get('editstatusactivech/{id}', 'editstatusactive')->name('editstatusactivech');
                 });
             });
         //############################# end Section & Children Section route ######################################

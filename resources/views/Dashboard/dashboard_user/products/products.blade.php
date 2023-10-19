@@ -66,72 +66,76 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $x)
-                                        @if ($x->section->status == 0)
-                                            <tr>
-                                                <td> {{$x->id}} </td>
-                                                <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                </td>
-                                                <td> {{$x->name}} </td>
-                                                <td>{{ \Str::limit($x->description, 50) }}</td>
-                                                <td> {{$x->price}}</td>
-                                                <td> {{$x->section->name}} </td>
-                                                <td> {{$x->subsections->name}} </td>
-                                                <td>
-                                                    @if ($x->status == 0)
-                                                        <a href="{{route('editstatusdéactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
-                                                    @endif
-                                                    @if ($x->status == 1)
-                                                        <a href="{{route('editstatusactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
-                                                    @endif
-                                                </td>
-                                                <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                <td>
-                                                    @forelse ($x->promotion as $promo)
-                                                        @if ($promo->expired == 0)
-                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                            </a>
-                                                        @else
-                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                {{__('Dashboard/products.promotioniscancel')}}
-                                                            </a>
-                                                        @endif
-                                                    @empty
-                                                        <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                        data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                        href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                    @endforelse ()
-                                                </td>
-                                                <td>
-                                                    @foreach ($stockproduct as $ss)
-                                                        @if ($ss->product_id == $x->id)
-                                                            @if ($ss->stock == "0")
-                                                                <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                        @if (!empty($x->section_id))
+                                            @if ($x->section->status == 0)
+                                                @if ($x->subsections->status == 0)
+                                                    <tr>
+                                                        <td> {{$x->id}} </td>
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                        </td>
+                                                        <td> {{$x->name}} </td>
+                                                        <td>{{ \Str::limit($x->description, 50) }}</td>
+                                                        <td> {{$x->price}}</td>
+                                                        <td> {{$x->section->name}} </td>
+                                                        <td> {{$x->subsections->name}} </td>
+                                                        <td>
+                                                            @if ($x->status == 0)
+                                                                <a href="{{route('editstatusdéactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
                                                             @endif
-                                                            @if ($ss->stock == "1")
-                                                                <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                            @if ($x->status == 1)
+                                                                <a href="{{route('editstatusactive', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
                                                             @endif
-                                                        @endif
-                                                    @endforeach
-                                                </td>
-                                                <td><a href="#">{{$x->user->name}}</a> </td>
-                                                <td> {{ $x->created_at->diffForHumans() }} </td>
-                                                <td> {{ $x->updated_at->diffForHumans() }} </td>
-                                                <td>
-                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                        data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
-                                                        href="#exampleModal2" title="Update">
-                                                        <i class="las la-pen"></i>
-                                                    </a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                        <i class="las la-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                                        </td>
+                                                        <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
+                                                        <td>
+                                                            @forelse ($x->promotion as $promo)
+                                                                @if ($promo->expired == 0)
+                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
+                                                                        {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
+                                                                    </a>
+                                                                @else
+                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
+                                                                        {{__('Dashboard/products.promotioniscancel')}}
+                                                                    </a>
+                                                                @endif
+                                                            @empty
+                                                                <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
+                                                                data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
+                                                                href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
+                                                            @endforelse ()
+                                                        </td>
+                                                        <td>
+                                                            @foreach ($stockproduct as $ss)
+                                                                @if ($ss->product_id == $x->id)
+                                                                    @if ($ss->stock == "0")
+                                                                        <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                                                    @endif
+                                                                    @if ($ss->stock == "1")
+                                                                        <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td><a href="#">{{$x->user->name}}</a> </td>
+                                                        <td> {{ $x->created_at->diffForHumans() }} </td>
+                                                        <td> {{ $x->updated_at->diffForHumans() }} </td>
+                                                        <td>
+                                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                                data-id="{{ $x->id }}" data-name="{{ $x->name }}"
+                                                                data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
+                                                                href="#exampleModal2" title="Update">
+                                                                <i class="las la-pen"></i>
+                                                            </a>
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                data-id="{{ $x->id }}" data-name="{{ $x->name }}"
+                                                                data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                <i class="las la-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endif
                                         @endif
                                         @include('Dashboard.dashboard_user.products.delete_select')
                                     @endforeach

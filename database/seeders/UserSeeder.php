@@ -3,14 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
+use App\Models\product;
 use App\Models\profileclient;
-use App\Models\profileuser;
+use App\Models\section;
+use App\Models\stockproduct;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Auth;
 
 class UserSeeder extends Seeder
 {
@@ -37,6 +38,31 @@ class UserSeeder extends Seeder
         $client_id = Client::latest()->first()->id;
         profileclient::create([
             'client_id' => $client_id
+        ]);
+
+        section::create([
+            'name' => ['en' => 'sectionen1', 'ar' => 'sectionar1'],
+            'user_id' => $user_id,
+        ]);
+        $section_id = section::latest()->first()->id;
+
+        section::create([
+            'name' => ['en' => 'childen1', 'ar' => 'childar1'],
+            'parent_id' => $section_id,
+            'user_id' => $user_id,
+        ]);
+
+        product::create([
+            'name' => ['en' => 'producten1', 'ar' => 'productar1'],
+            'description' => ['en' => 'descriptionen1', 'ar' => 'descriptionar1'],
+            'price' => '100',
+            'user_id' => $user_id,
+        ]);
+
+        $product_id = product::latest()->first()->id;
+        stockproduct::create([
+            'product_id'=> $product_id,
+            'user_id' => $user_id,
         ]);
 
         $role = Role::create(['name' => 'Admin']);

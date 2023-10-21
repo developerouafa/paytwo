@@ -54,6 +54,13 @@ class PermissionTableSeeder extends Seeder
             'Show Children Section',
             'Edit Children Section',
             'Delete Children Section',
+            'Create Client',
+            'Delete All Client',
+            'Delete Group Client',
+            'Show Client',
+            'Edit Client',
+            'Delete Client',
+            'Delete Group Client',
         ];
 
         foreach ($permissions as $permission) {

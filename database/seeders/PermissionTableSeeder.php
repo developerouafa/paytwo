@@ -48,7 +48,12 @@ class PermissionTableSeeder extends Seeder
             'Show Section',
             'Edit Section',
             'Delete Section',
-            'Delete Group Section',
+            'Create Children Section',
+            'Delete All Children Section',
+            'Delete Group Children Section',
+            'Show Children Section',
+            'Edit Children Section',
+            'Delete Children Section',
         ];
 
         foreach ($permissions as $permission) {

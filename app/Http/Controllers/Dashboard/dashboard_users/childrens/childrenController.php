@@ -28,8 +28,17 @@ class childrenController extends Controller
         return $this->Sections->store($request);
     }
 
-    public function update(UpdatechildrenRequest $request)
+    public function update(Request $request)
     {
+        // validations
+        $this->validate($request, [
+            'name_'.app()->getLocale() => 'required|unique:sections,name->'.app()->getLocale().','.$request->id,
+            'section_id' => 'required',
+        ],[
+            'name_'.app()->getLocale().'.required' =>__('Dashboard/sections_trans.namechrequired'),
+            'name_'.app()->getLocale().'.unique' =>__('Dashboard/sections_trans.namechunique'),
+            'section_id.required' =>__('Dashboard/sections_trans.sectionidrequired'),
+        ]);
         return $this->Sections->update($request);
     }
 

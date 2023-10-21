@@ -36,13 +36,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{$section->name}}</td>
-                                    <td>{{ $product->name }}</td>
-                                </tr>
-                            @endforeach
+                                @forelse ($products as $product)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{$section->name}}</td>
+                                        <td>{{ $product->name }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>{{__('Dashboard/messages.database')}}</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div><!-- bd -->

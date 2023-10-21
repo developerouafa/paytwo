@@ -20,5 +20,6 @@ return [
     'imageuserrequired' => 'اختر صورة',
     'Deletegroup' => 'حذف المجموعة',
     'Deleteall' => 'حذف الكل',
-    'back' => 'عودة'
+    'back' => 'عودة',
+    'database' => 'لا توجد بيانات متاحة في الجدول'
 ];

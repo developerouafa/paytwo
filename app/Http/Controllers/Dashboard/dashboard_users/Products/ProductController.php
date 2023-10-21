@@ -32,8 +32,17 @@ class ProductController extends Controller
         return $this->Products->store($request);
     }
 
-    public function update(UpdateProductRequest $request)
+    public function update(Request $request)
     {
+        // validations
+        $this->validate($request, [
+            'name_'.app()->getLocale() => 'required|unique:products,name->'.app()->getLocale().','.$request->id,
+            'price' => 'required',
+        ],[
+            'name_'.app()->getLocale().'.required' =>__('Dashboard/products.namerequired'),
+            'name.unique' =>__('Dashboard/products.nameunique'),
+            'price.required' =>__('Dashboard/products.pricerequired'),
+        ]);
         return $this->Products->update($request);
     }
 

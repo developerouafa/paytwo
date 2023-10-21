@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'phone' => '0682201021',
             'email' => 'ouafa@gmail.com',
             'password' => Hash::make('123456'),
-            'roles_name' => ["Admin"]
+            'roles_name' => ["owner"]
         ]);
 
         $user_id = User::latest()->first()->id;
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'user_id' => $user_id,
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'owner']);
 
         $permissions = Permission::pluck('id','id')->all();
 

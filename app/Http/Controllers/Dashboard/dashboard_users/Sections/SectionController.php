@@ -35,11 +35,17 @@ class SectionController extends Controller
         return $this->Sections->store($request);
     }
 
-    public function update(UpdateSectionRequest $request)
+    public function update(Request $request)
     {
+        // validations
+        $this->validate($request, [
+            'name_'.app()->getLocale() => 'required|unique:sections,name->'.app()->getLocale().','.$request->id,
+        ],[
+            'name_'.app()->getLocale().'.required' =>__('Dashboard/sections_trans.namerequired'),
+            'name_'.app()->getLocale().'.unique' =>__('Dashboard/sections_trans.nameunique'),
+        ]);
         return $this->Sections->update($request);
     }
-
 
     public function destroy(Request $request)
     {

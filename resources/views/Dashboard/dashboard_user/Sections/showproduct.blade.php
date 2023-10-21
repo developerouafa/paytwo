@@ -1,7 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('css')
 
-
 @endsection
 
 @section('title')
@@ -29,20 +28,24 @@
                     <div class="table-responsive">
                         <table class="table table-striped mg-b-0 text-md-nowrap table-hover">
                             <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>{{trans('Dashboard/sections_trans.section')}}</th>
-                                <th>{{trans('Dashboard/products.product')}}</th>
-                            </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{trans('Dashboard/sections_trans.section')}}</th>
+                                    <th>{{trans('Dashboard/products.product')}}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $product)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{$section->name}}</td>
-                                <td>{{ $product->name }}</td>
-                            </tr>
-                            @endforeach
+                                @forelse ($products as $product)
+                                    <tr>
+                                        <td scope="row">{{ $loop->iteration }}</td>
+                                        <td>{{$section->name}}</td>
+                                        <td>{{ $product->name }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>{{__('Dashboard/messages.database')}}</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div><!-- bd -->

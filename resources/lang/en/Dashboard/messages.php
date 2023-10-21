@@ -20,5 +20,6 @@ return [
     'imageuserrequired' => 'Choose a picture',
     'Deletegroup' => 'Delete Group',
     'Deleteall' => 'Delete All',
-    'back' => 'Back'
+    'back' => 'Back',
+    'database' => 'No data available in table'
 ];

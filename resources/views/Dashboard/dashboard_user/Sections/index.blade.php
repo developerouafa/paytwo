@@ -87,14 +87,15 @@
                                             <td> {{ $section->created_at->diffForHumans() }} </td>
                                             <td> {{ $section->updated_at->diffForHumans() }} </td>
                                             <td>
-                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                                @can('Edit Section')
+                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                                @endcan
+
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
                                             </td>
                                         </tr>
 
-                                        @can('Edit Section')
-                                            @include('Dashboard.dashboard_user.Sections.edit')
-                                        @endcan
+                                        @include('Dashboard.dashboard_user.Sections.edit')
 
                                         @can('Delete Section')
                                             @include('Dashboard.dashboard_user.Sections.delete')

@@ -36,54 +36,81 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
+                            @can('Create Receipt')
+                                <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
                                 aria-pressed="true"> {{__('Dashboard/receipt_trans.addreceipt')}}</a>
-                            <a class="btn btn-danger" href="{{route('Receipt.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
+
+                            @can('Delete All Receipt')
+                                <a class="btn btn-danger" href="{{route('Receipt.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
+                            @can('Delete Group Receipt')
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example" class="table key-buttons text-md-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                    <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
-                                    <th> {{__('Dashboard/receipt_trans.price')}} </th>
-                                    <th> {{__('Dashboard/receipt_trans.descr')}} </th>
-                                    <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                    <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                    <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                    <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($receipts as $receipt)
+                    @can('Show Receipt')
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table key-buttons text-md-nowrap">
+                                    <thead>
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>
-                                            <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
-                                        </td>
-                                        <td>{{ $receipt->clients->name }}</td>
-                                        <td>{{ number_format($receipt->amount, 2) }}</td>
-                                        <td>{{ \Str::limit($receipt->description, 50) }}</td>
-                                        <td><a href="#">{{$receipt->user->name}}</a> </td>
-                                        <td> {{ $receipt->created_at->diffForHumans() }} </td>
-                                        <td> {{ $receipt->updated_at->diffForHumans() }} </td>
-                                        <td>
-                                            <a href="{{route('Receipt.edit',$receipt->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$receipt->id}}"><i class="las la-trash"></i></a>
-                                            <a href="{{route('Receipt.show',$receipt->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
-                                        </td>
+                                        <th>#</th>
+                                        @can('Delete Group Receipt')
+                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                        @endcan
+                                        <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
+                                        <th> {{__('Dashboard/receipt_trans.price')}} </th>
+                                        <th> {{__('Dashboard/receipt_trans.descr')}} </th>
+                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                     </tr>
-                                    @include('Dashboard.dashboard_user.Receipt.delete')
-                                    @include('Dashboard.dashboard_user.Receipt.delete_select')
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!-- bd -->
+                                    </thead>
+                                    <tbody>
+                                    @foreach($receipts as $receipt)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            @can('Delete Group Receipt')
+                                                <td>
+                                                    <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
+                                                </td>
+                                            @endcan
+                                            <td>{{ $receipt->clients->name }}</td>
+                                            <td>{{ number_format($receipt->amount, 2) }}</td>
+                                            <td>{{ \Str::limit($receipt->description, 50) }}</td>
+                                            <td><a href="#">{{$receipt->user->name}}</a> </td>
+                                            <td> {{ $receipt->created_at->diffForHumans() }} </td>
+                                            <td> {{ $receipt->updated_at->diffForHumans() }} </td>
+                                            <td>
+                                                @can('Edit Receipt')
+                                                    <a href="{{route('Receipt.edit',$receipt->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                @endcan
+
+                                                @can('Delete Receipt')
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$receipt->id}}"><i class="las la-trash"></i></a>
+                                                @endcan
+
+                                                @can('Print Receipt')
+                                                    <a href="{{route('Receipt.show',$receipt->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                @endcan
+                                            </td>
+                                        </tr>
+                                        @include('Dashboard.dashboard_user.Receipt.delete')
+
+                                        @can('Delete Group Receipt')
+                                            @include('Dashboard.dashboard_user.Receipt.delete_select')
+                                        @endcan
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- bd -->
+                    @endcan
+
                 </div><!-- bd -->
             </div>
             <!--/div-->

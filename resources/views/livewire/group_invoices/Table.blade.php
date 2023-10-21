@@ -36,9 +36,17 @@
                     <td> {{ $group_invoice->created_at->diffForHumans() }} </td>
                     <td> {{ $group_invoice->updated_at->diffForHumans() }} </td>
                     <td>
-                        <button wire:click="edit({{ $group_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $group_invoice->id }})" ><i class="fa fa-trash"></i></button>
-                        <a  wire:click="print({{ $group_invoice->id }})" class="btn btn-primary btn-sm" target="_blank" title="طباعه سند صرف"><i class="fas fa-print"></i></a>
+                        @can('Edit Group Invoices')
+                            <button wire:click="edit({{ $group_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                        @endcan
+
+                        @can('Delete Group Invoices')
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $group_invoice->id }})" ><i class="fa fa-trash"></i></button>
+                        @endcan
+
+                        @can('Print Group Invoices')
+                            <a wire:click="print({{ $group_invoice->id }})" class="btn btn-primary btn-sm" target="_blank" title="طباعه سند صرف"><i class="fas fa-print"></i></a>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

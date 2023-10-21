@@ -83,6 +83,19 @@ class PermissionTableSeeder extends Seeder
             'Delete Product',
             'promotion Product',
             'stock Product',
+            'Create Receipt',
+            'Delete All Receipt',
+            'Delete Group Receipt',
+            'Show Receipt',
+            'Edit Receipt',
+            'Delete Receipt',
+            'Print Receipt',
+            'Create Group Invoices',
+            'Show Group Invoices',
+            'Edit Group Invoices',
+            'Delete Group Invoices',
+            'Print Group Invoices',
+            ,
         ];
 
         foreach ($permissions as $permission) {

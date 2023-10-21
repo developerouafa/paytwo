@@ -181,14 +181,14 @@ Route::get('/clear', function() {
         //############################# Receipt route ##########################################
 
             Route::resource('Receipt', ReceiptAccountController::class);
-            Route::get('/deleteall', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteall');
+            Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
 
         //############################# end Receipt route ######################################
 
         //############################# Payment route ##########################################
 
             Route::resource('Payment', PaymentaccountController::class);
-            Route::get('/deleteall', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteall');
+            Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
 
         //############################# end Payment route ######################################
 

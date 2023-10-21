@@ -16,7 +16,6 @@ class ReceiptAccountController extends Controller
         $this->Receipt = $Receipt;
     }
 
-
     public function index()
     {
         return $this->Receipt->index();
@@ -27,24 +26,20 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->create();
     }
 
-
     public function store(receiptRequest $request)
     {
        return $this->Receipt->store($request);
     }
-
 
     public function show($id)
     {
         return $this->Receipt->show($id);
     }
 
-
     public function edit($id)
     {
         return $this->Receipt->edit($id);
     }
-
 
     public function update(receiptRequest $request)
     {

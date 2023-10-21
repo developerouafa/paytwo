@@ -20,20 +20,17 @@ class ClientController extends Controller
     public function index()
     {
       return  $this->Clients->index();
-
     }
 
     public function create()
     {
       return  $this->Clients->create();
-
     }
 
     public function showsection($id)
     {
        return $this->Clients->showsection($id);
     }
-
 
     public function store(ClientRequest $request)
     {
@@ -42,9 +39,17 @@ class ClientController extends Controller
 
     public function update(Request $request)
     {
+        // validations
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required|regex:/(0)[0-9]{6}/|unique:clients,phone'.','.$request->id,
+        ],[
+            'name.required' => __('Dashboard/clients_trans.nameisrequired'),
+            'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
+            'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
+        ]);
         return $this->Clients->update($request);
     }
-
 
     public function destroy(Request $request)
     {

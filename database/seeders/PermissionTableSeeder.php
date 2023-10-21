@@ -42,10 +42,17 @@ class PermissionTableSeeder extends Seeder
             'Show roles',
             'Modify roles',
             'Delete role',
-            ];
+            'Create Section',
+            'Delete All Section',
+            'Delete Group Section',
+            'Show Section',
+            'Edit Section',
+            'Delete Section',
+            'Delete Group Section',
+        ];
 
-            foreach ($permissions as $permission) {
-                Permission::create(['name' => $permission]);
-            }
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
     }
 }

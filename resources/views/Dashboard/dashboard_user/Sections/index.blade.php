@@ -9,25 +9,25 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.sections')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
+    <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div class="my-auto">
+                <div class="d-flex">
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.sections')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
+                </div>
+            </div>
+        </div>
+    <!-- breadcrumb -->
 @endsection
 @section('content')
 @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
     <!-- row -->
         <!-- row opened -->
@@ -36,63 +36,82 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
-                                {{__('Dashboard/sections_trans.add_sections')}}
-                            </button>
-                            <a class="btn btn-danger" href="{{route('Sections.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @can('Create Section')
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+                                    {{__('Dashboard/sections_trans.add_sections')}}
+                                </button>
+                            @endcan
+
+                            @can('Delete All Section')
+                                <a class="btn btn-danger" href="{{route('Sections.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
+                            @can('Delete Group Section')
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example" class="table key-buttons text-md-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                        <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.status')}}</th>
-                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.Processes')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($sections as $section)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>
-                                            <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
-                                        </td>
-                                        <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
-                                        <td>
-                                            @if ($section->status == 0)
-                                                <a href="{{route('editstatusdéactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
-                                            @endif
-                                            @if ($section->status == 1)
-                                                <a href="{{route('editstatusactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
-                                            @endif
-                                        </td>
-                                        <td> <a href="#">{{$section->user->name}}</a> </td>
-                                        <td> {{ $section->created_at->diffForHumans() }} </td>
-                                        <td> {{ $section->updated_at->diffForHumans() }} </td>
-                                        <td>
-                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
-                                        </td>
-                                    </tr>
+                    @can('Show Section')
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table key-buttons text-md-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.status')}}</th>
+                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.Processes')}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($sections as $section)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>
+                                                <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
+                                            </td>
+                                            <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
+                                            <td>
+                                                @if ($section->status == 0)
+                                                    <a href="{{route('editstatusdéactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                @endif
+                                                @if ($section->status == 1)
+                                                    <a href="{{route('editstatusactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
+                                                @endif
+                                            </td>
+                                            <td> <a href="#">{{$section->user->name}}</a> </td>
+                                            <td> {{ $section->created_at->diffForHumans() }} </td>
+                                            <td> {{ $section->updated_at->diffForHumans() }} </td>
+                                            <td>
+                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
+                                            </td>
+                                        </tr>
 
-                                    @include('Dashboard.dashboard_user.Sections.edit')
-                                    @include('Dashboard.dashboard_user.Sections.delete')
-                                    @include('Dashboard.dashboard_user.Sections.delete_select')
+                                        @can('Edit Section')
+                                            @include('Dashboard.dashboard_user.Sections.edit')
+                                        @endcan
 
-                                @endforeach
-                                </tbody>
-                            </table>
+                                        @can('Delete Section')
+                                            @include('Dashboard.dashboard_user.Sections.delete')
+                                        @endcan
+
+                                        @can('Delete Group Section')
+                                            @include('Dashboard.dashboard_user.Sections.delete_select')
+                                        @endcan
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div><!-- bd -->
-                </div><!-- bd -->
+                    @endcan
+
+                </div>
             </div>
             <!--/div-->
 

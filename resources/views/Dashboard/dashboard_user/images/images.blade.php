@@ -9,15 +9,15 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">{{__('Dashboard/products.images')}}</h4>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
+    <!-- breadcrumb -->
+        <div class="breadcrumb-header justify-content-between">
+            <div class="my-auto">
+                <div class="d-flex">
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/products.images')}}</h4>
+                </div>
+            </div>
+        </div>
+    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -34,6 +34,7 @@
     <div class="row">
 
         {{-- Index --}}
+        @can('Show main&multip images products')
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
@@ -69,14 +70,21 @@
                                                 <td>
                                                     <img src="{{asset('storage/'.$x->mainimage)}}" alt="" style="width: 80px; height:80px;">
                                                     <br>
-                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                    data-id="{{ $x->id }}" data-toggle="modal"
-                                                    href="#exampleModal3" title="Update">
-                                                    <i class="las la-pen"></i></a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                    data-id="{{ $x->id }}" data-toggle="modal"
-                                                    href="#exampleModal5" title="Delete">
-                                                    <i class="las la-trash"></i></a>
+
+                                                    @can('Edit main image Product')
+                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-toggle="modal"
+                                                        href="#exampleModal3" title="Update">
+                                                        <i class="las la-pen"></i></a>
+                                                    @endcan
+
+                                                    @can('Delete main image Product')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-toggle="modal"
+                                                        href="#exampleModal5" title="Delete">
+                                                        <i class="las la-trash"></i></a>
+                                                    @endcan
+
                                                 </td>
                                                 {{-- <td><a href="#">{{$mainimage->user->name}}</a> </td>
                                                 <td> {{ $mainimage->created_at->diffForHumans() }} </td>
@@ -92,14 +100,20 @@
                                                 <td>
                                                     <img src="{{asset('storage/'.$x->multipimage)}}" alt="" style="width: 80px; height:80px;">
                                                     <br>
-                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                    data-id="{{ $x->id }}" data-toggle="modal"
-                                                    href="#exampleModal2" title="Update">
-                                                    <i class="las la-pen"></i></a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                    data-id="{{ $x->id }}" data-toggle="modal"
-                                                    href="#exampleModal4" title="Delete">
-                                                    <i class="las la-trash"></i></a>
+
+                                                    @can('Edit multip image Product')
+                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-toggle="modal"
+                                                        href="#exampleModal2" title="Update">
+                                                        <i class="las la-pen"></i></a>
+                                                    @endcan
+
+                                                    @can('Delete multip image Product')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                        data-id="{{ $x->id }}" data-toggle="modal"
+                                                        href="#exampleModal4" title="Delete">
+                                                        <i class="las la-trash"></i></a>
+                                                    @endcan
                                                 </td>
                                                 {{-- <td><a href="#">{{$multimg->user->name}}</a> </td>
                                                 <td> {{ $multimg->created_at->diffForHumans() }} </td>
@@ -112,6 +126,7 @@
                     </div>
                 </div>
             </div>
+        @endcan
 
         <!-- Add Main Images -->
             <div class="modal" id="modaldemo9">

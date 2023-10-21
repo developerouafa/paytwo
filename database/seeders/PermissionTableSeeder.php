@@ -61,6 +61,10 @@ class PermissionTableSeeder extends Seeder
             'Edit Client',
             'Delete Client',
             'Delete Group Client',
+            'Show main&multip images products',
+            'Edit main image Product',
+            'Edit multip image Product',
+            'Delete multip image Product',
         ];
 
         foreach ($permissions as $permission) {

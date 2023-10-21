@@ -15,7 +15,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function index()
     {
-        $receipts =  receipt_account::all();
+        $receipts =  receipt_account::latest()->get();
         return view('Dashboard.dashboard_user.Receipt.index',compact('receipts'));
     }
 

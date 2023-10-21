@@ -15,7 +15,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function index()
     {
-        $payments =  PaymentAccount::all();
+        $payments =  PaymentAccount::latest()->get();
         return view('Dashboard.dashboard_user.Payment.index',compact('payments'));
     }
 

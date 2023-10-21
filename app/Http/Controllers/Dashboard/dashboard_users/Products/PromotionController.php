@@ -28,6 +28,17 @@ class PromotionController extends Controller
 
     public function update(Request $request)
     {
+        // validations
+        $this->validate($request, [
+            'price' => 'required|between:1,99999999999999',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ],[
+            'price.required' =>__('Dashboard/products.priceisrequired'),
+            'price.between' =>__('Dashboard/products.priceislow'),
+            'start_time.required' =>__('Dashboard/products.start_timerequired'),
+            'end_time.required' =>__('Dashboard/products.end_timerequired'),
+        ]);
         return $this->Promotion->update($request);
     }
 

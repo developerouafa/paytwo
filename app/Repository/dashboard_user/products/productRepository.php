@@ -13,16 +13,16 @@ class productRepository implements productRepositoryInterface
 
     public function index()
     {
-        $products = product::query()->productselect()->productwith()->get();
-        $childrens = Section::query()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::query()->selectsections()->withsections()->parent()->get();
+        $products = product::latest()->productselect()->productwith()->get();
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
         return view('Dashboard/dashboard_user/Products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function create(){
-        $childrens = Section::query()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::query()->selectsections()->withsections()->parent()->get();
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
         return view('Dashboard/dashboard_user/Products.productscreate',compact('childrens', 'sections'));
     }
 

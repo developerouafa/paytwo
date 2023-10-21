@@ -11,7 +11,7 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function index()
     {
-      $clients = Client::query()->clientselect()->clientwith()->get();
+      $clients = Client::latest()->clientselect()->clientwith()->get();
       return view('Dashboard/dashboard_user/clients.clients',compact('clients'));
     }
 

@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class SectionRepository implements SectionRepositoryInterface
 {
-
     public function index()
     {
-      $sections = Section::query()->selectsections()->withsections()->parent()->get();
+      $sections = Section::latest()->selectsections()->withsections()->parent()->get();
       return view('Dashboard/dashboard_user.Sections.index',compact('sections'));
     }
 
@@ -67,7 +66,7 @@ class SectionRepository implements SectionRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                    Section::findorFail($request->id)->delete();
+                    Section::findorFail($request->id)->destroy();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Sections.index');

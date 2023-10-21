@@ -11,7 +11,7 @@ class stockRepository implements stockRepositoryInterface
     public function editstocknoexist($id)
     {
         try{
-            $stock = stockproduct::findorFail($id);
+            $stock = stockproduct::latest()->findorFail($id);
             DB::beginTransaction();
             $stock->update([
                 'stock' => 1,

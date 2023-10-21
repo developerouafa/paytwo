@@ -11,7 +11,7 @@ class childrenRepository implements childrenRepositoryInterface
 {
     public function index()
     {
-        $childrens = Section::selectchildrens()->withchildrens()->child()->get();
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::selectsections()->Withsections()->parent()->get();
         return view('Dashboard/dashboard_user.childrens.childrens', compact('childrens', 'sections'));
     }

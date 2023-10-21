@@ -11,7 +11,7 @@ class promotionRepository implements promotionRepositoryInterface
 
     public function index($id)
     {
-        $promotion = promotion::query()->where('product_id', $id)->withPromotion()->get();
+        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
         $product = product::where('id', $id)->first();
         return view('Dashboard/dashboard_user/promotions.promotions', compact('promotion', 'product'));
     }
@@ -44,17 +44,6 @@ class promotionRepository implements promotionRepositoryInterface
     //* function update other Promotion
     public function update($request)
     {
-        // validations
-        // $this->validate($request, [
-        //     'price' => 'required|between:1,99999999999999',
-        //     'start_time' => 'required',
-        //     'end_time' => 'required',
-        // ],[
-        //     'price.required' =>__('messagevalidation.users.priceisrequired'),
-        //     'price.between' =>__('messagevalidation.users.priceislow'),
-        //     'start_time.required' =>__('messagevalidation.users.start_timerequired'),
-        //     'end_time.required' =>__('messagevalidation.users.end_timerequired'),
-        // ]);
         try{
             $promotion_id = $request->id;
             $promotion = Promotion::findOrFail($promotion_id);

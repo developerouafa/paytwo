@@ -52,10 +52,10 @@
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
                                    <select name="client_id" class="form-control select2" required>
-                                      @foreach($Clients as $Client)
-                                           <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
-                                           <option value="{{$Client->id}}">{{$Client->name}}</option>
-                                      @endforeach
+                                        <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
+                                        @foreach($Clients as $Client)
+                                            <option value="{{$Client->id}}">{{$Client->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

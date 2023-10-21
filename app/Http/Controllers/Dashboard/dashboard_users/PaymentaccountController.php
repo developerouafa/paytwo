@@ -20,30 +20,25 @@ class PaymentaccountController extends Controller
         return $this->Payment->index();
     }
 
-
     public function create()
     {
         return $this->Payment->create();
     }
-
 
     public function store(PaymentRequest $request)
     {
         return $this->Payment->store($request);
     }
 
-
     public function show($id)
     {
         return $this->Payment->show($id);
     }
 
-
     public function edit($id)
     {
         return $this->Payment->edit($id);
     }
-
 
     public function update(PaymentRequest $request)
     {

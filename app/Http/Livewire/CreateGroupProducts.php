@@ -39,7 +39,7 @@ class CreateGroupProducts extends Component
         }
 
         return view('livewire.GroupProducts.create-group-products', [
-            'groups'=>groupprodcut::all(),
+            'groups'=>groupprodcut::latest()->get(),
             'subtotal' => $Total_after_discount = $total - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
             'total' => $Total_after_discount * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100)
         ]);

@@ -29,7 +29,7 @@ class GroupInvoices extends Component
     public function render()
     {
         return view('livewire.group_invoices.group-invoices',[
-            'group_invoices'=>invoice::where('invoice_number',2)->get(),
+            'group_invoices'=>invoice::latest()->where('invoice_number',2)->get(),
             'Clients'=> Client::all(),
             'Groups'=> groupprodcut::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),

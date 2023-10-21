@@ -31,19 +31,19 @@
                         </div>
                         <div class="row">
                             <!-- col -->
-                            <div class="col-lg-4">
-                                <ul id="treeview1">
-                                    <li><a href="#">{{ $role->name }}</a>
-                                        <ul>
-                                            @if(!empty($rolePermissions))
-                                                @foreach($rolePermissions as $v)
-                                                <li>{{ $v->name }}</li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                                <div class="col-lg-4">
+                                    <ul id="treeview1">
+                                        <li><a href="#">{{ $role->name }}</a>
+                                            <ul>
+                                                @if(!empty($rolePermissions))
+                                                    @foreach($rolePermissions as $v)
+                                                        <li>{{ $v->name }}</li>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             <!-- /col -->
                         </div>
                     </div>

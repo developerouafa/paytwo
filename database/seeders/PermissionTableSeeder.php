@@ -28,7 +28,6 @@ class PermissionTableSeeder extends Seeder
             'sidebar groupservice',
             'sidebar receipt & Payment',
             'sidebar receipt',
-            'sidebar receipt',
             'Create User',
             'Show users',
             'Edit User',
@@ -43,9 +42,8 @@ class PermissionTableSeeder extends Seeder
             'Show roles',
             'Modify roles',
             'Delete role',
-            '',
-            '',
             ];
+
             foreach ($permissions as $permission) {
                 Permission::create(['name' => $permission]);
             }

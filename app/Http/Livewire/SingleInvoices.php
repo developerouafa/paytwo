@@ -30,7 +30,7 @@ class SingleInvoices extends Component
     public function render()
     {
         return view('livewire.single_invoices.single-invoices', [
-            'single_invoices'=>invoice::where('invoice_number',1)->get(),
+            'single_invoices'=>invoice::query()->where('invoice_number',1)->get(),
             'Clients'=> Client::all(),
             'Products'=> product::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),

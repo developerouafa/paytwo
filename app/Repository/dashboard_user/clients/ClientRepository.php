@@ -4,6 +4,7 @@ namespace App\Repository\dashboard_user\Clients;
 use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
 use App\Models\Client;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ClientRepository implements ClientRepositoryInterface
 {
@@ -27,6 +28,7 @@ class ClientRepository implements ClientRepositoryInterface
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'user_id' => auth()->user()->id,
+                'password' => Hash::make($request->password)
             ]);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -44,10 +46,21 @@ class ClientRepository implements ClientRepositoryInterface
         try{
             DB::beginTransaction();
             $Client = Client::findOrFail($request->id);
+            $password = $Client->password;
+
+            if(!empty($input['password'])){
                 $Client->update([
                     'name' => $request->name,
-                    'phone' => $request->phone
+                    'phone' => $request->phone,
+                    'password' => Hash::make($request->password),
                 ]);
+            }else{
+                $Client->update([
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                    'password' => $password,
+                ]);
+            }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Clients.index');
@@ -68,11 +81,11 @@ class ClientRepository implements ClientRepositoryInterface
                     Client::findOrFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('Children_index');
+                return redirect()->route('Clients.index');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Children_index');
+                return redirect()->route('Clients.index');
             }
         }
         // Delete Group Request

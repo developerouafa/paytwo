@@ -20,7 +20,7 @@
             @include('livewire.single_invoices.Table')
         @endcan
     @else
-        @can('Create Single Invoices')
+        @can('Create Group Invoices')
             <form wire:submit.prevent="store" autocomplete="off">
                 @csrf
                 <div class="row">

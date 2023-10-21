@@ -43,8 +43,11 @@ class ClientController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'phone' => 'required|regex:/(0)[0-9]{6}/|unique:clients,phone'.','.$request->id,
+            'password' => 'same:confirm-password',
         ],[
             'name.required' => __('Dashboard/clients_trans.nameisrequired'),
+            'password.required' =>__('Dashboard/users.passwordrequired'),
+            'password.same' =>__('Dashboard/users.passwordsame'),
             'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
             'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
         ]);

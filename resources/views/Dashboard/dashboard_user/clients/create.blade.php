@@ -14,10 +14,22 @@
                     <label for="inputName1" class="control-label">{{__('Dashboard/clients_trans.name')}}<span class="tx-danger">*</span></label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
                 </div>
+
                 <div class="modal-body">
                     <label for="phone">{{trans('Dashboard/clients_trans.phone')}}</label>
                     <input type="number" class="form-control" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="{{__('Dashboard/clients_trans.phone')}}">
                 </div>
+
+                <div class="modal-body">
+                    <label>{{__('Dashboard/users.password')}}<span class="tx-danger">*</span></label>
+                    <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="password" required type="password">
+                </div>
+
+                <div class="modal-body">
+                    <label>{{__('Dashboard/users.confirmpassword')}}<span class="tx-danger">*</span></label>
+                    <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper" name="confirm-password" required type="password">
+                </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/clients_trans.Close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('Dashboard/clients_trans.submit')}}</button>

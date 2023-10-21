@@ -25,6 +25,7 @@ class ClientRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required|unique:clients,phone|regex:/(0)[0-9]{6}/',
+            'password' => 'required|same:confirm-password',
         ];
     }
 
@@ -34,6 +35,8 @@ class ClientRequest extends FormRequest
             'name.required' => __('Dashboard/clients_trans.nameisrequired'),
             'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
             'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
+            'password.required' =>__('Dashboard/users.passwordrequired'),
+            'password.same' =>__('Dashboard/users.passwordsame'),
         ];
     }
 }

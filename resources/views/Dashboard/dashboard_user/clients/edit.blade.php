@@ -22,6 +22,20 @@
                     <input type="hidden" name="id" value="{{ $client->id }}">
                     <input type="number" name="phone" value="{{ $client->phone }}" class="form-control" id="phone">
                 </div>
+
+
+                <div class="modal-body">
+                    <label>{{__('Dashboard/users.password')}} <span class="tx-danger">*</span></label>
+                    {!! Form::password('password', array('class' => 'form-control')) !!}
+                </div>
+
+                <div class="modal-body">
+                    <label>{{__('Dashboard/users.currentpassword')}} <span class="tx-danger">*</span></label>
+                    {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
+                </div>
+
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/clients_trans.Close')}}</button>
                     <button type="submit" class="btn btn-primary">{{trans('Dashboard/clients_trans.submit')}}</button>

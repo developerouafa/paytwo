@@ -235,6 +235,9 @@ class GroupInvoices extends Component
             'discount_value' => $single_invoice->discount_value,
             'tax_rate' => $single_invoice->tax_rate,
             'total_with_tax' => $single_invoice->total_with_tax,
+            'nameUserCreateinvoice' => $single_invoice->user->name,
+            'phoneUserCreateinvoice' => $single_invoice->user->phone,
+            'emailUserCreateinvoice' => $single_invoice->user->email
         ]);
     }
 }

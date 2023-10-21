@@ -32,10 +32,10 @@
                         <div class="invoice-header">
                             <h1 class="invoice-title">{{__('Dashboard/receipt_trans.receipt')}}</h1>
                             <div class="billed-from">
-                                <h6>برنامج ادراه  </h6>
-                                <p>201 المهندسين<br>
-                                    Tel No: 011111111<br>
-                                    Email: Hospital@gmail.com</p>
+                                <h6>{{__('Dashboard/receipt_trans.receipt')}}</h6>
+                                <p>{{$receipt->user->name}}<br>
+                                    {{__('Dashboard/users.phone')}}: {{$receipt->user->phone}}<br>
+                                    {{__('Dashboard/users.email')}}: {{$receipt->user->email}}</p>
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">

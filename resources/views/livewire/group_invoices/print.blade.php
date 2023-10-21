@@ -36,9 +36,9 @@
                                 <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
                                 <div class="billed-from">
                                     <h6>{{__('Dashboard/services.Servicebill')}}</h6>
-                                    <p>201 المهندسين<br>
-                                        Tel No: 0111111111<br>
-                                        Email: Admin@gmail.com</p>
+                                    <p> {{$nameUserCreateinvoice}} <br>
+                                        {{__('Dashboard/users.phone')}}: {{$phoneUserCreateinvoice}}<br>
+                                        {{__('Dashboard/users.email')}}: {{$emailUserCreateinvoice}}</p>
                                 </div><!-- billed-from -->
                             </div><!-- invoice-header -->
                             <div class="row mg-t-20">

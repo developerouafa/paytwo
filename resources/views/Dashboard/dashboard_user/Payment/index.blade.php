@@ -28,74 +28,86 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-    <!-- row -->
-        <!-- row opened -->
-        <div class="row row-sm">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button" aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
-                            <a class="btn btn-danger" href="{{route('Payment.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+        <!-- row -->
+            <!-- row opened -->
+            <div class="row row-sm">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                                @can('Create Catch Payment')
+                                    <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button" aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
+                                @endcan
+
+                                @can('Delete All Catch Payment')
+                                    <a class="btn btn-danger" href="{{route('Payment.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                @endcan
+
+                                @can('Delete Group Catch Payment')
+                                    <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                                @endcan
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example" class="table key-buttons text-md-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                    <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
-                                    <th> {{__('Dashboard/payment_trans.price')}} </th>
-                                    <th> {{__('Dashboard/payment_trans.descr')}} </th>
-                                    <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                    <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                    <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                    <th> {{__('Dashboard/payment_trans.Processes')}} </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($payments as $payment)
+                        @can('Show Catch Payment')
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="table key-buttons text-md-nowrap">
+                                        <thead>
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>
-                                                <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
-                                            </td>
-                                            <td>{{ $payment->clients->name }}</td>
-                                            <td>{{ number_format($payment->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($payment->description, 50) }}</td>
-                                            <td><a href="#">{{$payment->user->name}}</a> </td>
-                                            <td> {{ $payment->created_at->diffForHumans() }} </td>
-                                            <td> {{ $payment->updated_at->diffForHumans() }} </td>
-                                            <td>
-                                                <a href="{{route('Payment.edit',$payment->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$payment->id}}"><i class="las la-trash"></i></a>
-                                                <a href="{{route('Payment.show',$payment->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
-
-                                            </td>
+                                            <th>#</th>
+                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
+                                            <th> {{__('Dashboard/payment_trans.price')}} </th>
+                                            <th> {{__('Dashboard/payment_trans.descr')}} </th>
+                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th> {{__('Dashboard/payment_trans.Processes')}} </th>
                                         </tr>
-                                            @include('Dashboard.dashboard_user.Payment.delete')
-                                            @include('Dashboard.dashboard_user.Payment.delete_select')
+                                        </thead>
+                                        <tbody>
+                                            @foreach($payments as $payment)
+                                                <tr>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
+                                                    </td>
+                                                    <td>{{ $payment->clients->name }}</td>
+                                                    <td>{{ number_format($payment->amount, 2) }}</td>
+                                                    <td>{{ \Str::limit($payment->description, 50) }}</td>
+                                                    <td><a href="#">{{$payment->user->name}}</a> </td>
+                                                    <td> {{ $payment->created_at->diffForHumans() }} </td>
+                                                    <td> {{ $payment->updated_at->diffForHumans() }} </td>
+                                                    <td>
+                                                        @can('Edit Catch Payment')
+                                                            <a href="{{route('Payment.edit',$payment->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                        @endcan
 
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                                        @can('Delete Catch Payment')
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$payment->id}}"><i class="las la-trash"></i></a>
+                                                        @endcan
+
+                                                        @can('Print Catch Payment')
+                                                            <a href="{{route('Payment.show',$payment->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                        @endcan
+                                                    </td>
+                                                </tr>
+                                                    @include('Dashboard.dashboard_user.Payment.delete')
+                                                    @include('Dashboard.dashboard_user.Payment.delete_select')
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- bd -->
+                        @endcan
                     </div><!-- bd -->
-                </div><!-- bd -->
-            </div>
-            <!--/div-->
+                </div>
+                <!--/div-->
 
-        <!-- /row -->
+            <!-- /row -->
+        </div>
+        <!-- row closed -->
 
-    </div>
-    <!-- row closed -->
-
-			<!-- Container closed -->
-
-		<!-- main-content closed -->
 @endsection
 @section('js')
     <script>

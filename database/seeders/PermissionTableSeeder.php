@@ -28,6 +28,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar groupservice',
             'sidebar receipt & Payment',
             'sidebar receipt',
+            'sidebar Payment',
             'Create User',
             'Show users',
             'Edit User',
@@ -65,6 +66,15 @@ class PermissionTableSeeder extends Seeder
             'Edit main image Product',
             'Edit multip image Product',
             'Delete multip image Product',
+            'Delete all image Product',
+            'Create Image Gallary Product',
+            'Create Catch Payment',
+            'Delete All Catch Payment',
+            'Delete Group Catch Payment',
+            'Show Catch Payment',
+            'Edit Catch Payment',
+            'Print Catch Payment',
+            'Delete Catch Payment'
         ];
 
         foreach ($permissions as $permission) {

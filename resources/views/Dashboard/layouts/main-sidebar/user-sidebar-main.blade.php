@@ -102,7 +102,7 @@
                         @can('sidebar receipt')
                             <li><a class="slide-item" href="{{ route('Receipt.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch Receipt')}} </a></li>
                         @endcan
-                        @can('sidebar receipt')
+                        @can('sidebar Payment')
                             <li><a class="slide-item" href="{{ route('Payment.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch payment')}} </a></li>
                         @endcan
                     </ul>

@@ -74,7 +74,15 @@ class PermissionTableSeeder extends Seeder
             'Show Catch Payment',
             'Edit Catch Payment',
             'Print Catch Payment',
-            'Delete Catch Payment'
+            'Delete Catch Payment',
+            'Create Product Product',
+            'Delete All Product',
+            'Delete Group Product',
+            'Show Product',
+            'Edit Product',
+            'Delete Product',
+            'promotion Product',
+            'stock Product',
         ];
 
         foreach ($permissions as $permission) {

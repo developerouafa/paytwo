@@ -93,7 +93,9 @@
                                                     </td>
                                                 </tr>
                                                     @include('Dashboard.dashboard_user.Payment.delete')
-                                                    @include('Dashboard.dashboard_user.Payment.delete_select')
+                                                    @can('Delete Group Catch Payment')
+                                                        @include('Dashboard.dashboard_user.Payment.delete_select')
+                                                    @endcan
                                             @endforeach
                                         </tbody>
                                     </table>

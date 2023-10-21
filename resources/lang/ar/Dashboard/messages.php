@@ -19,5 +19,6 @@ return [
     'error' => 'هناك شيء خاطئ',
     'imageuserrequired' => 'اختر صورة',
     'Deletegroup' => 'حذف المجموعة',
-    'Deleteall' => 'حذف الكل'
+    'Deleteall' => 'حذف الكل',
+    'back' => 'عودة'
 ];

@@ -36,6 +36,8 @@
                 <div class="d-flex justify-content-between">
                     @can('Create User')
                         <a class="btn btn-primary" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
+                    @endcan
+                    @can('Delete Group User')
                         <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                     @endcan
                 </div>
@@ -110,7 +112,7 @@
                                             @endcan
                                         </td>
                                     </tr>
-                                    @can('Delete Select')
+                                    @can('Delete Group User')
                                         @include('Dashboard.dashboard_user.users.delete_select')
                                     @endcan
                                 @endforeach

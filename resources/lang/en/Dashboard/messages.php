@@ -19,5 +19,6 @@ return [
     'error' => 'There is something wrong',
     'imageuserrequired' => 'Choose a picture',
     'Deletegroup' => 'Delete Group',
-    'Deleteall' => 'Delete All'
+    'Deleteall' => 'Delete All',
+    'back' => 'Back'
 ];

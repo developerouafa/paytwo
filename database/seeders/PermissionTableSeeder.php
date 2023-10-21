@@ -100,6 +100,9 @@ class PermissionTableSeeder extends Seeder
             'Edit Single Invoices',
             'Delete Single Invoices',
             'Print Single Invoices',
+            'Show Group Services',
+            'Edit Group Services',
+            'Delete Group Services',
         ];
 
         foreach ($permissions as $permission) {

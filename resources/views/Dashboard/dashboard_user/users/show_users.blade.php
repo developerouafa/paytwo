@@ -34,82 +34,91 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    {{-- @can('اضافة مستخدم') --}}
+                    @can('Create User')
                         <a class="btn btn-primary" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
                         <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example" class="table key-buttons text-md-nowrap">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                <th> {{__('Dashboard/users.name')}} </th>
-                                <th> {{__('Dashboard/users.phone')}} </th>
-                                <th> {{__('Dashboard/users.email')}} </th>
-                                <th> {{__('Dashboard/users.userstatus')}} </th>
-                                <th> {{__('Dashboard/users.usertype')}} </th>
-                                <th> {{__('Dashboard/users.userolestaus')}} </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
+            @can('Show users')
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table key-buttons text-md-nowrap">
+                            <thead>
                                 <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>
-                                        <input type="checkbox" name="delete_select" value="{{$user->id}}" class="delete_select">
-                                    </td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if ($user->UserStatus == 1)
-                                            <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>
-                                            </span>
-                                        @else
-                                            <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if (!empty($user->getRoleNames()))
-                                            @foreach ($user->getRoleNames() as $v)
-                                                <label class="badge badge-success">{{ $v }}</label>
-                                            @endforeach
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($user->Status == 1)
-                                            <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>
-                                            </span>
-                                        @else
-                                            <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                            title="تعديل"><i class="las la-pen"></i></a>
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                            data-toggle="modal" href="#modaldemo8" title="حذف"><i
-                                                class="las la-trash"></i></a>
-                                    </td>
+                                    <th>#</th>
+                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                    <th> {{__('Dashboard/users.name')}} </th>
+                                    <th> {{__('Dashboard/users.phone')}} </th>
+                                    <th> {{__('Dashboard/users.email')}} </th>
+                                    <th> {{__('Dashboard/users.userstatus')}} </th>
+                                    <th> {{__('Dashboard/users.usertype')}} </th>
+                                    <th> {{__('Dashboard/users.userolestaus')}} </th>
+                                    <th></th>
                                 </tr>
-                                @include('Dashboard.dashboard_user.users.delete_select')
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
+                                        <td>
+                                            <input type="checkbox" name="delete_select" value="{{$user->id}}" class="delete_select">
+                                        </td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if ($user->UserStatus == 1)
+                                                <span class="label text-success d-flex">
+                                                    <div class="dot-label bg-success ml-1"></div>
+                                                </span>
+                                            @else
+                                                <span class="label text-danger d-flex">
+                                                    <div class="dot-label bg-danger ml-1"></div>
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if (!empty($user->getRoleNames()))
+                                                @foreach ($user->getRoleNames() as $v)
+                                                    <label class="badge badge-success">{{ $v }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($user->Status == 1)
+                                                <span class="label text-success d-flex">
+                                                    <div class="dot-label bg-success ml-1"></div>
+                                                </span>
+                                            @else
+                                                <span class="label text-danger d-flex">
+                                                    <div class="dot-label bg-danger ml-1"></div>
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @can('Edit User')
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
+                                                title="تعديل"><i class="las la-pen"></i></a>
+                                            @endcan
+
+                                            @can('Delete User')
+                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                    class="las la-trash"></i></a>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                    @can('Delete Select')
+                                        @include('Dashboard.dashboard_user.users.delete_select')
+                                    @endcan
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
     </div>
     <!--/div-->

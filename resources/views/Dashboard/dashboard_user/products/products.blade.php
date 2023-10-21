@@ -58,7 +58,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @can('Delete Group Product')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th>{{__('Dashboard/products.product')}}</th>
                                             <th>{{__('Dashboard/products.description')}}</th>
                                             <th>{{__('Dashboard/products.price')}}</th>
@@ -85,9 +87,11 @@
                                                     @if ($x->subsections->status == 0)
                                                         <tr>
                                                             <td> {{$x->id}} </td>
-                                                            <td>
-                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                            </td>
+                                                            @can('Delete Group Product')
+                                                                <td>
+                                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                                </td>
+                                                            @endcan
                                                             <td> {{$x->name}} </td>
                                                             <td>{{ \Str::limit($x->description, 50) }}</td>
                                                             <td> {{$x->price}}</td>
@@ -164,9 +168,11 @@
                                                 @if ($x->section->status == 0)
                                                     <tr>
                                                         <td> {{$x->id}} </td>
-                                                        <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                        </td>
+                                                        @can('Delete Group Product')
+                                                            <td>
+                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                            </td>
+                                                        @endcan
                                                         <td> {{$x->name}} </td>
                                                         <td>{{ \Str::limit($x->description, 50) }}</td>
                                                         <td> {{$x->price}}</td>
@@ -238,9 +244,11 @@
                                             @if (empty($x->section_id))
                                                 <tr>
                                                     <td> {{$x->id}} </td>
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                    </td>
+                                                    @can('Delete Group Product')
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
                                                     <td> {{$x->name}} </td>
                                                     <td>{{ \Str::limit($x->description, 50) }}</td>
                                                     <td> {{$x->price}}</td>
@@ -307,7 +315,9 @@
                                                     </td>
                                                 </tr>
                                             @endif
-                                            @include('Dashboard.dashboard_user.products.delete_select')
+                                            @can('Delete Group Product')
+                                                @include('Dashboard.dashboard_user.products.delete_select')
+                                            @endcan
                                         @endforeach
                                     </tbody>
                                 </table>

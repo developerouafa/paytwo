@@ -49,7 +49,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                @can('Delete Group Promotions')
+                                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                @endcan
                                                 <th>{{__('Dashboard/products.products')}}</th>
                                                 <th>{{__('Dashboard/products.start_time')}}</th>
                                                 <th>{{__('Dashboard/products.end_time')}}</th>
@@ -65,9 +67,11 @@
                                             @foreach ($promotion as $x)
                                                 <tr>
                                                     <td>{{$x->id}}</td>
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                    </td>
+                                                    @can('Delete Group Promotions')
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
                                                     <td><a>{{$product->name}}</a></td>
                                                     <td><a>{{$x->start_time}}</a></td>
                                                     <td><a>{{$x->end_time}}</a></td>

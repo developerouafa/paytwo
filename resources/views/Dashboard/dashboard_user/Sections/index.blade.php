@@ -58,7 +58,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @can('Delete Group Section')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
                                             <th>{{__('Dashboard/sections_trans.status')}}</th>
                                             <th>{{__('Dashboard/users.createdbyuser')}}</th>
@@ -71,9 +73,12 @@
                                     @foreach($sections as $section)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>
-                                                <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
-                                            </td>
+                                            @can('Delete Group Section')
+                                                <td>
+                                                    <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
+                                                </td>
+                                            @endcan
+
                                             <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
                                             <td>
                                                 @if ($section->status == 0)

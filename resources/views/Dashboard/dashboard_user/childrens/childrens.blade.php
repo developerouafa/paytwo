@@ -56,7 +56,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                @can('Delete Group Children Section')
+                                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                @endcan
                                                 <th>{{__('Dashboard/sections_trans.children')}}</th>
                                                 <th>{{__('Dashboard/sections_trans.status')}}</th>
                                                 <th>{{__('Dashboard/sections_trans.section')}}</th>
@@ -72,9 +74,11 @@
                                                 @if ($x->section->status == 0)
                                                     <tr>
                                                         <td>{{$x->id}}</td>
-                                                        <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                        </td>
+                                                        @can('Delete Group Children Section')
+                                                            <td>
+                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                            </td>
+                                                        @endcan
                                                         <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
                                                         <td>
                                                             @if ($x->status == 0)
@@ -108,9 +112,10 @@
                                                         </td>
                                                     </tr>
                                                 @endif
-                                            @can('Delete Group Children Section')
-                                                @include('Dashboard.dashboard_user.childrens.delete_select')
-                                            @endcan
+
+                                                @can('Delete Group Children Section')
+                                                    @include('Dashboard.dashboard_user.childrens.delete_select')
+                                                @endcan
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -205,30 +210,30 @@
                 </div>
 
             <!-- delete -->
-            <div class="modal" id="modaldemo9">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-children">{{__('Dashboard/sections_trans.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                                type="button"><span aria-hidden="true">&times;</span></button>
+                <div class="modal" id="modaldemo9">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal-content-demo">
+                            <div class="modal-header">
+                                <h6 class="modal-children">{{__('Dashboard/sections_trans.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                    type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <form action="{{route('Children.delete')}}" method="post">
+                                {{ method_field('delete') }}
+                                {{ csrf_field() }}
+                                <div class="modal-body">
+                                    <p>{{__('Dashboard/sections_trans.aresuredeleting')}}</p><br>
+                                    <input type="hidden" name="id" id="id">
+                                    <input type="hidden" value="1" name="page_id">
+                                    <input class="form-control" name="children" id="children" type="text" readonly>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/sections_trans.Close')}}</button>
+                                    <button type="submit" class="btn btn-danger">{{__('Dashboard/sections_trans.delete')}}</button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{route('Children.delete')}}" method="post">
-                            {{ method_field('delete') }}
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <p>{{__('Dashboard/sections_trans.aresuredeleting')}}</p><br>
-                                <input type="hidden" name="id" id="id">
-                                <input type="hidden" value="1" name="page_id">
-                                <input class="form-control" name="children" id="children" type="text" readonly>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/sections_trans.Close')}}</button>
-                                <button type="submit" class="btn btn-danger">{{__('Dashboard/sections_trans.delete')}}</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
 
         </div>
     <!-- row closed -->

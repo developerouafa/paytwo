@@ -24,7 +24,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: " تم اضافة الصلاحية بنجاح",
+                    msg: {{__('Dashboard/users.addsuccesspermission')}},
                     type: "success"
                 });
             }
@@ -36,7 +36,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: " تم تحديث بيانات الصلاحية بنجاح",
+                    msg: {{__('Dashboard/users.updatesuccesspermission')}},
                     type: "success"
                 });
             }
@@ -48,7 +48,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: " تم حذف الصلاحية بنجاح",
+                    msg: {{__('Dashboard/users.deletesuccesspermission')}},
                     type: "error"
                 });
             }
@@ -103,7 +103,6 @@
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                         $role->id], 'style' => 'display:inline']) !!}
                                                         <input type="submit" class="btn btn-danger btn-sm" value="{{__('Dashboard/permissions.delete')}}">
-                                                        {{-- {!! Form::submit('حذف', ['class' => 'btn btn-danger btn-sm']) !!} --}}
                                                         {!! Form::close() !!}
                                                     @endcan
                                                 @endif

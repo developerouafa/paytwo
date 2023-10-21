@@ -45,4 +45,7 @@ return [
     'taxNumber' => 'الرقم الضريبي',
     'adderss' => 'العنوان',
     'createdbyuser' => 'انشئ من طرف المستخدم',
+    'addsuccesspermission' => 'تم اضافة الصلاحية بنجاح',
+    'updatesuccesspermission' => 'تم تحديث بيانات الصلاحية بنجاح',
+    'deletesuccesspermission' => 'تم حذف الصلاحية بنجاح',
 ];

@@ -58,7 +58,9 @@
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">#</th>
-                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @can('Delete Group Client')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
@@ -72,9 +74,11 @@
                                         @foreach($clients as $client)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$client->id}}" class="delete_select">
-                                                </td>
+                                                @can('Delete Group Client')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$client->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
                                                 <td>{{$client->name}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>

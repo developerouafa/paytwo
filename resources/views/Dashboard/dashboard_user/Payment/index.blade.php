@@ -55,7 +55,9 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @can('Delete Group Catch Payment')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
                                             <th> {{__('Dashboard/payment_trans.price')}} </th>
                                             <th> {{__('Dashboard/payment_trans.descr')}} </th>
@@ -69,9 +71,11 @@
                                             @foreach($payments as $payment)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
-                                                    </td>
+                                                    @can('Delete Group Catch Payment')
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
                                                     <td>{{ $payment->clients->name }}</td>
                                                     <td>{{ number_format($payment->amount, 2) }}</td>
                                                     <td>{{ \Str::limit($payment->description, 50) }}</td>

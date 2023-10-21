@@ -45,4 +45,7 @@ return [
     'taxNumber' => 'Tax Number',
     'adderss' => 'Address',
     'createdbyuser' => 'Create by This User',
+    'addsuccesspermission' => 'The permission has been added successfully',
+    'updatesuccesspermission' => 'The validity data has been updated successfully',
+    'deletesuccesspermission' => 'The permission has been successfully deleted',
 ];

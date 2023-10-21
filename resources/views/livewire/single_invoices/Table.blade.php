@@ -36,9 +36,17 @@
                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                 <td>
-                    <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" ><i class="fa fa-trash"></i></button>
-                    <button wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
+                    @can('Edit Single Invoices')
+                        <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                    @endcan
+
+                    @can('Delete Single Invoices')
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" ><i class="fa fa-trash"></i></button>
+                    @endcan
+
+                    @can('Print Single Invoices')
+                        <button wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
+                    @endcan
                 </td>
             </tr>
 

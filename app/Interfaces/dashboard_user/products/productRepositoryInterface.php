@@ -8,6 +8,9 @@ interface productRepositoryInterface
     //* get All Products
     public function index();
 
+    //* get All Softdelete
+    public function softdelete();
+
     //* store Products
     public function create();
 
@@ -31,4 +34,10 @@ interface productRepositoryInterface
 
     //* delete All Product
     public function deleteall();
+
+    //* Restore
+    public function restore($id);
+
+    //* Force Delete
+    public function forcedelete($id);
 }

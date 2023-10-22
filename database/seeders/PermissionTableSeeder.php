@@ -23,6 +23,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar children',
             'sidebar Deleted childrens',
             'sidebar products',
+            'sidebar Deleted products',
             'sidebar clients',
             'sidebar Group Services',
             'sidebar Singleservice & groupservice',

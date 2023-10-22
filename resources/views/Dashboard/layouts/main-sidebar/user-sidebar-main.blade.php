@@ -53,9 +53,9 @@
                         @can('sidebar children')
                             <li><a class="slide-item" href="{{ route('Children_index') }}">{{__('Dashboard/main-sidebar_trans.view_allchildren')}}</a></li>
                         @endcan
-                        {{-- @can('sidebar Deleted childrens') --}}
+                        @can('sidebar Deleted childrens')
                             <li><a class="slide-item" href="{{ route('Children.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedchildrens')}}</a></li>
-                        {{-- @endcan --}}
+                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -67,6 +67,9 @@
                         @can('sidebar products')
                             <li><a class="slide-item" href="{{ route('Products.index') }}">{{__('Dashboard/main-sidebar_trans.products')}}</a></li>
                         @endcan
+                        {{-- @can('sidebar Deleted products') --}}
+                            <li><a class="slide-item" href="{{ route('Products.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedproducts')}}</a></li>
+                        {{-- @endcan --}}
                     </ul>
                 </li>
             @endcan

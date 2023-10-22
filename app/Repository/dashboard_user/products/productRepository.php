@@ -20,6 +20,15 @@ class productRepository implements productRepositoryInterface
         return view('Dashboard/dashboard_user/Products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
+    public function softdelete()
+    {
+        $products = product::onlyTrashed()->latest()->productselect()->productwith()->get();
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_user/Products.softdelete',compact('products', 'childrens', 'sections', 'stockproduct'));
+    }
+
     public function create(){
         $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::latest()->selectsections()->withsections()->parent()->get();
@@ -169,5 +178,35 @@ class productRepository implements productRepositoryInterface
     {
         DB::table('products')->delete();
         return redirect()->route('Products.index');
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+                product::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Products.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Products.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+                product::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Products.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Products.softdelete');
+        }
     }
 }

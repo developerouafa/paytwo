@@ -60,7 +60,7 @@
                                                     <a href="{{route('restoresc', $section->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                                     <form action="{{route('forcedeletesc', $section->id)}}" method="get">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.delete')}}</button>
+                                                        <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                                                     </form>
                                                 </td>
                                             </tr>

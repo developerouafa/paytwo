@@ -112,6 +112,7 @@ Route::get('/clear', function() {
             Route::group(['prefix' => 'Products'], function(){
                 Route::controller(ProductController::class)->group(function() {
                     Route::get('/index', 'index')->name('Products.index');
+                    Route::get('/Deleted_Product', 'softdelete')->name('Products.softdelete');
                     Route::get('/create', 'create')->name('product.createprod');
                     Route::post('/store', 'store')->name('product.store');
                     Route::get('editstatusdéactivepr/{id}', 'editstatusdéactive')->name('editstatusdéactivepr');
@@ -119,6 +120,8 @@ Route::get('/clear', function() {
                     Route::patch('/update', 'update')->name('product.update');
                     Route::delete('/destroy', 'destroy')->name('product.destroy');
                     Route::get('/deleteall', 'deleteall')->name('product.deleteall');
+                    Route::get('restorepr/{id}', 'restore')->name('restorepr');
+                    Route::get('forcedeletepr/{id}', 'forcedelete')->name('forcedeletepr');
                 });
 
                 Route::prefix('promotions')->group(function (){

@@ -22,6 +22,11 @@ class ProductController extends Controller
       return  $this->Products->index();
     }
 
+    public function softdelete()
+    {
+      return  $this->Products->softdelete();
+    }
+
     public function create()
     {
       return  $this->Products->create();
@@ -69,5 +74,15 @@ class ProductController extends Controller
     public function deleteall()
     {
         return $this->Products->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Products->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Products->forcedelete($id);
     }
 }

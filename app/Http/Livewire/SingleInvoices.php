@@ -32,7 +32,7 @@ class SingleInvoices extends Component
     public function render()
     {
         return view('livewire.single_invoices.single-invoices', [
-            'single_invoices'=>invoice::latest()->where('invoice_number',1)->get(),
+            'single_invoices'=>invoice::latest()->where('invoice_classify',1)->get(),
             'Clients'=> Client::all(),
             'Products'=> product::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
@@ -72,7 +72,6 @@ class SingleInvoices extends Component
                 if($this->updateMode){
 
                     $single_invoices = invoice::findorfail($this->single_invoice_id);
-                    $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;
@@ -101,6 +100,7 @@ class SingleInvoices extends Component
                     $number = random_int('100000', '2000000000');
                     $single_invoices = new invoice();
                     $single_invoices->invoice_number = $number;
+                    $single_invoices->invoice_classify = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;
@@ -148,7 +148,6 @@ class SingleInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
                     $single_invoices = invoice::findorfail($this->single_invoice_id);
-                    $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;
@@ -177,6 +176,7 @@ class SingleInvoices extends Component
                     $number = random_int('100000', '2000000000');
                     $single_invoices = new invoice();
                     $single_invoices->invoice_number = $number;
+                    $single_invoices->invoice_classify = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;

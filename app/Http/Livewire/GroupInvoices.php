@@ -29,7 +29,7 @@ class GroupInvoices extends Component
     public function render()
     {
         return view('livewire.group_invoices.group-invoices',[
-            'group_invoices'=>invoice::latest()->where('invoice_number',2)->get(),
+            'group_invoices'=>invoice::latest()->where('invoice_classify',2)->get(),
             'Clients'=> Client::all(),
             'Groups'=> groupprodcut::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
@@ -76,7 +76,6 @@ class GroupInvoices extends Component
                 if($this->updateMode){
 
                     $group_invoices = Invoice::findorfail($this->group_invoice_id);
-                    $group_invoices->invoice_number = 2;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;
@@ -106,6 +105,7 @@ class GroupInvoices extends Component
                     $number = random_int('100000', '2000000000');
                     $group_invoices = new invoice();
                     $group_invoices->invoice_number = $number;
+                    $group_invoices->invoice_classify = 2;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;
@@ -149,7 +149,6 @@ class GroupInvoices extends Component
                 // في حالة التعديل
                 if($this->updateMode){
                     $group_invoices = invoice::findorfail($this->group_invoice_id);
-                    $group_invoices->invoice_number = 2;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;
@@ -180,6 +179,7 @@ class GroupInvoices extends Component
                     $number = random_int('100000', '2000000000');
                     $group_invoices = new invoice();
                     $group_invoices->invoice_number = $number;
+                    $group_invoices->invoice_classify = 2;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;

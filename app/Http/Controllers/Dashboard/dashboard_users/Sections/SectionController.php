@@ -26,7 +26,6 @@ class SectionController extends Controller
     public function softdelete()
     {
       return  $this->Sections->softdelete();
-
     }
 
     public function showsection($id)

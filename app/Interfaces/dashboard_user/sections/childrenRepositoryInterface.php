@@ -8,6 +8,9 @@ interface childrenRepositoryInterface
     //* get All Childrens
     public function index();
 
+    //* get All Softdelete
+    public function softdelete();
+
     //* store Childrens
     public function store($request);
 
@@ -25,4 +28,10 @@ interface childrenRepositoryInterface
 
     //* destroy Children
     public function destroy($request);
+
+    //* Restore
+    public function restore($id);
+
+    //* Force Delete
+    public function forcedelete($id);
 }

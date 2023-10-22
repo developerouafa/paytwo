@@ -16,6 +16,13 @@ class childrenRepository implements childrenRepositoryInterface
         return view('Dashboard/dashboard_user.childrens.childrens', compact('childrens', 'sections'));
     }
 
+    public function softdelete()
+    {
+        $childrens = Section::onlyTrashed()->latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::selectsections()->Withsections()->parent()->get();
+        return view('Dashboard/dashboard_user.childrens.softdelete',compact('childrens', 'sections'));
+    }
+
     public function store($request)
     {
         try{
@@ -137,6 +144,36 @@ class childrenRepository implements childrenRepositoryInterface
                 toastr()->error(trans('Dashboard/messages.error'));
                 return redirect()->route('Children_index');
             }
+        }
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+                Section::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Children.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Children.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+                Section::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Children.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Children.softdelete');
         }
     }
 }

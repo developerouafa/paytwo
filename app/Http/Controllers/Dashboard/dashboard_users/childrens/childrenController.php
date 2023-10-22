@@ -20,7 +20,11 @@ class childrenController extends Controller
     public function index()
     {
       return  $this->Sections->index();
+    }
 
+    public function softdelete()
+    {
+      return  $this->Sections->softdelete();
     }
 
     public function store(StorechildrenRequest $request)
@@ -60,5 +64,15 @@ class childrenController extends Controller
     public function destroy(Request $request)
     {
         return $this->Sections->destroy($request);
+    }
+
+    public function restore($id)
+    {
+        return $this->Sections->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Sections->forcedelete($id);
     }
 }

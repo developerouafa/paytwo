@@ -57,7 +57,7 @@
                                                 <td> {{ $section->created_at->diffForHumans() }} </td>
                                                 <td> {{ $section->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    <a href="{{route('restoresc', $section->id)}}">{{__('Dashboard/messages.delete')}}</a>
+                                                    <a href="{{route('restoresc', $section->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                                     <form action="{{route('forcedeletesc', $section->id)}}" method="get">
                                                         @csrf
                                                         <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.delete')}}</button>

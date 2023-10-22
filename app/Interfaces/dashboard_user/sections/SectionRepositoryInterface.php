@@ -8,7 +8,7 @@ interface SectionRepositoryInterface
     //* get All Sections
     public function index();
 
-    //* get All Sections Softdelete
+    //* get All Softdelete
     public function softdelete();
 
     //* store Sections

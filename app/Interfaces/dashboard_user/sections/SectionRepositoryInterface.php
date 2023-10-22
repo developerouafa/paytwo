@@ -8,6 +8,9 @@ interface SectionRepositoryInterface
     //* get All Sections
     public function index();
 
+    //* get All Sections Softdelete
+    public function softdelete();
+
     //* store Sections
     public function store($request);
 
@@ -28,4 +31,10 @@ interface SectionRepositoryInterface
 
     //* delete All Section
     public function deleteall();
+
+    //* Restore
+    public function restore($id);
+
+    //* Force Delete
+    public function forcedelete($id);
 }

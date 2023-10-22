@@ -81,6 +81,7 @@ Route::get('/clear', function() {
             Route::group(['prefix' => 'Sections'], function(){
                 Route::controller(SectionController::class)->group(function() {
                     Route::get('/index', 'index')->name('Sections.index');
+                    Route::get('/Deleted_Section', 'softdelete')->name('Sections.softdelete');
                     Route::get('/Show_by_Section/{id}', 'showsection')->name('Sections.showsection');
                     Route::post('/create', 'store')->name('Sections.store');
                     Route::patch('/update', 'update')->name('Sections.update');
@@ -88,10 +89,13 @@ Route::get('/clear', function() {
                     Route::get('editstatusdéactivesec/{id}', 'editstatusdéactive')->name('editstatusdéactivesec');
                     Route::get('editstatusactivesec/{id}', 'editstatusactive')->name('editstatusactivesec');
                     Route::get('/deleteall', 'deleteall')->name('Sections.deleteall');
+                    Route::get('restoresc/{id}', 'restore')->name('restoresc');
+                    Route::get('forcedeletesc/{id}', 'forcedelete')->name('forcedeletesc');
                 });
 
                 Route::controller(childrenController::class)->group(function() {
                     Route::get('/child', 'index')->name('Children_index');
+                    Route::get('/Deleted_Children', 'softdelete')->name('Children.softdelete');
                     Route::get('/Show_by_Children/{id}', 'showchildren')->name('Children.showchildren');
                     Route::post('/createchild', 'store')->name('Children.create');
                     Route::patch('/updatechild', 'update')->name('Children.update');

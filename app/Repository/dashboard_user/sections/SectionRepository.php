@@ -15,6 +15,12 @@ class SectionRepository implements SectionRepositoryInterface
       return view('Dashboard/dashboard_user.Sections.index',compact('sections'));
     }
 
+    public function softdelete()
+    {
+      $sections = Section::onlyTrashed()->latest()->selectsections()->withsections()->parent()->get();
+      return view('Dashboard/dashboard_user.Sections.softdelete',compact('sections'));
+    }
+
     public function store($request)
     {
         try{
@@ -66,7 +72,7 @@ class SectionRepository implements SectionRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                    Section::findorFail($request->id)->destroy();
+                    Section::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Sections.index');
@@ -140,5 +146,35 @@ class SectionRepository implements SectionRepositoryInterface
     {
         DB::table('sections')->delete();
         return redirect()->route('Sections.index');
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+                Section::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Sections.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Sections.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+                Section::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Sections.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Sections.softdelete');
+        }
     }
 }

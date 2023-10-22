@@ -21,6 +21,11 @@ class SectionController extends Controller
     public function index()
     {
       return  $this->Sections->index();
+    }
+
+    public function softdelete()
+    {
+      return  $this->Sections->softdelete();
 
     }
 
@@ -28,7 +33,6 @@ class SectionController extends Controller
     {
        return $this->Sections->showsection($id);
     }
-
 
     public function store(StoreSectionRequest $request)
     {
@@ -65,5 +69,15 @@ class SectionController extends Controller
     public function deleteall()
     {
         return $this->Sections->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Sections->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Sections->forcedelete($id);
     }
 }

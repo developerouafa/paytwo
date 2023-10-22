@@ -47,6 +47,9 @@
                         @can('sidebar section')
                             <li><a class="slide-item" href="{{ route('Sections.index') }}">{{__('Dashboard/main-sidebar_trans.view_all')}}</a></li>
                         @endcan
+                        @can('sidebar Deleted sections')
+                            <li><a class="slide-item" href="{{ route('Sections.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedsections')}}</a></li>
+                        @endcan
                         @can('sidebar children')
                             <li><a class="slide-item" href="{{ route('Children_index') }}">{{__('Dashboard/main-sidebar_trans.view_allchildren')}}</a></li>
                         @endcan

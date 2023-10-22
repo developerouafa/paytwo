@@ -21,5 +21,7 @@ return [
     'Deletegroup' => 'Delete Group',
     'Deleteall' => 'Delete All',
     'back' => 'Back',
-    'database' => 'No data available in table'
+    'database' => 'No data available in table',
+    'restore' => 'Restore',
+    'deletee' => 'Delete',
 ];

@@ -1,6 +1,9 @@
 @extends('Dashboard.layouts.master')
 @section('css')
-
+    <!-- Internal Data table css -->
+    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('title')
     {{__('Dashboard/services.group_services')}}
@@ -35,41 +38,7 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
-<script>
-    $(function() {
-        jQuery("[name=select_all]").click(function(source) {
-            checkboxes = jQuery("[name=delete_select]");
-            for(var i in checkboxes){
-                checkboxes[i].checked = source.target.checked;
-            }
-        });
-    })
-</script>
-
-<script>
-    $(function() {
-        jQuery("[name=select_all]").click(function(source) {
-            checkboxes = jQuery("[name=delete_select]");
-            for(var i in checkboxes){
-                checkboxes[i].checked = source.target.checked;
-            }
-        });
-    })
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        $("#btn_delete_all").click(function () {
-            var selected = [];
-            $("#example input[name=delete_select]:checked").each(function () {
-                selected.push(this.value);
-            });
-
-            if (selected.length > 0) {
-                $('#delete_select').modal('show')
-                $('input[id="delete_select_id"]').val(selected);
-            }
-        });
-    });
-</script>
+    <!--Internal  Notify js -->
+    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
 @endsection

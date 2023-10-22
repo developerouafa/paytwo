@@ -21,6 +21,7 @@ return [
     'Totalwithtax' => 'الاجمالي مع الضريبة',
     'Total' => 'الاجمالي',
     'Invoicetype' => 'نوع الفاتورة',
+    'Invoicestatus' => 'حالة الفاتورة',
     'Processes' => 'العمليات',
     'addotheinvoice' => 'إضافة فاتورة جديدة',
     'dataaddsuccessfully' => 'تم حفظ البيانات بنجاح.',

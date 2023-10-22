@@ -21,6 +21,7 @@ return [
     'Totalwithtax' => 'Total with tax',
     'Total' => 'Total',
     'Invoicetype' => 'Invoice type',
+    'Invoicestatus' => 'Invoice status',
     'Processes' => 'Processes',
     'addotheinvoice' => 'Add New Invoice',
     'dataaddsuccessfully' => 'The data has been saved successfully.',

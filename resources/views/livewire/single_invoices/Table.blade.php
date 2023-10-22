@@ -14,6 +14,7 @@
             <th> {{__('Dashboard/services.Taxvalue')}} </th>
             <th> {{__('Dashboard/services.Totalwithtax')}} </th>
             <th> {{__('Dashboard/services.Invoicetype')}} </th>
+            <th> {{__('Dashboard/services.Invoicestatus')}} </th>
             <th> {{__('Dashboard/users.createdbyuser')}} </th>
             <th>{{__('Dashboard/sections_trans.created_at')}}</th>
             <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
@@ -34,6 +35,15 @@
                 <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
                 <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
                 <td>{{ $single_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
+                <td>
+                    @if ($single_invoice->invoice_status == 1)
+                        مرسلة
+                    @elseif ($single_invoice->invoice_status == 2)
+                        قيدة المراجعة
+                    @elseif ($single_invoice->invoice_status == 3)
+                        مكتملة
+                    @endif
+                </td>
                 <td>{{$single_invoice->user->name}}</td>
                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>

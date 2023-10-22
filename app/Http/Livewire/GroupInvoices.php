@@ -49,7 +49,6 @@ class GroupInvoices extends Component
     }
 
     public function edit($id){
-
         $this->show_table = false;
         $this->updateMode = true;
         $group_invoice = Invoice::findorfail($id);

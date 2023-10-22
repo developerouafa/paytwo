@@ -82,11 +82,17 @@
                                                 <td>{{$client->name}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>
-                                                    @if ($client->Status == 0)
-                                                        <a href="{{route('editstatusdéactive', $client->id)}}" class="dropdown-item"><i class="text-warning ti-back-right"></i>{{__('Dashboard/clients_trans.disabled')}}</a>
-                                                    @endif
                                                     @if ($client->Status == 1)
-                                                        <a href="{{route('editstatusactive', $client->id)}}" class="dropdown-item"><i class="text-warning ti-back-right"></i>{{__('Dashboard/clients_trans.active')}}</a>
+                                                        <a href="{{route('editstatusdéactivecl', $client->id)}}" class="dropdown-item">
+                                                            <i class="text-warning ti-back-right"></i>
+                                                            {{__('Dashboard/clients_trans.disabled')}}
+                                                        </a>
+                                                    @endif
+                                                    @if ($client->Status == 0)
+                                                        <a href="{{route('editstatusactivecl', $client->id)}}" class="dropdown-item">
+                                                            <i class="text-warning ti-back-right"></i>
+                                                            {{__('Dashboard/clients_trans.active')}}
+                                                        </a>
                                                     @endif
                                                 </td>
                                                 {{-- <td><a href="{{route('Sections.showsection',$client->id)}}">{{$client->user->phone}}</a> </td> --}}

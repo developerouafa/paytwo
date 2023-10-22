@@ -154,8 +154,8 @@ Route::get('/clear', function() {
             Route::prefix('Clients')->group(function (){
                 Route::resource('Clients', ClientController::class);
                 Route::controller(ClientController::class)->group(function() {
-                    Route::get('editstatusdéactive/{id}', 'editstatusdéactive')->name('editstatusdéactive');
-                    Route::get('editstatusactive/{id}', 'editstatusactive')->name('editstatusactive');
+                    Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');
+                    Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');
                     Route::get('/deleteall', 'deleteall')->name('Clients.deleteall');
                 });
             });

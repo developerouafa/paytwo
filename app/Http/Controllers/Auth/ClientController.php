@@ -14,9 +14,29 @@ class ClientController extends Controller
 {
     public function store(ClientLoginRequest $request)
     {
+        // if ($request->authenticate()) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended(RouteServiceProvider::Client);
+        // }
+        // return redirect()->back()->withErrors(['name' => (trans('Dashboard/messages.error'))]);
+
+
         if ($request->authenticate()) {
             $request->session()->regenerate();
-            return redirect()->intended(RouteServiceProvider::Client);
+            if(Auth::user()->Status == "1"){
+                return redirect()->intended(RouteServiceProvider::Client);
+            }
+            else{
+                $id = Auth::user()->id;
+                $client = Client::findorFail($id);
+                $client->update([
+                    'ClientStatus' => 0,
+                ]);
+                Auth::guard('client')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect('/');
+            }
         }
         return redirect()->back()->withErrors(['name' => (trans('Dashboard/messages.error'))]);
     }

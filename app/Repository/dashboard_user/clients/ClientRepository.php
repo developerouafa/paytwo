@@ -112,7 +112,7 @@ class ClientRepository implements ClientRepositoryInterface
         // return view('Dashboard/Sections.showproduct',compact('section', 'products'));
     }
 
-    public function editstatusdéactive($id)
+    public function editstatusactive($id)
     {
         try{
             $Client = Client::findorFail($id);
@@ -130,7 +130,7 @@ class ClientRepository implements ClientRepositoryInterface
         }
     }
 
-    public function editstatusactive($id)
+    public function editstatusdéactive($id)
     {
         try{
             $Client = Client::findorFail($id);

@@ -32,6 +32,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar groupservice',
             'sidebar receipt & Payment',
             'sidebar receipt',
+            'sidebar Deleted receipt',
             'sidebar Payment',
             'Create User',
             'Show users',

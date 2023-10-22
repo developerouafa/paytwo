@@ -21,6 +21,11 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->index();
     }
 
+    public function softdelete()
+    {
+      return  $this->Receipt->softdelete();
+    }
+
     public function create()
     {
         return $this->Receipt->create();
@@ -54,5 +59,15 @@ class ReceiptAccountController extends Controller
     public function deleteall()
     {
         return $this->Receipt->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Receipt->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Receipt->forcedelete($id);
     }
 }

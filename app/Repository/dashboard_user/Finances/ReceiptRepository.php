@@ -19,6 +19,12 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         return view('Dashboard.dashboard_user.Receipt.index',compact('receipts'));
     }
 
+    public function softdelete()
+    {
+        $receipts =  receipt_account::onlyTrashed()->latest()->get();
+        return view('Dashboard.dashboard_user.Receipt.softdelete',compact('receipts'));
+    }
+
     public function create()
     {
         $Clients = Client::all();
@@ -161,5 +167,35 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     {
         DB::table('receipt_accounts')->delete();
         return redirect()->route('Receipt.index');
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+              receipt_account::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Receipt.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Receipt.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+              receipt_account::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Receipt.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Receipt.softdelete');
+        }
     }
 }

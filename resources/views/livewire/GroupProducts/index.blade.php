@@ -9,7 +9,7 @@
 </div>
     @can('Show Group Services')
         <div class="table-responsive">
-            <table id="example" class="table key-buttons text-md-nowrap">
+            <table id="example1" class="table key-buttons text-md-nowrap">
                 <thead>
                     <tr>
                         <th>#</th>

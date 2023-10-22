@@ -50,4 +50,5 @@ return [
     'totalincludingtax' => 'Total including tax',
     'print' => 'Print',
     'Singleservicebill' => 'Single service bill',
+    'invoicenumber' => 'Number Invoice'
 ];

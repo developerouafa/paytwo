@@ -4,6 +4,7 @@
         <thead>
         <tr>
             <th>#</th>
+            <th> {{__('Dashboard/services.invoicenumber')}} </th>
             <th> {{__('Dashboard/services.nameservice')}} </th>
             <th> {{__('Dashboard/services.client')}} </th>
             <th> {{__('Dashboard/services.dateinvoice')}} </th>
@@ -23,6 +24,7 @@
         @foreach ($single_invoices as $single_invoice)
             <tr>
                 <td>{{ $loop->iteration}}</td>
+                <td>{{ $single_invoice->invoice_number }}</td>
                 <td>{{ $single_invoice->Service->name }}</td>
                 <td>{{ $single_invoice->Client->name }}</td>
                 <td>{{ $single_invoice->invoice_date }}</td>

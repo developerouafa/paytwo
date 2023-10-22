@@ -50,4 +50,5 @@ return [
     'totalincludingtax' => 'الاجمالي شامل الضريبة',
     'print' => 'طباعة',
     'Singleservicebill' => 'فاتوره خدمه مفرده',
+    'invoicenumber' => 'رقم الفاتورة'
 ];

@@ -16,5 +16,11 @@ return [
     'invoices' => 'الفواتير',
     'Catch Receipt' => 'سند قبض',
     'theaccounts' => 'الحسابات',
-    'Catch payment' => 'سند صرف'
+    'Catch payment' => 'سند صرف',
+    'deletedsections' => 'القسم المحذوف',
+    'deletedchildrens' => 'أطفال محذوفة',
+    'deletedproducts' => 'المنتجات المحذوفة',
+    'deletedclients' => 'العملاء المحذوفين',
+    'deletedreceipt' => 'الإيصال المحذوف',
+    'deletedpayment' => 'الدفع المحذوف',
 ];

@@ -16,5 +16,11 @@ return [
     'invoices' => 'Invoices',
     'Catch Receipt' => 'Catch Receipt',
     'theaccounts' => 'The Accounts',
-    'Catch payment' => 'Catch payment'
+    'Catch payment' => 'Catch payment',
+    'deletedsections' => 'deleted section',
+    'deletedchildrens' => 'deleted Childrens',
+    'deletedproducts' => 'deleted Products',
+    'deletedclients' => 'deleted Clients',
+    'deletedreceipt' => 'deleted Receipt',
+    'deletedpayment' => 'deleted Payment',
 ];

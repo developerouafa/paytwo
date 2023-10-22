@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
             'phone' => '0682201021',
             'email' => 'ouafa@gmail.com',
             'password' => Hash::make('123456'),
-            'roles_name' => ["owner"]
+            'roles_name' => ["owner"],
+            'Status' => '1'
         ]);
 
         $user_id = User::latest()->first()->id;

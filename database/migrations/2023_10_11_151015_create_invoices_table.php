@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('invoice_number');
+            $table->integer('invoice_classify');
             $table->date('invoice_date');
             $table->integer('type')->default(1);
             $table->integer('invoice_status')->default(1);

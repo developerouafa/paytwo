@@ -18,16 +18,9 @@ class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
     public $show_table = true;
-    public $username;
     public $tax_rate = 17;
     public $updateMode = false;
     public $price,$discount_value = 0 ,$client_id,$type,$product_id,$single_invoice_id,$catchError;
-
-
-    public function mount(){
-
-        $this->username = auth()->user()->name;
-     }
 
     public function render()
     {
@@ -50,7 +43,6 @@ class SingleInvoices extends Component
     }
 
     public function edit($id){
-
         $this->show_table = false;
         $this->updateMode = true;
         $single_invoice = invoice::findorfail($id);

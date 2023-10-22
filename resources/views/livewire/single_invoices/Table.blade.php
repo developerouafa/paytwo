@@ -1,6 +1,6 @@
 <button class="btn btn-primary pull-right" wire:click="show_form_add" type="button"> {{__('Dashboard/services.addotheinvoice')}}</button><br><br>
 <div class="table-responsive">
-    <table id="example" class="table key-buttons text-md-nowrap">
+    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
         <thead>
         <tr>
             <th>#</th>
@@ -41,11 +41,13 @@
                     @endcan
 
                     @can('Delete Single Invoices')
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" ><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" >
+                            <i class="fa fa-trash"></i>
+                        </button>
                     @endcan
 
                     @can('Print Single Invoices')
-                        <button wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
+                        <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
                     @endcan
                 </td>
             </tr>

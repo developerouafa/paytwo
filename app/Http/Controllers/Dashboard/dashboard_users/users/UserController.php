@@ -184,4 +184,40 @@ class UserController extends Controller
         }
 
     }
+
+    public function editstatusactive($id)
+    {
+        try{
+            $User = User::findorFail($id);
+            DB::beginTransaction();
+            $User->update([
+                'Status' => 1,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('users.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('users.index');
+        }
+    }
+
+    public function editstatusdéactive($id)
+    {
+        try{
+            $User = User::findorFail($id);
+            DB::beginTransaction();
+            $User->update([
+                'Status' => 0,
+            ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('users.index');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('users.index');
+        }
+    }
 }

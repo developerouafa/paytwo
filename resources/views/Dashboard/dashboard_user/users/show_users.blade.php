@@ -89,12 +89,18 @@
                                         </td>
                                         <td>
                                             @if ($user->Status == 1)
-                                                <span class="label text-success d-flex">
-                                                    <div class="dot-label bg-success ml-1"></div>
+                                                <span class="label text-success">
+                                                    <a href="{{route('editstatusdéactiveuser', $user->id)}}" class="ml-1 d-flex">
+                                                        <i class="text-warning ti-back-right"></i>
+                                                        <div class="dot-label bg-success ml-1"></div>
+                                                    </a>
                                                 </span>
                                             @else
-                                                <span class="label text-danger d-flex">
-                                                    <div class="dot-label bg-danger ml-1"></div>
+                                                <span class="label text-danger">
+                                                    <a href="{{route('editstatusactiveuser', $user->id)}}" class="ml-1 d-flex">
+                                                        <i class="text-warning ti-back-right"></i>
+                                                        <div class="dot-label bg-danger ml-1"></div>
+                                                    </a>
                                                 </span>
                                             @endif
                                         </td>

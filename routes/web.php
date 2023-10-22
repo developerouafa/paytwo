@@ -53,6 +53,11 @@ Route::get('/clear', function() {
         //############################# Start Partie User|permissions|roles route ##########################################
             Route::resource('roles', RolesController::class);
             Route::resource('users', UserController::class);
+
+            Route::controller(UserController::class)->group(function() {
+                Route::get('editstatusdéactiveuser/{id}', 'editstatusdéactive')->name('editstatusdéactiveuser');
+                Route::get('editstatusactiveuser/{id}', 'editstatusactive')->name('editstatusactiveuser');
+            });
         //############################# end Partie User|permissions|roles route ######################################
 
         //############################# Start Partie Profile User ##########################################

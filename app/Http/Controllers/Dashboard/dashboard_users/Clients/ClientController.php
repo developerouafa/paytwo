@@ -22,6 +22,11 @@ class ClientController extends Controller
       return  $this->Clients->index();
     }
 
+    public function softdelete()
+    {
+      return  $this->Clients->softdelete();
+    }
+
     public function create()
     {
       return  $this->Clients->create();
@@ -72,5 +77,15 @@ class ClientController extends Controller
     public function deleteall()
     {
         return $this->Clients->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Clients->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Clients->forcedelete($id);
     }
 }

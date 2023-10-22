@@ -163,9 +163,12 @@ Route::get('/clear', function() {
             Route::prefix('Clients')->group(function (){
                 Route::resource('Clients', ClientController::class);
                 Route::controller(ClientController::class)->group(function() {
+                    Route::get('/Deleted_Product', 'softdelete')->name('Clients.softdelete');
                     Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');
                     Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');
                     Route::get('/deleteall', 'deleteall')->name('Clients.deleteall');
+                    Route::get('restorecl/{id}', 'restore')->name('restorecl');
+                    Route::get('forcedeletecl/{id}', 'forcedelete')->name('forcedeletecl');
                 });
             });
         //############################# end Clients route ######################################

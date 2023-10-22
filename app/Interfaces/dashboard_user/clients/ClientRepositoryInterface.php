@@ -7,6 +7,9 @@ interface ClientRepositoryInterface
     //* get All Clients
     public function index();
 
+    //* get All Softdelete
+    public function softdelete();
+
     //* get All Clients
     public function create();
 
@@ -30,4 +33,10 @@ interface ClientRepositoryInterface
 
     //* delete All Client
     public function deleteall();
+
+    //* Restore
+    public function restore($id);
+
+    //* Force Delete
+    public function forcedelete($id);
 }

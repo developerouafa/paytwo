@@ -15,6 +15,12 @@ class ClientRepository implements ClientRepositoryInterface
       return view('Dashboard/dashboard_user/clients.clients',compact('clients'));
     }
 
+    public function softdelete()
+    {
+        $clients = Client::onlyTrashed()->latest()->clientselect()->clientwith()->get();
+        return view('Dashboard/dashboard_user/clients.softdelete',compact('clients'));
+    }
+
     public function create()
     {
       return view('Dashboard/dashboard_user/clients.create');
@@ -152,5 +158,35 @@ class ClientRepository implements ClientRepositoryInterface
     {
         DB::table('clients')->delete();
         return redirect()->route('Clients.index');
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+                Client::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Clients.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Clients.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+                Client::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Clients.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Clients.softdelete');
+        }
     }
 }

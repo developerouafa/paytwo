@@ -9,6 +9,9 @@ interface PaymentRepositoryInterface
     //* get All Payment
     public function index();
 
+    //* get All Softdelete
+    public function softdelete();
+
     //* show form add
     public function create();
 
@@ -29,4 +32,10 @@ interface PaymentRepositoryInterface
 
     //* delete All Payment
     public function deleteall();
+
+    //* Restore
+    public function restore($id);
+
+    //* Force Delete
+    public function forcedelete($id);
 }

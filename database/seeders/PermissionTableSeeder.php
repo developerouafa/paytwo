@@ -34,6 +34,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar receipt',
             'sidebar Deleted receipt',
             'sidebar Payment',
+            'sidebar Deleted Payment',
             'Create User',
             'Show users',
             'Edit User',

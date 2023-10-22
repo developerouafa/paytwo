@@ -118,11 +118,14 @@
                         @can('sidebar receipt')
                             <li><a class="slide-item" href="{{ route('Receipt.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch Receipt')}} </a></li>
                         @endcan
-                        {{-- @can('sidebar Deleted receipt') --}}
-                            <li><a class="slide-item" href="{{ route('Receipt.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedreceipt')}} </a></li>
-                        {{-- @endcan --}}
+                        @can('sidebar Deleted receipt')
+                            <li><a class="+slide-item" href="{{ route('Receipt.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedreceipt')}} </a></li>
+                        @endcan
                         @can('sidebar Payment')
                             <li><a class="slide-item" href="{{ route('Payment.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch payment')}} </a></li>
+                        @endcan
+                        @can('sidebar Deleted Payment')
+                            <li><a class="slide-item" href="{{ route('Payment.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedpayment')}} </a></li>
                         @endcan
                     </ul>
                 </li>

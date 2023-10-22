@@ -20,6 +20,11 @@ class PaymentaccountController extends Controller
         return $this->Payment->index();
     }
 
+    public function softdelete()
+    {
+      return  $this->Payment->softdelete();
+    }
+
     public function create()
     {
         return $this->Payment->create();
@@ -53,5 +58,15 @@ class PaymentaccountController extends Controller
     public function deleteall()
     {
         return $this->Payment->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Payment->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Payment->forcedelete($id);
     }
 }

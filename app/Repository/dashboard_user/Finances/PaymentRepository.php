@@ -19,6 +19,12 @@ class PaymentRepository implements PaymentRepositoryInterface
         return view('Dashboard.dashboard_user.Payment.index',compact('payments'));
     }
 
+    public function softdelete()
+    {
+        $payments =  PaymentAccount::onlyTrashed()->latest()->get();
+        return view('Dashboard.dashboard_user.Payment.softdelete',compact('payments'));
+    }
+
     public function create()
     {
         $Clients = Client::all();
@@ -160,5 +166,35 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         DB::table('paymentaccounts')->delete();
         return redirect()->route('Payment.index');
+    }
+
+    public function restore($id)
+    {
+        try{
+            DB::beginTransaction();
+                PaymentAccount::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Payment.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Payment.softdelete');
+        }
+    }
+
+    public function forcedelete($id)
+    {
+        try{
+            DB::beginTransaction();
+                PaymentAccount::onlyTrashed()->find($id)->forcedelete();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.delete'));
+            return redirect()->route('Payment.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Payment.softdelete');
+        }
     }
 }

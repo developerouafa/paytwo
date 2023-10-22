@@ -51,7 +51,7 @@
                         @can('Show Catch Payment')
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table key-buttons text-md-nowrap">
+                                    <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>#</th>

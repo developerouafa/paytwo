@@ -54,7 +54,7 @@
                     @can('Show Client')
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table text-md-nowrap" id="example2">
+                                <table class="table text-md-nowrap" id="example2" data-page-length="50" style="text-align: center">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">#</th>

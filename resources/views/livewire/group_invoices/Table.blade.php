@@ -1,6 +1,6 @@
 <button class="btn btn-primary pull-right" wire:click="show_form_add" type="button"> {{__('Dashboard/services.addotheinvoice')}} </button><br><br>
 <div class="table-responsive">
-    <table id="example1" class="table key-buttons text-md-nowrap">
+    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
         <thead>
             <tr>
                 <th>#</th>

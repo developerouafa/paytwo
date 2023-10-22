@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
+use function Sodium\compare;
+
 class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
@@ -64,10 +66,8 @@ class SingleInvoices extends Component
 
         // في حالة كانت الفاتورة نقدي
         if($this->type == 1){
-
             DB::beginTransaction();
             try {
-
                 // في حالة التعديل
                 if($this->updateMode){
 
@@ -96,12 +96,11 @@ class SingleInvoices extends Component
                     $this->show_table =true;
 
                 }
-
                 // في حالة الاضافة
                 else{
-
+                    $number = random_int('100000', '2000000000');
                     $single_invoices = new invoice();
-                    $single_invoices->invoice_number = 1;
+                    $single_invoices->invoice_number = $number;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;
@@ -136,26 +135,18 @@ class SingleInvoices extends Component
                 }
                 DB::commit();
             }
-
             catch (\Exception $e) {
                 DB::rollback();
                 $this->catchError = $e->getMessage();
             }
-
         }
-
-
         //------------------------------------------------------------------------
-
         // في حالة كانت الفاتورة اجل
         else{
-
             DB::beginTransaction();
             try {
-
                 // في حالة التعديل
                 if($this->updateMode){
-
                     $single_invoices = invoice::findorfail($this->single_invoice_id);
                     $single_invoices->invoice_number = 1;
                     $single_invoices->invoice_date = date('Y-m-d');
@@ -171,7 +162,6 @@ class SingleInvoices extends Component
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
-
                     $client_accounts = client_account::where('invoice_id',$this->single_invoice_id)->first();
                     $client_accounts->date = date('Y-m-d');
                     $client_accounts->invoice_id = $single_invoices->id;
@@ -181,14 +171,12 @@ class SingleInvoices extends Component
                     $client_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
-
                 }
-
                 // في حالة الاضافة
                 else{
-
+                    $number = random_int('100000', '2000000000');
                     $single_invoices = new invoice();
-                    $single_invoices->invoice_number = 1;
+                    $single_invoices->invoice_number = $number;
                     $single_invoices->invoice_date = date('Y-m-d');
                     $single_invoices->client_id = $this->client_id;
                     $single_invoices->product_id = $this->product_id;
@@ -214,18 +202,13 @@ class SingleInvoices extends Component
                     $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
-
                 }
-
                 DB::commit();
             }
-
             catch (\Exception $e) {
                 DB::rollback();
                 return redirect()->back()->withErrors(['error' => $e->getMessage()]);
             }
-
-
         }
 
     }

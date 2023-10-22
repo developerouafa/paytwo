@@ -103,9 +103,9 @@ class GroupInvoices extends Component
 
                 // في حالة الاضافة
                 else{
-
+                    $number = random_int('100000', '2000000000');
                     $group_invoices = new invoice();
-                    $group_invoices->invoice_number = 2;
+                    $group_invoices->invoice_number = $number;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;
@@ -177,9 +177,9 @@ class GroupInvoices extends Component
                 // في حالة الاضافة
                 else{
 
-
+                    $number = random_int('100000', '2000000000');
                     $group_invoices = new invoice();
-                    $group_invoices->invoice_number = 2;
+                    $group_invoices->invoice_number = $number;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
                     $group_invoices->groupprodcut_id = $this->groupprodcut_id;

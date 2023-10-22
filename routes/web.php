@@ -42,7 +42,7 @@ Route::get('/clear', function() {
     Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
 
         Route::get('/', function () {
-            event(new MyEvent('hello world'));
+            // event(new MyEvent('hello world'));
             return view('Dashboard/index');
         });
 

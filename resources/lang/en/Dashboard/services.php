@@ -20,6 +20,7 @@ return [
     'Taxvalue' => 'Tax value',
     'Totalwithtax' => 'Total with tax',
     'Total' => 'Total',
+    'type' => 'Payment type',
     'Invoicetype' => 'Invoice type',
     'Invoicestatus' => 'Invoice status',
     'Processes' => 'Processes',

@@ -20,6 +20,7 @@ return [
     'Taxvalue' => 'قيمة الضريبة',
     'Totalwithtax' => 'الاجمالي مع الضريبة',
     'Total' => 'الاجمالي',
+    'type' => 'نوع السداد',
     'Invoicetype' => 'نوع الفاتورة',
     'Invoicestatus' => 'حالة الفاتورة',
     'Processes' => 'العمليات',

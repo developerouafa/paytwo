@@ -13,7 +13,7 @@
             <th> {{__('Dashboard/services.Taxrate')}} </th>
             <th> {{__('Dashboard/services.Taxvalue')}} </th>
             <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-            <th> {{__('Dashboard/services.Invoicetype')}} </th>
+            <th> {{__('Dashboard/services.type')}} </th>
             <th> {{__('Dashboard/services.Invoicestatus')}} </th>
             <th> {{__('Dashboard/users.createdbyuser')}} </th>
             <th>{{__('Dashboard/sections_trans.created_at')}}</th>

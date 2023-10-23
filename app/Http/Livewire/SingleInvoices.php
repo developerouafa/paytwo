@@ -8,6 +8,7 @@ use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\Notification;
+use App\Models\NotificationPusher;
 use App\Models\product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -124,7 +125,7 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
-                    $notifications = new Notification();
+                    $notifications = new NotificationPusher();
                     $notifications->user_id = $this->user_id;
                     $notifications->client_id = $this->client_id;
                     $client = Client::find($this->client_id);

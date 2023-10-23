@@ -20,6 +20,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "laravel-echo": "^1.15.3",
+        "pusher-js": "^8.3.0",
         "sweetalert2": "^11.7.31"
     }
 }

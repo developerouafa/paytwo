@@ -267,12 +267,6 @@
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('e80a29f0330a9d80fee4', {
-    cluster: 'mt1'
-    });
-
     var channel = pusher.subscribe('create-invoice');
     channel.bind('create-invoice', function(data) {
         var existingNotifications = notifications.html();

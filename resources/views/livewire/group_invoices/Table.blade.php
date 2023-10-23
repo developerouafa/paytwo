@@ -14,8 +14,9 @@
                     <th> {{__('Dashboard/services.Taxrate')}} </th>
                     <th> {{__('Dashboard/services.Taxvalue')}} </th>
                     <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-                    <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                    <th> {{__('Dashboard/services.type')}} </th>
                     <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                    <th> {{__('Dashboard/services.Invoicetype')}} </th>
                     <th> {{__('Dashboard/users.createdbyuser')}} </th>
                     <th>{{__('Dashboard/sections_trans.created_at')}}</th>
                     <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
@@ -43,6 +44,15 @@
                                 {{__('Dashboard/services.Under review')}}
                             @elseif ($group_invoice->invoice_status == 3)
                                 {{__('Dashboard/services.Complete')}}
+                            @endif
+                        </td>
+                        <td>
+                            @if ($group_invoice->invoice_type == 1)
+                                {{__('Dashboard/services.Draft')}}
+                            @elseif ($group_invoice->invoice_type == 2)
+                                {{__('Dashboard/services.Paid')}}
+                            @elseif ($group_invoice->invoice_type == 3)
+                                {{__('Dashboard/services.Canceled')}}
                             @endif
                         </td>
                         <td>{{$group_invoice->user->name}}</td>

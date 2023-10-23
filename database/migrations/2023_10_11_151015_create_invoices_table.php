@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('invoice_classify');
             $table->date('invoice_date');
             $table->integer('type')->default(1);
+            $table->integer('invoice_type')->default(1);
             $table->integer('invoice_status')->default(1);
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('groupprodcut_id')->nullable()->references('id')->on('groupprodcuts')->onDelete('cascade')->onUpdate('cascade');

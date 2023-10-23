@@ -19,6 +19,7 @@ class invoice extends Model
             'invoice_classify',
             'invoice_date',
             'type',
+            'invoice_type',
             'invoice_status',
             'client_id',
             'groupprodcut_id',

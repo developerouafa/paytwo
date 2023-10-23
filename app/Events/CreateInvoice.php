@@ -40,6 +40,7 @@ class CreateInvoice implements ShouldBroadcast
 
      public function broadcastOn()
      {
+        // Private Channel
         return new PrivateChannel('create-invoice.'.$this->client_id);
      }
 

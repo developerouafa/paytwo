@@ -257,10 +257,10 @@
     cluster: 'mt1'
     });
 
-    var channel = pusher.subscribe('my-channeldata');
-    channel.bind('my-event-data', function(data) {
+    var channel = pusher.subscribe('create-invoice');
+    channel.bind('create-invoice', function(data) {
         var existingNotifications = notifications.html();
-        var newNotificationHtml = `<h5 class="notification-label mb-1">`+data.client_id+`</h5>`;
+        var newNotificationHtml = `<h5 class="notification-label mb-1">`+data.client+`</h5>`;
         notifications.html(newNotificationHtml + existingNotifications);
 
         notificationsCount += 1;

@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
+use App\Models\Notification;
 use App\Models\product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -15,10 +16,17 @@ use Livewire\Component;
 class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
+    public $userid;
+    public $username;
     public $show_table = true;
     public $tax_rate = 17;
     public $updateMode = false;
     public $price,$discount_value = 0 ,$client_id,$type,$product_id,$single_invoice_id,$catchError;
+
+    public function mount(){
+        $this->userid = auth()->user()->id;
+        $this->username = auth()->user()->name;
+    }
 
     public function render()
     {
@@ -116,9 +124,17 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
+                    $notifications = new Notification();
+                    $notifications->userid = $this->userid;
+                    $notifications->username = $this->username;
+                    $client = Client::find($this->client_id);
+                    $notifications->message = 'New Anvoice :'.$client->name;
+                    $notifications->save();
+
                     $data=[
-                        'client_id'=> $this->client_id,
-                        'invoice_id'=> $fund_accounts->invoice_id
+                        'client'=> $this->client_id,
+                        'invoice_id'=> $single_invoices->invoice_id,
+                        'user_id'=>$this->userid,
                     ];
                     event(new CreateInvoice($data));
 

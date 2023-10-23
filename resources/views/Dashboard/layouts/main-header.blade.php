@@ -263,15 +263,13 @@
 <script>
     var notificationsWrapper   = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
-    var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+    var notificationsCount  = parseInt(notificationsCountElem.data('count'));
 
     var notifications = notificationsWrapper.find('h4.notification-label');
     var new_message = notificationsWrapper.find('.new_message');
     new_message.hide();
 
-    var channel = pusher.subscribe('create-invoice');
-    channel.bind('create-invoice', function(data) {
-        var existingNotifications = notifications.html();
+    Echo.private('create-invoice.{{ auth()->user()->id }}').listen('.create-invoice', (data) => {
         var newNotificationHtml = `
        <h4 class="notification-label mb-1">`+data.message+data.client+`</h4>
        <div class="notification-subtext">`+data.created_at+`</div>`;
@@ -282,5 +280,6 @@
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     });
+
 </script>
 

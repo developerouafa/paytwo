@@ -133,7 +133,7 @@ class SingleInvoices extends Component
 
                     $data=[
                         'client'=> $this->client_id,
-                        'invoice_id'=> $single_invoices->invoice_id,
+                        'invoice_id'=> $single_invoices->id,
                         'client_id'=>$this->client_id,
                     ];
                     event(new CreateInvoice($data));

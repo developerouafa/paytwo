@@ -258,8 +258,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
-{{-- Problem --}}
-<script src="{{URL::asset('js/app.js')}}"></script>
+{{-- Not Solution In this Problem --}}
+<script src="{{asset('js/app.js')}}"></script>
 
 <script>
     var notificationsWrapper   = $('.dropdown-notifications');
@@ -281,6 +281,30 @@
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
     });
+
+    // var notificationsWrapper   = $('.dropdown-notifications');
+    // var notificationsCountElem = notificationsWrapper.find('p[data-count]');
+    // var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+    // var notifications          = notificationsWrapper.find('h4.notification-label');
+    // var new_message = notificationsWrapper.find('.new_message');
+    // new_message.hide();
+
+    // Pusher.logToConsole = true;
+    // var pusher = new Pusher('e80a29f0330a9d80fee4', {
+    // cluster: 'mt1'
+    // });
+    // var channel = pusher.subscribe('create-invoice');
+    // channel.bind('create-invoice.{{ auth()->user()->id }}', function(data) {
+    //     var newNotificationHtml = `
+    //    <h4 class="notification-label mb-1">`+data.message+data.client+`</h4>
+    //    <div class="notification-subtext">`+data.created_at+`</div>`;
+    //     new_message.show();
+    //     notifications.html(newNotificationHtml);
+    //     notificationsCount += 1;
+    //     notificationsCountElem.attr('data-count', notificationsCount);
+    //     notificationsWrapper.find('.notif-count').text(notificationsCount);
+    //     notificationsWrapper.show();
+    // });
 
 </script>
 

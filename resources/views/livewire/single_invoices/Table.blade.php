@@ -15,6 +15,7 @@
             <th> {{__('Dashboard/services.Totalwithtax')}} </th>
             <th> {{__('Dashboard/services.type')}} </th>
             <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+            <th> {{__('Dashboard/services.Invoicetype')}} </th>
             <th> {{__('Dashboard/users.createdbyuser')}} </th>
             <th>{{__('Dashboard/sections_trans.created_at')}}</th>
             <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
@@ -42,6 +43,15 @@
                         {{__('Dashboard/services.Under review')}}
                     @elseif ($single_invoice->invoice_status == 3)
                         {{__('Dashboard/services.Complete')}}
+                    @endif
+                </td>
+                <td>
+                    @if ($single_invoice->invoice_type == 1)
+                    Draft
+                    @elseif ($single_invoice->invoice_type == 2)
+                    Paid
+                    @elseif ($single_invoice->invoice_type == 3)
+                    Canceled
                     @endif
                 </td>
                 <td>{{$single_invoice->user->name}}</td>

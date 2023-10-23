@@ -56,4 +56,7 @@ return [
     'Sent' => 'مرسلة',
     'Under review' => 'قيدة المراجعة',
     'Complete' => 'مكتملة',
+    'Draft' => 'مسودة',
+    'Paid' => 'مدفوعة',
+    'Canceled' => 'تم الإلغاء',
 ];

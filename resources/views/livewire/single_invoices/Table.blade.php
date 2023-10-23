@@ -47,11 +47,11 @@
                 </td>
                 <td>
                     @if ($single_invoice->invoice_type == 1)
-                    Draft
+                        {{__('Dashboard/services.Draft')}}
                     @elseif ($single_invoice->invoice_type == 2)
-                    Paid
+                        {{__('Dashboard/services.Paid')}}
                     @elseif ($single_invoice->invoice_type == 3)
-                    Canceled
+                        {{__('Dashboard/services.Canceled')}}
                     @endif
                 </td>
                 <td>{{$single_invoice->user->name}}</td>

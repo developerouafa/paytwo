@@ -56,4 +56,7 @@ return [
     'Sent' => 'Sent',
     'Under review' => 'Under review',
     'Complete' => 'Complete',
+    'Draft' => 'Draft',
+    'Paid' => 'Paid',
+    'Canceled' => 'Canceled',
 ];

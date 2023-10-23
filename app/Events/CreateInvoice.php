@@ -17,7 +17,7 @@ class CreateInvoice implements ShouldBroadcast
 
     public $client;
     public $invoice_id;
-    public $user_id;
+    public $client_id;
     public $message;
     public $created_at;
 
@@ -26,7 +26,7 @@ class CreateInvoice implements ShouldBroadcast
     {
         $client = Client::find($data['client']);
         $this->client = $client->name;
-        $this->user_id = $data['user_id'];
+        $this->client_id = $data['client_id'];
         $this->invoice_id = $data['invoice_id'];
         $this->message = "فاتورة جديد : ";
         $this->created_at = date('Y-m-d H:i:s');
@@ -40,7 +40,7 @@ class CreateInvoice implements ShouldBroadcast
 
      public function broadcastOn()
      {
-         return ['create-invoice'];
+        return new PrivateChannel('create-invoice.'.$this->client_id);
      }
 
      public function broadcastAs()

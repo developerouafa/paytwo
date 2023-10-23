@@ -262,13 +262,11 @@
     var notificationsWrapper   = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount     = parseInt(notificationsCountElem.data('count'));
-    var notifications          = notificationsWrapper.find('h5.notification-label');
 
-    // if (notificationsCount <= 0) {
-    //     notificationsWrapper.hide();
-    // }
+    var notifications = notificationsWrapper.find('h4.notification-label');
+    var new_message = notificationsWrapper.find('.new_message');
+    new_message.hide();
 
-    // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
     var pusher = new Pusher('e80a29f0330a9d80fee4', {
@@ -278,9 +276,11 @@
     var channel = pusher.subscribe('create-invoice');
     channel.bind('create-invoice', function(data) {
         var existingNotifications = notifications.html();
-        var newNotificationHtml = `<h4 class="notification-label mb-1">`+data.client+`</h4>`;
-        notifications.html(newNotificationHtml + existingNotifications);
-
+        var newNotificationHtml = `
+       <h4 class="notification-label mb-1">`+data.message+data.client+`</h4>
+       <div class="notification-subtext">`+data.created_at+`</div>`;
+        new_message.show();
+        notifications.html(newNotificationHtml);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);

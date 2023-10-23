@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\MyEventData;
+use App\Events\CreateInvoice;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -11,8 +11,6 @@ use App\Models\product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
-
-use function Sodium\compare;
 
 class SingleInvoices extends Component
 {
@@ -122,7 +120,7 @@ class SingleInvoices extends Component
                         'client_id'=> $this->client_id,
                         'invoice_id'=> $fund_accounts->invoice_id
                     ];
-                    event(new MyEventData($data));
+                    event(new CreateInvoice($data));
 
                 }
                 DB::commit();

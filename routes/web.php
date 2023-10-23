@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\MyEvent;
 use App\Http\Controllers\Dashboard\dashboard_users\Clients\ClientController;
 use App\Http\Controllers\Dashboard\dashboard_users\childrens\childrenController;
 use App\Http\Controllers\Dashboard\dashboard_users\PaymentaccountController;
@@ -42,7 +41,6 @@ Route::get('/clear', function() {
     Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
 
         Route::get('/', function () {
-            // event(new MyEvent('hello world'));
             return view('Dashboard/index');
         });
 

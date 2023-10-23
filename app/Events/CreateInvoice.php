@@ -10,24 +10,27 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Eventntfdatabase implements ShouldBroadcast
+class CreateInvoice implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $client_id;
-
-    public function __construct($data)
+    /**
+     * Create a new event instance.
+     */
+    public function __construct()
     {
-        $this->client_id = $data['client_id'];
+        //
     }
 
-    public function broadcastOn()
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastOn(): array
     {
-        return ['my-channel'];
-    }
-
-    public function broadcastAs()
-    {
-        return 'Eventntfdatabase';
+        return [
+            new PrivateChannel('channel-name'),
+        ];
     }
 }

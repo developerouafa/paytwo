@@ -37,11 +37,11 @@
                 <td>{{ $single_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
                 <td>
                     @if ($single_invoice->invoice_status == 1)
-                        مرسلة
+                        {{__('Dashboard/services.Sent')}}
                     @elseif ($single_invoice->invoice_status == 2)
-                        قيدة المراجعة
+                        {{__('Dashboard/services.Under review')}}
                     @elseif ($single_invoice->invoice_status == 3)
-                        مكتملة
+                        {{__('Dashboard/services.Complete')}}
                     @endif
                 </td>
                 <td>{{$single_invoice->user->name}}</td>

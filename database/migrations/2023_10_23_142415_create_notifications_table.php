@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->boolean('reader_status')->default(false);
             $table->string('username');
-            $table->string('userid');
+            $table->integer('user_id');
             $table->string('message');
             $table->timestamps();
         });

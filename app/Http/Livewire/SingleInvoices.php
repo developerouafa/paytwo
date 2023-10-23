@@ -16,7 +16,7 @@ use Livewire\Component;
 class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
-    public $userid;
+    public $user_id;
     public $username;
     public $show_table = true;
     public $tax_rate = 17;
@@ -24,7 +24,7 @@ class SingleInvoices extends Component
     public $price,$discount_value = 0 ,$client_id,$type,$product_id,$single_invoice_id,$catchError;
 
     public function mount(){
-        $this->userid = auth()->user()->id;
+        $this->user_id = auth()->user()->id;
         $this->username = auth()->user()->name;
     }
 
@@ -125,7 +125,7 @@ class SingleInvoices extends Component
                     $this->show_table =true;
 
                     $notifications = new Notification();
-                    $notifications->userid = $this->userid;
+                    $notifications->user_id = $this->user_id;
                     $notifications->username = $this->username;
                     $client = Client::find($this->client_id);
                     $notifications->message = 'New Anvoice :'.$client->name;
@@ -134,7 +134,7 @@ class SingleInvoices extends Component
                     $data=[
                         'client'=> $this->client_id,
                         'invoice_id'=> $single_invoices->invoice_id,
-                        'user_id'=>$this->userid,
+                        'user_id'=>$this->user_id,
                     ];
                     event(new CreateInvoice($data));
 

@@ -128,12 +128,13 @@ class SingleInvoices extends Component
                     $notifications->user_id = $this->user_id;
                     $notifications->client_id = $this->client_id;
                     $client = Client::find($this->client_id);
-                    $notifications->message = 'New Anvoice :'.$client->name;
+                    $notifications->message = 'New Anvoice :'. $client->name;
                     $notifications->save();
 
                     $data=[
-                        'client_id'=> $this->client_id,
+                        'client'=> $this->client_id,
                         'invoice_id'=> $single_invoices->invoice_id,
+                        'client_id'=>$this->client_id,
                     ];
                     event(new CreateInvoice($data));
 

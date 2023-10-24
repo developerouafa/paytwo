@@ -7,10 +7,12 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
-use App\Models\Notification;
 use App\Models\NotificationPusher;
 use App\Models\product;
+use App\Models\User;
+use App\Notifications\montaryinvoice;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
@@ -18,7 +20,7 @@ class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
     public $user_id;
-    public $username;
+    public $user_name;
     public $show_table = true;
     public $tax_rate = 17;
     public $updateMode = false;
@@ -26,7 +28,7 @@ class SingleInvoices extends Component
 
     public function mount(){
         $this->user_id = auth()->user()->id;
-        $this->username = auth()->user()->name;
+        $this->user_name = auth()->user()->name;
     }
 
     public function render()
@@ -131,14 +133,19 @@ class SingleInvoices extends Component
                     // $client = Client::find($this->client_id);
                     // $notifications->message = 'New Anvoice :'. $client->name;
                     // $notifications->save();
+                    // $data=[
+                    //     'client'=> $this->client_id,
+                    //     'invoice_id'=> $single_invoices->id,
+                    //     'client_id'=>$this->client_id,
+                    // ];
+                    // event(new CreateInvoice($data));
 
-                    $data=[
-                        'client'=> $this->client_id,
-                        'invoice_id'=> $single_invoices->id,
-                        'client_id'=>$this->client_id,
-                    ];
-                    event(new CreateInvoice($data));
-
+                    $client = $this->client_id;
+                    $user_create_id = $this->user_id;
+                    $user_create_name = $this->user_name;
+                    $invoice_id = $single_invoices->id;
+                    $message = 'New Invoice In the case monetary ';
+                    Notification::send($client, new montaryinvoice($user_create_id, $user_create_name, $invoice_id, $message));
                 }
                 DB::commit();
             }

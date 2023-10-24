@@ -125,12 +125,12 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
-                    $notifications = new NotificationPusher();
-                    $notifications->user_id = $this->user_id;
-                    $notifications->client_id = $this->client_id;
-                    $client = Client::find($this->client_id);
-                    $notifications->message = 'New Anvoice :'. $client->name;
-                    $notifications->save();
+                    // $notifications = new NotificationPusher();
+                    // $notifications->user_id = $this->user_id;
+                    // $notifications->client_id = $this->client_id;
+                    // $client = Client::find($this->client_id);
+                    // $notifications->message = 'New Anvoice :'. $client->name;
+                    // $notifications->save();
 
                     $data=[
                         'client'=> $this->client_id,

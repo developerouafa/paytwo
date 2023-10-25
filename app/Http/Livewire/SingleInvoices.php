@@ -174,6 +174,12 @@ class SingleInvoices extends Component
                     $client_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasepostpaidup');
+                    Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
                 }
                 // في حالة الاضافة
                 else{

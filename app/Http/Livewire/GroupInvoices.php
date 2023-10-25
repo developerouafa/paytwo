@@ -8,6 +8,7 @@ use App\Models\fund_account;
 use App\Models\groupprodcut;
 use App\Models\invoice;
 use App\Notifications\montaryinvoice;
+use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
@@ -95,6 +96,7 @@ class GroupInvoices extends Component
                     $fund_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
+
                     $client = Client::where('id', '=', $this->client_id)->get();
                     $user_create_id = $this->user_id;
                     $invoice_id = $group_invoices->id;
@@ -206,6 +208,12 @@ class GroupInvoices extends Component
                     $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $group_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasepostpaid');
+                    Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();
             }

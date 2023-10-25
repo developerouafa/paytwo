@@ -29,7 +29,7 @@ return [
     'dataeditsuccessfully' => 'تم تعديل البيانات بنجاح.',
     'Choosefromthelist' => 'اختار من القائمة ',
     'monetary' => 'نقدي',
-    'Okay' => 'اجل',
+    'Okay' => 'آجل',
     'save' => 'حفظ',
     'surdelete' => 'هل انت متاكد من عملية الحذف!',
     'Deleteinvoicedata' => 'حذف بيانات الفاتورة',

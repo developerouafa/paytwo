@@ -35,7 +35,15 @@
                 <td>{{ $single_invoice->tax_rate }}%</td>
                 <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
                 <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
-                <td>{{ $single_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
+                <td>
+                    @if ($single_invoice->type == 1)
+                        {{__('Dashboard/services.monetary')}}
+                    @elseif ($single_invoice->type == 2)
+                        {{__('Dashboard/services.Okay')}}
+                    @elseif ($single_invoice->type == 3)
+                        {{__('Dashboard/services.Banktransfer')}}
+                    @endif
+                </td>
                 <td>
                     @if ($single_invoice->invoice_status == 1)
                         {{__('Dashboard/services.Sent')}}

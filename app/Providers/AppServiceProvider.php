@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
         }
-        Cashier::ignoreMigrations();
+        // Cashier::ignoreMigrations();
     }
 
     /**
@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Cashier::useCustomerModel(User::class);
-        Cashier::useCustomerModel(Client::class);
+        // Cashier::useCustomerModel(User::class);
+        // Cashier::useCustomerModel(Client::class);
+        // Cashier::calculateTaxes();
     }
 }

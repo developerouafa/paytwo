@@ -59,4 +59,5 @@ return [
     'Draft' => 'مسودة',
     'Paid' => 'مدفوعة',
     'Canceled' => 'تم الإلغاء',
+    'Banktransfer' => 'حوالة بنكية'
 ];

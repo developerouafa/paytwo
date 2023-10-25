@@ -59,4 +59,5 @@ return [
     'Draft' => 'Draft',
     'Paid' => 'Paid',
     'Canceled' => 'Canceled',
+    'Banktransfer' => 'Bank transfer',
 ];

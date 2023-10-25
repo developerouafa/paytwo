@@ -132,7 +132,7 @@ class SingleInvoices extends Component
                     $client = Client::where('id', '=', $this->client_id)->get();
                     $user_create_id = $this->user_id;
                     $invoice_id = $single_invoices->id;
-                    $message = 'New Invoice In the case monetary ';
+                    $message = __('Dashboard/main-header_trans.nicasemontary');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();
@@ -208,7 +208,7 @@ class SingleInvoices extends Component
                     $client = Client::where('id', '=', $this->client_id)->get();
                     $user_create_id = $this->user_id;
                     $invoice_id = $single_invoices->id;
-                    $message = 'New Invoice In the case monetary ';
+                    $message = __('Dashboard/main-header_trans.nicasepostpaid');
                     Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();

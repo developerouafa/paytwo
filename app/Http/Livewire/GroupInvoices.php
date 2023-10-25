@@ -95,7 +95,11 @@ class GroupInvoices extends Component
                     $fund_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
-
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $group_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasemontaryup');
+                    Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
                 }
                 // في حالة الاضافة
                 else{

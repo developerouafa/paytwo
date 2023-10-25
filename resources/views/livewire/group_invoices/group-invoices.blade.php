@@ -33,9 +33,9 @@
                             <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
                             <option value="1"> {{__('Dashboard/services.monetary')}} </option>
                             <option value="2"> {{__('Dashboard/services.Okay')}} </option>
+                            <option value="3"> {{__('Dashboard/services.Banktransfer')}} </option>
                         </select>
                     </div>
-
 
                 </div><br>
 

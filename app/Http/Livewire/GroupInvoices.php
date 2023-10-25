@@ -7,7 +7,9 @@ use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\groupprodcut;
 use App\Models\invoice;
+use App\Notifications\montaryinvoice;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
@@ -64,7 +66,6 @@ class GroupInvoices extends Component
 
     public function store()
     {
-
         // في حالة كانت الفاتورة نقدي
         if($this->type == 1){
             DB::beginTransaction();
@@ -125,6 +126,12 @@ class GroupInvoices extends Component
                     $fund_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $group_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasemontary');
+                    Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();
             }

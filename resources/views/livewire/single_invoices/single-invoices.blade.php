@@ -43,7 +43,6 @@
                             <option value="3"> {{__('Dashboard/services.Banktransfer')}} </option>
                         </select>
                     </div>
-
                 </div><br>
 
                 <div class="row row-sm">

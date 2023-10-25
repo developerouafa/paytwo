@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\CreateInvoice;
+use App\Events\createinvoice;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -11,6 +11,7 @@ use App\Models\NotificationPusher;
 use App\Models\product;
 use App\Models\User;
 use App\Notifications\montaryinvoice;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
@@ -127,20 +128,7 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
-                    // $notifications = new NotificationPusher();
-                    // $notifications->user_id = $this->user_id;
-                    // $notifications->client_id = $this->client_id;
-                    // $client = Client::find($this->client_id);
-                    // $notifications->message = 'New Anvoice :'. $client->name;
-                    // $notifications->save();
-                    // $data=[
-                    //     'client'=> $this->client_id,
-                    //     'invoice_id'=> $single_invoices->id,
-                    //     'client_id'=>$this->client_id,
-                    // ];
-                    // event(new CreateInvoice($data));
-
-                    $client = $this->client_id;
+                    $client = Client::where('id', '=', $this->client_id)->get();
                     $user_create_id = $this->user_id;
                     $user_create_name = $this->user_name;
                     $invoice_id = $single_invoices->id;

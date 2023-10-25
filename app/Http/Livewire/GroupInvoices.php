@@ -249,7 +249,15 @@ class GroupInvoices extends Component
                     $group_invoices->type = $this->type;
                     $group_invoices->save();
 
-
+                    $paymentgateways = paymentgateway::where('invoice_id',$this->group_invoice_id)->first();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $group_invoices->id;
+                    $paymentgateways->patient_id = $group_invoices->patient_id;
+                    $paymentgateways->Debit = $group_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
 
 
                 }

@@ -187,7 +187,18 @@
                                             @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
                                                 <a class="d-flex p-3 border-bottom" href="#">
                                                     <div class="mr-3">
-                                                        <h5 class="notification-label mb-1">{{$notification->data['message']}} :  {{$notification->data['titleproduct']}}</h5>
+                                                        <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
+                                                        <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
+                                                    </div>
+                                                    <div class="mr-auto">
+                                                        <i class="las la-angle-left text-left text-muted"></i>
+                                                    </div>
+                                                </a>
+                                            @endif
+                                            @if ($notification->type == 'App\Notifications\paymentgateways')
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="mr-3">
+                                                        <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
                                                     <div class="mr-auto">

@@ -8,6 +8,7 @@ use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\NotificationPusher;
+use App\Models\paymentgateway;
 use App\Models\product;
 use App\Models\User;
 use App\Notifications\montaryinvoice;
@@ -144,7 +145,7 @@ class SingleInvoices extends Component
         }
         //------------------------------------------------------------------------
         // في حالة كانت الفاتورة اجل
-        else{
+        elseif($this->type == 2){
             DB::beginTransaction();
             try {
                 // في حالة التعديل
@@ -218,7 +219,78 @@ class SingleInvoices extends Component
                 return redirect()->back()->withErrors(['error' => $e->getMessage()]);
             }
         }
+        //------------------------------------------------------------------------
+        // في حالة كانت الفاتورة حوالة بنكية
+        elseif($this->type == 3){
+            DB::beginTransaction();
+            try {
+                // في حالة التعديل
+                if($this->updateMode){
+                    $single_invoices = invoice::findorfail($this->single_invoice_id);
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->save();
 
+                    $client_accounts = client_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $client_accounts->date = date('Y-m-d');
+                    $client_accounts->invoice_id = $single_invoices->id;
+                    $client_accounts->client_id = $single_invoices->client_id;
+                    $client_accounts->Debit = $single_invoices->total_with_tax;
+                    $client_accounts->credit = 0.00;
+                    $client_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
+                }
+                // في حالة الاضافة
+                else{
+                    $number = random_int('100000', '2000000000');
+                    $single_invoices = new invoice();
+                    $single_invoices->invoice_number = $number;
+                    $single_invoices->invoice_classify = 1;
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->invoice_status = 1;
+                    $single_invoices->user_id = auth()->user()->id;
+                    $single_invoices->save();
+
+                    $paymentgateways = new paymentgateway();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $single_invoices->id;
+                    $paymentgateways->client_id = $single_invoices->client_id;
+                    $paymentgateways->Debit = $single_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->user_id = auth()->user()->id;
+                    $paymentgateways->save();
+                    $this->InvoiceSaved =true;
+                    $this->show_table =true;
+
+
+                }
+                DB::commit();
+            }
+            catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            }
+        }
     }
 
     public function print($id)

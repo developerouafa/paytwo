@@ -67,9 +67,7 @@ class GroupInvoices extends Component
 
         // في حالة كانت الفاتورة نقدي
         if($this->type == 1){
-
             DB::beginTransaction();
-
             try {
                 // في حالة التعديل
                 if($this->updateMode){
@@ -98,7 +96,6 @@ class GroupInvoices extends Component
                     $this->show_table =true;
 
                 }
-
                 // في حالة الاضافة
                 else{
                     $number = random_int('100000', '2000000000');
@@ -134,15 +131,10 @@ class GroupInvoices extends Component
             catch (\Exception $e) {
                 $this->catchError = $e->getMessage();
             }
-
         }
-
         //----------------------------------------------------------------------------------------------------
-
         // في حالة الفاتورة اجل
-
         else{
-
             DB::beginTransaction();
             try {
                 // في حالة التعديل

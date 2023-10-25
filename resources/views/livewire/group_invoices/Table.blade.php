@@ -36,7 +36,15 @@
                         <td>{{ $group_invoice->tax_rate }}%</td>
                         <td>{{ number_format($group_invoice->tax_value, 2) }}</td>
                         <td>{{ number_format($group_invoice->total_with_tax, 2) }}</td>
-                        <td>{{ $group_invoice->type == 1 ? 'نقدي':'اجل' }}</td>
+                        <td>
+                            @if ($group_invoice->type == 1)
+                                {{__('Dashboard/services.monetary')}}
+                            @elseif ($group_invoice->type == 2)
+                                {{__('Dashboard/services.Okay')}}
+                            @elseif ($group_invoice->type == 3)
+                                {{__('Dashboard/services.Banktransfer')}}
+                            @endif
+                        </td>
                         <td>
                             @if ($group_invoice->invoice_status == 1)
                                 {{__('Dashboard/services.Sent')}}

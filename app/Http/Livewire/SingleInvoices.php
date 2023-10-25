@@ -252,13 +252,13 @@ class SingleInvoices extends Component
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
-                    $client_accounts = paymentgateway::where('invoice_id',$this->single_invoice_id)->first();
-                    $client_accounts->date = date('Y-m-d');
-                    $client_accounts->invoice_id = $single_invoices->id;
-                    $client_accounts->client_id = $single_invoices->client_id;
-                    $client_accounts->Debit = $single_invoices->total_with_tax;
-                    $client_accounts->credit = 0.00;
-                    $client_accounts->save();
+                    $paymentgateways = paymentgateway::where('invoice_id',$this->single_invoice_id)->first();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $single_invoices->id;
+                    $paymentgateways->client_id = $single_invoices->client_id;
+                    $paymentgateways->Debit = $single_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
 

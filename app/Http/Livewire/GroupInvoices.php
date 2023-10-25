@@ -7,6 +7,7 @@ use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\groupprodcut;
 use App\Models\invoice;
+use App\Models\paymentgateway;
 use App\Notifications\montaryinvoice;
 use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\DB;
@@ -147,7 +148,7 @@ class GroupInvoices extends Component
         }
         //----------------------------------------------------------------------------------------------------
         // في حالة الفاتورة اجل
-        else{
+        elseif($this->type == 2){
             DB::beginTransaction();
             try {
                 // في حالة التعديل
@@ -220,6 +221,69 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepostpaid');
                     Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
+                }
+                DB::commit();
+            }
+            catch (\Exception $e) {
+                $this->catchError = $e->getMessage();
+            }
+        }
+        //------------------------------------------------------------------------
+        // في حالة كانت الفاتورة حوالة بنكية
+        elseif($this->type == 3){
+            DB::beginTransaction();
+            try {
+                // في حالة التعديل
+                if($this->updateMode){
+                    $group_invoices = invoice::findorfail($this->group_invoice_id);
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->save();
+
+
+
+
+                }
+                // في حالة الاضافة
+                else{
+                    $number = random_int('100000', '2000000000');
+                    $group_invoices = new invoice();
+                    $group_invoices->invoice_number = $number;
+                    $group_invoices->invoice_classify = 2;
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->user_id = auth()->user()->id;
+                    $group_invoices->save();
+
+                    $paymentgateways = new paymentgateway();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $group_invoices->id;
+                    $paymentgateways->client_id = $group_invoices->client_id;
+                    $paymentgateways->Debit = $group_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->user_id = auth()->user()->id;
+                    $paymentgateways->save();
+                    $this->InvoiceSaved =true;
+                    $this->show_table =true;
+
                 }
                 DB::commit();
             }

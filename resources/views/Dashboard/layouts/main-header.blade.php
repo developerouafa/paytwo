@@ -166,7 +166,8 @@
 										</div>
 										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 pt-2 tx-12">
                                             <h6 style="color: yellow" id="notifications_count">
-                                                {{__('Dashboard/main-header_trans.youhave')}} ({{auth()->user()->unreadNotifications->count()}}) {{__('messagevalidation.users.unreadntf')}}
+                                                {{__('Dashboard/main-header_trans.youhave')}}
+                                                ({{auth()->user()->unreadNotifications->count()}}) {{__('Dashboard/main-header_trans.unreadntf')}}
                                             </h6>
                                         </p>
 									</div>
@@ -183,7 +184,7 @@
                                                     </div>
                                                 </a>
                                             @endif
-                                            {{-- @if ($notification->type == 'App\Notifications\productntf')
+                                            @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
                                                 <a class="d-flex p-3 border-bottom" href="#">
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}} :  {{$notification->data['titleproduct']}}</h5>
@@ -193,7 +194,7 @@
                                                         <i class="las la-angle-left text-left text-muted"></i>
                                                     </div>
                                                 </a>
-                                            @endif --}}
+                                            @endif
                                         @empty
                                             {{__('Dashboard/main-header_trans.thereareno')}}
                                         @endforelse

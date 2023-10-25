@@ -36,9 +36,9 @@
                                 <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
                                 <div class="billed-from">
                                     <h6>{{__('Dashboard/services.Servicebill')}}</h6>
-                                    <p> {{$nameUserCreateinvoice}} <br>
-                                        {{__('Dashboard/users.phone')}}: {{$phoneUserCreateinvoice}}<br>
-                                        {{__('Dashboard/users.email')}}: {{$emailUserCreateinvoice}}</p>
+                                    <p> {{ Request::get('nameUserCreateinvoice') }} <br>
+                                        {{__('Dashboard/users.phone')}}: {{ Request::get('phoneUserCreateinvoice') }}<br>
+                                        {{__('Dashboard/users.email')}}: {{ Request::get('emailUserCreateinvoice') }}</p>
                                 </div><!-- billed-from -->
                             </div><!-- invoice-header -->
                             <div class="row mg-t-20">
@@ -65,7 +65,15 @@
                                         <td>1</td>
                                         <td class="tx-12">{{ Request::get('Group_id') }}</td>
                                         <td class="tx-center">{{ Request::get('price') }}</td>
-                                        <td class="tx-right">{{Request::get('type') == 1 ? 'نقدي' : 'اجل' }}</td>
+                                        <td class="tx-right">
+                                            @if (Request::get('type') == 1)
+                                                {{__('Dashboard/services.monetary')}}
+                                            @elseif (Request::get('type') == 2)
+                                                {{__('Dashboard/services.Okay')}}
+                                            @elseif (Request::get('type') == 3)
+                                                {{__('Dashboard/services.Banktransfer')}}
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="valign-middle" colspan="2" rowspan="4">

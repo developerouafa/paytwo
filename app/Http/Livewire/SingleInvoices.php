@@ -11,6 +11,7 @@ use App\Models\NotificationPusher;
 use App\Models\product;
 use App\Models\User;
 use App\Notifications\montaryinvoice;
+use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -203,6 +204,12 @@ class SingleInvoices extends Component
                     $client_accounts->save();
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = 'New Invoice In the case monetary ';
+                    Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();
             }

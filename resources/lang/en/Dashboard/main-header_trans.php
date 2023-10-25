@@ -7,4 +7,5 @@ return [
     'unreadntf' => 'unread notification',
     'nicasemontary' => 'New Invoice In the case Cash payment',
     'nicasepostpaid' => 'New Invoice In the case Postpaid',
+    'nicasepymgtw' => 'New invoice in case of payment Gateway',
 ];

@@ -292,6 +292,11 @@ class GroupInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $group_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasepymgtw');
+                    Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
                 }
                 DB::commit();
             }

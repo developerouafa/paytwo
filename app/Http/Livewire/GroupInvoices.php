@@ -22,6 +22,7 @@ class GroupInvoices extends Component
     public $InvoiceUpdated = false;
     public $show_table = true;
     public $updateMode = false;
+    public $user_id;
     public $group_invoice_id;
     public $groupprodcut_id;
     public $catchError;
@@ -30,6 +31,10 @@ class GroupInvoices extends Component
     public $discount_value = 0;
     public $tax_rate = 0;
     public $tax_value = 0;
+
+    public function mount(){
+        $this->user_id = auth()->user()->id;
+    }
 
     public function render()
     {

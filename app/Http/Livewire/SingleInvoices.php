@@ -24,7 +24,6 @@ class SingleInvoices extends Component
 {
     public $InvoiceSaved,$InvoiceUpdated;
     public $user_id;
-    public $user_name;
     public $show_table = true;
     public $tax_rate = 17;
     public $updateMode = false;
@@ -32,7 +31,6 @@ class SingleInvoices extends Component
 
     public function mount(){
         $this->user_id = auth()->user()->id;
-        $this->user_name = auth()->user()->name;
     }
 
     public function render()

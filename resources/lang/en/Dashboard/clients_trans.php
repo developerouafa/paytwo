@@ -14,4 +14,10 @@ return [
     'phoneisrequired'=>'Phone Is Required',
     'name' => 'Name Client',
     'nameisrequired'=>'Name Is Required',
+    'Clientcontrolpanel'=>'Client control panel',
+    'Salesmonitoringdashb'=>'Sales monitoring dashboard template',
+    'countinvoiceclient'=>'Total number of invoice',
+    ''=>'',
+    ''=>'',
+    ''=>'',
 ];

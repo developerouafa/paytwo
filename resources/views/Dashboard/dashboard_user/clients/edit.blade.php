@@ -17,14 +17,19 @@
                     <label for="inputName1" class="control-label">{{__('Dashboard/clients_trans.name')}}<span class="tx-danger">*</span></label>
                     <input placeholder="{{__('Dashboard/clients_trans.name')}}" value="{{ $client->name }}" class="form-control @error('description') is-invalid @enderror" name="name" id="name" type="text">
                 </div>
+
                 <div class="modal-body">
                     <label for="phone">{{trans('Dashboard/clients_trans.phone')}}</label>
                     <input type="hidden" name="id" value="{{ $client->id }}">
                     <input type="number" name="phone" value="{{ $client->phone }}" class="form-control" id="phone">
                 </div>
 
-
                 <div class="modal-body">
+                    <label>{{__('Dashboard/clients_trans.email')}} <span class="tx-danger">*</span></label>
+                    {!! Form::text('email', $client->email, array('class' => 'form-control','required')) !!}
+                </div>
+
+                <div class="modal-body"></div>
                     <label>{{__('Dashboard/users.password')}} <span class="tx-danger">*</span></label>
                     {!! Form::password('password', array('class' => 'form-control')) !!}
                 </div>

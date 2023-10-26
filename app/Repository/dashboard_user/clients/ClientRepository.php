@@ -59,12 +59,14 @@ class ClientRepository implements ClientRepositoryInterface
                 $Client->update([
                     'name' => $request->name,
                     'phone' => $request->phone,
+                    'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
             }else{
                 $Client->update([
                     'name' => $request->name,
                     'phone' => $request->phone,
+                    'email' => $request->email,
                     'password' => $password,
                 ]);
             }

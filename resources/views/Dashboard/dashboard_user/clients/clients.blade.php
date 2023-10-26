@@ -62,6 +62,7 @@
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/users.email')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.status')}}</th>
                                             <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
@@ -80,6 +81,7 @@
                                                     </td>
                                                 @endcan
                                                 <td>{{$client->name}}</td>
+                                                <td>{{$client->email}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>
                                                     @if ($client->Status == 1)

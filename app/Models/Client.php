@@ -19,6 +19,7 @@ class Client extends Authenticatable
         'id',
         'name',
         'phone',
+        'email',
         'password',
         'ClientStatus',
         'Status',
@@ -33,7 +34,7 @@ class Client extends Authenticatable
         }
 
         public function scopeClientselect($query){
-            return $query->select('id', 'name', 'phone', 'Status', 'ClientStatus', 'user_id', 'created_at', 'updated_at');
+            return $query->select('id', 'name', 'phone', 'email', 'Status', 'ClientStatus', 'user_id', 'created_at', 'updated_at');
         }
     /*-------------------- Relations --------------------*/
         public function user()

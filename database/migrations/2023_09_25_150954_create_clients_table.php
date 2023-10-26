@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 999);
             $table->string('phone')->unique();
+            $table->string('email')->unique();
             $table->string('phone_verification_at')->nullable();
             $table->string('password');
             $table->tinyInteger('ClientStatus')->default(0);

@@ -36,7 +36,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                            <table id="example-1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                 <thead>
                                     <tr>
                                         <th>#</th>

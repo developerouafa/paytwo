@@ -29,6 +29,7 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
                     $client->update([
                         'name' =>  $request->name,
                         'phone' => $request->phone,
+                        'email' => $request->email,
                     ]);
                     if($request->clienType == '1'){
                         $profileclient->update([

@@ -28,6 +28,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">{{__('Dashboard/clients_trans.email')}}</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="email" class="form-control" value="{{Auth::user()->email}}" autofocus autocomplete="email" >
+                                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">

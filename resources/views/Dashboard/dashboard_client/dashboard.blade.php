@@ -68,7 +68,7 @@
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     <div class="card card-table-two">
                         <div class="d-flex justify-content-between">
-                            <h2 class="card-title mb-1">اخر 5 فواتير علي النظام</h2>
+                            <h2 class="card-title mb-1">{{__('Dashboard/clients_trans.lastinvoices')}}</h2>
                         </div><br>
                         <div class="table-responsive country-table">
                             <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">

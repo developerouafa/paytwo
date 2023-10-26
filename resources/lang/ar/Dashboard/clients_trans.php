@@ -16,5 +16,6 @@ return [
     'nameisrequired'=>'اسم العميل مطلوب',
     'Clientcontrolpanel'=>'لوحة تحكم العميل',
     'Salesmonitoringdashb'=>'قالب لوحة مراقبة المبيعات',
-    'countinvoiceclient'=>'اجمالي عدد الفواتير'
+    'countinvoiceclient'=>'اجمالي عدد الفواتير',
+    'lastinvoices'=>'اخر 5 فواتير علي النظام'
 ];

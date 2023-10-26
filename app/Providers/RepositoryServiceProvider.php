@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface;
 use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
@@ -13,6 +14,7 @@ use App\Interfaces\dashboard_user\Products\promotionRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\stockRepositoryInterface;
 use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
 use App\Interfaces\dashboard_user\Sections\SectionRepositoryInterface;
+use App\Repository\Clients\Profiles\InvoicesRepository;
 use App\Repository\Clients\Profiles\ProfileclientRepository;
 use App\Repository\dashboard_user\Clients\ClientRepository;
 use App\Repository\dashboard_user\Finances\PaymentRepository;
@@ -44,6 +46,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProfileclientRepositoryInterface::class, ProfileclientRepository::class);
         $this->app->bind(ReceiptRepositoryInterface::class, ReceiptRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
+        $this->app->bind(InvoiceRepositoryInterface::class, InvoicesRepository::class);
     }
 
     /**

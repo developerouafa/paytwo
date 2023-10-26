@@ -161,7 +161,7 @@
 									<div class="menu-header-content bg-primary text-right">
 										<div class="d-flex">
                                             <span class="badge-pill badge-warning">
-                                                <a href="" > markallread </a>
+                                                <a href="{{route('Notification.Readclient')}}" > markallread </a>
                                             </span>
 										</div>
 										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 pt-2 tx-12">

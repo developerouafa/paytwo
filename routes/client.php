@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Dashboard\Clients\profiles\ProfileclientController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,14 @@ Route::group(
                 Route::delete('/profile', 'destroy')->name('profileclient.destroy');
             });
         });
-    //############################# end Partie Client route ######################################
+    //############################# End Partie Client route ######################################
+
+    //############################# Start Notification route ##########################################
+
+        Route::controller(Notification::class)->group(function() {
+            Route::get('/Read', 'markeAsRead')->name('Notification.Readclient');
+        });
+    //############################# End Notification route ##########################################
 
 });
 require __DIR__ . '/auth.php';

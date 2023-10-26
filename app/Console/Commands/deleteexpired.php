@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\product;
+use App\Models\promotion;
 use App\Models\section;
 use Illuminate\Console\Command;
 
@@ -29,5 +30,6 @@ class deleteexpired extends Command
     {
         section::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        promotion::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
     }
 }

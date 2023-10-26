@@ -49,6 +49,13 @@ Route::group(
         });
     //############################# End Notification route ##########################################
 
+    //############################# Clients route ##########################################
+        Route::prefix('Invoices')->group(function (){
+            // Route::resource('Invoices', ::class);
+            // Route::controller(::class)->group(function() {
+            // });
+        });
+    //############################# end Clients route ######################################
 });
 require __DIR__ . '/auth.php';
 

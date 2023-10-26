@@ -71,15 +71,6 @@
                                             <td>{{ number_format($invoice->tax_value, 2) }}</td>
                                             <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
                                             <td>
-                                                @if ($invoice->type == 1)
-                                                    {{__('Dashboard/services.monetary')}}
-                                                @elseif ($invoice->type == 2)
-                                                    {{__('Dashboard/services.Okay')}}
-                                                @elseif ($invoice->type == 3)
-                                                    {{__('Dashboard/services.Banktransfer')}}
-                                                @endif
-                                            </td>
-                                            <td>
                                                 @if ($invoice->invoice_status == 1)
                                                     {{__('Dashboard/services.Sent')}}
                                                 @elseif ($invoice->invoice_status == 2)

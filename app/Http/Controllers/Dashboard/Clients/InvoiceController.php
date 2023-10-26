@@ -14,7 +14,15 @@ class InvoiceController extends Controller
         $this->invoices = $invoices;
     }
 
-    public function index(){
-        return  $this->invoices->index();
+    public function indexmonetary(){
+        return  $this->invoices->indexmonetary();
+    }
+
+    public function indexPostpaid(){
+        return  $this->invoices->indexPostpaid();
+    }
+
+    public function indexBanktransfer(){
+        return  $this->invoices->indexBanktransfer();
     }
 }

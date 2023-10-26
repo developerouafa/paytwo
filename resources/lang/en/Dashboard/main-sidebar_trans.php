@@ -23,4 +23,6 @@ return [
     'deletedclients' => 'deleted Clients',
     'deletedreceipt' => 'deleted Receipt',
     'deletedpayment' => 'deleted Payment',
+    'Clientoperations' => 'Client Operations',
+    'Listofinvoices' => 'List of Invoices',
 ];

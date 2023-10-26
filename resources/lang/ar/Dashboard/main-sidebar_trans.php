@@ -23,4 +23,6 @@ return [
     'deletedclients' => 'العملاء المحذوفين',
     'deletedreceipt' => 'الإيصال المحذوف',
     'deletedpayment' => 'الدفع المحذوف',
+    'Clientoperations' => 'عميات العميل',
+    'Listofinvoices' => 'قائمة الفواتير',
 ];

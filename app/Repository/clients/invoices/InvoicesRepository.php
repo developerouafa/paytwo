@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\Clients\Profiles;
+namespace App\Repository\Clients\Invoices;
 
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use App\Models\invoice;

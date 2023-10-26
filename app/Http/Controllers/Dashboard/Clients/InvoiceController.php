@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Clients;
+namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;

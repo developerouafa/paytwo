@@ -14,7 +14,7 @@ use App\Interfaces\dashboard_user\Products\promotionRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\stockRepositoryInterface;
 use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
 use App\Interfaces\dashboard_user\Sections\SectionRepositoryInterface;
-use App\Repository\Clients\Profiles\InvoicesRepository;
+use App\Repository\Clients\Invoices\InvoicesRepository;
 use App\Repository\Clients\Profiles\ProfileclientRepository;
 use App\Repository\dashboard_user\Clients\ClientRepository;
 use App\Repository\dashboard_user\Finances\PaymentRepository;

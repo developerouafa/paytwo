@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Dashboard\Clients\profiles\ProfileclientController;
 use App\Http\Controllers\Auth\PasswordController;
-use App\Http\Controllers\Clients\InvoiceController;
+use App\Http\Controllers\Dashboard\Clients\InvoiceController;
 use App\Http\Controllers\Notification;
 
 /*

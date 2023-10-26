@@ -57,6 +57,9 @@ Route::group(
                 Route::get('/indexmonetary', 'indexmonetary')->name('Invoices.indexmonetary');
                 Route::get('/indexPostpaid', 'indexPostpaid')->name('Invoices.indexPostpaid');
                 Route::get('/indexBanktransfer', 'indexBanktransfer')->name('Invoices.indexBanktransfer');
+                Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
+                Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
+                Route::get('/showinvoiceBanktransfer/{id}', 'showinvoiceBanktransfer')->name('Invoices.showinvoiceBanktransfer');
             });
         });
     //############################# end Clients route ######################################

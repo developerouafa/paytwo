@@ -25,4 +25,16 @@ class InvoiceController extends Controller
     public function indexBanktransfer(){
         return  $this->invoices->indexBanktransfer();
     }
+
+    public function showinvoicemonetary($id){
+        return  $this->invoices->showinvoicemonetary($id);
+    }
+
+    public function showinvoicePostpaid($id){
+        return  $this->invoices->showinvoicePostpaid($id);
+    }
+
+    public function showinvoiceBanktransfer($id){
+        return  $this->invoices->showinvoiceBanktransfer($id);
+    }
 }

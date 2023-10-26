@@ -12,4 +12,13 @@ interface InvoiceRepositoryInterface
 
     //* get All Invoices Banktransfer
     public function indexBanktransfer();
+
+    //* Show Invoices Monetary
+    public function showinvoicemonetary($id);
+
+    //* Show Invoices Postpaid
+    public function showinvoicePostpaid($id);
+
+    //* Show Invoices Banktransfer
+    public function showinvoiceBanktransfer($id);
 }

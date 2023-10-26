@@ -57,10 +57,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($invoices as $invoice)
+                                    @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{ $invoice->invoice_number }}</td>
+                                            <td><a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
                                             <td>{{ $invoice->Service->name }}</td>
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
@@ -91,9 +91,7 @@
                                             <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
                                         </tr>
-                                    @empty
-                                        لاتوجد بيانات
-                                    @endforelse
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

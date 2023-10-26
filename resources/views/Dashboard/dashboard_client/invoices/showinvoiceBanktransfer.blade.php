@@ -39,7 +39,6 @@
                             <table id="example-1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/services.nameservice')}} </th>
                                         <th> {{__('Dashboard/services.client')}} </th>
@@ -57,41 +56,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($invoices as $invoice)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.showinvoicePostpaid',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
-                                            <td>{{ $invoice->Service->name }}</td>
-                                            <td>{{ $invoice->Client->name }}</td>
-                                            <td>{{ $invoice->invoice_date }}</td>
-                                            <td>{{ number_format($invoice->price, 2) }}</td>
-                                            <td>{{ number_format($invoice->discount_value, 2) }}</td>
-                                            <td>{{ $invoice->tax_rate }}%</td>
-                                            <td>{{ number_format($invoice->tax_value, 2) }}</td>
-                                            <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
-                                            <td>
-                                                @if ($invoice->invoice_status == 1)
-                                                    {{__('Dashboard/services.Sent')}}
-                                                @elseif ($invoice->invoice_status == 2)
-                                                    {{__('Dashboard/services.Under review')}}
-                                                @elseif ($invoice->invoice_status == 3)
-                                                    {{__('Dashboard/services.Complete')}}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($invoice->invoice_type == 1)
-                                                    {{__('Dashboard/services.Draft')}}
-                                                @elseif ($invoice->invoice_type == 2)
-                                                    {{__('Dashboard/services.Paid')}}
-                                                @elseif ($invoice->invoice_type == 3)
-                                                    {{__('Dashboard/services.Canceled')}}
-                                                @endif
-                                            </td>
-                                            <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
-                                            <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
-                                            <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>{{$invoice->invoice_number}}</td>
+                                        <td>{{ $invoice->Service->name }}</td>
+                                        <td>{{ $invoice->Client->name }}</td>
+                                        <td>{{ $invoice->invoice_date }}</td>
+                                        <td>{{ number_format($invoice->price, 2) }}</td>
+                                        <td>{{ number_format($invoice->discount_value, 2) }}</td>
+                                        <td>{{ $invoice->tax_rate }}%</td>
+                                        <td>{{ number_format($invoice->tax_value, 2) }}</td>
+                                        <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
+                                        <td>
+                                            @if ($invoice->invoice_status == 1)
+                                                {{__('Dashboard/services.Sent')}}
+                                            @elseif ($invoice->invoice_status == 2)
+                                                {{__('Dashboard/services.Under review')}}
+                                            @elseif ($invoice->invoice_status == 3)
+                                                {{__('Dashboard/services.Complete')}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($invoice->invoice_type == 1)
+                                                {{__('Dashboard/services.Draft')}}
+                                            @elseif ($invoice->invoice_type == 2)
+                                                {{__('Dashboard/services.Paid')}}
+                                            @elseif ($invoice->invoice_type == 3)
+                                                {{__('Dashboard/services.Canceled')}}
+                                            @endif
+                                        </td>
+                                        <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
+                                        <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
+                                        <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -21,4 +21,22 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $invoices = invoice::latest()->where('type', '3')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicesBanktransfer', ['invoices' => $invoices]);
     }
+
+    public function showinvoicemonetary($id)
+    {
+        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
+    }
+
+    public function showinvoicePostpaid($id)
+    {
+        $invoice = invoice::latest()->where('type', '2')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
+    }
+
+    public function showinvoiceBanktransfer($id)
+    {
+        $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
+    }
 }

@@ -111,8 +111,8 @@
                                                             <td> {{ $x->created_at->diffForHumans() }} </td>
                                                             <td> {{ $x->updated_at->diffForHumans() }} </td>
                                                             <td>
-                                                                <a href="{{route('restorepr', $section->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                                <form action="{{route('forcedeletepr', $section->id)}}" method="get">
+                                                                <a href="{{route('restorepr', $x->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                                <form action="{{route('forcedeletepr', $x->id)}}" method="get">
                                                                     @csrf
                                                                     <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                                                                 </form>
@@ -164,8 +164,8 @@
                                                         <td> {{ $x->created_at->diffForHumans() }} </td>
                                                         <td> {{ $x->updated_at->diffForHumans() }} </td>
                                                         <td>
-                                                            <a href="{{route('restorepr', $section->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                            <form action="{{route('forcedeletepr', $section->id)}}" method="get">
+                                                            <a href="{{route('restorepr', $x->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                            <form action="{{route('forcedeletepr', $x->id)}}" method="get">
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                                                             </form>

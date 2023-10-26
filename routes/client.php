@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Dashboard\Clients\profiles\ProfileclientController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Clients\InvoiceController;
 use App\Http\Controllers\Notification;
 
 /*
@@ -51,9 +52,9 @@ Route::group(
 
     //############################# Clients route ##########################################
         Route::prefix('Invoices')->group(function (){
-            // Route::resource('Invoices', ::class);
-            // Route::controller(::class)->group(function() {
-            // });
+            Route::resource('Invoices', InvoiceController::class);
+            Route::controller(InvoiceController::class)->group(function() {
+            });
         });
     //############################# end Clients route ######################################
 });

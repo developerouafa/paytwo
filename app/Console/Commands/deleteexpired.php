@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Client;
+use App\Models\paymentaccount;
 use App\Models\product;
 use App\Models\promotion;
+use App\Models\receipt_account;
 use App\Models\section;
 use Illuminate\Console\Command;
 
@@ -33,5 +35,7 @@ class deleteexpired extends Command
         product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         promotion::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         Client::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        paymentaccount::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
     }
 }

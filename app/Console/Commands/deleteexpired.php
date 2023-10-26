@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\product;
 use App\Models\section;
 use Illuminate\Console\Command;
 
@@ -12,7 +13,7 @@ class deleteexpired extends Command
      *
      * @var string
      */
-    protected $signature = 'delete:deleteexpired';
+    protected $signature = 'delete:expired';
 
     /**
      * The console command description.
@@ -26,9 +27,7 @@ class deleteexpired extends Command
      */
     public function handle()
     {
-        $admins = section::where('deleted_at', '>', date('Y-m-d'))->get();
-        foreach($admins as $admin){
-            $admin->delete();
-        }
+        section::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
     }
 }

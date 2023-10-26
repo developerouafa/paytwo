@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\productexpired;
+use App\Console\Commands\deleteexpired;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -10,6 +11,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         productexpired::class,
+        deleteexpired::class,
     ];
     /**
      * Define the application's command schedule.
@@ -17,6 +19,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('product:expired')->everyMinute();
+        $schedule->command('delete:expired')->everyMinute();
     }
 
     /**

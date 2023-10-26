@@ -26,9 +26,9 @@ class productexpired extends Command
      */
     public function handle()
     {
-        $admins = promotion::where('end_time', date('Y-m-d'))->get();
-        foreach($admins as $admin){
-            $admin->delete();
+        $promotions = promotion::where('end_time', date('Y-m-d'))->get();
+        foreach($promotions as $promotion){
+            $promotion->delete();
         }
     }
 }

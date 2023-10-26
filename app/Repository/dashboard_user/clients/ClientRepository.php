@@ -33,6 +33,7 @@ class ClientRepository implements ClientRepositoryInterface
             Client::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
+                'email' => $request->email,
                 'user_id' => auth()->user()->id,
                 'password' => Hash::make($request->password)
             ]);

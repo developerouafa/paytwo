@@ -18,4 +18,6 @@ return [
     'Salesmonitoringdashb'=>'Sales monitoring dashboard template',
     'countinvoiceclient'=>'Total number of invoice',
     'lastinvoices'=>'The last 5 invoices on the system',
+    "email" => "Email",
+
 ];

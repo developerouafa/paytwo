@@ -16,8 +16,13 @@
                 </div>
 
                 <div class="modal-body">
-                    <label for="phone">{{trans('Dashboard/clients_trans.phone')}}</label>
+                    <label for="phone">{{trans('Dashboard/clients_trans.phone')}}<span class="tx-danger">*</span></label>
                     <input type="number" class="form-control" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="{{__('Dashboard/clients_trans.phone')}}">
+                </div>
+
+                <div class="modal-body">
+                    <label>{{__('Dashboard/clients_trans.email')}}<span class="tx-danger">*</span></label>
+                    <input type="email" class="form-control" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="{{__('Dashboard/clients_trans.email')}}">
                 </div>
 
                 <div class="modal-body">

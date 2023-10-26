@@ -17,5 +17,6 @@ return [
     'Clientcontrolpanel'=>'لوحة تحكم العميل',
     'Salesmonitoringdashb'=>'قالب لوحة مراقبة المبيعات',
     'countinvoiceclient'=>'اجمالي عدد الفواتير',
-    'lastinvoices'=>'اخر 5 فواتير علي النظام'
+    'lastinvoices'=>'اخر 5 فواتير علي النظام',
+    "email" => "البريد الالكتروني",
 ];

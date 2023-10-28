@@ -252,10 +252,6 @@
                                     @elseif(auth('client')->check())
                                         <a class="dropdown-item" href="{{ route('profileclient.edit') }}"><i class="bx bx-user-circle"></i>Profileaa</a>
                                     @endif
-									<a class="dropdown-item" href=""><i class="bx bx-cog"></i>Edit Profile</a>
-									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
-									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
-									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
                                     @if(auth('web')->check())
                                         <form method="POST" action="{{ route('logout') }}">
                                             @elseif(auth('client')->check())

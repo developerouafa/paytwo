@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\Clients;
 
+use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,6 @@ class Notification extends Controller
         foreach ($client->unreadNotifications as $notification){
             $notification->delete();
         }
-        // return redirect()->back();
+        return redirect()->back();
     }
 }

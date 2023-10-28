@@ -174,7 +174,7 @@
 									<div class="main-notification-list Notification-scroll" id="unreadNotifications">
                                         @forelse (auth()->user()->unreadNotifications as $notification)
                                             @if ($notification->type == 'App\Notifications\montaryinvoice')
-                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicemonetary',$notification->data['invoice_id'])}}">
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
@@ -185,7 +185,7 @@
                                                 </a>
                                             @endif
                                             @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
-                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicePostpaid',$notification->data['invoice_id'])}}">
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
@@ -196,7 +196,7 @@
                                                 </a>
                                             @endif
                                             @if ($notification->type == 'App\Notifications\paymentgateways')
-                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoiceBanktransfer',$notification->data['invoice_id'])}}">
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>

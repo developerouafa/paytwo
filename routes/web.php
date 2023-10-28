@@ -14,7 +14,9 @@ use App\Http\Controllers\Dashboard\dashboard_users\users\UserController;
 use App\Http\Controllers\Dashboard\dashboard_users\users\ImageuserController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\PromotionController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\StockproductController;
+use App\Mail\clientmail;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -213,15 +215,20 @@ Route::get('/clear', function() {
 
         //############################# end Payment route ######################################
 
+        // Route::get('/send', function () {
+        //     $user = 'Ouafa Bentaleb';
+		//     Mail::to('developerouafa@gmail.com')->send(new clientmail);
+		//     return response('success');
+        // });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');
-// Route::post('confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');
-// Route::get('checkout', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
-// Route::post('pay', [App\Http\Controllers\HomeController::class, 'pay'])->name('pay');
-// Route::view('success', 'success')->name('success');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');
+Route::post('confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');
+Route::get('checkout', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
+Route::post('pay', [App\Http\Controllers\HomeController::class, 'pay'])->name('pay');
+Route::view('success', 'success')->name('success');
 
-// Route::stripeWebhooks('webhook');
+Route::stripeWebhooks('webhook');
 
     });
     require __DIR__.'/auth.php';

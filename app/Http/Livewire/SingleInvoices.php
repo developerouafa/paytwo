@@ -105,6 +105,11 @@ class SingleInvoices extends Component
                     $invoice_id = $single_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasemontaryup');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
                 // في حالة الاضافة
                 else{

@@ -291,6 +291,12 @@ class SingleInvoices extends Component
                     $invoice_id = $single_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepymgtwup');
                     Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
                 }
                 // في حالة الاضافة
                 else{
@@ -329,6 +335,12 @@ class SingleInvoices extends Component
                     $invoice_id = $single_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepymgtw');
                     Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
                 }
                 DB::commit();
             }

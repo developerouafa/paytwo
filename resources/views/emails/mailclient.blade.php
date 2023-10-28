@@ -4,7 +4,7 @@
 {{$nameclient}}
 
 <x-mail::button :url="$url">
-    View Invoice
+    {{__('Dashboard/mail.ViewInvoice')}}
 </x-mail::button>
 
 {{__('Dashboard/mail.Thanks')}},<br>

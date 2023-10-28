@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Tik'),
+    'name' => env('APP_NAME', 'Invoice management software'),
 
     /*
     |--------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\mailclient;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -12,6 +13,7 @@ use App\Notifications\montaryinvoice;
 use App\Notifications\paymentgateways;
 use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -109,6 +111,12 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasemontaryup');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
                 }
                 // في حالة الاضافة
                 else{
@@ -145,6 +153,11 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasemontary');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
                 DB::commit();
             }
@@ -188,6 +201,11 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepostpaidup');
                     Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicePostpaid/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
 
                 // في حالة الاضافة
@@ -227,6 +245,16 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepostpaid');
                     Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicePostpaid/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
                 DB::commit();
             }
@@ -307,6 +335,11 @@ class GroupInvoices extends Component
                     $invoice_id = $group_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasepymgtw');
                     Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
                 DB::commit();
             }

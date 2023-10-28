@@ -11,13 +11,13 @@
 					<div class="tabs-menu ">
 						<!-- Tabs -->
 						<ul class="nav panel-tabs">
-							<li class=""><a href="#side1" class="active" data-toggle="tab"><i class="ion ion-md-chatboxes tx-18 ml-2"></i> Chat</a></li>
-							<li><a href="#side2" data-toggle="tab"><i class="ion ion-md-notifications tx-18  ml-2"></i> Notifications</a></li>
+							<li class=""><a href="#side1" data-toggle="tab"><i class="ion ion-md-chatboxes tx-18 ml-2"></i> Chat</a></li>
+							<li><a href="#side2" class="active" data-toggle="tab"><i class="ion ion-md-notifications tx-18  ml-2"></i> Notifications</a></li>
 							<li><a href="#side3" data-toggle="tab"><i class="ion ion-md-contacts tx-18 ml-2"></i> Friends</a></li>
 						</ul>
 					</div>
 					<div class="tab-content">
-						<div class="tab-pane active " id="side1">
+						<div class="tab-pane" id="side1">
 							<div class="list d-flex align-items-center border-bottom p-3">
 								<div class="">
 									<span class="avatar bg-primary brround avatar-md">CH</span>
@@ -155,86 +155,44 @@
 								</a>
 							</div>
 						</div>
-						<div class="tab-pane  " id="side2">
-							<div class="list-group list-group-flush ">
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/12.jpg')}}"><span class="avatar-status bg-success"></span></span>
-									</div>
-									<div>
-										<strong>Madeleine</strong> Hey! there I' am available....
-										<div class="small text-muted">
-											3 hours ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/1.jpg')}}"></span>
-									</div>
-									<div>
-										<strong>Anthony</strong> New product Launching...
-										<div class="small text-muted">
-											5 hour ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/2.jpg')}}"><span class="avatar-status bg-success"></span></span>
-									</div>
-									<div>
-										<strong>Olivia</strong> New Schedule Realease......
-										<div class="small text-muted">
-											45 mintues ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/8.jpg')}}"><span class="avatar-status bg-success"></span></span>
-									</div>
-									<div>
-										<strong>Madeleine</strong> Hey! there I' am available....
-										<div class="small text-muted">
-											3 hours ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/11.jpg')}}"></span>
-									</div>
-									<div>
-										<strong>Anthony</strong> New product Launching...
-										<div class="small text-muted">
-											5 hour ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/6.jpg')}}"><span class="avatar-status bg-success"></span></span>
-									</div>
-									<div>
-										<strong>Olivia</strong> New Schedule Realease......
-										<div class="small text-muted">
-											45 mintues ago
-										</div>
-									</div>
-								</div>
-								<div class="list-group-item d-flex  align-items-center">
-									<div class="ml-3">
-										<span class="avatar avatar-lg brround cover-image" data-image-src="{{URL::asset('assets/img/faces/9.jpg')}}"><span class="avatar-status bg-success"></span></span>
-									</div>
-									<div>
-										<strong>Olivia</strong> Hey! there I' am available....
-										<div class="small text-muted">
-											12 mintues ago
-										</div>
-									</div>
-								</div>
-							</div>
+						<div class="tab-pane active" id="side2">
+                            @forelse (auth()->user()->unreadNotifications as $notification)
+                                @if ($notification->type == 'App\Notifications\montaryinvoice')
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicemonetary',$notification->data['invoice_id'])}}">
+                                        <div class="mr-3">
+                                            <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
+                                            <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
+                                        </div>
+                                        <div class="mr-auto">
+                                            <i class="las la-angle-left text-left text-muted"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicePostpaid',$notification->data['invoice_id'])}}">
+                                        <div class="mr-3">
+                                            <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
+                                            <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
+                                        </div>
+                                        <div class="mr-auto">
+                                            <i class="las la-angle-left text-left text-muted"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($notification->type == 'App\Notifications\paymentgateways')
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoiceBanktransfer',$notification->data['invoice_id'])}}">
+                                        <div class="mr-3">
+                                            <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
+                                            <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
+                                        </div>
+                                        <div class="mr-auto">
+                                            <i class="las la-angle-left text-left text-muted"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                            @empty
+                                {{__('Dashboard/main-header_trans.thereareno')}}
+                            @endforelse
 						</div>
 						<div class="tab-pane  " id="side3">
 							<div class="list-group list-group-flush ">

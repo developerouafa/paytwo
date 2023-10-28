@@ -52,7 +52,6 @@ Route::group(
 
     //############################# Clients route ##########################################
         Route::prefix('Invoices')->group(function (){
-            Route::resource('Invoices', InvoiceController::class);
             Route::controller(InvoiceController::class)->group(function() {
                 Route::get('/indexmonetary', 'indexmonetary')->name('Invoices.indexmonetary');
                 Route::get('/indexPostpaid', 'indexPostpaid')->name('Invoices.indexPostpaid');

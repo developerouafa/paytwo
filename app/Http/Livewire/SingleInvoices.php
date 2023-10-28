@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Events\createinvoice;
+use App\Mail\mailclient;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -12,10 +13,12 @@ use App\Models\paymentgateway;
 use App\Models\product;
 use App\Models\User;
 use App\Notifications\montaryinvoice;
+use App\Notifications\notificationMail;
 use App\Notifications\paymentgateways;
 use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -139,6 +142,12 @@ class SingleInvoices extends Component
                     $invoice_id = $single_invoices->id;
                     $message = __('Dashboard/main-header_trans.nicasemontary');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
                 }
                 DB::commit();
             }

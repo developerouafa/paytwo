@@ -368,7 +368,6 @@ class SingleInvoices extends Component
             'phoneUserCreateinvoice' => $single_invoice->user->phone,
             'emailUserCreateinvoice' => $single_invoice->user->email
         ]);
-
     }
 
     public function delete($id){

@@ -18,12 +18,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($posts as $post)
+                                    @foreach ($invoices as $invoice)
                                         <tr>
-                                            <td>{{ $post->name }}</td>
-                                            <td>${{ round($post->price / 100, 2) }}</td>
+                                            <td>{{ $invoice->invoice_number }}</td>
+                                            <td>${{ round($invoice->price / 100, 2) }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('buy', [$post->id]) }}">Buy</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('buy', [$invoice->id]) }}">Buy</a>
                                             </td>
                                         </tr>
                                     @endforeach

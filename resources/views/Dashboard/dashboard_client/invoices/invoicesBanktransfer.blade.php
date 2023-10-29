@@ -62,7 +62,12 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td><a href="{{route('Invoices.showinvoiceBanktransfer',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
-                                            <td>{{ $invoice->Service->name }}</td>
+                                            @if ($invoice->invoice_classify == '1')
+                                                <td>{{ $invoice->Service->name }}</td>
+                                            @endif
+                                            @if ($invoice->invoice_classify == '2')
+                                                <td>{{ $invoice->Group->name }}</td>
+                                            @endif
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
                                             <td>{{ number_format($invoice->price, 2) }}</td>
@@ -72,6 +77,18 @@
                                             <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
+                                                <form action="{{ route('confirm') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
+
+                                                    <div class="form-group row mb-0">
+                                                        <div class="col-md-6 offset-md-4">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                {{ __('Confirm Purchase') }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                                     {{__('Dashboard/services.Sent')}}
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}

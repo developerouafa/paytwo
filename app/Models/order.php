@@ -9,10 +9,10 @@ class order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'post_id', 'price', 'paid_at', 'delivered_at'];
+    protected $fillable = ['client_id', 'invoice_id', 'price', 'paid_at', 'delivered_at'];
 
-    public function post()
+    public function invoice()
     {
-        return $this->belongsTo(post::class);
+        return $this->belongsTo(invoice::class);
     }
 }

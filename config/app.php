@@ -186,6 +186,9 @@ return [
         // Repository
         App\Providers\RepositoryServiceProvider::class,
 
+        // Paypal
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class
+
     ])->toArray(),
 
     /*
@@ -208,7 +211,10 @@ return [
         // End spatie
 
         // jwt
-        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+
+        // paypal
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
 
     ])->toArray(),
 

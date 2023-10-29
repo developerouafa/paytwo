@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\invoice;
 use App\Models\Order;
 use App\Models\post;
 use App\Models\User;
@@ -18,44 +20,34 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = post::all();
+        $invoices = invoice::all();
 
-        return view('home', compact('posts'));
+        return view('home', compact('invoices'));
     }
 
-    public function buy($post_id)
+    public function buy($invoice_id)
     {
-        $post = post::findOrFail($post_id);
+        $invoice = invoice::findOrFail($invoice_id);
 
-        return view('buy', compact('post'));
+        return view('buy', compact('invoice'));
     }
 
     public function confirm(Request $request)
     {
-        $post = post::findOrFail($request->input('post_id'));
+        $invoice = invoice::findOrFail($request->input('invoice_id'));
 
-        // $user = User::firstOrCreate([
-        //     'email' => $request->input('email'),
-        // ], [
-        //     'name' => $request->input('name'),
-        //     'password' => Str::random(10),
-        //     'address' => $request->input('address'),
-        // ]);
-
-        // auth()->login($user);
-        $user = User::findOrFail(Auth::user()->id);
-        $user->orders()->create([
-            'post_id' => $post->id,
-            'price' => $post->price
+        $client = Client::findOrFail(Auth::user()->id);
+        $client->orders()->create([
+            'invoice_id' => $invoice->id,
+            'price' => $invoice->price
         ]);
-
         return redirect()->route('checkout');
     }
 
     public function checkout()
     {
-        $order = Order::with('post')
-            ->where('user_id', auth()->id())
+        $order = Order::with('invoice')
+            ->where('client_id', auth()->id())
             ->whereNull('paid_at')
             ->latest()
             ->firstOrFail();
@@ -67,13 +59,13 @@ class HomeController extends Controller
 
     public function pay(Request $request)
     {
-        $order = Order::where('user_id', auth()->id())->findOrFail($request->input('order_id'));
-        $user = auth()->user();
+        $order = Order::where('client_id', auth()->id())->findOrFail($request->input('order_id'));
+        $client = auth()->user();
         $paymentMethod = $request->input('payment_method');
         try {
-            $user->createOrGetStripeCustomer();
-            $user->updateDefaultPaymentMethod($paymentMethod);
-            $user->invoiceFor($order->post->name, $order->price);
+            $client->createOrGetStripeCustomer();
+            $client->updateDefaultPaymentMethod($paymentMethod);
+            $client->invoiceFor($order->invoice->invoice_number, $order->price);
         } catch (\Exception $ex) {
             return back()->with('error', $ex->getMessage());
         }

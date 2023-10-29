@@ -8,14 +8,14 @@
                     <div class="card-header">{{ __('Confirm Purchase') }}</div>
 
                     <div class="card-body">
-                        You're about to purchase <b>{{ $post->name }}</b> for <b>${{ round($post->price / 100, 2) }}</b>
+                        You're about to purchase <b>{{ $invoice->name }}</b> for <b>${{ round($invoice->price / 100, 2) }}</b>
                         <hr />
                         <form action="{{ route('confirm') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                {{-- <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -54,7 +54,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

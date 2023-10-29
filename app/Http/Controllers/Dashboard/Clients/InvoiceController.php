@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
+use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
@@ -36,5 +37,15 @@ class InvoiceController extends Controller
 
     public function showinvoiceBanktransfer($id){
         return  $this->invoices->showinvoiceBanktransfer($id);
+    }
+
+    public function checkout(Request $request)
+    {
+        return  $this->invoices->checkout($request);
+    }
+
+    public function pay(Request $request)
+    {
+        return  $this->invoices->pay($request);
     }
 }

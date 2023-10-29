@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}}
+@stop
 
 @section('content')
     <div class="container">
@@ -11,11 +14,11 @@
                         <form action="{{ route('pay') }}" method="POST" id="payment-form">
                             @csrf
                             <input type="hidden" name="payment_method" id="payment-method" value="" />
-                            <input type="hidden" name="order_id" value="{{ $order->id }}" />
+                            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
                             <div class="col-md-6">
                                 <div id="card-element"></div>
                                 <button type="button" class="mt-4 btn btn-primary" id="payment-button">
-                                    Pay ${{ round($order->invoice->price / 100, 2) }}</button>
+                                    Pay ${{ round($invoice->price / 100, 2) }}</button>
                                 @if (session('error'))
                                     <div class="alert alert-danger mt-4">{{ session('error') }}</div>
                                 @endif

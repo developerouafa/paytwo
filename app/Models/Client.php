@@ -47,6 +47,11 @@ class Client extends Authenticatable
             return $this->hasOne(profileclient::class);
         }
 
+        public function orders()
+        {
+            return $this->hasMany(order::class);
+        }
+
     protected $hidden = [
         'password',
         'remember_token',

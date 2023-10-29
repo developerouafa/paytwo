@@ -46,4 +46,31 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
         return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
     }
+
+    public function checkout($request)
+    {
+        $invoice = invoice::where('client_id', auth()->id())->where('id', $request->invoice_id)->latest()->firstOrFail();
+
+        $paymentIntent = auth()->user()->createSetupIntent();
+
+        return view('Dashboard.dashboard_client/invoices/checkout', compact('invoice', 'paymentIntent'));
+    }
+
+    public function pay($request)
+    {
+        $invoice = invoice::where('client_id', auth()->id())->findOrFail($request->input('invoice_id'));
+        // return $invoice;
+        $user = auth()->user();
+
+        $paymentMethod = $request->input('payment_method');
+        try {
+            $user->createOrGetStripeCustomer();
+            $user->updateDefaultPaymentMethod($paymentMethod);
+            $user->invoiceFor($invoice->invoice_number, $invoice->price);
+        } catch (\Exception $ex) {
+            return back()->with('error', $ex->getMessage());
+        }
+
+        return redirect()->route('success');
+    }
 }

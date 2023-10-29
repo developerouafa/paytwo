@@ -59,13 +59,27 @@ Route::group(
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
                 Route::get('/showinvoiceBanktransfer/{id}', 'showinvoiceBanktransfer')->name('Invoices.showinvoiceBanktransfer');
+                // Route::get('/invoicecheckout', 'checkout')->name('Invoices.checkout');
+                // Route::post('/invoicepay', 'pay')->name('Invoices.pay');
+                // Route::view('success', 'success')->name('success');
+                // Route::stripeWebhooks('webhook');
             });
         });
     //############################# end Clients route ######################################
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');
+        Route::post('confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');
+        Route::get('checkout', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
+        Route::post('pay', [App\Http\Controllers\HomeController::class, 'pay'])->name('pay');
+        Route::view('success', 'success')->name('success');
+
+        Route::stripeWebhooks('webhook');
+
+        // route for view/blade file
+        Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'App\Http\Controllers\PaypalController@payWithPaypal',));
+        // route for post request
+        Route::post('paypal', array('as' => 'paypal','uses' => 'App\Http\Controllers\PaypalController@postPaymentWithpaypal',));
+        // route for check status responce
+        Route::get('paypal', array('as' => 'status','uses' => 'App\Http\Controllers\PaypalController@getPaymentStatus',));
 });
 require __DIR__ . '/auth.php';
-
-
-
-
-

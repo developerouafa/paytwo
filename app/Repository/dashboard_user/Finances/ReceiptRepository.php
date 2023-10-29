@@ -41,7 +41,6 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     {
         try{
             DB::beginTransaction();
-
                 // store receipt_accounts
                 $receipt_accounts = new receipt_account();
                 $receipt_accounts->date =date('y-m-d');
@@ -79,9 +78,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             toastr()->error(trans('Dashboard/messages.error'));
             return redirect()->route('Receipt.create');
         }
-
     }
-
 
     public function edit($id)
     {
@@ -116,7 +113,6 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             $client_accounts->Debit = 0.00;
             $client_accounts->credit =$request->Debit;
             $client_accounts->save();
-
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

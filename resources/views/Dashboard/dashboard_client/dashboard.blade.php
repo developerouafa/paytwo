@@ -97,7 +97,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ $invoice->invoice_number }}</td>
-                                        <td>{{ $invoice->Service->name }}</td>
+                                        {{-- <td>{{ $invoice->Service->name }}</td> --}}
                                         <td>{{ $invoice->Client->name }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
                                         <td>{{ number_format($invoice->price, 2) }}</td>

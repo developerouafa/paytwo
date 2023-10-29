@@ -21,4 +21,10 @@ interface InvoiceRepositoryInterface
 
     //* Show Invoices Banktransfer
     public function showinvoiceBanktransfer($id);
+
+    //* Checkout Invoices Banktransfer
+    public function checkout($request);
+
+    //* Pay Invoices Banktransfer
+    public function pay($request);
 }

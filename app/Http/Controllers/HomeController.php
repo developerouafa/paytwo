@@ -41,7 +41,7 @@ class HomeController extends Controller
             'invoice_id' => $invoice->id,
             'price' => $invoice->price
         ]);
-        return redirect()->route('checkout');
+        return redirect()->route('Invoices.checkout');
     }
 
     public function checkout()

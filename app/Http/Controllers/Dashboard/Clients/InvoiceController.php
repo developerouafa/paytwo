@@ -39,9 +39,14 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoiceBanktransfer($id);
     }
 
-    public function checkout(Request $request)
+    public function confirm(Request $request)
     {
-        return  $this->invoices->checkout($request);
+        return  $this->invoices->confirm($request);
+    }
+
+    public function checkout()
+    {
+        return  $this->invoices->checkout();
     }
 
     public function pay(Request $request)

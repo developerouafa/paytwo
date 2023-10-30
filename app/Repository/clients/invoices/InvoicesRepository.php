@@ -2,7 +2,9 @@
 namespace App\Repository\Clients\Invoices;
 
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
+use App\Models\Client;
 use App\Models\invoice;
+use App\Models\order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -47,30 +49,43 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
     }
 
-    public function checkout($request)
+    public function confirm($request)
     {
-        $invoice = invoice::where('client_id', auth()->id())->where('id', $request->invoice_id)->latest()->firstOrFail();
+        $invoice = invoice::findOrFail($request->input('invoice_id'));
+
+        $client = Client::findOrFail(Auth::user()->id);
+        $client->orders()->create([
+            'invoice_id' => $invoice->id,
+            'price' => $invoice->price
+        ]);
+        return redirect()->route('Invoices.checkout');
+    }
+
+    public function checkout()
+    {
+        $order = order::with('invoice')
+        ->where('client_id', auth()->id())
+        ->whereNull('paid_at')
+        ->latest()
+        ->firstOrFail();
 
         $paymentIntent = auth()->user()->createSetupIntent();
 
-        return view('Dashboard.dashboard_client/invoices/checkout', compact('invoice', 'paymentIntent'));
+        return view('Dashboard.dashboard_client/invoices/checkout', compact('order', 'paymentIntent'));
     }
 
     public function pay($request)
     {
-        $invoice = invoice::where('client_id', auth()->id())->findOrFail($request->input('invoice_id'));
-        // return $invoice;
-        $user = auth()->user();
-
+        $order = Order::where('client_id', auth()->id())->findOrFail($request->input('order_id'));
+        $client = auth()->user();
         $paymentMethod = $request->input('payment_method');
         try {
-            $user->createOrGetStripeCustomer();
-            $user->updateDefaultPaymentMethod($paymentMethod);
-            $user->invoiceFor($invoice->invoice_number, $invoice->price);
+            $client->createOrGetStripeCustomer();
+            $client->updateDefaultPaymentMethod($paymentMethod);
+            $client->invoiceFor($order->invoice->invoice_number, $order->price);
         } catch (\Exception $ex) {
             return back()->with('error', $ex->getMessage());
         }
-
-        return redirect()->route('success');
+        return redirect()->route('Invoices.success');
     }
 }

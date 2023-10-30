@@ -49,7 +49,6 @@
                                         <th> {{__('Dashboard/services.Taxrate')}} </th>
                                         <th> {{__('Dashboard/services.Taxvalue')}} </th>
                                         <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-                                        <th> {{__('Dashboard/services.type')}} </th>
                                         <th> {{__('Dashboard/services.Invoicestatus')}} </th>
                                         <th> {{__('Dashboard/services.Invoicetype')}} </th>
                                         <th> {{__('Dashboard/users.createdbyuser')}} </th>
@@ -63,7 +62,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td><a href="{{route('Invoices.showinvoiceBanktransfer',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
                                             @if ($invoice->invoice_classify == '1')
-                                                <td>{{ $invoice->Service->name }}</td>
+                                            <td>{{ $invoice->Service->name }}</td>
                                             @endif
                                             @if ($invoice->invoice_classify == '2')
                                                 <td>{{ $invoice->Group->name }}</td>
@@ -77,19 +76,14 @@
                                             <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
-                                                <form action="{{ route('confirm') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
-
-                                                    <div class="form-group row mb-0">
-                                                        <div class="col-md-6 offset-md-4">
-                                                            <button type="submit" class="btn btn-primary">
-                                                                {{ __('Confirm Purchase') }}
+                                                    <form action="{{ route('Invoices.confirm') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
+                                                            <button type="submit" class="btn btn-purple mt-3">
+                                                                <i class="mdi mdi-currency-usd ml-1">Pay</i>
                                                             </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                    {{__('Dashboard/services.Sent')}}
+                                                            <b class="purple">{{__('Dashboard/services.Sent')}}</b>
+                                                    </form>
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}
                                                 @elseif ($invoice->invoice_status == 3)

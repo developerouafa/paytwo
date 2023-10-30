@@ -16,14 +16,17 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    @include('Dashboard/layouts.head')
 
 </head>
 <body>
+
     <div id="app">
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    @include('Dashboard/layouts.footer')
 
     @yield('scripts')
 </body>

@@ -222,12 +222,5 @@ Route::get('/clear', function() {
 
         // Route::stripeWebhooks('webhook');
 
-                // route for view/blade file
-                Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'App\Http\Controllers\PaypalController@payWithPaypal',));
-                // route for post request
-                Route::post('paypal', array('as' => 'paypal','uses' => 'App\Http\Controllers\PaypalController@postPaymentWithpaypal',));
-                // route for check status responce
-                Route::get('paypal', array('as' => 'status','uses' => 'App\Http\Controllers\PaypalController@getPaymentStatus',));
-
     });
     require __DIR__.'/auth.php';

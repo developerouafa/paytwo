@@ -2,7 +2,7 @@
 
 return [
     'status'=>'Status',
-    'addpayment'=>'Create New payment',
+    'addpayment'=>'Catch Payment',
     'submit'=>'Submit',
     'Close'=>'Close',
     'edit'=>'Edit',

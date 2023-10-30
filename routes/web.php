@@ -196,8 +196,8 @@ Route::get('/clear', function() {
         //############################# Receipt route ##########################################
 
             Route::resource('Receipt', ReceiptAccountController::class);
-            Route::post('/create', [ReceiptAccountController::class, 'create'])->name('Receipt.create');
-            Route::post('/store', [ReceiptAccountController::class, 'store'])->name('Receipt.store');
+            Route::post('/createrc', [ReceiptAccountController::class, 'create'])->name('Receipt.createrc');
+            Route::post('/storerc', [ReceiptAccountController::class, 'store'])->name('Receipt.storerc');
             Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
             Route::get('/Deleted_Receipt', [ReceiptAccountController::class, 'softdelete'])->name('Receipt.softdelete');
             Route::get('restorerc/{id}', [ReceiptAccountController::class, 'restore'])->name('restorerc');
@@ -208,6 +208,8 @@ Route::get('/clear', function() {
         //############################# Payment route ##########################################
 
             Route::resource('Payment', PaymentaccountController::class);
+            Route::post('/createpy', [PaymentaccountController::class, 'create'])->name('Payment.createpy');
+            Route::post('/storepy', [PaymentaccountController::class, 'store'])->name('Payment.storepy');
             Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
             Route::get('/Deleted_Payment', [PaymentaccountController::class, 'softdelete'])->name('Payment.softdelete');
             Route::get('restorepy/{id}', [PaymentaccountController::class, 'restore'])->name('restorepy');

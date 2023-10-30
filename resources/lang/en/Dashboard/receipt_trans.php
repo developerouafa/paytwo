@@ -2,7 +2,7 @@
 
 return [
     'status'=>'Status',
-    'addreceipt'=>'New Receipt',
+    'addreceipt'=>'Catch Receipt',
     'submit'=>'Submit',
     'Close'=>'Close',
     'edit'=>'Edit',

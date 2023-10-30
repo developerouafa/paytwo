@@ -25,10 +25,11 @@ class PaymentRepository implements PaymentRepositoryInterface
         return view('Dashboard.dashboard_user.Payment.softdelete',compact('payments'));
     }
 
-    public function create()
+    public function create($request)
     {
-        $Clients = Client::all();
-        return view('Dashboard.dashboard_user.Payment.add',compact('Clients'));
+        $invoice_id = $request->invoice_id;
+        $client_id = $request->client_id;
+        return view('Dashboard.dashboard_user.Payment.add',compact('invoice_id', 'client_id'));
     }
 
     public function show($id)
@@ -55,6 +56,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $fund_accounts = new fund_account();
             $fund_accounts->date =date('y-m-d');
             $fund_accounts->Payment_id = $payment_accounts->id;
+            $fund_accounts->invoice_id = $request->invoice_id;
             $fund_accounts->credit = $request->credit;
             $fund_accounts->user_id = auth()->user()->id;
             $fund_accounts->Debit = 0.00;
@@ -65,6 +67,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->date =date('y-m-d');
             $client_accounts->client_id = $request->client_id;
             $client_accounts->Payment_id = $payment_accounts->id;
+            $client_accounts->invoice_id = $request->invoice_id;
             $client_accounts->Debit = $request->credit;
             $client_accounts->user_id = auth()->user()->id;
             $client_accounts->credit = 0.00;
@@ -77,7 +80,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         catch (\Exception $exception) {
             DB::rollback();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Payment.create');
+            return redirect()->route('Payment.createpy');
         }
     }
 

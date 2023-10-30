@@ -35,10 +35,6 @@
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
-                                @can('Create Catch Payment')
-                                    <a href="{{route('Payment.create')}}" class="btn btn-primary" role="button" aria-pressed="true"> {{__('Dashboard/payment_trans.addpayment')}} </a>
-                                @endcan
-
                                 @can('Delete All Catch Payment')
                                     <a class="btn btn-danger" href="{{route('Payment.deleteallpy')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                                 @endcan

@@ -25,9 +25,9 @@ class PaymentaccountController extends Controller
       return  $this->Payment->softdelete();
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return $this->Payment->create();
+        return $this->Payment->create($request);
     }
 
     public function store(PaymentRequest $request)

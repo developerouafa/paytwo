@@ -79,7 +79,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         catch (\Exception $exception) {
             DB::rollback();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Receipt.create');
+            return redirect()->route('Receipt.createrc');
         }
     }
 

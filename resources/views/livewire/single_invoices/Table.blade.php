@@ -39,7 +39,7 @@
                     @if ($single_invoice->type == 1)
                         {{__('Dashboard/services.monetary')}}
                         @can('Create Receipt')
-                            <form action="{{ route('Receipt.create') }}" method="POST">
+                            <form action="{{ route('Receipt.createrc') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
                                 <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
@@ -49,6 +49,16 @@
                             </form>
                         @endcan
                     @elseif ($single_invoice->type == 2)
+                        @can('Create Catch Payment')
+                            <form action="{{ route('Payment.createpy') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                    <button type="submit" class="btn btn-purple">
+                                        {{__('Dashboard/payment_trans.addpayment')}}
+                                    </button>
+                            </form>
+                        @endcan
                         {{__('Dashboard/services.Okay')}}
                     @elseif ($single_invoice->type == 3)
                         {{__('Dashboard/services.Banktransfer')}}

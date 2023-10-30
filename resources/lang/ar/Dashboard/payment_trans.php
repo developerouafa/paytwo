@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'addpayment'=>'انشئ سند صرف جديد',
+    'addpayment'=>'سند صرف',
     'submit'=>'تاكيد',
     'Close'=>'اغلاق',
     'edit'=>'تعديل',

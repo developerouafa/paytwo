@@ -13,7 +13,7 @@ interface PaymentRepositoryInterface
     public function softdelete();
 
     //* show form add
-    public function create();
+    public function create($request);
 
     //* store Payment
     public function store($request);

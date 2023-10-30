@@ -35,7 +35,9 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     public function show($id)
     {
         $receipt = receipt_account::findorfail($id);
-        return view('Dashboard.dashboard_user.Receipt.print',compact('receipt'));
+        $fund_account = fund_account::where('receipt_id', $id)->with('invoice')->first();
+        $invoice_number = $fund_account->invoice->invoice_number;
+        return view('Dashboard.dashboard_user.Receipt.print',compact('receipt', 'invoice_number'));
     }
 
     public function store($request)

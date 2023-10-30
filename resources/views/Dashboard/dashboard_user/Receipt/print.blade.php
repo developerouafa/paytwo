@@ -45,6 +45,8 @@
                                 </p>
                                 <p class="invoice-info-row "><span>{{__('Dashboard/receipt_trans.nameclient')}}</span>
                                     <span>{{$receipt->clients->name}}</span></p>
+                                <p class="invoice-info-row "><span>{{__('Dashboard/services.invoicenumber')}}</span>
+                                        <span>{{$invoice_number}}</span></p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">

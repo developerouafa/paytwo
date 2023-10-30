@@ -20,4 +20,9 @@ class fund_account extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    public function invoice()
+    {
+        return $this->belongsTo(invoice::class);
+    }
 }

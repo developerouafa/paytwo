@@ -42,7 +42,6 @@
 
                                 <div class="row row-xs align-items-center mg-b-20">
                                     <div class="col-md-1">
-                                        <label>{{__('Dashboard/receipt_trans.nameclient')}}</label>
                                         <input class="form-control" value="{{$receipt_accounts->id}}" name="id" type="hidden">
                                     </div>
                                 </div>

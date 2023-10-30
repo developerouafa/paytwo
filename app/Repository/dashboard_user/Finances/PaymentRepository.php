@@ -35,7 +35,9 @@ class PaymentRepository implements PaymentRepositoryInterface
     public function show($id)
     {
         $payment_account = PaymentAccount::findorfail($id);
-        return view('Dashboard.dashboard_user.Payment.print',compact('payment_account'));
+        $fund_account = fund_account::where('Payment_id', $id)->with('invoice')->first();
+        $invoice_number = $fund_account->invoice->invoice_number;
+        return view('Dashboard.dashboard_user.Payment.print',compact('payment_account', 'invoice_number'));
     }
 
     public function store($request)

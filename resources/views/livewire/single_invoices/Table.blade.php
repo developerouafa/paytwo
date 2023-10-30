@@ -38,7 +38,7 @@
                 <td>
                     @if ($single_invoice->type == 1)
                         {{__('Dashboard/services.monetary')}}
-                        @can('Create Receipt')
+                       @can('Create Receipt')
                             <form action="{{ route('Receipt.createrc') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />

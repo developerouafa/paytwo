@@ -39,8 +39,28 @@
                         <td>
                             @if ($group_invoice->type == 1)
                                 {{__('Dashboard/services.monetary')}}
+                                @can('Create Receipt')
+                                    <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                        <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
+                                            <button type="submit" class="btn btn-purple">
+                                                {{__('Dashboard/receipt_trans.addreceipt')}}
+                                            </button>
+                                    </form>
+                                @endcan
                             @elseif ($group_invoice->type == 2)
                                 {{__('Dashboard/services.Okay')}}
+                                @can('Create Catch Payment')
+                                    <form action="{{ route('Payment.createpy') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                        <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
+                                            <button type="submit" class="btn btn-purple">
+                                                {{__('Dashboard/payment_trans.addpayment')}}
+                                            </button>
+                                    </form>
+                                @endcan
                             @elseif ($group_invoice->type == 3)
                                 {{__('Dashboard/services.Banktransfer')}}
                             @endif

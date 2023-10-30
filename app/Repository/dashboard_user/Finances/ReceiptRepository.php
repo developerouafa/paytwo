@@ -81,7 +81,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $client = Client::where('id', '=', $request->client_id)->get();
                 $user_create_id = auth()->user()->id;
                 $invoice_id = $request->invoice_id;
-                $message = __('Dashboard/main-header_trans');
+                $message = __('Dashboard/main-header_trans.nicasereceipt');
                 Notification::send($client, new catchreceipt($user_create_id, $invoice_id, $message));
 
                 $mailclient = Client::findorFail($request->client_id);
@@ -134,7 +134,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             $client = Client::where('id', '=', $request->client_id)->get();
             $user_create_id = auth()->user()->id;
             $invoice_id = $request->invoice_id;
-            $message = __('Dashboard/main-header_trans');
+            $message = __('Dashboard/main-header_trans.nicasereceiptup');
             Notification::send($client, new catchreceipt($user_create_id, $invoice_id, $message));
 
             $mailclient = Client::findorFail($request->client_id);

@@ -46,19 +46,9 @@
                     <form action="{{ route('Receipt.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
-
                             <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-1">
-                                    <label>{{__('Dashboard/receipt_trans.nameclient')}}</label>
-                                </div>
-                                <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                   <select name="client_id" class="form-control select2" required>
-                                        <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
-                                        @foreach($Clients as $Client)
-                                            <option value="{{$Client->id}}">{{$Client->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <input type="hidden" name="invoice_id" value="{{$invoice_id}}">
+                                <input type="hidden" name="client_id" value="{{ $client_id }}" />
                             </div>
 
                             <div class="row row-xs align-items-center mg-b-20">

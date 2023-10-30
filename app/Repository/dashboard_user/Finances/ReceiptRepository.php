@@ -25,10 +25,11 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         return view('Dashboard.dashboard_user.Receipt.softdelete',compact('receipts'));
     }
 
-    public function create()
+    public function create($request)
     {
-        $Clients = Client::all();
-        return view('Dashboard.dashboard_user.Receipt.add',compact('Clients'));
+        $invoice_id = $request->invoice_id;
+        $client_id = $request->client_id;
+        return view('Dashboard.dashboard_user.Receipt.add',compact('invoice_id', 'client_id'));
     }
 
     public function show($id)
@@ -65,6 +66,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $client_accounts->date =date('y-m-d');
                 $client_accounts->client_id = $request->client_id;
                 $client_accounts->receipt_id = $receipt_accounts->id;
+                $client_accounts->invoice_id = $request->invoice_id;
                 $client_accounts->user_id = auth()->user()->id;
                 $client_accounts->Debit = 0.00;
                 $client_accounts->credit =$request->Debit;
@@ -95,7 +97,6 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             // store receipt_accounts
             $receipt_accounts = receipt_account::findorfail($request->id);
             $receipt_accounts->date =date('y-m-d');
-            $receipt_accounts->client_id = $request->client_id;
             $receipt_accounts->amount = $request->Debit;
             $receipt_accounts->description = $request->description;
             $receipt_accounts->save();
@@ -109,7 +110,6 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             // store client_accounts
             $client_accounts = client_account::where('receipt_id',$request->id)->first();
             $client_accounts->date =date('y-m-d');
-            $client_accounts->client_id = $request->client_id;
             $client_accounts->receipt_id = $receipt_accounts->id;
             $client_accounts->Debit = 0.00;
             $client_accounts->credit =$request->Debit;

@@ -26,9 +26,9 @@ class ReceiptAccountController extends Controller
       return  $this->Receipt->softdelete();
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return $this->Receipt->create();
+        return $this->Receipt->create($request);
     }
 
     public function store(receiptRequest $request)

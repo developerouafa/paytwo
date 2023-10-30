@@ -24,11 +24,6 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Create Receipt')
-                                <a href="{{route('Receipt.create')}}" class="btn btn-primary" role="button"
-                                aria-pressed="true"> {{__('Dashboard/receipt_trans.addreceipt')}}</a>
-                            @endcan
-
                             @can('Delete All Receipt')
                                 <a class="btn btn-danger" href="{{route('Receipt.deleteallrc')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'addreceipt'=>'انشئ سند قبض جديد',
+    'addreceipt'=>'سند قبض جديد',
     'submit'=>'تاكيد',
     'Close'=>'اغلاق',
     'edit'=>'تعديل',

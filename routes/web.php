@@ -196,6 +196,7 @@ Route::get('/clear', function() {
         //############################# Receipt route ##########################################
 
             Route::resource('Receipt', ReceiptAccountController::class);
+            Route::post('/create', [ReceiptAccountController::class, 'create'])->name('Receipt.create');
             Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
             Route::get('/Deleted_Receipt', [ReceiptAccountController::class, 'softdelete'])->name('Receipt.softdelete');
             Route::get('restorerc/{id}', [ReceiptAccountController::class, 'restore'])->name('restorerc');

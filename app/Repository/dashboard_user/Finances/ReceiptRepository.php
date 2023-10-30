@@ -54,6 +54,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $fund_accounts = new fund_account();
                 $fund_accounts->date =date('y-m-d');
                 $fund_accounts->receipt_id = $receipt_accounts->id;
+                $fund_accounts->invoice_id = $request->invoice_id;
                 $fund_accounts->Debit = $request->Debit;
                 $fund_accounts->user_id = auth()->user()->id;
                 $fund_accounts->credit = 0.00;

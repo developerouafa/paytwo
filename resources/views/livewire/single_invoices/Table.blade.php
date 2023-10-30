@@ -1,6 +1,6 @@
 <button class="btn btn-primary pull-right" wire:click="show_form_add" type="button"> {{__('Dashboard/services.addotheinvoice')}}</button><br><br>
 <div class="table-responsive">
-    <table id="example1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+    <table id="example1" class="table key-buttons text-md-nowrap">
         <thead>
         <tr>
             <th>#</th>
@@ -38,6 +38,16 @@
                 <td>
                     @if ($single_invoice->type == 1)
                         {{__('Dashboard/services.monetary')}}
+                        @can('Create Receipt')
+                            <form action="{{ route('Receipt.create') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                    <button type="submit" class="btn btn-purple">
+                                        {{__('Dashboard/receipt_trans.addreceipt')}}
+                                    </button>
+                            </form>
+                        @endcan
                     @elseif ($single_invoice->type == 2)
                         {{__('Dashboard/services.Okay')}}
                     @elseif ($single_invoice->type == 3)

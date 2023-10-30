@@ -4,11 +4,15 @@
 namespace App\Repository\dashboard_user\Finances;
 
 use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
+use App\Mail\CatchpaymentMailMarkdown;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\PaymentAccount;
+use App\Notifications\catchpayment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class PaymentRepository implements PaymentRepositoryInterface
 {
@@ -74,6 +78,17 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->user_id = auth()->user()->id;
             $client_accounts->credit = 0.00;
             $client_accounts->save();
+
+            $client = Client::where('id', '=', $request->client_id)->get();
+            $user_create_id = auth()->user()->id;
+            $invoice_id = $request->invoice_id;
+            $message = __('Dashboard/main-header_trans.nicasereceipt');
+            Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
+
+            $mailclient = Client::findorFail($request->client_id);
+            $nameclient = $mailclient->name;
+            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));

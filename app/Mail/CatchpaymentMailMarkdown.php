@@ -13,12 +13,17 @@ class CatchpaymentMailMarkdown extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $message;
+    protected $nameclient;
+    protected $url;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($message, $nameclient, $url)
     {
-        //
+        $this->message=$message;
+        $this->nameclient=$nameclient;
+        $this->url=$url;
     }
 
     /**
@@ -38,6 +43,11 @@ class CatchpaymentMailMarkdown extends Mailable
     {
         return new Content(
             markdown: 'emails.catchpaymentmail',
+            with: [
+                'message' => $this->message,
+                'nameclient' => $this->nameclient,
+                'url' => $this->url,
+            ],
         );
     }
 

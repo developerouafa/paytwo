@@ -1,12 +1,12 @@
 <x-mail::message>
-# Introduction
+# {{__('Dashboard/mail.Billingmanagement')}}
 
-The body of your message.
+{{$nameclient}}
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::button :url="$url">
+    {{__('Dashboard/mail.ViewInvoicepayment')}}
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+{{__('Dashboard/mail.Thanks')}},<br>
+{{ config('app.name') }} : {{$message}}
 </x-mail::message>

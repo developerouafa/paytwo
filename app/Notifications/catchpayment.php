@@ -11,12 +11,19 @@ class catchpayment extends Notification
 {
     use Queueable;
 
+    private $user_create_id;
+    private $invoice_id;
+    public $created_at;
+    public $message;
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($user_create_id, $invoice_id, $message)
     {
-        //
+        $this->user_create_id = $user_create_id;
+        $this->invoice_id = $invoice_id;
+        $this->message = $message;
+        $this->created_at = date('Y-m-d H:i:s');
     }
 
     /**
@@ -26,18 +33,7 @@ class catchpayment extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return ['database'];
     }
 
     /**
@@ -48,7 +44,10 @@ class catchpayment extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'user_create_id' => $this->user_create_id,
+            'invoice_id' => $this->invoice_id,
+            'message' => $this->message,
+            'created_at' => $this->created_at,
         ];
     }
 }

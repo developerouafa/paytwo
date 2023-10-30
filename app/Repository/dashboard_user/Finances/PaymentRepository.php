@@ -138,6 +138,17 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client_accounts->credit = 0.00;
             $client_accounts->save();
 
+            $client = Client::where('id', '=', $request->client_id)->get();
+            $user_create_id = auth()->user()->id;
+            $invoice_id = $request->invoice_id;
+            $message = __('Dashboard/main-header_trans.nicasepaymentup');
+            Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
+
+            $mailclient = Client::findorFail($request->client_id);
+            $nameclient = $mailclient->name;
+            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
+
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.index');

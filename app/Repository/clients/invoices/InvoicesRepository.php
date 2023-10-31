@@ -23,9 +23,9 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesPostpaid', ['invoices' => $invoices]);
     }
 
-    public function indexBanktransfer(){
+    public function indexcard(){
         $invoices = invoice::latest()->where('type', '3')->where('client_id', Auth::user()->id)->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesBanktransfer', ['invoices' => $invoices]);
+        return view('Dashboard.dashboard_client.invoices.invoicescard', ['invoices' => $invoices]);
     }
 
     public function showinvoicemonetarynt($id)
@@ -44,12 +44,12 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
     }
 
-    public function showinvoiceBanktransfernt($id)
+    public function showinvoicecardnt($id)
     {
         $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
+        return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
     }
 
     public function showinvoicereceiptnt($id){
@@ -78,10 +78,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
     }
 
-    public function showinvoiceBanktransfer($id)
+    public function showinvoicecard($id)
     {
         $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
+        return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
     }
 
     public function receipt($id){

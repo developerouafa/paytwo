@@ -23,8 +23,8 @@ class InvoiceController extends Controller
         return  $this->invoices->indexPostpaid();
     }
 
-    public function indexBanktransfer(){
-        return  $this->invoices->indexBanktransfer();
+    public function indexcard(){
+        return  $this->invoices->indexcard();
     }
 
     public function showinvoicemonetary($id){
@@ -43,12 +43,12 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoicePostpaidnt($id);
     }
 
-    public function showinvoiceBanktransfer($id){
-        return  $this->invoices->showinvoiceBanktransfer($id);
+    public function showinvoicecard($id){
+        return  $this->invoices->showinvoicecard($id);
     }
 
-    public function showinvoiceBanktransfernt($id){
-        return  $this->invoices->showinvoiceBanktransfernt($id);
+    public function showinvoicecardnt($id){
+        return  $this->invoices->showinvoicecardnt($id);
     }
 
     public function receipt($id){

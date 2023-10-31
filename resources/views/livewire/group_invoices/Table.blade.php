@@ -62,7 +62,7 @@
                                     </form>
                                 @endcan
                             @elseif ($group_invoice->type == 3)
-                                {{__('Dashboard/services.Banktransfer')}}
+                                {{__('Dashboard/services.card')}}
                             @endif
                         </td>
                         <td>

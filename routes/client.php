@@ -56,13 +56,13 @@ Route::group(
             Route::controller(InvoiceController::class)->group(function() {
                 Route::get('/indexmonetary', 'indexmonetary')->name('Invoices.indexmonetary');
                 Route::get('/indexPostpaid', 'indexPostpaid')->name('Invoices.indexPostpaid');
-                Route::get('/indexBanktransfer', 'indexBanktransfer')->name('Invoices.indexBanktransfer');
+                Route::get('/indexcard', 'indexcard')->name('Invoices.indexcard');
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
                 Route::get('/showinvoicePostpaidnt/{id}', 'showinvoicePostpaidnt')->name('Invoices.showinvoicePostpaidnt');
-                Route::get('/showinvoiceBanktransfer/{id}', 'showinvoiceBanktransfer')->name('Invoices.showinvoiceBanktransfer');
-                Route::get('/showinvoiceBanktransfernt/{id}', 'showinvoiceBanktransfernt')->name('Invoices.showinvoiceBanktransfernt');
+                Route::get('/showinvoicecard/{id}', 'showinvoicecard')->name('Invoices.showinvoicecard');
+                Route::get('/showinvoicecardnt/{id}', 'showinvoicecardnt')->name('Invoices.showinvoicecardnt');
                 Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');

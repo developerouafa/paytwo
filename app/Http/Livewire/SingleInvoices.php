@@ -294,7 +294,7 @@ class SingleInvoices extends Component
 
                     $mailclient = Client::findorFail($this->client_id);
                     $nameclient = $mailclient->name;
-                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
                     Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
 
                 }
@@ -327,6 +327,7 @@ class SingleInvoices extends Component
                     $paymentgateways->credit = 0.00;
                     $paymentgateways->user_id = auth()->user()->id;
                     $paymentgateways->save();
+
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
@@ -338,7 +339,7 @@ class SingleInvoices extends Component
 
                     $mailclient = Client::findorFail($this->client_id);
                     $nameclient = $mailclient->name;
-                    $url = url('en/Invoices/showinvoiceBanktransfer/'.$invoice_id);
+                    $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
                     Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
 
                 }

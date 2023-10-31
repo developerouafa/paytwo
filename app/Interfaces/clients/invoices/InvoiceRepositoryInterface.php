@@ -10,8 +10,8 @@ interface InvoiceRepositoryInterface
     //* get All Invoices Postpaid
     public function indexPostpaid();
 
-    //* get All Invoices Banktransfer
-    public function indexBanktransfer();
+    //* get All Invoices card
+    public function indexcard();
 
     //* Show Invoices Monetary
     public function showinvoicemonetary($id);
@@ -25,11 +25,11 @@ interface InvoiceRepositoryInterface
     //* Show Invoices Postpaid notification
     public function showinvoicePostpaidnt($id);
 
-    //* Show Invoices Banktransfer
-    public function showinvoiceBanktransfer($id);
+    //* Show Invoices card
+    public function showinvoicecard($id);
 
-    //* Show Invoices Banktransfer notification
-    public function showinvoiceBanktransfernt($id);
+    //* Show Invoices card notification
+    public function showinvoicecardnt($id);
 
     //* Receipt Invoices notifications
     public function showinvoicereceiptnt($id);
@@ -49,12 +49,12 @@ interface InvoiceRepositoryInterface
     //* Print PostPaid Invoices
     public function printpostpaid($id);
 
-    //* Confirm Invoices Banktransfer
+    //* Confirm Invoices card
     public function confirm($request);
 
-    //* Checkout Invoices Banktransfer
+    //* Checkout Invoices card
     public function checkout();
 
-    //* Pay Invoices Banktransfer
+    //* Pay Invoices card
     public function pay($request);
 }

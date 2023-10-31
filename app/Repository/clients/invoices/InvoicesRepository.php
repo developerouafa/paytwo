@@ -88,6 +88,11 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesreceipt',compact('fund_accounts'));
     }
 
+    public function receiptpostpaid($id){
+        $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid',compact('fund_accounts'));
+    }
+
     public function printreceipt($id){
         $receipt = receipt_account::findorfail($id);
         $fund_account = fund_account::where('receipt_id', $id)->with('invoice')->first();

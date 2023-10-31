@@ -27,7 +27,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesBanktransfer', ['invoices' => $invoices]);
     }
 
-    public function showinvoicemonetary($id)
+    public function showinvoicemonetarynt($id)
     {
         $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
@@ -35,7 +35,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
     }
 
-    public function showinvoicePostpaid($id)
+    public function showinvoicePostpaidnt($id)
     {
         $invoice = invoice::latest()->where('type', '2')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
@@ -43,11 +43,29 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
     }
 
-    public function showinvoiceBanktransfer($id)
+    public function showinvoiceBanktransfernt($id)
     {
         $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
+    }
+
+    public function showinvoicemonetary($id)
+    {
+        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
+    }
+
+    public function showinvoicePostpaid($id)
+    {
+        $invoice = invoice::latest()->where('type', '2')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
+    }
+
+    public function showinvoiceBanktransfer($id)
+    {
+        $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
     }
 

@@ -55,6 +55,10 @@ class InvoiceController extends Controller
         return  $this->invoices->receipt($id);
     }
 
+    public function receiptpostpaid($id){
+        return  $this->invoices->receiptpostpaid($id);
+    }
+
     public function showinvoicereceiptnt($id){
         return  $this->invoices->showinvoicereceiptnt($id);
     }
@@ -65,6 +69,10 @@ class InvoiceController extends Controller
 
     public function printreceipt($id){
         return  $this->invoices->printreceipt($id);
+    }
+
+    public function printpostpaid($id){
+        return  $this->invoices->printpostpaid($id);
     }
 
     public function confirm(Request $request)

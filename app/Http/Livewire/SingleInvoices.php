@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Events\createinvoice;
 use App\Mail\mailclient;
+use App\Mail\banktransferMailMarkdown;
 use App\Models\banktransfer;
 use App\Models\Client;
 use App\Models\client_account;
@@ -14,6 +15,7 @@ use App\Models\paymentgateway;
 use App\Models\product;
 use App\Models\User;
 use App\Notifications\montaryinvoice;
+use App\Notifications\banktransferntf;
 use App\Notifications\notificationMail;
 use App\Notifications\paymentgateways;
 use App\Notifications\postpaidbillinvoice;
@@ -381,16 +383,17 @@ class SingleInvoices extends Component
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
 
-                    // $client = Client::where('id', '=', $this->client_id)->get();
-                    // $user_create_id = $this->user_id;
-                    // $invoice_id = $single_invoices->id;
-                    // $message = __('Dashboard/main-header_trans.nicasepymgtwup');
-                    // Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($this->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasepymgtw');
+                    Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
 
                 }
                 // في حالة الاضافة
@@ -426,16 +429,16 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 
-                    // $client = Client::where('id', '=', $this->client_id)->get();
-                    // $user_create_id = $this->user_id;
-                    // $invoice_id = $single_invoices->id;
-                    // $message = __('Dashboard/main-header_trans.nicasepymgtw');
-                    // Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicasepymgtw');
+                    Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($this->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
 
                 }
                 DB::commit();

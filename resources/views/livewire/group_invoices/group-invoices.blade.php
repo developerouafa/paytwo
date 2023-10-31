@@ -34,6 +34,7 @@
                             <option value="1"> {{__('Dashboard/services.monetary')}} </option>
                             <option value="2"> {{__('Dashboard/services.Okay')}} </option>
                             <option value="3"> {{__('Dashboard/services.Banktransfer')}} </option>
+                            <option value="4"> {{__('Dashboard/services.card')}} </option>
                         </select>
                     </div>
 
@@ -51,33 +52,33 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped mg-b-0 text-md-nowrap" style="text-align: center">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th> {{__('Dashboard/services.nameservice')}} </th>
-                                            <th> {{__('Dashboard/services.priceservice')}} </th>
-                                            <th> {{__('Dashboard/services.discountvalue')}} </th>
-                                            <th> {{__('Dashboard/services.Taxrate')}} </th>
-                                            <th> {{__('Dashboard/services.Taxvalue')}} </th>
-                                            <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">#</th>
-                                            <td>
-                                                <select wire:model="groupprodcut_id" class="form-control" wire:change="get_price" id="exampleFormControlSelect1">
-                                                    <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
-                                                    @foreach($Groups as $Group)
-                                                        <option value="{{$Group->id}}">{{$Group->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td><input wire:model="price" type="text" class="form-control" readonly></td>
-                                            <td><input wire:model="discount_value" type="text" class="form-control" readonly></td>
-                                            <th><input wire:model="tax_rate" type="text" class="form-control" readonly ></th>
-                                            <td><input type="text" class="form-control" value="{{$tax_value}}" readonly  ></td>
-                                            <td><input type="text" class="form-control" readonly value="{{$subtotal + $tax_value }}"></td>
-                                        </tr>
+                                            <tr>
+                                                <th scope="row">#</th>
+                                                <td>
+                                                    <select wire:model="groupprodcut_id" class="form-control" wire:change="get_price" id="exampleFormControlSelect1">
+                                                        <option value="">-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
+                                                        @foreach($Groups as $Group)
+                                                            <option value="{{$Group->id}}">{{$Group->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td><input wire:model="price" type="text" class="form-control" readonly></td>
+                                                <td><input wire:model="discount_value" type="text" class="form-control" readonly></td>
+                                                <th><input wire:model="tax_rate" type="text" class="form-control" readonly ></th>
+                                                <td><input type="text" class="form-control" value="{{$tax_value}}" readonly  ></td>
+                                                <td><input type="text" class="form-control" readonly value="{{$subtotal + $tax_value }}"></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div><!-- bd -->

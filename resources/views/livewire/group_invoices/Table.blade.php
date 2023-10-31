@@ -61,9 +61,11 @@
                                             </button>
                                     </form>
                                 @endcan
-                            @elseif ($group_invoice->type == 3)
-                                {{__('Dashboard/services.card')}}
-                            @endif
+                                @elseif ($single_invoice->type == 3)
+                                    {{__('Dashboard/services.Banktransfer')}}
+                                @elseif ($single_invoice->type == 4)
+                                    {{__('Dashboard/services.card')}}
+                                @endif
                         </td>
                         <td>
                             @if ($group_invoice->invoice_status == 1)

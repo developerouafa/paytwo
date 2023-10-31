@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\mailclient;
+use App\Models\banktransfer;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
@@ -347,6 +348,100 @@ class GroupInvoices extends Component
                 $this->catchError = $e->getMessage();
             }
         }
+        // في حالة كانت الفاتورة بطاقة
+        elseif($this->type == 4){
+            DB::beginTransaction();
+            try {
+                // في حالة التعديل
+                if($this->updateMode){
+                    $group_invoices = invoice::findorfail($this->group_invoice_id);
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->product_id = $this->product_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->save();
+
+                    $paymentgateways = banktransfer::where('invoice_id',$this->group_invoice_id)->first();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $group_invoices->id;
+                    $paymentgateways->client_id = $group_invoices->client_id;
+                    $paymentgateways->Debit = $group_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
+
+                    // $client = Client::where('id', '=', $this->client_id)->get();
+                    // $user_create_id = $this->user_id;
+                    // $invoice_id = $group_invoices->id;
+                    // $message = __('Dashboard/main-header_trans.nicasepymgtwup');
+                    // Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($this->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
+                }
+                // في حالة الاضافة
+                else{
+                    $number = random_int('100000', '2000000000');
+                    $group_invoices = new invoice();
+                    $group_invoices->invoice_number = $number;
+                    $group_invoices->invoice_classify = 2;
+                    $group_invoices->invoice_date = date('Y-m-d');
+                    $group_invoices->client_id = $this->client_id;
+                    $group_invoices->product_id = $this->product_id;
+                    $group_invoices->price = $this->price;
+                    $group_invoices->discount_value = $this->discount_value;
+                    $group_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $group_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $group_invoices->total_with_tax = $group_invoices->price -  $group_invoices->discount_value + $group_invoices->tax_value;
+                    $group_invoices->type = $this->type;
+                    $group_invoices->invoice_status = 1;
+                    $group_invoices->user_id = auth()->user()->id;
+                    $group_invoices->save();
+
+                    $paymentgateways = new banktransfer();
+                    $paymentgateways->date = date('Y-m-d');
+                    $paymentgateways->invoice_id = $group_invoices->id;
+                    $paymentgateways->client_id = $group_invoices->client_id;
+                    $paymentgateways->Debit = $group_invoices->total_with_tax;
+                    $paymentgateways->credit = 0.00;
+                    $paymentgateways->user_id = auth()->user()->id;
+                    $paymentgateways->save();
+
+                    $this->InvoiceSaved =true;
+                    $this->show_table =true;
+
+                    // $client = Client::where('id', '=', $this->client_id)->get();
+                    // $user_create_id = $this->user_id;
+                    // $invoice_id = $group_invoices->id;
+                    // $message = __('Dashboard/main-header_trans.nicasepymgtw');
+                    // Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($this->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
+                }
+                DB::commit();
+            }
+            catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            }
+        }
     }
 
     public function delete($id){
@@ -361,7 +456,7 @@ class GroupInvoices extends Component
     public function print($id)
     {
         $single_invoice = invoice::findorfail($id);
-        return Redirect::route('group_Print_single_invoices',[
+        return Redirect::route('group_Print_group_invoices',[
             'invoice_date' => $single_invoice->invoice_date,
             'Clientname' => $single_invoice->Client->name,
             'Clientphone' => $single_invoice->Client->phone,

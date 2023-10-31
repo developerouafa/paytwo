@@ -28,12 +28,25 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicescard', ['invoices' => $invoices]);
     }
 
+    public function indexbanktransfer(){
+        $invoices = invoice::latest()->where('type', '4')->where('client_id', Auth::user()->id)->get();
+        return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
+    }
+
     public function showinvoicemonetarynt($id)
     {
         $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
+    }
+
+    public function showinvoicebanktransfernt($id)
+    {
+        $invoice = invoice::latest()->where('type', '4')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.showinvoicebanktransfer', ['invoice' => $invoice]);
     }
 
     public function showinvoicePostpaidnt($id)
@@ -82,6 +95,12 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     {
         $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
+    }
+
+    public function showinvoicebanktransfer($id)
+    {
+        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
     }
 
     public function receipt($id){

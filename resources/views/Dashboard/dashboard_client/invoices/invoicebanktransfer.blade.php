@@ -60,7 +60,7 @@
                                     @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.indexcard',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
+                                            <td><a href="{{route('Invoices.showinvoiceBanktransfer',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
                                             @if ($invoice->invoice_classify == '1')
                                             <td>{{ $invoice->Service->name }}</td>
                                             @endif

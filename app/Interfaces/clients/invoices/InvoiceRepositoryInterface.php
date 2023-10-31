@@ -7,6 +7,9 @@ interface InvoiceRepositoryInterface
     //* get All Invoices Monetary
     public function indexmonetary();
 
+    //* get All Invoices Monetary
+    public function indexbanktransfer();
+
     //* get All Invoices Postpaid
     public function indexPostpaid();
 
@@ -15,6 +18,12 @@ interface InvoiceRepositoryInterface
 
     //* Show Invoices Monetary
     public function showinvoicemonetary($id);
+
+    //* Show Invoices Monetary
+    public function showinvoicebanktransfer($id);
+
+    //* Show Invoices Monetary
+    public function showinvoicebanktransfernt($id);
 
     //* Show Invoices Monetary notification
     public function showinvoicemonetarynt($id);

@@ -13,8 +13,8 @@ return [
     'nicasepymgtwup' => 'Update invoice in Case of Card',
     'nicasereceipt' => 'New Invoice Receipt',
     'nicasereceiptup' => 'Update Invoice Receipt',
-    'nicasepayment' => 'New Invoice Receipt Postpaid',
-    'nicasepaymentup' => 'Update Invoice Receipt PostPaid',
+    'nicasepayment' => 'New Invoice Postpaid',
+    'nicasepaymentup' => 'Update Invoice PostPaid',
     'nicasebanktransfer' => 'New Invoice Bank Transfer',
     'nicasebanktransferup' => 'Update Invoice Bank Transfer',
 ];

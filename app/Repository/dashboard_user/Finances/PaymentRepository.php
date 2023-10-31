@@ -82,12 +82,12 @@ class PaymentRepository implements PaymentRepositoryInterface
             $client = Client::where('id', '=', $request->client_id)->get();
             $user_create_id = auth()->user()->id;
             $invoice_id = $request->invoice_id;
-            $message = __('Dashboard/main-header_trans.nicasereceipt');
+            $message = __('Dashboard/main-header_trans.nicasepayment');
             Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
 
             $mailclient = Client::findorFail($request->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
             Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
@@ -146,7 +146,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
             $mailclient = Client::findorFail($request->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
             Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();

@@ -19,7 +19,7 @@
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{ route('Invoices.indexmonetary') }}">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}</a></li>
                 <li><a class="slide-item" href="{{ route('Invoices.indexPostpaid') }}">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.Okay')}}</a></li>
-                <li><a class="slide-item" href="{{ route('Invoices.indexBanktransfer') }}">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.Banktransfer')}}</a></li>
+                <li><a class="slide-item" href="{{ route('Invoices.indexcard') }}">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.card')}}</a></li>
             </ul>
         </li>
     </ul>

@@ -72,6 +72,7 @@
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
                                                     {{__('Dashboard/services.Sent')}}
+                                                        <a href="{{route('Invoices.receipt',$invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i>Show Receipt</a>
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}
                                                 @elseif ($invoice->invoice_status == 3)

@@ -3,8 +3,10 @@ namespace App\Repository\Clients\Invoices;
 
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use App\Models\Client;
+use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\order;
+use App\Models\receipt_account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +49,18 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
         return view('Dashboard.dashboard_client.invoices.showinvoiceBanktransfer', ['invoice' => $invoice]);
+    }
+
+    public function receipt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceipt',compact('fund_accounts'));
+    }
+
+    public function print($id){
+        $receipt = receipt_account::findorfail($id);
+        $fund_account = fund_account::where('receipt_id', $id)->with('invoice')->first();
+        $invoice_number = $fund_account->invoice->invoice_number;
+        return view('Dashboard.dashboard_client.invoices.printreceipt',compact('receipt', 'invoice_number'));
     }
 
     public function confirm($request)

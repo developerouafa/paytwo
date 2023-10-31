@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\Clients\profiles\ProfileclientController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Dashboard\Clients\InvoiceController;
 use App\Http\Controllers\Dashboard\Clients\Notification;
+use App\Http\Controllers\Dashboard\dashboard_users\ReceiptAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,8 @@ Route::group(
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
                 Route::get('/showinvoiceBanktransfer/{id}', 'showinvoiceBanktransfer')->name('Invoices.showinvoiceBanktransfer');
+                Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
+                Route::get('print/{id}', 'print')->name('Invoices.print');
                 Route::post('/confirm', 'confirm')->name('Invoices.confirm');
                 Route::get('/checkout', 'checkout')->name('Invoices.checkout');
                 Route::post('/pay', 'pay')->name('Invoices.pay');
@@ -68,15 +71,6 @@ Route::group(
             });
         });
     //############################# end Clients route ######################################
-
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    // Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');
-    // Route::post('confirm', [App\Http\Controllers\HomeController::class, 'confirm'])->name('confirm');
-    // Route::get('checkout', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
-    // Route::post('pay', [App\Http\Controllers\HomeController::class, 'pay'])->name('pay');
-    // Route::view('success', 'success')->name('success');
-
-    // Route::stripeWebhooks('webhook');
 
 });
 require __DIR__ . '/auth.php';

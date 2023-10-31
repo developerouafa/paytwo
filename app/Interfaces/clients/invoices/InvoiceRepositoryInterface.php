@@ -22,6 +22,12 @@ interface InvoiceRepositoryInterface
     //* Show Invoices Banktransfer
     public function showinvoiceBanktransfer($id);
 
+    //* Receipt Invoices
+    public function receipt($id);
+
+    //* Show Invoices Banktransfer
+    public function print($id);
+
     //* Confirm Invoices Banktransfer
     public function confirm($request);
 

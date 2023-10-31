@@ -25,4 +25,9 @@ class fund_account extends Model
     {
         return $this->belongsTo(invoice::class);
     }
+
+    public function receiptaccount()
+    {
+        return $this->belongsTo(receipt_account::class, 'receipt_id');
+    }
 }

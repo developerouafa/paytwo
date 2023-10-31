@@ -57,7 +57,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{$invoice->invoice_number}}</td>
+                                        <td>{{ $invoice->invoice_number }}</td>
                                         <td>{{ $invoice->Service->name }}</td>
                                         <td>{{ $invoice->Client->name }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>

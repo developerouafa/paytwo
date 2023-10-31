@@ -25,4 +25,9 @@ class receipt_account extends Model
     {
         return $this->belongsTo(Client::class,'client_id');
     }
+
+    public function fundaccount()
+    {
+        return $this->hasMany(fund_account::class, 'receipt_id');
+    }
 }

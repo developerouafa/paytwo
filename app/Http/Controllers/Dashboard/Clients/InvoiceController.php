@@ -31,16 +31,32 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoicemonetary($id);
     }
 
+    public function showinvoicemonetarynt($id){
+        return  $this->invoices->showinvoicemonetarynt($id);
+    }
+
     public function showinvoicePostpaid($id){
         return  $this->invoices->showinvoicePostpaid($id);
+    }
+
+    public function showinvoicePostpaidnt($id){
+        return  $this->invoices->showinvoicePostpaidnt($id);
     }
 
     public function showinvoiceBanktransfer($id){
         return  $this->invoices->showinvoiceBanktransfer($id);
     }
 
+    public function showinvoiceBanktransfernt($id){
+        return  $this->invoices->showinvoiceBanktransfernt($id);
+    }
+
     public function receipt($id){
         return  $this->invoices->receipt($id);
+    }
+
+    public function showinvoicereceiptnt($id){
+        return  $this->invoices->showinvoicereceiptnt($id);
     }
 
     public function print($id){

@@ -58,8 +58,12 @@ Route::group(
                 Route::get('/indexPostpaid', 'indexPostpaid')->name('Invoices.indexPostpaid');
                 Route::get('/indexBanktransfer', 'indexBanktransfer')->name('Invoices.indexBanktransfer');
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
+                Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
+                Route::get('/showinvoicePostpaidnt/{id}', 'showinvoicePostpaidnt')->name('Invoices.showinvoicePostpaidnt');
                 Route::get('/showinvoiceBanktransfer/{id}', 'showinvoiceBanktransfer')->name('Invoices.showinvoiceBanktransfer');
+                Route::get('/showinvoiceBanktransfernt/{id}', 'showinvoiceBanktransfernt')->name('Invoices.showinvoiceBanktransfernt');
+                Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
                 Route::get('print/{id}', 'print')->name('Invoices.print');
                 Route::post('/confirm', 'confirm')->name('Invoices.confirm');

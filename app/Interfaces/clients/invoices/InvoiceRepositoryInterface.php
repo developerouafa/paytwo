@@ -16,11 +16,23 @@ interface InvoiceRepositoryInterface
     //* Show Invoices Monetary
     public function showinvoicemonetary($id);
 
+    //* Show Invoices Monetary notification
+    public function showinvoicemonetarynt($id);
+
     //* Show Invoices Postpaid
     public function showinvoicePostpaid($id);
 
+    //* Show Invoices Postpaid notification
+    public function showinvoicePostpaidnt($id);
+
     //* Show Invoices Banktransfer
     public function showinvoiceBanktransfer($id);
+
+    //* Show Invoices Banktransfer notification
+    public function showinvoiceBanktransfernt($id);
+
+    //* Receipt Invoices notifications
+    public function showinvoicereceiptnt($id);
 
     //* Receipt Invoices
     public function receipt($id);

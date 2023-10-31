@@ -207,7 +207,7 @@
                                                 </a>
                                             @endif
                                             @if ($notification->type == 'App\Notifications\catchreceipt')
-                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoiceBanktransfernt',$notification->data['invoice_id'])}}">
+                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicereceiptnt',$notification->data['invoice_id'])}}">
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>

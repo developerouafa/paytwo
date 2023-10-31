@@ -55,14 +55,14 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td><a href="{{route('Invoices.showinvoicemonetary', $invoice->invoice_id)}}">{{$invoice->invoice->invoice_number}}</a> </td>
-                                            <td>{{ $invoice->receiptaccount->amount }}</td>
-                                            <td>{{ $invoice->receiptaccount->description }}</td>
-                                            <td>{{ $invoice->receiptaccount->date }}</td>
-                                            <td class="tx-medium tx-danger">{{$invoice->receiptaccount->user->name}}</td>
-                                            <td class="tx-medium tx-inverse"> {{ $invoice->receiptaccount->created_at->diffForHumans() }} </td>
-                                            <td class="tx-medium tx-inverse"> {{ $invoice->receiptaccount->updated_at->diffForHumans() }} </td>
+                                            <td>{{ $invoice->paymentaccount->amount }}</td>
+                                            <td>{{ $invoice->paymentaccount->description }}</td>
+                                            <td>{{ $invoice->paymentaccount->date }}</td>
+                                            <td class="tx-medium tx-danger">{{$invoice->paymentaccount->user->name}}</td>
+                                            <td class="tx-medium tx-inverse"> {{ $invoice->paymentaccount->created_at->diffForHumans() }} </td>
+                                            <td class="tx-medium tx-inverse"> {{ $invoice->paymentaccount->updated_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse">
-                                                <a href="{{route('Invoices.printreceipt', $invoice->receiptaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                <a href="{{route('Invoices.printpostpaid', $invoice->paymentaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

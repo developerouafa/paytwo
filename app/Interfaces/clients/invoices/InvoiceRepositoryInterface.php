@@ -34,11 +34,14 @@ interface InvoiceRepositoryInterface
     //* Receipt Invoices notifications
     public function showinvoicereceiptnt($id);
 
+    //* PostPaid Invoices notifications
+    public function showinvoicereceiptPostpaidnt($id);
+
     //* Receipt Invoices
     public function receipt($id);
 
-    //* Show Invoices Banktransfer
-    public function print($id);
+    //* Print Receipt Invoices Banktransfer
+    public function printreceipt($id);
 
     //* Confirm Invoices Banktransfer
     public function confirm($request);

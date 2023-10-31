@@ -30,4 +30,9 @@ class fund_account extends Model
     {
         return $this->belongsTo(receipt_account::class, 'receipt_id');
     }
+
+    public function paymentaccount()
+    {
+        return $this->belongsTo(paymentaccount::class, 'Payment_id');
+    }
 }

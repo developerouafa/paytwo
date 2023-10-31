@@ -86,7 +86,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
                 $mailclient = Client::findorFail($request->client_id);
                 $nameclient = $mailclient->name;
-                $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                $url = url('en/Invoices/receipt/'.$invoice_id);
                 Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -139,7 +139,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
             $mailclient = Client::findorFail($request->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            $url = url('en/Invoices/receipt/'.$invoice_id);
             Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
 
             DB::commit();

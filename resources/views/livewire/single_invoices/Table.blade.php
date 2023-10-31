@@ -62,6 +62,8 @@
                         {{__('Dashboard/services.Okay')}}
                     @elseif ($single_invoice->type == 3)
                         {{__('Dashboard/services.Banktransfer')}}
+                    @elseif ($single_invoice->type == 4)
+                        {{__('Dashboard/services.card')}}
                     @endif
                 </td>
                 <td>

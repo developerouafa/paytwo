@@ -41,6 +41,7 @@
                             <option value="1"> {{__('Dashboard/services.monetary')}} </option>
                             <option value="2"> {{__('Dashboard/services.Okay')}} </option>
                             <option value="3"> {{__('Dashboard/services.Banktransfer')}} </option>
+                            <option value="4"> {{__('Dashboard/services.card')}} </option>
                         </select>
                     </div>
                 </div><br>

@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\order;
+use App\Models\paymentaccount;
 use App\Models\receipt_account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -98,6 +99,13 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $fund_account = fund_account::where('receipt_id', $id)->with('invoice')->first();
         $invoice_number = $fund_account->invoice->invoice_number;
         return view('Dashboard.dashboard_client.invoices.printreceipt',compact('receipt', 'invoice_number'));
+    }
+
+    public function printpostpaid($id){
+        $postpaid = paymentaccount::findorfail($id);
+        $fund_account = fund_account::where('Payment_id', $id)->with('invoice')->first();
+        $invoice_number = $fund_account->invoice->invoice_number;
+        return view('Dashboard.dashboard_client.invoices.printpostpaid',compact('postpaid', 'invoice_number'));
     }
 
     public function confirm($request)

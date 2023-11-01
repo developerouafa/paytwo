@@ -34,6 +34,8 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
                     if($request->clienType == '1'){
                         $profileclient->update([
                             'adderss' => $request->address,
+                            'city' => $request->city,
+                            'postalcode' => $request->postalcode,
                             'clienType' => $request->clienType,
                             'commercialRegistrationNumber' => Null,
                             'nationalIdNumber' => $request->nationalIdNumber,
@@ -43,6 +45,8 @@ class ProfileclientRepository implements ProfileclientRepositoryInterface
                     if($request->clienType == '0'){
                         $profileclient->update([
                             'adderss' => $request->address,
+                            'city' => $request->city,
+                            'postalcode' => $request->postalcode,
                             'clienType' => $request->clienType,
                             'nationalIdNumber' => $request->nationalIdNumber,
                             'commercialRegistrationNumber' => $request->commercialRegistrationNumber,

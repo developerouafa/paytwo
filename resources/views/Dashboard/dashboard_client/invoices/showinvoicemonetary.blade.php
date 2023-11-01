@@ -3,10 +3,20 @@
     {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}
 @stop
 @section('css')
-    <!-- Internal Data table css -->
-    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!--Internal   Notify -->
-    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+
+    <style>
+        .panel {display: none;}
+    </style>
+
+    <!--- Internal Select2 css-->
+    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <!---Internal Fancy uploader css-->
+    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <!--Internal Sumoselect css-->
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -20,95 +30,262 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-    <!-- row -->
-        <!-- row opened -->
-        <div class="row row-sm">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example-1" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                <thead>
-                                    <tr>
-                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
-                                        <th> {{__('Dashboard/services.nameservice')}} </th>
-                                        <th> {{__('Dashboard/services.client')}} </th>
-                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
-                                        <th> {{__('Dashboard/services.priceservice')}} </th>
-                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
-                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
-                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
-                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
-                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
-                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{ $invoice->invoice_number }}</td>
-                                        <td>{{ $invoice->Service->name }}</td>
-                                        <td>{{ $invoice->Client->name }}</td>
-                                        <td>{{ $invoice->invoice_date }}</td>
-                                        <td>{{ number_format($invoice->price, 2) }}</td>
-                                        <td>{{ number_format($invoice->discount_value, 2) }}</td>
-                                        <td>{{ $invoice->tax_rate }}%</td>
-                                        <td>{{ number_format($invoice->tax_value, 2) }}</td>
-                                        <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
-                                        <td>
-                                            @if ($invoice->invoice_status == 1)
-                                                {{__('Dashboard/services.Sent')}}
-                                            @elseif ($invoice->invoice_status == 2)
-                                                {{__('Dashboard/services.Under review')}}
-                                            @elseif ($invoice->invoice_status == 3)
-                                                {{__('Dashboard/services.Complete')}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($invoice->invoice_type == 1)
-                                                {{__('Dashboard/services.Draft')}}
-                                            @elseif ($invoice->invoice_type == 2)
-                                                {{__('Dashboard/services.Paid')}}
-                                            @elseif ($invoice->invoice_type == 3)
-                                                {{__('Dashboard/services.Canceled')}}
-                                            @endif
-                                        </td>
-                                        <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
-                                        <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
-                                        <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- row opened -->
+        <div class="row row-sm row-deck">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card card-dashboard-eight pb-2">
+                    <div class="list-group">
+                        <div class="list-group-item border-top-0">
+                            <h6 class="card-title">{{__('Dashboard/clients_trans.unpaidbill')}}</h6>
+                            <span>Invoice_number</span>
+                        </div>
+                        <div class="row row-sm row-deck">
+                            <div class="col-md-12 col-lg-12 col-xl-12">
+                                <div class="card card-dashboard-eight pb-2">
+                                    <div class="list-group">
+                                        <div class="list-group-item border-top-0">
+                                            <h6>{{__('Dashboard/clients_trans.goldenpk')}}</h6>
+                                            <span>Invoice_number</span>
+                                        </div>
+                                        <div class="list-group-item border-top-0">
+                                            <h6>{{__('Dashboard/clients_trans.Valuetax')}}</h6>
+                                            <span>Invoice_number</span>
+                                        </div>
+                                        <hr>
+                                        <div class="list-group-item border-top-0">
+                                            <h6>{{__('Dashboard/clients_trans.Total')}}</h6>
+                                            <span>Invoice_number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/div-->
+        </div>
+    <!-- /row -->
 
-        <!-- /row -->
+        <h4>{{__('Dashboard/clients_trans.completeinfablepay')}}</h4>
 
-    </div>
+    <!-- row -->
+        <div class="row row-sm">
+            <!-- Col -->
+            <div class="col-lg-12">
+                <div class="py-12">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div class="max-w-xl">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form method="post" action="{{ route('profileclient.update') }}" class="mt-6 space-y-6" autocomplete="off">
+                                            @csrf
+                                            @method('patch')
+                                            <div class="mb-4 main-content-label">{{__('Dashboard/profile.personalinformation')}}</div>
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.name')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="name" required="" class="form-control" value="{{Auth::user()->name}}"  autofocus autocomplete="name" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                                                            <input type="hidden" name="profileclientid" value="{{Auth::user()->profileclient->id}}">
+                                                            <input type="hidden" name="client_id" value="{{Auth::user()->profileclient->client_id}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.phone')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="phone" class="form-control" value="{{Auth::user()->phone}}" autofocus autocomplete="phone" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/clients_trans.email')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="email" class="form-control" value="{{Auth::user()->email}}" autofocus autocomplete="email" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.clienType')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <select name="clienType" class="form-control nice-select  custom-select" id="sectionChooser">
+                                                                <option value="{{ Auth::user()->profileclient->clienType }}">
+                                                                    @if (Auth::user()->profileclient->clienType == 1)
+                                                                        {{__('Dashboard/users.individual')}}
+                                                                    @else
+                                                                        {{__('Dashboard/users.company')}}
+                                                                    @endif
+                                                                </option>
+                                                                <option value="1">{{__('Dashboard/users.individual')}}</option>
+                                                                <option value="0">{{__('Dashboard/users.company')}}</option>
+                                                            </select>
+                                                            <x-input-error class="mt-2" :messages="$errors->get('clienType')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel" id="0">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <label class="form-label">{{__('Dashboard/profile.commercialRegistrationNumber')}}</label>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <input type="text" name="commercialRegistrationNumber" class="form-control" value="{{Auth::user()->profileclient->commercialRegistrationNumber}}" autofocus autocomplete="commercialRegistrationNumber" >
+                                                                <x-input-error class="mt-2" :messages="$errors->get('commercialRegistrationNumber')" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.nationalIdNumber')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="nationalIdNumber" class="form-control" value="{{Auth::user()->profileclient->nationalIdNumber}}" autofocus autocomplete="nationalIdNumber" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('nationalIdNumber')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.taxNumber')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="taxNumber" class="form-control" value="{{Auth::user()->profileclient->taxNumber}}" autofocus autocomplete="taxNumber" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('taxNumber')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.adderss')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="address" class="form-control" value="{{Auth::user()->profileclient->adderss}}" autofocus autocomplete="address" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.city')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="city" class="form-control" value="{{Auth::user()->profileclient->city}}" autofocus autocomplete="city" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('city')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group ">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label">{{__('Dashboard/profile.postalcode')}}</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input type="text" name="postalcode" class="form-control" value="{{Auth::user()->profileclient->postalcode}}" autofocus autocomplete="postalcode" >
+                                                            <x-input-error class="mt-2" :messages="$errors->get('postalcode')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-center gap-4">
+                                                    <div class="card-footer text-left">
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/profile.Update Profile')}}</button>
+                                                    </div>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Col -->
+        </div>
     <!-- row closed -->
-
 			<!-- Container closed -->
 
 		<!-- main-content closed -->
 @endsection
 @section('js')
 
-    <!--Internal  Notify js -->
-    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
-    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+    <script>
+        $('#sectionChooser').change(function(){
+            var myID = $(this).val();
+            $('.panel').each(function(){
+                myID === $(this).attr('id') ? $(this).show() : $(this).hide();
+            });
+        });
+    </script>
+
+    <!--Internal  Chart.bundle js -->
+    <script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+    <!-- Internal Select2.min js -->
+    {{-- <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script> --}}
+    {{-- <script src="{{URL::asset('assets/js/select2.js')}}"></script> --}}
+
+    <!-- Internal Select2 js-->
+    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
+    <!--Internal Fancy uploader js-->
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <!--Internal  Form-elements js-->
+    <script src="{{ URL::asset('assets/js/advanced-form-elements.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <!--Internal  jquery.maskedinput js -->
+    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+    <!--Internal  spectrum-colorpicker js -->
+    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+    <!-- Internal form-elements js -->
+    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
 @endsection

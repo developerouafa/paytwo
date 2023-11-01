@@ -22,4 +22,9 @@ return [
     "Pay" => "Pay",
     "cashpaymentmn" => "Cash Payment Monetory",
     "cashpaymentpp" => "Cash Payment PostPaid",
+    "unpaidbill" => "You have an unpaid bill",
+    "goldenpk" => "Golden advertising package",
+    "Valuetax" => "Value added tax",
+    "Total" => "Total",
+    "completeinfablepay" => "Please complete the information to be able to pay the bill",
 ];

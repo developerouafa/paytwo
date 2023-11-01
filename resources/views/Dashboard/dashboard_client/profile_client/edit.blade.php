@@ -18,7 +18,6 @@
         <!--Internal Sumoselect css-->
         <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
 
-
 @endsection
 @section('page-header')
     <!-- breadcrumb -->

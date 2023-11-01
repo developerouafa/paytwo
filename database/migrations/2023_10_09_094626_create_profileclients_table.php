@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('commercialRegistrationNumber')->nullable();
             $table->string('taxNumber')->nullable();
             $table->string('adderss')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postalcode')->nullable();
             $table->timestamps();
         });
     }

@@ -60,7 +60,13 @@
                                     @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
+                                            <td>
+                                                @if ($invoice->invoice_type == 1)
+                                                    <a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                @else
+                                                    {{$invoice->invoice_number}}
+                                                @endif
+                                            </td>
                                             <td>{{ $invoice->Service->name }}</td>
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>

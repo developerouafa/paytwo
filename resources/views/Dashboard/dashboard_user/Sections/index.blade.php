@@ -70,47 +70,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($sections as $section)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            @can('Delete Group Section')
-                                                <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
-                                                </td>
-                                            @endcan
-
-                                            <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
-                                            <td>
-                                                @if ($section->status == 0)
-                                                    <a href="{{route('editstatusdéactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
-                                                @endif
-                                                @if ($section->status == 1)
-                                                    <a href="{{route('editstatusactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
-                                                @endif
-                                            </td>
-                                            <td> <a href="#">{{$section->user->name}}</a> </td>
-                                            <td> {{ $section->created_at->diffForHumans() }} </td>
-                                            <td> {{ $section->updated_at->diffForHumans() }} </td>
-                                            <td>
-                                                @can('Edit Section')
-                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                        @foreach($sections as $section)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                @can('Delete Group Section')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
+                                                    </td>
                                                 @endcan
 
-                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
-                                            </td>
-                                        </tr>
+                                                <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
+                                                <td>
+                                                    @if ($section->status == 0)
+                                                        <a href="{{route('editstatusdéactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                    @endif
+                                                    @if ($section->status == 1)
+                                                        <a href="{{route('editstatusactivesec', $section->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
+                                                    @endif
+                                                </td>
+                                                <td> <a href="#">{{$section->user->name}}</a> </td>
+                                                <td> {{ $section->created_at->diffForHumans() }} </td>
+                                                <td> {{ $section->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Edit Section')
+                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
+                                                    @endcan
 
-                                        @include('Dashboard.dashboard_user.Sections.edit')
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
+                                                </td>
+                                            </tr>
 
-                                        @can('Delete Section')
-                                            @include('Dashboard.dashboard_user.Sections.delete')
-                                        @endcan
+                                            @include('Dashboard.dashboard_user.Sections.edit')
 
-                                        @can('Delete Group Section')
-                                            @include('Dashboard.dashboard_user.Sections.delete_select')
-                                        @endcan
+                                            @can('Delete Section')
+                                                @include('Dashboard.dashboard_user.Sections.delete')
+                                            @endcan
 
-                                    @endforeach
+                                            @can('Delete Group Section')
+                                                @include('Dashboard.dashboard_user.Sections.delete_select')
+                                            @endcan
+
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -132,17 +132,6 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
-
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
-        })
-    </script>
 
     <script>
         $(function() {

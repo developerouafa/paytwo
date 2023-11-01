@@ -27,4 +27,6 @@ return [
     'NewPassword' => 'كلمة المرور الجديدة',
     'ConfirmPassword' => 'تأكيد كلمة المرور',
     'Saved' => 'حفظ',
+    'city' => 'مدينة',
+    'postalcode' => 'رمز بريدي',
 ];

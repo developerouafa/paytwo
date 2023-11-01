@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Clients\Profiles\CompletedRequest;
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,24 @@ class InvoiceController extends Controller
 
     public function indexbanktransfer(){
         return  $this->invoices->indexbanktransfer();
+    }
+
+    public function Complete(CompletedRequest $request){
+        return  $this->invoices->Complete($request);
+    }
+
+    public function Continue($id){
+        return  $this->invoices->Continue($id);
+    }
+
+    public function modifypymethod(Request $request){
+        // validations
+        $this->validate($request, [
+            'type' => 'required',
+        ],[
+            'type.required' =>__('Dashboard/clients_trans.type'),
+        ]);
+        return  $this->invoices->modifypymethod($request);
     }
 
     public function showinvoicemonetary($id){

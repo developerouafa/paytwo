@@ -58,6 +58,8 @@ Route::group(
                 Route::get('/indexPostpaid', 'indexPostpaid')->name('Invoices.indexPostpaid');
                 Route::get('/indexcard', 'indexcard')->name('Invoices.indexcard');
                 Route::get('/indexbanktransfer', 'indexbanktransfer')->name('Invoices.indexbanktransfer');
+                Route::patch('/Complete', 'Complete')->name('Invoice.Complete');
+                Route::get('/Continue/{id}', 'Continue')->name('Invoice.Continue');
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
@@ -70,6 +72,7 @@ Route::group(
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
                 Route::get('receiptpostpaid/{id}', 'receiptpostpaid')->name('Invoices.receiptpostpaid');
+                Route::post('modifypymethod', 'modifypymethod')->name('Invoices.modifypymethod');
                 Route::get('printreceipt/{id}', 'printreceipt')->name('Invoices.printreceipt');
                 Route::get('printpostpaid/{id}', 'printpostpaid')->name('Invoices.printpostpaid');
                 Route::post('/confirm', 'confirm')->name('Invoices.confirm');

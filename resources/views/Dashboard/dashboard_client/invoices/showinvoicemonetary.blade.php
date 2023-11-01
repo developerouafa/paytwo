@@ -47,7 +47,7 @@
                     <div class="list-group">
                         <div class="list-group-item border-top-0">
                             <h6 class="card-title">{{__('Dashboard/clients_trans.unpaidbill')}}</h6>
-                            <span>Invoice_number</span>
+                            <span>#{{$invoice->invoice_number}}</span>
                         </div>
                         <div class="row row-sm row-deck">
                             <div class="col-md-12 col-lg-12 col-xl-12">
@@ -55,16 +55,16 @@
                                     <div class="list-group">
                                         <div class="list-group-item border-top-0">
                                             <h6>{{__('Dashboard/clients_trans.goldenpk')}}</h6>
-                                            <span>Invoice_number</span>
+                                            <span>{{$invoice->price}}</span>
                                         </div>
                                         <div class="list-group-item border-top-0">
                                             <h6>{{__('Dashboard/clients_trans.Valuetax')}}</h6>
-                                            <span>Invoice_number</span>
+                                            <span>{{$invoice->tax_value}}</span>
                                         </div>
                                         <hr>
                                         <div class="list-group-item border-top-0">
                                             <h6>{{__('Dashboard/clients_trans.Total')}}</h6>
-                                            <span>Invoice_number</span>
+                                            <span>{{$invoice->total_with_tax}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -88,10 +88,11 @@
                             <div class="max-w-xl">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form method="post" action="{{ route('profileclient.update') }}" class="mt-6 space-y-6" autocomplete="off">
+                                        <form method="post" action="{{ route('Invoice.Complete') }}" class="mt-6 space-y-6" autocomplete="off">
                                             @csrf
                                             @method('patch')
                                             <div class="mb-4 main-content-label">{{__('Dashboard/profile.personalinformation')}}</div>
+
                                                 <div class="form-group ">
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -102,18 +103,7 @@
                                                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                                                             <input type="hidden" name="profileclientid" value="{{Auth::user()->profileclient->id}}">
                                                             <input type="hidden" name="client_id" value="{{Auth::user()->profileclient->client_id}}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <label class="form-label">{{__('Dashboard/profile.phone')}}</label>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <input type="text" name="phone" class="form-control" value="{{Auth::user()->phone}}" autofocus autocomplete="phone" >
-                                                            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                                                            <input type="hidden" name="invoice_id" value="{{$invoice->id}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -182,6 +172,7 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <label class="form-label">{{__('Dashboard/profile.taxNumber')}}</label>
+                                                            <input type="checkbox" name="nothavetax">{{__('Dashboard/clients_trans.nothavetax')}}
                                                         </div>
                                                         <div class="col-md-9">
                                                             <input type="text" name="taxNumber" class="form-control" value="{{Auth::user()->profileclient->taxNumber}}" autofocus autocomplete="taxNumber" >
@@ -228,7 +219,7 @@
 
                                                 <div class="flex items-center gap-4">
                                                     <div class="card-footer text-left">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/profile.Update Profile')}}</button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.saveandcnpay')}}</button>
                                                     </div>
                                                 </div>
                                         </form>

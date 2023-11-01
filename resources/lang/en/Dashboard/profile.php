@@ -27,4 +27,6 @@ return [
     'NewPassword' => 'New Password',
     'ConfirmPassword' => 'Confirm Password',
     'Saved' => 'Saved.',
+    'city' => 'City',
+    'postalcode' => 'Postal Code',
 ];

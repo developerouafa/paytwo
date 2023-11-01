@@ -7,6 +7,7 @@ use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\order;
 use App\Models\paymentaccount;
+use App\Models\profileclient;
 use App\Models\receipt_account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,98 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function indexbanktransfer(){
         $invoices = invoice::latest()->where('type', '4')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
+    }
+
+    public function Complete($request){
+        try{
+            $id = $request->profileclientid;
+            $client_id = $request->client_id;
+            $client = Client::findOrFail($client_id);
+            $profileclient = profileclient::findOrFail($id);
+                DB::beginTransaction();
+                    $client->update([
+                        'name' =>  $request->name,
+                        'email' => $request->email,
+                    ]);
+                    if($request->clienType == '1'){
+                        if($request->nothavetax == '0'){
+                            $profileclient->update([
+                                'adderss' => $request->address,
+                                'city' => $request->city,
+                                'postalcode' => $request->postalcode,
+                                'clienType' => $request->clienType,
+                                'commercialRegistrationNumber' => Null,
+                                'nationalIdNumber' => $request->nationalIdNumber,
+                                'taxNumber' => Null,
+                            ]);
+                        }
+                        else{
+                            $profileclient->update([
+                                'adderss' => $request->address,
+                                'city' => $request->city,
+                                'postalcode' => $request->postalcode,
+                                'clienType' => $request->clienType,
+                                'commercialRegistrationNumber' => Null,
+                                'nationalIdNumber' => $request->nationalIdNumber,
+                                'taxNumber' => $request->taxNumber,
+                            ]);
+                        }
+                    }
+                    if($request->clienType == '0'){
+                        if($request->nothavetax == '0'){
+                            $profileclient->update([
+                                'adderss' => $request->address,
+                                'city' => $request->city,
+                                'postalcode' => $request->postalcode,
+                                'clienType' => $request->clienType,
+                                'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
+                                'nationalIdNumber' => $request->nationalIdNumber,
+                                'taxNumber' => Null,
+                            ]);
+                        }
+                        else{
+                            $profileclient->update([
+                                'adderss' => $request->address,
+                                'city' => $request->city,
+                                'postalcode' => $request->postalcode,
+                                'clienType' => $request->clienType,
+                                'nationalIdNumber' => $request->nationalIdNumber,
+                                'commercialRegistrationNumber' => $request->commercialRegistrationNumber,
+                                'taxNumber' => $request->taxNumber,
+                            ]);
+                        }
+                    }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.edit'));
+                return redirect()->route('Invoice.Continue', $request->invoice_id);
+        }catch(\Exception $execption){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->back();
+        }
+    }
+
+    public function Continue($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.continue', ['invoice' => $invoice]);
+    }
+
+    public function modifypymethod($request){
+        try{
+            $modifypymethodinvoice = invoice::findorFail($request->invoice_id);
+            DB::beginTransaction();
+                $modifypymethodinvoice->update([
+                    'type' => $request->type,
+                ]);
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->back();
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->back();
+        }
     }
 
     public function receipt($id){
@@ -91,25 +184,25 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function showinvoicemonetary($id)
     {
-        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
     }
 
     public function showinvoicePostpaid($id)
     {
-        $invoice = invoice::latest()->where('type', '2')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
     }
 
     public function showinvoicecard($id)
     {
-        $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
     }
 
     public function showinvoicebanktransfer($id)
     {
-        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
     }
 

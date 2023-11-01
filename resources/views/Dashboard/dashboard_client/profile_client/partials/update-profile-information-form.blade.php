@@ -17,6 +17,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -28,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -87,6 +89,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -98,6 +101,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -109,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -120,6 +125,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group ">
                     <div class="row">
                         <div class="col-md-3">
@@ -131,6 +137,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="flex items-center gap-4">
                     <div class="card-footer text-left">
                         <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/profile.Update Profile')}}</button>

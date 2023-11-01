@@ -16,6 +16,15 @@ interface InvoiceRepositoryInterface
     //* get All Invoices card
     public function indexcard();
 
+    //* Invoices Completed
+    public function Complete($request);
+
+    //* Invoices Continue
+    public function Continue($id);
+
+    //* Invoices Modify Payment Method
+    public function modifypymethod($request);
+
     //* Show Invoices Monetary
     public function showinvoicemonetary($id);
 

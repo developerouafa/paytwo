@@ -19,4 +19,7 @@ return [
     'countinvoiceclient'=>'اجمالي عدد الفواتير',
     'lastinvoices'=>'اخر 5 فواتير علي النظام',
     "email" => "البريد الالكتروني",
+    "Pay" => "يدفع",
+    "cashpaymentmn" => "سند الدفع النقدي",
+    "cashpaymentpp" => "سند الدفع الآجل",
 ];

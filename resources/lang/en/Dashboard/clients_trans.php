@@ -19,5 +19,7 @@ return [
     'countinvoiceclient'=>'Total number of invoice',
     'lastinvoices'=>'The last 5 invoices on the system',
     "email" => "Email",
-
+    "Pay" => "Pay",
+    "cashpaymentmn" => "Cash Payment Monetory",
+    "cashpaymentpp" => "Cash Payment PostPaid",
 ];

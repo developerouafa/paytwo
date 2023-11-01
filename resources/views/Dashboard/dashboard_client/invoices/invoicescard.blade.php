@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}}
+    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.card')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -13,7 +13,7 @@
         <div class="breadcrumb-header justify-content-between">
             <div class="my-auto">
                 <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.card')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                                                         @csrf
                                                         <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
                                                             <button type="submit" class="btn btn-purple mt-3">
-                                                                <i class="mdi mdi-currency-usd ml-1">Pay</i>
+                                                                <i class="mdi mdi-currency-usd ml-1">{{__('Dashboard/clients_trans.Pay')}}</i>
                                                             </button>
                                                             <b class="purple">{{__('Dashboard/services.Sent')}}</b>
                                                     </form>

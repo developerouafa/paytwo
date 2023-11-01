@@ -33,6 +33,16 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
     }
 
+    public function receipt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceipt',compact('fund_accounts'));
+    }
+
+    public function receiptpostpaid($id){
+        $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid',compact('fund_accounts'));
+    }
+
     public function showinvoicemonetarynt($id)
     {
         $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
@@ -101,16 +111,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     {
         $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
-    }
-
-    public function receipt($id){
-        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesreceipt',compact('fund_accounts'));
-    }
-
-    public function receiptpostpaid($id){
-        $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid',compact('fund_accounts'));
     }
 
     public function printreceipt($id){

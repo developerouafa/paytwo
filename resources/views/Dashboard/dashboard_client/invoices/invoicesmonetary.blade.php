@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}}
+    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -13,7 +13,7 @@
         <div class="breadcrumb-header justify-content-between">
             <div class="my-auto">
                 <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
                                                     {{__('Dashboard/services.Sent')}}
-                                                        <a href="{{route('Invoices.receipt',$invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i>Show Receipt</a>
+                                                        <a href="{{route('Invoices.receipt',$invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i>{{__('Dashboard/clients_trans.cashpaymentmn')}}</a>
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}
                                                 @elseif ($invoice->invoice_status == 3)

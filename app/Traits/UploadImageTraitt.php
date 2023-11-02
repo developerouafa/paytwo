@@ -20,4 +20,11 @@ trait UploadImageTraitt
         $path = $request->file('image')->store($folderName, 'public');
         return $path;
     }
+
+    public function uploaddocument(Request $request, $folderName){
+        $image = $request->file('invoice')->getClientOriginalName();
+        // hash
+        $path = $request->file('invoice')->store($folderName, 'public');
+        return $path;
+    }
 }

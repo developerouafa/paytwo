@@ -61,4 +61,5 @@ return [
     'Canceled' => 'Canceled',
     'card' => 'Card',
     'Banktransfer' => 'Bank transfer',
+    'noselectionyet' => 'No selection yet',
 ];

@@ -4,6 +4,9 @@ namespace App\Interfaces\Clients\Invoices;
 
 interface InvoiceRepositoryInterface
 {
+    //* get All Invoices
+    public function index();
+
     //* get All Invoices Monetary
     public function indexmonetary();
 
@@ -25,6 +28,18 @@ interface InvoiceRepositoryInterface
     //* Invoices Modify Payment Method
     public function modifypymethod($request);
 
+    //* Invoices Modify Confirm Payment
+    public function Confirmpayment($request);
+
+    //* Invoices CompletePayment
+    public function Completepayment($id);
+
+    //* Invoices ErrorPayment
+    public function Errorinpayment($id);
+
+    //* Show Invoices Monetary
+    public function showinvoice($id);
+
     //* Show Invoices Monetary
     public function showinvoicemonetary($id);
 
@@ -33,6 +48,9 @@ interface InvoiceRepositoryInterface
 
     //* Show Invoices Monetary
     public function showinvoicebanktransfernt($id);
+
+    //* Show Invoices notification
+    public function showinvoicent($id);
 
     //* Show Invoices Monetary notification
     public function showinvoicemonetarynt($id);
@@ -60,6 +78,9 @@ interface InvoiceRepositoryInterface
 
     //* Receipt Postpaid Invoices
     public function receiptpostpaid($id);
+
+    //* Print Invoices
+    public function print($id);
 
     //* Print Receipt Invoices
     public function printreceipt($id);

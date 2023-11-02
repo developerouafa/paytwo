@@ -23,5 +23,6 @@ return [
     'print' => 'مطبعة',
     'Print preview' => 'معاينة الطباعة',
     'Print a document' => 'طباعه سند',
-    'Catch payment' => 'سند صرف'
+    'Catch payment' => 'سند صرف',
+    'paymentmethod' => 'طريقة الدفع'
 ];

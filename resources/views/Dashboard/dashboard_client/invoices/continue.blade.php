@@ -89,7 +89,6 @@
             </div>
         </div>
 
-    <!-- row -->
         <div class="row row-sm">
             <!-- Col -->
             <div class="col-lg-12">
@@ -99,9 +98,6 @@
                             <div class="max-w-xl">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form method="post" action="{{ route('Invoice.Complete') }}" class="mt-6 space-y-6" autocomplete="off">
-                                            @csrf
-                                            @method('patch')
                                             <div class="mb-4 main-content-label">{{__('Dashboard/profile.personalinformation')}}</div>
 
                                             <div class="form-group ">
@@ -208,56 +204,71 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
 
                                 <div class="card">
                                     <div class="card-body">
-                                        <form method="post" action="{{ route('Invoice.Complete') }}" class="mt-6 space-y-6" autocomplete="off">
+
+                                        <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
                                             @csrf
                                             @method('patch')
-                                                <div class="mb-4 main-content-label">{{__('Dashboard/clients_trans.choosepaymentmethod')}}</div>
 
-                                                <div class="form-group ">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label class="form-label">
-                                                                <b style="color: red"> {{__('Dashboard/clients_trans.selectedpaymentmt')}} </b>
-                                                                <b style="color: black"> => </b>
-                                                                @if ($invoice->type == "1")
-                                                                    {{__('Dashboard/services.monetary')}}
-                                                                @elseif ($invoice->type == "2")
-                                                                    {{__('Dashboard/services.Okay')}}
-                                                                @elseif ($invoice->type == "3")
-                                                                    {{__('Dashboard/services.Banktransfer')}}
-                                                                @elseif ($invoice->type == "4")
-                                                                    {{__('Dashboard/services.card')}}
-                                                                @endif
-                                                            </label>
+                                            {{-- <div class="form-group ">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">
+                                                            <b style="color: red"> {{__('Dashboard/clients_trans.selectedpaymentmt')}} </b>
+                                                            <b style="color: black"> => </b>
+                                                            @if ($invoice->type == "1")
+                                                                {{__('Dashboard/services.monetary')}}
+                                                            @elseif ($invoice->type == "2")
+                                                                {{__('Dashboard/services.Okay')}}
+                                                            @elseif ($invoice->type == "3")
+                                                                {{__('Dashboard/services.Banktransfer')}}
+                                                            @elseif ($invoice->type == "4")
+                                                                {{__('Dashboard/services.card')}}
+                                                            @elseif ($invoice->type == "0")
+                                                                {{__('Dashboard/services.noselectionyet')}}
+                                                            @endif
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">
+                                                            <b style="color:darkgreen"> {{__('Dashboard/clients_trans.modifypymethod')}} </b>
+                                                            <b style="color: black"> => </b>
+                                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$invoice->id}}"><i class="las la-pen"></i></a>
+                                                            @include('Dashboard.dashboard_client.invoices.modifypymethod')
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+
+                                            <div class="row row-sm row-deck">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <div class="card card-dashboard-eight pb-2">
+                                                        <div class="list-group">
+                                                            <div class="list-group-item border-top-0">
+                                                                <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
+                                                                <span><input type="file" name="invoice"></span>
+                                                                <input type="hidden" name="invoice_id" value="{{$invoice->id}}" accept=".pdf,.jpg, .png, image/jpeg, image/png">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="flex items-center gap-4">
-                                                    <div class="card-footer text-left">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
-                                                    </div>
-                                                </div>
-                                        </form>
-
-                                        <div class="form-group ">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="form-label">
-                                                        <b style="color:darkgreen"> {{__('Dashboard/clients_trans.modifypymethod')}} </b>
-                                                        <b style="color: black"> => </b>
-                                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$invoice->id}}"><i class="las la-pen"></i></a>
-                                                        @include('Dashboard.dashboard_client.invoices.modifypymethod')
-                                                    </label>
+                                            <div class="flex items-center gap-4">
+                                                <div class="card-footer text-left">
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
 
                                     </div>
                                 </div>

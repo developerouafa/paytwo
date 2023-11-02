@@ -13,6 +13,7 @@ use App\Models\invoice;
 use App\Models\paymentgateway;
 use App\Notifications\banktransferntf;
 use App\Notifications\montaryinvoice;
+use App\Notifications\invoicent;
 use App\Notifications\paymentgateways;
 use App\Notifications\postpaidbillinvoice;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,97 @@ class GroupInvoices extends Component
 
     public function store()
     {
+        // في حالة كانت الفاتورة لم يتم الاختيار بعد
+        if($this->type == 0){
+            DB::beginTransaction();
+            try {
+                // في حالة التعديل
+                if($this->updateMode){
+
+                    $single_invoices = invoice::findorfail($this->single_invoice_id);
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->save();
+
+                    $fund_accounts = fund_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->save();
+                    $this->InvoiceUpdated =true;
+                    $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicaseup');
+                    Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                }
+                // في حالة الاضافة
+                else{
+                    $number = random_int('100000', '2000000000');
+                    $single_invoices = new invoice();
+                    $single_invoices->invoice_number = $number;
+                    $single_invoices->invoice_classify = 2;
+                    $single_invoices->invoice_date = date('Y-m-d');
+                    $single_invoices->client_id = $this->client_id;
+                    $single_invoices->product_id = $this->product_id;
+                    $single_invoices->price = $this->price;
+                    $single_invoices->discount_value = $this->discount_value;
+                    $single_invoices->tax_rate = $this->tax_rate;
+                    // قيمة الضريبة = السعر - الخصم * نسبة الضريبة /100
+                    $single_invoices->tax_value = ($this->price -$this->discount_value) * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100);
+                    // الاجمالي شامل الضريبة  = السعر - الخصم + قيمة الضريبة
+                    $single_invoices->total_with_tax = $single_invoices->price -  $single_invoices->discount_value + $single_invoices->tax_value;
+                    $single_invoices->type = $this->type;
+                    $single_invoices->invoice_status = 1;
+                    $single_invoices->user_id = auth()->user()->id;
+                    $single_invoices->save();
+
+                    $fund_accounts = new fund_account();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->user_id = auth()->user()->id;
+                    $fund_accounts->save();
+                    $this->InvoiceSaved =true;
+                    $this->show_table =true;
+
+                    $client = Client::where('id', '=', $this->client_id)->get();
+                    $user_create_id = $this->user_id;
+                    $invoice_id = $single_invoices->id;
+                    $message = __('Dashboard/main-header_trans.nicase');
+                    Notification::send($client, new invoicent($user_create_id, $invoice_id, $message));
+
+                    $mailclient = Client::findorFail($this->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/showinvoice/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+
+                }
+                DB::commit();
+            }
+            catch (\Exception $e) {
+                DB::rollback();
+                $this->catchError = $e->getMessage();
+            }
+        }
         // في حالة كانت الفاتورة نقدي
         if($this->type == 1){
             DB::beginTransaction();

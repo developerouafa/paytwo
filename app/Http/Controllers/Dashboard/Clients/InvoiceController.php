@@ -16,6 +16,10 @@ class InvoiceController extends Controller
         $this->invoices = $invoices;
     }
 
+    public function index(){
+        return  $this->invoices->index();
+    }
+
     public function indexmonetary(){
         return  $this->invoices->indexmonetary();
     }
@@ -50,8 +54,28 @@ class InvoiceController extends Controller
         return  $this->invoices->modifypymethod($request);
     }
 
+    public function Confirmpayment(Request $request){
+        return  $this->invoices->Confirmpayment($request);
+    }
+
+    public function Completepayment($id){
+        return  $this->invoices->Completepayment($id);
+    }
+
+    public function Errorinpayment($id){
+        return  $this->invoices->Errorinpayment($id);
+    }
+
+    public function showinvoice($id){
+        return  $this->invoices->showinvoice($id);
+    }
+
     public function showinvoicemonetary($id){
         return  $this->invoices->showinvoicemonetary($id);
+    }
+
+    public function showinvoicent($id){
+        return  $this->invoices->showinvoicent($id);
     }
 
     public function showinvoicemonetarynt($id){
@@ -96,6 +120,10 @@ class InvoiceController extends Controller
 
     public function showinvoicebanktransfernt($id){
         return  $this->invoices->showinvoicebanktransfernt($id);
+    }
+
+    public function print($id){
+        return  $this->invoices->print($id);
     }
 
     public function printreceipt($id){

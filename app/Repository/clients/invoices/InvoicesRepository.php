@@ -9,11 +9,20 @@ use App\Models\order;
 use App\Models\paymentaccount;
 use App\Models\profileclient;
 use App\Models\receipt_account;
+use App\Models\receiptdocument;
+use App\Traits\UploadImageTraitt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class InvoicesRepository implements InvoiceRepositoryInterface
 {
+    use UploadImageTraitt;
+
+    public function index(){
+        $invoices = invoice::latest()->where('type', '0')->where('client_id', Auth::user()->id)->get();
+        return view('Dashboard.dashboard_client.invoices.invoices', ['invoices' => $invoices]);
+    }
+
     public function indexmonetary(){
         $invoices = invoice::latest()->where('type', '1')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicesmonetary', ['invoices' => $invoices]);
@@ -126,6 +135,49 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         }
     }
 
+    public function Confirmpayment($request)
+    {
+        try{
+            if($request->has('invoice')){
+                DB::beginTransaction();
+
+                $image = $this->uploaddocument($request, 'invoice');
+
+                        receiptdocument::create([
+                            'invoice_id' => $request->invoice_id,
+                            'invoice' => $image,
+                            'client_id' => auth()->user()->id,
+                        ]);
+
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                    return redirect()->route('Invoice.Completepayment', $request->invoice_id);
+            }
+            // No Add photo
+            else{
+                toastr()->error(trans('Dashboard/messages.imagerequired'));
+                return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+            }
+        }
+        catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+        }
+    }
+
+    public function Completepayment($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.completepayment', ['invoice' => $invoice]);
+    }
+
+    public function Errorinpayment($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.errorinpayment', ['invoice' => $invoice]);
+    }
+
     public function receipt($id){
         $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
         return view('Dashboard.dashboard_client.invoices.invoicesreceipt',compact('fund_accounts'));
@@ -134,6 +186,14 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function receiptpostpaid($id){
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid',compact('fund_accounts'));
+    }
+
+    public function showinvoicent($id)
+    {
+        $invoice = invoice::latest()->where('type', '0')->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
     }
 
     public function showinvoicemonetarynt($id)
@@ -182,6 +242,12 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
     }
 
+    public function showinvoice($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
+    }
+
     public function showinvoicemonetary($id)
     {
         $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
@@ -204,6 +270,16 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     {
         $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
+    }
+
+    public function print($id){
+        $invoice = invoice::where('id', $id)->first();
+        if($invoice->invoice_classify == '1'){
+            return view('Dashboard.dashboard_client.invoices.printsingleinvoice',compact('invoice'));
+        }
+        elseif($invoice->invoice_classify == '2'){
+            return view('Dashboard.dashboard_client.invoices.printgroupinvoice',compact('invoice'));
+        }
     }
 
     public function printreceipt($id){

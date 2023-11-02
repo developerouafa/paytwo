@@ -23,5 +23,6 @@ return [
     'print' => 'Print',
     'Print preview' => 'Print preview',
     'Print a document' => 'Print a document',
-    'Catch payment' => 'Catch payment'
+    'Catch payment' => 'Catch payment',
+    'paymentmethod' => 'payment method'
 ];

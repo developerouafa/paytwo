@@ -48,6 +48,8 @@
                                     </button>
                             </form>
                         @endcan
+                    @elseif ($single_invoice->type == 0)
+                        {{__('Dashboard/services.noselectionyet')}}
                     @elseif ($single_invoice->type == 2)
                         @can('Create Catch Payment')
                             <form action="{{ route('Payment.createpy') }}" method="POST">

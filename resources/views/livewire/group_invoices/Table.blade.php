@@ -49,6 +49,8 @@
                                             </button>
                                     </form>
                                 @endcan
+                            @elseif ($single_invoice->type == 0)
+                                {{__('Dashboard/services.noselectionyet')}}
                             @elseif ($group_invoice->type == 2)
                                 {{__('Dashboard/services.Okay')}}
                                 @can('Create Catch Payment')

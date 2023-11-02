@@ -40,8 +40,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th> {{__('Dashboard/services.print')}} </th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
-                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                        {{-- <th> {{__('Dashboard/services.nameservice')}} </th> --}}
                                         <th> {{__('Dashboard/services.client')}} </th>
                                         <th> {{__('Dashboard/services.dateinvoice')}} </th>
                                         <th> {{__('Dashboard/services.priceservice')}} </th>
@@ -54,7 +55,6 @@
                                         <th> {{__('Dashboard/users.createdbyuser')}} </th>
                                         <th> {{__('Dashboard/sections_trans.created_at')}} </th>
                                         <th> {{__('Dashboard/sections_trans.updated_at')}} </th>
-                                        <th> {{__('Dashboard/services.print')}} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,13 +62,16 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>
-                                                @if ($invoice->invoice_type == 1)
-                                                    <a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                            </td>
+                                            <td>
+                                                @if ($invoice->invoice_type == 0)
+                                                    <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
                                                 @else
                                                     {{$invoice->invoice_number}}
                                                 @endif
                                             </td>
-                                            <td>{{ $invoice->Service->name }}</td>
+                                            {{-- <td>{{ $invoice->Service->name }}</td> --}}
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
                                             <td>{{ number_format($invoice->price, 2) }}</td>
@@ -79,7 +82,6 @@
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
                                                     {{__('Dashboard/services.Sent')}}
-                                                        <a href="{{route('Invoices.receipt',$invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i>{{__('Dashboard/clients_trans.cashpaymentmn')}}</a>
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}
                                                 @elseif ($invoice->invoice_status == 3)

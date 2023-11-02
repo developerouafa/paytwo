@@ -37,7 +37,8 @@
                     <div class="col">
                         <label> {{__('Dashboard/services.Invoicetype')}} </label>
                         <select wire:model="type" class="form-control" {{$updateMode == true ? 'disabled':''}}>
-                            <option value="" >-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
+                            <option value="" disabled>-- {{__('Dashboard/services.Choosefromthelist')}} --</option>
+                            <option value="0"> {{__('Dashboard/services.noselectionyet')}} </option>
                             <option value="1"> {{__('Dashboard/services.monetary')}} </option>
                             <option value="2"> {{__('Dashboard/services.Okay')}} </option>
                             <option value="3"> {{__('Dashboard/services.Banktransfer')}} </option>

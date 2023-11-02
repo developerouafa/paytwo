@@ -36,5 +36,10 @@ return [
     "selectedpaymentmt" => "Selected payment method",
     "modifypymethod" => "Modify the selected payment method",
     "type" => "Type Invoice Is Required",
-    "" => "",
+    "hopeattachcpreceipt" => "We hope to attach a copy of the receipt",
+    "pycmsuccessf" => "Payment was completed successfully",
+    "taxinvoicemaildwninvoice" => "The tax invoice will be issued and you will be notified via email. You can also access the invoice page again to download the invoice.",
+    "backinvoice" => "Back to the invoice",
+    "paymentfailed" => "A payment failed",
+    "pleasecheckpytryagain" => "Please check your payment information and try again."
 ];

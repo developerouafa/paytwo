@@ -34,16 +34,16 @@
                             <div class="billed-from">
                                 <h6> {{__('Dashboard/services.Singleservicebill')}} </h6>
                                 <p> {{ Request::get('nameUserCreateinvoice') }} <br>
-                                    {{__('Dashboard/users.phone')}}: {{ Request::get('phoneUserCreateinvoice') }}<br>
-                                    {{__('Dashboard/users.email')}}: {{ Request::get('emailUserCreateinvoice') }}</p>
+                                    {{__('Dashboard/users.phone')}}: {{$invoice->user->phone}} <br>
+                                    {{__('Dashboard/users.email')}}: {{$invoice->user->email}} </p>
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
-                                <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{ Request::get('Service_id') }}</span></p>
-                                <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{ Request::get('Clientname') }} - {{ Request::get('Clientphone') }}</span></p>
-                                <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span>{{ Request::get('invoice_date') }}</span></p>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Service->name}}</span></p>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{$invoice->Client->name}} - {{$invoice->Client->phone}}</span></p>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span> {{$invoice->invoice_date}} </span></p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">
@@ -59,16 +59,19 @@
                                 <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td class="tx-12">{{ Request::get('Service_id') }}</td>
-                                    <td class="tx-center">{{ Request::get('price') }}</td>
+                                    <td class="tx-12">{{ $invoice->Service->name }}</td>
+                                    <td class="tx-center">{{ $invoice->price }}</td>
                                     <td class="tx-right">
-                                        @if (Request::get('type') == 1)
+                                        @if ($invoice->type == 0)
+                                            {{__('Dashboard/sections_trans.nosectionyet')}}
+                                        @elseif ($invoice->type == 1)
                                             {{__('Dashboard/services.monetary')}}
-                                        @elseif (Request::get('type') == 2)
+                                        @elseif ($invoice->type == 2)
                                             {{__('Dashboard/services.Okay')}}
-                                        @elseif (Request::get('type') == 3)
+                                        @elseif ($invoice->type == 3)
                                             {{__('Dashboard/services.Banktransfer')}}
                                         @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="valign-middle" colspan="2" rowspan="4">
@@ -77,20 +80,20 @@
                                         </div><!-- invoice-notes -->
                                     </td>
                                     <td class="tx-right"> {{__('Dashboard/services.Total')}} </td>
-                                    <td class="tx-right" colspan="2"> {{number_format(Request::get('price'), 2)}}</td>
+                                    <td class="tx-right" colspan="2"> {{number_format($invoice->price, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="tx-right"> {{__('Dashboard/services.discountvalue')}} </td>
-                                    <td class="tx-right" colspan="2">{{Request::get('discount_value')}}</td>
+                                    <td class="tx-right" colspan="2">{{$invoice->discount_value}}</td>
                                 </tr>
                                 <tr>
                                     <td class="tx-right"> {{__('Dashboard/services.Taxrate')}} </td>
-                                    <td class="tx-right" colspan="2">% {{Request::get('tax_rate')}}</td>
+                                    <td class="tx-right" colspan="2">% {{$invoice->tax_value}}</td>
                                 </tr>
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse"> {{__('Dashboard/services.totalincludingtax')}} </td>
                                     <td class="tx-right" colspan="2">
-                                        <h4 class="tx-primary tx-bold">{{number_format(Request::get('total_with_tax'), 2)}}</h4>
+                                        <h4 class="tx-primary tx-bold">{{number_format($invoice->total_with_tax, 2)}}</h4>
 
                                     </td>
                                 </tr>

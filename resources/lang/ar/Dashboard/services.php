@@ -60,5 +60,6 @@ return [
     'Paid' => 'مدفوعة',
     'Canceled' => 'تم الإلغاء',
     'card' => 'بطاقة',
-    'Banktransfer' => 'حوالة بنكية'
+    'Banktransfer' => 'حوالة بنكية',
+    'noselectionyet' => 'لم يتم الاختيار بعد',
 ];

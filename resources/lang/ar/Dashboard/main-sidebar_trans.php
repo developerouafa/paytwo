@@ -14,6 +14,7 @@ return [
     'Singleservicebill' => 'فاتورة خدمة واحدة',
     'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
     'invoices' => 'الفواتير',
+    'invoice' => 'الفاتورة',
     'Catch Receipt' => 'سند قبض',
     'theaccounts' => 'الحسابات',
     'Catch payment' => 'سند صرف',

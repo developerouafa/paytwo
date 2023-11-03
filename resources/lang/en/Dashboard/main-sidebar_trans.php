@@ -14,6 +14,7 @@ return [
     'Singleservicebill' => 'Single service bill',
     'Servicepackageinvoice' => 'Service package invoice',
     'invoices' => 'Invoices',
+    'invoice' => 'Invoice',
     'Catch Receipt' => 'Catch Receipt',
     'theaccounts' => 'The Accounts',
     'Catch payment' => 'Catch payment',

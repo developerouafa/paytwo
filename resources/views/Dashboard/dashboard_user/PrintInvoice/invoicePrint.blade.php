@@ -41,7 +41,11 @@
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
-                                <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Service->name}}</span></p>
+                                @if ($invoice->invoice_classify == '1')
+                                    <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Service->name}}</span></p>
+                                @else
+                                    <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{$invoice->Client->name}} - {{$invoice->Client->phone}}</span></p>
+                                @endif
                                 <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{$invoice->Client->name}} - {{$invoice->Client->phone}}</span></p>
                                 <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span> {{$invoice->invoice_date}} </span></p>
                             </div>
@@ -59,7 +63,14 @@
                                 <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td class="tx-12">{{ $invoice->Service->name }}</td>
+                                    <td class="tx-12">
+                                        @if ($invoice->invoice_classify == '1')
+                                            {{ $invoice->Service->name }}
+                                        @else
+                                            {{ $invoice->Group->name }}
+                                        @endif
+                                    </td>
+
                                     <td class="tx-center">{{ $invoice->price }}</td>
                                     <td class="tx-right">
                                         @if ($invoice->type == 0)
@@ -70,6 +81,8 @@
                                             {{__('Dashboard/services.Okay')}}
                                         @elseif ($invoice->type == 3)
                                             {{__('Dashboard/services.Banktransfer')}}
+                                        @elseif ($invoice->type == 4)
+                                            {{__('Dashboard/services.card')}}
                                         @endif
                                     </td>
                                 </tr>
@@ -101,11 +114,31 @@
                             </table>
                         </div>
                         <hr class="mg-b-40">
-                        @if ($invoice->invoice_type == 1)
-                            <a class="btn btn-purple float-left mt-3 mr-2" href="{{route('Invoices.showinvoice',$invoice->id)}}"><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/clients_trans.Pay')}}</a>
-                        @else
-                            {{$invoice->invoice_number}}
+
+                        @if ($invoice->type == 1)
+                            @can('Create Receipt')
+                                <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
+                                    <input type="hidden" name="client_id" value="{{ $invoice->Client->id }}" />
+                                        <button type="submit" class="btn btn-purple">
+                                            {{__('Dashboard/receipt_trans.addreceipt')}}
+                                        </button>
+                                </form>
+                            @endcan
+                        @elseif ($invoice->type == 2)
+                            @can('Create Catch Payment')
+                                <form action="{{ route('Payment.createpy') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
+                                    <input type="hidden" name="client_id" value="{{ $invoice->Client->id }}" />
+                                        <button type="submit" class="btn btn-purple">
+                                            {{__('Dashboard/payment_trans.addpayment')}}
+                                        </button>
+                                </form>
+                            @endcan
                         @endif
+
                         <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
                             <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}
                         </a>

@@ -55,6 +55,8 @@ Route::get('/clear', function() {
             Route::controller(UserController::class)->group(function() {
                 Route::get('editstatusdéactiveuser/{id}', 'editstatusdéactive')->name('editstatusdéactiveuser');
                 Route::get('editstatusactiveuser/{id}', 'editstatusactive')->name('editstatusactiveuser');
+                Route::get('/clienttouser/{id}', 'clienttouser')->name('clienttouser');
+                Route::get('/clienttouserinvoice/{id}', 'clienttouserinvoice')->name('clienttouserinvoice');
             });
         //############################# end Partie User|permissions|roles route ######################################
 

@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{trans('Dashboard/sections_trans.edit_sections')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{trans('Dashboard/clients_trans.modifypymethod')}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,9 +12,9 @@
             <form action="{{ route('Invoices.modifypymethod') }}" method="post">
                 @csrf
                 <div class="modal-body">
-                    <label for="name">{{trans('Dashboard/sections_trans.name_sections')}}</label>
+                    <label for="name">{{trans('Dashboard/services.invoicenumber')}}</label>
                     <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                    <input type="text" name="name_{{app()->getLocale()}}" value="{{ $invoice->invoice_number }}" class="form-control" id="name">
+                    <input type="text" disabled name="name_{{app()->getLocale()}}" value="{{ $invoice->invoice_number }}" class="form-control" id="name">
                 </div>
                 <div class="modal-body">
                     <select name="type" class="form-control" required>

@@ -18,6 +18,12 @@ class CompletedRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', Rule::unique(Client::class)->ignore($this->user()->id)],
+            'clienType' => ['required'],
+            'nationalIdNumber' => ['required'],
+            'address' => ['required'],
+            'city' => ['required', 'string', 'max:255'],
+            'postalcode' => ['required'],
+
         ];
     }
 
@@ -27,6 +33,11 @@ class CompletedRequest extends FormRequest
             'name.required' => __('Dashboard/clients_trans.nameisrequired'),
             'email.required' =>__('Dashboard/users.emailrequired'),
             'email.unique' =>__('Dashboard/users.emailunique'),
+            'clienType.required' =>__('Dashboard/users.requiredclientype'),
+            'nationalIdNumber.required' =>__('Dashboard/users.requirednationalnumber'),
+            'address.required' =>__('Dashboard/users.requiredaddress'),
+            'city.required' =>__('Dashboard/users.requiredcity'),
+            'postalcode.required' =>__('Dashboard/users.requiredpostalcode'),
         ];
     }
 }

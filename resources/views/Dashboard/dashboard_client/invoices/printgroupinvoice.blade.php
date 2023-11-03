@@ -36,7 +36,7 @@
                                 <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
                                 <div class="billed-from">
                                     <h6>{{__('Dashboard/services.Servicebill')}}</h6>
-                                    <p> {{ Request::get('nameUserCreateinvoice') }} <br>
+                                    <p> {{ {{$invoice->user->name}} }} <br>
                                         {{__('Dashboard/users.phone')}}:  {{$invoice->user->phone}} <br>
                                         {{__('Dashboard/users.email')}}: {{$invoice->user->email}} </p>
                                 </div><!-- billed-from -->
@@ -105,6 +105,11 @@
                                 </table>
                             </div>
                             <hr class="mg-b-40">
+                            @if ($invoice->invoice_type == 1)
+                                <a class="btn btn-purple float-left mt-3 mr-2" href="{{route('Invoices.showinvoice',$invoice->id)}}"><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/clients_trans.Pay')}}</a>
+                            @else
+                                {{$invoice->invoice_number}}
+                            @endif
                             <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
                                 <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}
                             </a>

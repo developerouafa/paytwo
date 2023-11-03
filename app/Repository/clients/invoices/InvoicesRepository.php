@@ -2,6 +2,8 @@
 namespace App\Repository\Clients\Invoices;
 
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
+use App\Mail\clienttouserinvoiceMailMarkdown;
+use App\Mail\clienttouserMailMarkdown;
 use App\Models\Client;
 use App\Models\fund_account;
 use App\Models\invoice;
@@ -10,9 +12,14 @@ use App\Models\paymentaccount;
 use App\Models\profileclient;
 use App\Models\receipt_account;
 use App\Models\receiptdocument;
+use App\Models\User;
+use App\Notifications\clienttouser;
+use App\Notifications\clienttouserinvoice;
 use App\Traits\UploadImageTraitt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class InvoicesRepository implements InvoiceRepositoryInterface
 {
@@ -53,6 +60,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                     $client->update([
                         'name' =>  $request->name,
                         'email' => $request->email,
+                        'phone' => '0582201021'
                     ]);
                     if($request->clienType == '1'){
                         if($request->nothavetax == '0'){
@@ -114,8 +122,8 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function Continue($id)
     {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.continue', ['invoice' => $invoice]);
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.continue', ['invoice' => $invoice, 'fund_accounts' => $fund_accounts]);
     }
 
     public function modifypymethod($request){
@@ -125,29 +133,51 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                 $modifypymethodinvoice->update([
                     'type' => $request->type,
                 ]);
+
+                //* Payment method update notification Database & email
+                    $user = User::where('id', '=', $modifypymethodinvoice->user_id)->first();
+                    $invoice_id = $request->invoice_id;
+                    $message = __('Dashboard/users.pyupdatent');
+                    Notification::send($user, new clienttouser($invoice_id, $message));
+
+                    $mailuser = User::findorFail($modifypymethodinvoice->user_id);
+                    $nameuser = $mailuser->name;
+                    $url = url('en/showpinvoicent/'.$invoice_id);
+                    Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
+
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->back();
         }catch(\Exception $exception){
             DB::rollBack();
-            toastr()->error(trans('message.error'));
+            toastr()->error(trans('messages.error'));
             return redirect()->back();
         }
     }
 
     public function Confirmpayment($request)
     {
+        $completepyinvoice = invoice::findorFail($request->invoice_id);
         try{
             if($request->has('invoice')){
                 DB::beginTransaction();
-
                 $image = $this->uploaddocument($request, 'invoice');
+                    receiptdocument::create([
+                        'invoice_id' => $request->invoice_id,
+                        'invoice' => $image,
+                        'client_id' => auth()->user()->id,
+                    ]);
 
-                        receiptdocument::create([
-                            'invoice_id' => $request->invoice_id,
-                            'invoice' => $image,
-                            'client_id' => auth()->user()->id,
-                        ]);
+                    //* Payment Completed notification Database & email
+                        $user = User::where('id', '=', $completepyinvoice->user_id)->first();
+                        $invoice_id = $request->invoice_id;
+                        $message = __('Dashboard/users.billpaid');
+                        Notification::send($user, new clienttouserinvoice($invoice_id, $message));
+
+                        $mailuser = User::findorFail($completepyinvoice->user_id);
+                        $nameuser = $mailuser->name;
+                        $url = url('en/showpinvoicent/'.$invoice_id);
+                        Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
 
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.add'));
@@ -190,10 +220,17 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function showinvoicent($id)
     {
-        $invoice = invoice::latest()->where('type', '0')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
+        $invoice = invoice::where('id', $id)->where('type', '0')->where('client_id', Auth::user()->id)->first();
+        if($invoice->invoice_classify == '1'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.printsingleinvoice',compact('invoice'));
+        }
+        elseif($invoice->invoice_classify == '2'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.printgroupinvoice',compact('invoice'));
+        }
     }
 
     public function showinvoicemonetarynt($id)
@@ -244,7 +281,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function showinvoice($id)
     {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
     }
 

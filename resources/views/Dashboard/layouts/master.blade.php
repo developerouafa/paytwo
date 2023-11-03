@@ -20,7 +20,13 @@
 		@include('Dashboard/layouts.main-sidebar')
 		<!-- main-content -->
 		<div class="main-content app-content">
-			@include('Dashboard/layouts.main-header')
+            @if(\Auth::guard('web')->check())
+                @include('Dashboard.layouts.main-header.user-main-header')
+            @endif
+
+            @if(\Auth::guard('client')->check())
+                @include('Dashboard.layouts.main-header.client-main-header')
+            @endif
 			<!-- container -->
 			<div class="container-fluid">
 				@yield('page-header')

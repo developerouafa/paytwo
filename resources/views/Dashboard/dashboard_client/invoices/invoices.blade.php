@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}
+    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.noselectionyet')}} {{__('Dashboard/payment_trans.paymentmethod')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -13,7 +13,7 @@
         <div class="breadcrumb-header justify-content-between">
             <div class="my-auto">
                 <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
+                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.noselectionyet')}} {{__('Dashboard/payment_trans.paymentmethod')}} </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                                         <th>#</th>
                                         <th> {{__('Dashboard/services.print')}} </th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
-                                        {{-- <th> {{__('Dashboard/services.nameservice')}} </th> --}}
+                                        <th> {{__('Dashboard/services.nameservice')}} </th>
                                         <th> {{__('Dashboard/services.client')}} </th>
                                         <th> {{__('Dashboard/services.dateinvoice')}} </th>
                                         <th> {{__('Dashboard/services.priceservice')}} </th>
@@ -62,16 +62,22 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>
-                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
                                             </td>
                                             <td>
-                                                @if ($invoice->invoice_type == 0)
+                                                @if ($invoice->invoice_type == 1)
                                                     <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
                                                 @else
                                                     {{$invoice->invoice_number}}
                                                 @endif
                                             </td>
-                                            {{-- <td>{{ $invoice->Service->name }}</td> --}}
+                                            @if ($invoice->invoice_classify == 1)
+                                                <td>{{ $invoice->Service->name }}</td>
+                                            @elseif ($invoice->invoice_classify == 2)
+                                                <td>{{ $invoice->Group->name }}</td>
+                                            @endif
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
                                             <td>{{ number_format($invoice->price, 2) }}</td>
@@ -100,7 +106,6 @@
                                             <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -177,6 +177,7 @@
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-pink">
                                                         <i class="la la-file-alt text-white"></i>
+                                                        <i class="la la-file-alt text-white"></i>
                                                     </div>
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
@@ -286,44 +287,20 @@
 								<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 							</div>
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
-                                <?php
-                                    use App\Models\User;
-                                    $imageuser = User::query()->select('id')->where('id', '=', Auth::user()->id)->with('image')->get();
-                                ?>
-                                @foreach ($imageuser as $img)
-                                    @if (empty($img->image->image))
-                                        <a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
-                                    @else
-                                        <a class="profile-user d-flex" href=""><img src="{{URL::asset('storage/'.$img->image->image)}}"></a>
-                                    @endif
-                                @endforeach
+                                <a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-                                            @foreach ($imageuser as $img)
-                                                @if (empty($img->image->image))
-                                                    <div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}" class=""></div>
-                                                @else
-                                                    <div class="main-img-user"><img alt="" src="{{URL::asset('storage/'.$img->image->image)}}" class=""></div>
-                                                @endif
-                                            @endforeach
+                                            <div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}" class=""></div>
 											<div class="mr-3 my-auto">
 												<h6>{{Auth::user()->name}} </h6>
 											</div>
 										</div>
 									</div>
-                                    @if(auth('web')->check())
-                                        <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user-circle"></i>Profile</a>
-                                    @elseif(auth('client')->check())
-                                        <a class="dropdown-item" href="{{ route('profileclient.edit') }}"><i class="bx bx-user-circle"></i>Profileaa</a>
-                                    @endif
-                                    @if(auth('web')->check())
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @elseif(auth('client')->check())
-                                                <form method="POST" action="{{ route('logout.client') }}">
-                                                    @endif
-                                                    @csrf
-                                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();"><i class="bx bx-log-out"></i>{{__('Dashboard/login_trans.logout')}}</a>
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user-circle"></i>Profile</a>
+                                        <form method="POST" action="{{ route('logout.client') }}">
+                                            @csrf
+                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();"><i class="bx bx-log-out"></i>{{__('Dashboard/login_trans.logout')}}</a>
                                         </form>
 								</div>
 							</div>

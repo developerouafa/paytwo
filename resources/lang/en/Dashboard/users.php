@@ -48,4 +48,11 @@ return [
     'addsuccesspermission' => 'The permission has been added successfully',
     'updatesuccesspermission' => 'The validity data has been updated successfully',
     'deletesuccesspermission' => 'The permission has been successfully deleted',
+    'requiredclientype' => 'Client Type required',
+    'requirednationalnumber' => 'national Id Number required',
+    'requiredaddress' => 'Address required',
+    'requiredcity' => 'City required',
+    'requiredpostalcode' => 'Postal Code required',
+    'pyupdatent' => 'Payment method update Notification',
+    'billpaid' => 'The bill has been paid'
 ];

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Users\StoreUserRequest;
 use App\Models\imageuser;
+use App\Models\invoice;
+use App\Models\receiptdocument;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
@@ -219,5 +221,22 @@ class UserController extends Controller
             toastr()->error(trans('message.error'));
             return redirect()->route('users.index');
         }
+    }
+
+    public function clienttouser($id)
+    {
+        $invoice = invoice::where('id', $id)->first();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type->App\Notifications\clienttouser')->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_user.Printinvoice.invoicePrint',compact('invoice'));
+    }
+
+    public function clienttouserinvoice($id)
+    {
+        $invoice = invoice::where('id', $id)->first();
+        $receiptdocuments = receiptdocument::with('Client')->with('Invoice')->get();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\clienttouserinvoice')->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocuments'));
     }
 }

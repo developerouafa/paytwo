@@ -6,7 +6,7 @@ return [
     'thereareno' => 'There is no Notice',
     'unreadntf' => 'unread notification',
     'nicasemontary' => 'New Invoice In the case Cash payment',
-    'nicasemontary' => 'New Invoice',
+    'nicase' => 'New Invoice',
     'nicasemontaryup' => 'Update Invoice In the case Cash payment',
     'nicaseup' => 'Update Invoices',
     'nicasepostpaid' => 'New Invoice In the Case Postpaid',

@@ -18,7 +18,7 @@ class ProfileclientRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'regex:/(0)[0-9]{6}/', Rule::unique(Client::class)->ignore($this->user()->id)],
-            'email' => ['required', Rule::unique(Client::class)->ignore($this->user()->email)],
+            'email' => ['required', Rule::unique(Client::class)->ignore($this->user()->id)],
         ];
     }
 

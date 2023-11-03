@@ -255,6 +255,7 @@
                                         </div>
                                     </a>
                                 @endif
+
                             @empty
                                 {{__('Dashboard/main-header_trans.thereareno')}}
                             @endforelse

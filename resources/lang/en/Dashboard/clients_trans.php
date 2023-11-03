@@ -41,5 +41,6 @@ return [
     "taxinvoicemaildwninvoice" => "The tax invoice will be issued and you will be notified via email. You can also access the invoice page again to download the invoice.",
     "backinvoice" => "Back to the invoice",
     "paymentfailed" => "A payment failed",
-    "pleasecheckpytryagain" => "Please check your payment information and try again."
+    "pleasecheckpytryagain" => "Please check your payment information and try again.",
+    "pleasechoosepymethod" => "Please choose a payment method"
 ];

@@ -15,4 +15,14 @@ class receiptdocument extends Model
         'invoice',
         'client_id',
     ];
+
+    public function Client()
+    {
+        return $this->belongsTo(Client::class,'client_id');
+    }
+
+    public function Invoice()
+    {
+        return $this->belongsTo(invoice::class,'invoice_id');
+    }
 }

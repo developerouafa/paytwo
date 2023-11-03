@@ -48,4 +48,11 @@ return [
     'addsuccesspermission' => 'تم اضافة الصلاحية بنجاح',
     'updatesuccesspermission' => 'تم تحديث بيانات الصلاحية بنجاح',
     'deletesuccesspermission' => 'تم حذف الصلاحية بنجاح',
+    'requiredclientype' => 'نوع العميل مطلوب',
+    'requirednationalnumber' => 'رقم الهوية الوطنية مطلوب',
+    'requiredaddress' => 'العنوان مطلوب',
+    'requiredcity' => 'المدينة مطلوبة',
+    'requiredpostalcode' => 'الرمز البريدي مطلوب',
+    'pyupdatent' => 'إشعار بتحديث طريقة الدفع',
+    'billpaid' => 'لقد تم دفع الفاتورة'
 ];

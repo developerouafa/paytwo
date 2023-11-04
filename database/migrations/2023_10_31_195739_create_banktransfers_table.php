@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('banktransfers', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('invoice_id')->nullable()->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreignId('invoice_id')->nullable()->references('id')->on('invoices')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('Debit',8,2)->nullable();

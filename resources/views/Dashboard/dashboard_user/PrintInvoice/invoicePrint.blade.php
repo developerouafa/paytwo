@@ -30,7 +30,11 @@
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
-                            <h1 class="invoice-title"> {{__('Dashboard/services.Singleservicebill')}} </h1>
+                            @if ($invoice->invoice_classify == '1')
+                                <h1 class="invoice-title"> {{__('Dashboard/services.Singleservicebill')}} </h1>
+                            @else
+                                <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
+                            @endif
                             <div class="billed-from">
                                 <h6> {{__('Dashboard/services.Singleservicebill')}} </h6>
                                 <p> {{$invoice->user->name}} <br>

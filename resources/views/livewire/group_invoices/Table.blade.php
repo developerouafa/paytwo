@@ -49,7 +49,7 @@
                                             </button>
                                     </form>
                                 @endcan
-                            @elseif ($single_invoice->type == 0)
+                            @elseif ($group_invoice->type == 0)
                                 {{__('Dashboard/services.noselectionyet')}}
                             @elseif ($group_invoice->type == 2)
                                 {{__('Dashboard/services.Okay')}}
@@ -63,9 +63,9 @@
                                             </button>
                                     </form>
                                 @endcan
-                                @elseif ($single_invoice->type == 3)
+                                @elseif ($group_invoice->type == 3)
                                     {{__('Dashboard/services.Banktransfer')}}
-                                @elseif ($single_invoice->type == 4)
+                                @elseif ($group_invoice->type == 4)
                                     {{__('Dashboard/services.card')}}
                                 @endif
                         </td>

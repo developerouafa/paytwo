@@ -42,5 +42,12 @@ return [
     "backinvoice" => "Back to the invoice",
     "paymentfailed" => "A payment failed",
     "pleasecheckpytryagain" => "Please check your payment information and try again.",
-    "pleasechoosepymethod" => "Please choose a payment method"
+    "pleasechoosepymethod" => "Please choose a payment method",
+    "receiptnotsent" => "The receipt has not yet been sent",
+    "willviantfmail" => "You will receive it via notification, including email",
+    "ifyoupaper" => "If you receive a paper document, you can complete the process",
+    "attachcopytransfer" => "Please attach a copy of the transfer receipt",
+    "transferaccountmediapr" => "The transfer is made to a letter account for media production",
+    "AlRajhiBank" => "Al Rajhi Bank",
+    "banktransfermade" => "The bank from which the transfer was made",
 ];

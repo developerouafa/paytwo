@@ -217,18 +217,19 @@
                                                 <div class="col-md-12">
                                                     <label class="form-label">
                                                         <b style="color: red"> {{__('Dashboard/clients_trans.selectedpaymentmt')}} </b>
-                                                        <b style="color: black"> => </b>
-                                                        @if ($invoice->type == "1")
-                                                            {{__('Dashboard/services.monetary')}}
-                                                        @elseif ($invoice->type == "2")
-                                                            {{__('Dashboard/services.Okay')}}
-                                                        @elseif ($invoice->type == "3")
-                                                            {{__('Dashboard/services.Banktransfer')}}
-                                                        @elseif ($invoice->type == "4")
-                                                            {{__('Dashboard/services.card')}}
-                                                        @elseif ($invoice->type == "0")
-                                                            {{__('Dashboard/services.noselectionyet')}}
-                                                        @endif
+                                                        <b style="color: #03A8E6"> =>
+                                                            @if ($invoice->type == "0")
+                                                                {{__('Dashboard/services.noselectionyet')}}
+                                                            @elseif ($invoice->type == "1")
+                                                                {{__('Dashboard/services.monetary')}}
+                                                            @elseif ($invoice->type == "2")
+                                                                {{__('Dashboard/services.Okay')}}
+                                                            @elseif ($invoice->type == "3")
+                                                                {{__('Dashboard/services.Banktransfer')}}
+                                                            @elseif ($invoice->type == "4")
+                                                                {{__('Dashboard/services.card')}}
+                                                            @endif
+                                                        </b>
                                                     </label>
                                                 </div>
                                             </div>
@@ -248,49 +249,187 @@
                                         </div>
 
                                         @if ($invoice->type == '0')
-                                        <div class="row row-sm row-deck">
-                                            <div class="col-md-12 col-lg-12 col-xl-12">
-                                                <div class="card card-dashboard-eight pb-2">
-                                                    <div class="list-group">
-                                                        <div class="border-top-0" style="text-align: center">
-                                                            <h1 style="color: darkgreen">{{__('Dashboard/clients_trans.pleasechoosepymethod')}}</h1>
-                                                            <span> {{__('Dashboard/services.invoicenumber')}} : #{{$invoice->invoice_number}}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
-
-                                        @if ($invoice->type == '1')
-
-                                            <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('patch')
-
-                                                <div class="row row-sm row-deck">
-                                                    <div class="col-md-12 col-lg-12 col-xl-12">
-                                                        <div class="card card-dashboard-eight pb-2">
-                                                            <div class="list-group">
-                                                                <div class="list-group-item border-top-0">
-                                                                    <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
-                                                                        <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                                                            data-height="100" />
-                                                                    <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                                </div>
+                                            <div class="row row-sm row-deck">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <div class="card card-dashboard-eight pb-2">
+                                                        <div class="list-group">
+                                                            <div class="border-top-0" style="text-align: center">
+                                                                <h1 style="color: darkgreen">{{__('Dashboard/clients_trans.pleasechoosepymethod')}}</h1>
+                                                                <span> {{__('Dashboard/services.invoicenumber')}} : #{{$invoice->invoice_number}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="flex items-center gap-4">
-                                                    <div class="card-footer text-left">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            </div>
                                         @endif
 
+                                        @if ($invoice->type == '1')
+                                            @if($fund_accountreceipt)
+                                                <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('patch')
+
+                                                    <div class="row row-sm row-deck">
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="card card-dashboard-eight pb-2">
+                                                                <div class="list-group">
+                                                                    <div class="list-group-item border-top-0">
+                                                                        <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
+                                                                            <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                                                                data-height="100" />
+                                                                        <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
+                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-4">
+                                                        <div class="card-footer text-left">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            @else
+                                                <b style="color: #03A8E6"> - {{__('Dashboard/clients_trans.receiptnotsent')}} - {{__('Dashboard/clients_trans.willviantfmail')}}
+                                                => {{__('Dashboard/clients_trans.ifyoupaper')}}</b>
+                                                <br>
+                                                <br>
+                                                <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('patch')
+
+                                                    <div class="row row-sm row-deck">
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="card card-dashboard-eight pb-2">
+                                                                <div class="list-group">
+                                                                    <div class="list-group-item border-top-0">
+                                                                        <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
+                                                                            <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                                                                data-height="100" />
+                                                                        <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
+                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-4">
+                                                        <div class="card-footer text-left">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            @endif
+                                        @endif
+
+                                        @if ($invoice->type == '2')
+                                            @if($fund_accountpostpaid)
+                                                <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('patch')
+
+                                                    <div class="row row-sm row-deck">
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="card card-dashboard-eight pb-2">
+                                                                <div class="list-group">
+                                                                    <div class="list-group-item border-top-0">
+                                                                        <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
+                                                                            <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                                                                data-height="100" />
+                                                                        <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
+                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-4">
+                                                        <div class="card-footer text-left">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            @else
+                                                <b style="color: #03A8E6"> - {{__('Dashboard/clients_trans.receiptnotsent')}} - {{__('Dashboard/clients_trans.willviantfmail')}}
+                                                => {{__('Dashboard/clients_trans.ifyoupaper')}}</b>
+                                                <br>
+                                                <br>
+                                                <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('patch')
+
+                                                    <div class="row row-sm row-deck">
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="card card-dashboard-eight pb-2">
+                                                                <div class="list-group">
+                                                                    <div class="list-group-item border-top-0">
+                                                                        <h6 class="card-title">{{__('Dashboard/clients_trans.hopeattachcpreceipt')}}</h6>
+                                                                            <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                                                                data-height="100" />
+                                                                        <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
+                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-4">
+                                                        <div class="card-footer text-left">
+                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            @endif
+                                        @endif
+
+                                        @if ($invoice->type == '3')
+                                            <div class="row row-sm row-deck">
+                                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                                    <div class="card card-dashboard-eight pb-2">
+                                                        <div class="list-group">
+                                                            <div class="border-top-0">
+                                                                <h3>{{__('Dashboard/clients_trans.attachcopytransfer')}}</h3>
+                                                                <b>{{__('Dashboard/clients_trans.transferaccountmediapr')}}</b> <br/>
+                                                                <b> {{__('Dashboard/clients_trans.AlRajhiBank')}} : SA12300000003326665555566</b>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('patch')
+
+                                                            <div class="form-group ">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <input type="text" name="banktransfermade" placeholder="{{__('Dashboard/clients_trans.banktransfermade')}}" class="form-control"><br/>
+                                                                    </div>
+                                                                    <div class="col-lg-12">
+                                                                        <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png" data-height="100" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
+                                                            <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
+
+                                                            <div class="flex items-center gap-4">
+                                                                <div class="card-footer text-left">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

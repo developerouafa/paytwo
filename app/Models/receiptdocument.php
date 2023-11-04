@@ -23,6 +23,6 @@ class receiptdocument extends Model
 
     public function Invoice()
     {
-        return $this->belongsTo(invoice::class,'invoice_id');
+        return $this->belongsTo(invoice::class,'invoice_number');
     }
 }

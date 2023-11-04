@@ -42,5 +42,12 @@ return [
     "backinvoice" => "العودة للفاتورة",
     "paymentfailed" => "فشلت عملية دفع",
     "pleasecheckpytryagain" => "يرجى التحقق من بيانات الدفع الخاصة بك وإعادة المحاولة.",
-    "pleasechoosepymethod" => "المرجو اختيار طريقة الدفع"
+    "pleasechoosepymethod" => "المرجو اختيار طريقة الدفع",
+    "receiptnotsent" => "لم يتم بعد ارسال سند الاستلام ",
+    "willviantfmail" => "ستتوصل به عبر اشعار من بينهم البريد الالكتروني ",
+    "ifyoupaper" => "في حالة توصلت بسند ورقي يمكنك اتمام العملية",
+    "attachcopytransfer" => "نامل ارفاق صورة من ايصال التحويل",
+    "transferaccountmediapr" => "يتم التحويل الى حساب حرف للانتاج الاعلامي ",
+    "AlRajhiBank" => "مصرف الراجحي",
+    "banktransfermade" => "البنك الذي تم التحويل منه",
 ];

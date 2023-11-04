@@ -370,13 +370,12 @@ class SingleInvoices extends Component
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
-                    $paymentgateways = paymentgateway::where('invoice_id',$this->single_invoice_id)->first();
-                    $paymentgateways->date = date('Y-m-d');
-                    $paymentgateways->invoice_id = $single_invoices->id;
-                    $paymentgateways->client_id = $single_invoices->client_id;
-                    $paymentgateways->Debit = $single_invoices->total_with_tax;
-                    $paymentgateways->credit = 0.00;
-                    $paymentgateways->save();
+                    $fund_accounts = fund_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
 
@@ -413,14 +412,13 @@ class SingleInvoices extends Component
                     $single_invoices->user_id = auth()->user()->id;
                     $single_invoices->save();
 
-                    $paymentgateways = new paymentgateway();
-                    $paymentgateways->date = date('Y-m-d');
-                    $paymentgateways->invoice_id = $single_invoices->id;
-                    $paymentgateways->client_id = $single_invoices->client_id;
-                    $paymentgateways->Debit = $single_invoices->total_with_tax;
-                    $paymentgateways->credit = 0.00;
-                    $paymentgateways->user_id = auth()->user()->id;
-                    $paymentgateways->save();
+                    $fund_accounts = new fund_account();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->user_id = auth()->user()->id;
+                    $fund_accounts->save();
 
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
@@ -464,13 +462,12 @@ class SingleInvoices extends Component
                     $single_invoices->type = $this->type;
                     $single_invoices->save();
 
-                    $paymentgateways = banktransfer::where('invoice_id',$this->single_invoice_id)->first();
-                    $paymentgateways->date = date('Y-m-d');
-                    $paymentgateways->invoice_id = $single_invoices->id;
-                    $paymentgateways->client_id = $single_invoices->client_id;
-                    $paymentgateways->Debit = $single_invoices->total_with_tax;
-                    $paymentgateways->credit = 0.00;
-                    $paymentgateways->save();
+                    $fund_accounts = fund_account::where('invoice_id',$this->single_invoice_id)->first();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->save();
                     $this->InvoiceUpdated =true;
                     $this->show_table =true;
 
@@ -507,14 +504,13 @@ class SingleInvoices extends Component
                     $single_invoices->user_id = auth()->user()->id;
                     $single_invoices->save();
 
-                    $paymentgateways = new banktransfer();
-                    $paymentgateways->date = date('Y-m-d');
-                    $paymentgateways->invoice_id = $single_invoices->id;
-                    $paymentgateways->client_id = $single_invoices->client_id;
-                    $paymentgateways->Debit = $single_invoices->total_with_tax;
-                    $paymentgateways->credit = 0.00;
-                    $paymentgateways->user_id = auth()->user()->id;
-                    $paymentgateways->save();
+                    $fund_accounts = new fund_account();
+                    $fund_accounts->date = date('Y-m-d');
+                    $fund_accounts->invoice_id = $single_invoices->id;
+                    $fund_accounts->Debit = $single_invoices->total_with_tax;
+                    $fund_accounts->credit = 0.00;
+                    $fund_accounts->user_id = auth()->user()->id;
+                    $fund_accounts->save();
 
                     $this->InvoiceSaved =true;
                     $this->show_table =true;

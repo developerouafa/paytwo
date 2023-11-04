@@ -177,7 +177,6 @@
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-pink">
                                                         <i class="la la-file-alt text-white"></i>
-                                                        <i class="la la-file-alt text-white"></i>
                                                     </div>
                                                     <div class="mr-3">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>

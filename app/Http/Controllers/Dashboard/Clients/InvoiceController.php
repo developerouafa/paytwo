@@ -70,20 +70,8 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoice($id);
     }
 
-    public function showinvoicemonetary($id){
-        return  $this->invoices->showinvoicemonetary($id);
-    }
-
     public function showinvoicent($id){
         return  $this->invoices->showinvoicent($id);
-    }
-
-    public function showinvoicePostpaid($id){
-        return  $this->invoices->showinvoicePostpaid($id);
-    }
-
-    public function showinvoicecard($id){
-        return  $this->invoices->showinvoicecard($id);
     }
 
     public function receipt($id){
@@ -100,10 +88,6 @@ class InvoiceController extends Controller
 
     public function showinvoicereceiptPostpaidnt($id){
         return  $this->invoices->showinvoicereceiptPostpaidnt($id);
-    }
-
-    public function showinvoicebanktransfer($id){
-        return  $this->invoices->showinvoicebanktransfer($id);
     }
 
     public function print($id){

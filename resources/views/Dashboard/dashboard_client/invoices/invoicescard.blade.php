@@ -40,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th> {{__('Dashboard/services.print')}} </th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/services.nameservice')}} </th>
                                         <th> {{__('Dashboard/services.client')}} </th>
@@ -52,19 +53,29 @@
                                         <th> {{__('Dashboard/services.Invoicestatus')}} </th>
                                         <th> {{__('Dashboard/services.Invoicetype')}} </th>
                                         <th> {{__('Dashboard/users.createdbyuser')}} </th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th> {{__('Dashboard/sections_trans.created_at')}} </th>
+                                        <th> {{__('Dashboard/sections_trans.updated_at')}} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.indexcard',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
-                                            @if ($invoice->invoice_classify == '1')
-                                            <td>{{ $invoice->Service->name }}</td>
-                                            @endif
-                                            @if ($invoice->invoice_classify == '2')
+                                            <td>
+                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if ($invoice->invoice_type == 1)
+                                                    <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                @else
+                                                    {{$invoice->invoice_number}}
+                                                @endif
+                                            </td>
+                                            @if ($invoice->invoice_classify == 1)
+                                                <td>{{ $invoice->Service->name }}</td>
+                                            @elseif ($invoice->invoice_classify == 2)
                                                 <td>{{ $invoice->Group->name }}</td>
                                             @endif
                                             <td>{{ $invoice->Client->name }}</td>
@@ -76,14 +87,7 @@
                                             <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
                                             <td>
                                                 @if ($invoice->invoice_status == 1)
-                                                    <form action="{{ route('Invoices.confirm') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
-                                                            <button type="submit" class="btn btn-purple mt-3">
-                                                                <i class="mdi mdi-currency-usd ml-1">{{__('Dashboard/clients_trans.Pay')}}</i>
-                                                            </button>
-                                                            <b class="purple">{{__('Dashboard/services.Sent')}}</b>
-                                                    </form>
+                                                    {{__('Dashboard/services.Sent')}}
                                                 @elseif ($invoice->invoice_status == 2)
                                                     {{__('Dashboard/services.Under review')}}
                                                 @elseif ($invoice->invoice_status == 3)

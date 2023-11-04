@@ -40,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th> {{__('Dashboard/services.print')}} </th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/services.nameservice')}} </th>
                                         <th> {{__('Dashboard/services.client')}} </th>
@@ -52,16 +53,31 @@
                                         <th> {{__('Dashboard/services.Invoicestatus')}} </th>
                                         <th> {{__('Dashboard/services.Invoicetype')}} </th>
                                         <th> {{__('Dashboard/users.createdbyuser')}} </th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th> {{__('Dashboard/sections_trans.created_at')}} </th>
+                                        <th> {{__('Dashboard/sections_trans.updated_at')}} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($invoices as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.showinvoicePostpaid',$invoice->id)}}">{{$invoice->invoice_number}}</a> </td>
-                                            <td>{{ $invoice->Service->name }}</td>
+                                            <td>
+                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if ($invoice->invoice_type == 1)
+                                                    <a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                @else
+                                                    {{$invoice->invoice_number}}
+                                                @endif
+                                            </td>
+                                            @if ($invoice->invoice_classify == 1)
+                                                <td>{{ $invoice->Service->name }}</td>
+                                            @elseif ($invoice->invoice_classify == 2)
+                                                <td>{{ $invoice->Group->name }}</td>
+                                            @endif
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
                                             <td>{{ number_format($invoice->price, 2) }}</td>
@@ -91,6 +107,7 @@
                                             <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
+                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

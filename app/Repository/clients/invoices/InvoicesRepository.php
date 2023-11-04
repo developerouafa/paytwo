@@ -256,6 +256,11 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
     }
 
+    public function print($id){
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+    }
+
     public function showinvoicereceiptnt($id){
         $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
@@ -268,40 +273,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
-    }
-
-    public function showinvoicemonetary($id)
-    {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicePostpaid($id)
-    {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicecard($id)
-    {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicebanktransfer($id)
-    {
-        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
-    }
-
-    public function print($id){
-        $invoice = invoice::where('id', $id)->first();
-        if($invoice->invoice_classify == '1'){
-            return view('Dashboard.dashboard_client.invoices.printsingleinvoice',compact('invoice'));
-        }
-        elseif($invoice->invoice_classify == '2'){
-            return view('Dashboard.dashboard_client.invoices.printgroupinvoice',compact('invoice'));
-        }
     }
 
     public function printreceipt($id){

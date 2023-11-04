@@ -11,7 +11,7 @@ class receiptdocument extends Model
 
     protected $fillable = [
         'id',
-        'invoice_id',
+        'invoice_number',
         'invoice',
         'client_id',
     ];

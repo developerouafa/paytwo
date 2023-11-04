@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('invoice_id')->nullable()->references('id')->on('invoices')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('receipt_id')->nullable()->references('id')->on('receipt_accounts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('Payment_id')->nullable()->references('id')->on('paymentaccounts')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('banktransfer_id')->nullable()->references('id')->on('banktransfers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('bank_id')->nullable()->references('id')->on('banktransfers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('Gateway_id')->nullable()->references('id')->on('paymentgateways')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('Debit',8,2)->nullable();

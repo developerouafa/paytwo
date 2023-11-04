@@ -50,4 +50,6 @@ return [
     "transferaccountmediapr" => "The transfer is made to a letter account for media production",
     "AlRajhiBank" => "Al Rajhi Bank",
     "banktransfermade" => "The bank from which the transfer was made",
+    "nameincard" => "Name in Card",
+    "paywithcard" => "Pay With Card"
 ];

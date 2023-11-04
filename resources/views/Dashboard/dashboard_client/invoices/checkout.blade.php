@@ -5,11 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Checkout') }}</div>
+                    <h3 class="card-header" style="text-align: center; color:blue">{{ __('Dashboard/clients_trans.paywithcard') }}</h3>
 
                     <div class="card-body">
                         <form action="{{ route('Invoices.pay') }}" method="POST" id="payment-form">
                             @csrf
+
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-lg-12">
+                                    <input class="form-control" name="nameincard" type="text" placeholder="{{__('Dashboard/clients_trans.nameincard')}}">
+                                </div>
+                            </div>
                             <input type="hidden" name="payment_method" id="payment-method" value="" />
                             <input type="hidden" name="order_id" value="{{ $order->id }}" />
                             <div class="col-md-6">

@@ -1,6 +1,8 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.noselectionyet')}} {{__('Dashboard/payment_trans.paymentmethod')}}
+    {{__('Dashboard/main-sidebar_trans.Listofinvoices')}}
+    {{__('Dashboard/services.noselectionyet')}}
+    {{__('Dashboard/payment_trans.paymentmethod')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->

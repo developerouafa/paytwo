@@ -160,42 +160,42 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function Confirmpayment($request)
     {
         $completepyinvoice = invoice::findorFail($request->invoice_id);
-        try{
-            if($request->has('invoice')){
-                DB::beginTransaction();
-                $image = $this->uploaddocument($request, 'invoice');
-                    receiptdocument::create([
-                        'invoice_number' => $request->invoice_number,
-                        'invoice' => $image,
-                        'client_id' => auth()->user()->id,
-                    ]);
+            try{
+                if($request->has('invoice')){
+                    DB::beginTransaction();
+                    $image = $this->uploaddocument($request, 'invoice');
+                        receiptdocument::create([
+                            'invoice_id' => $request->invoice_id,
+                            'invoice' => $image,
+                            'client_id' => auth()->user()->id,
+                        ]);
 
-                    //* Payment Completed notification Database & email
-                        $user = User::where('id', '=', $completepyinvoice->user_id)->first();
-                        $invoice_id = $request->invoice_id;
-                        $message = __('Dashboard/users.billpaid');
-                        Notification::send($user, new clienttouserinvoice($invoice_id, $message));
+                        //* Payment Completed notification Database & email
+                            $user = User::where('id', '=', $completepyinvoice->user_id)->first();
+                            $invoice_id = $request->invoice_id;
+                            $message = __('Dashboard/users.billpaid');
+                            Notification::send($user, new clienttouserinvoice($invoice_id, $message));
 
-                        $mailuser = User::findorFail($completepyinvoice->user_id);
-                        $nameuser = $mailuser->name;
-                        $url = url('en/showpinvoicent/'.$invoice_id);
-                        Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+                            $mailuser = User::findorFail($completepyinvoice->user_id);
+                            $nameuser = $mailuser->name;
+                            $url = url('en/showpinvoicent/'.$invoice_id);
+                            Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
 
-                    DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
-                    return redirect()->route('Invoice.Completepayment', $request->invoice_id);
+                        DB::commit();
+                        toastr()->success(trans('Dashboard/messages.add'));
+                        return redirect()->route('Invoice.Completepayment', $request->invoice_id);
+                }
+                // No Add photo
+                else{
+                    toastr()->error(trans('Dashboard/messages.imagerequired'));
+                    return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+                }
             }
-            // No Add photo
-            else{
-                toastr()->error(trans('Dashboard/messages.imagerequired'));
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
                 return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
             }
-        }
-        catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
-        }
     }
 
     public function Completepayment($id)
@@ -228,44 +228,32 @@ class InvoicesRepository implements InvoiceRepositoryInterface
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
             return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
         }
+        if($invoice->type == '1'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\montaryinvoice')->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+        }
+        if($invoice->type == '2'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\postpaidbillinvoice')->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+        }
+        if($invoice->type == '3'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\paymentgateways')->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+        }
+        if($invoice->type == '4'){
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\banktransferntf')->pluck('id');
+            DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+        }
     }
 
     public function showinvoice($id)
     {
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicemonetarynt($id)
-    {
-        $invoice = invoice::latest()->where('type', '1')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoicemonetary', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicebanktransfernt($id)
-    {
-        $invoice = invoice::latest()->where('type', '4')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoicebanktransfer', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicePostpaidnt($id)
-    {
-        $invoice = invoice::latest()->where('type', '2')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoicePostpaid', ['invoice' => $invoice]);
-    }
-
-    public function showinvoicecardnt($id)
-    {
-        $invoice = invoice::latest()->where('type', '3')->where('id', $id)->where('client_id', Auth::user()->id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.showinvoicecard', ['invoice' => $invoice]);
     }
 
     public function showinvoicereceiptnt($id){
@@ -337,6 +325,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $client = Client::findOrFail(Auth::user()->id);
         $client->orders()->create([
             'invoice_id' => $invoice->id,
+            'nameincard' => 'nameincard',
             'price' => $invoice->price
         ]);
         return redirect()->route('Invoices.checkout');
@@ -358,6 +347,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function pay($request)
     {
         $order = Order::where('client_id', auth()->id())->findOrFail($request->input('order_id'));
+        DB::table('orders')->where('id', $request->order_id)->update(['nameincard'=>$request->nameincard]);
         $client = auth()->user();
         $paymentMethod = $request->input('payment_method');
         try {
@@ -367,6 +357,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         } catch (\Exception $ex) {
             return back()->with('error', $ex->getMessage());
         }
-        return redirect()->route('Invoices.success');
+        return redirect()->route('Invoice.Completepayment', $order->invoice->id);
+
     }
 }

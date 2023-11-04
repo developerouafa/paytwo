@@ -142,6 +142,7 @@ class SingleInvoices extends Component
                     $fund_accounts->credit = 0.00;
                     $fund_accounts->user_id = auth()->user()->id;
                     $fund_accounts->save();
+
                     $this->InvoiceSaved =true;
                     $this->show_table =true;
 

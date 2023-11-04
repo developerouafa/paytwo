@@ -52,6 +52,10 @@ class Client extends Authenticatable
             return $this->hasMany(order::class);
         }
 
+        public function fundaccount()
+        {
+            return $this->hasMany(fund_account::class);
+        }
     protected $hidden = [
         'password',
         'remember_token',

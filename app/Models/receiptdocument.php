@@ -11,7 +11,7 @@ class receiptdocument extends Model
 
     protected $fillable = [
         'id',
-        'invoice_number',
+        'invoice_id',
         'invoice',
         'client_id',
     ];
@@ -23,6 +23,6 @@ class receiptdocument extends Model
 
     public function Invoice()
     {
-        return $this->belongsTo(invoice::class,'invoice_number');
+        return $this->belongsTo(invoice::class,'invoice_id');
     }
 }

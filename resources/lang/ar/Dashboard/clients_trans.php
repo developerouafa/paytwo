@@ -50,4 +50,6 @@ return [
     "transferaccountmediapr" => "يتم التحويل الى حساب حرف للانتاج الاعلامي ",
     "AlRajhiBank" => "مصرف الراجحي",
     "banktransfermade" => "البنك الذي تم التحويل منه",
+    "nameincard" => "الاسم في البطاقة",
+    "paywithcard" => "الدفع بالبطاقة"
 ];

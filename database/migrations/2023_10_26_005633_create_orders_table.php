@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('invoice_id')->references('id')->on('invoices')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nameincard');
             $table->integer('price');
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('delivered_at')->nullable();

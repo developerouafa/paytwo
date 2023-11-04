@@ -278,8 +278,6 @@
                                                                             <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                                                                 data-height="100" />
                                                                         <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -310,8 +308,6 @@
                                                                             <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                                                                 data-height="100" />
                                                                         <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -342,8 +338,6 @@
                                                                             <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                                                                 data-height="100" />
                                                                         <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -374,8 +368,6 @@
                                                                             <input type="file" name="invoice" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                                                                 data-height="100" />
                                                                         <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                                        <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -418,7 +410,6 @@
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" name="invoice_id" value="{{$invoice->id}}" >
-                                                            <input type="hidden" name="invoice_number" value="{{$invoice->invoice_number}}" >
 
                                                             <div class="flex items-center gap-4">
                                                                 <div class="card-footer text-left">
@@ -429,6 +420,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        @endif
+
+                                        @if ($invoice->type == '4')
+                                            <form action="{{ route('Invoices.confirm') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="invoice_id" value="{{ $invoice->id }}" />
+                                                    <button type="submit" class="btn btn-purple mt-3">
+                                                        <i class="mdi mdi-currency-usd ml-1">{{__('Dashboard/clients_trans.Pay')}}</i>
+                                                    </button>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>

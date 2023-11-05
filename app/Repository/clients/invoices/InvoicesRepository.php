@@ -49,7 +49,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     }
 
     public function indexcard(){
-        $invoices = invoice::latest()->where('type', '4')->where('client_id', Auth::user()->id)->get();
+        $invoices = invoice::latest()->where('type', '4')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
     }
 

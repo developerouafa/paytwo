@@ -162,9 +162,9 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function Confirmpayment($request)
     {
         $completepyinvoice = invoice::findorFail($request->invoice_id);
-            // try{
+            try{
                 if($request->has('invoice')){
-                    // DB::beginTransaction();
+                    DB::beginTransaction();
 
                     $image = $this->uploaddocument($request, 'invoice');
                         receiptdocument::create([
@@ -191,7 +191,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                             $fund_accounts = new fund_account();
                             $fund_accounts->date =date('y-m-d');
                             $fund_accounts->bank_id = $banktransfers->id;
-                            $fund_accounts->invoice_id = $completepyinvoice->invoice_id;
+                            $fund_accounts->invoice_id = $completepyinvoice->id;
                             $fund_accounts->Debit = $completepyinvoice->total_with_tax;
                             $fund_accounts->user_id = $completepyinvoice->user_id;
                             $fund_accounts->credit = 0.00;
@@ -202,7 +202,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                             $client_accounts->date =date('y-m-d');
                             $client_accounts->client_id = $completepyinvoice->client_id;
                             $client_accounts->bank_id = $banktransfers->id;
-                            $client_accounts->invoice_id = $completepyinvoice->invoice_id;
+                            $client_accounts->invoice_id = $completepyinvoice->id;
                             $client_accounts->user_id = $completepyinvoice->user_id;
                             $client_accounts->Debit = 0.00;
                             $client_accounts->credit =$completepyinvoice->Debit;
@@ -225,16 +225,16 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                         return redirect()->route('Invoice.Completepayment', $request->invoice_id);
                 }
                 // No Add photo
-            //     else{
-            //         toastr()->error(trans('Dashboard/messages.imagerequired'));
-            //         return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
-            //     }
-            // }
-            // catch(\Exception $exception){
-            //     DB::rollBack();
-            //     toastr()->error(trans('Dashboard/messages.error'));
-            //     return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
-            // }
+                else{
+                    toastr()->error(trans('Dashboard/messages.imagerequired'));
+                    return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+                }
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+            }
     }
 
     public function Completepayment($id)

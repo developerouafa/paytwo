@@ -43,7 +43,7 @@
             <br>
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('Receipt.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
+                    <form action="{{ route('Receipt.storerc') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
                             <div class="row row-xs align-items-center mg-b-20">
@@ -56,7 +56,8 @@
                                     <label>{{__('Dashboard/receipt_trans.price')}}</label>
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="Debit" type="number">
+                                    {{-- <input class="form-control" name="Debit" type="number"> --}}
+                                    <input class="form-control" name="Debit" type="text" value="{{$invoice->total_with_tax}}">
                                 </div>
                             </div>
 

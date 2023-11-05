@@ -399,6 +399,18 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                 $client_accounts->credit = $order->invoice->Debit;
                 $client_accounts->save();
 
+            //* Payment Completed notification Database & email
+                $user = User::where('id', '=', $order->invoice->user_id)->first();
+                $invoice_id = $order->invoice->id;
+                $message = __('Dashboard/users.billpaid');
+                Notification::send($user, new clienttouserinvoice($invoice_id, $message));
+
+                $mailuser = User::findorFail($order->invoice->user_id);
+                $nameuser = $mailuser->name;
+                $url = url('en/showpinvoicent/'.$invoice_id);
+                Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+
+
         } catch (\Exception $ex) {
             return back()->with('error', $ex->getMessage());
         }

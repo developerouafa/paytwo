@@ -72,6 +72,7 @@
                         <td>
                             @if ($group_invoice->invoice_status == 1)
                                 {{__('Dashboard/services.Sent')}}
+                                <button wire:click="invoicestatus({{ $single_invoice->id }})" class="btn btn-primary btn-sm">{{__('Dashboard/services.Sent')}}</button>
                             @elseif ($group_invoice->invoice_status == 2)
                                 {{__('Dashboard/services.Under review')}}
                             @elseif ($group_invoice->invoice_status == 3)

@@ -11,6 +11,7 @@ use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\order;
 use App\Models\paymentaccount;
+use App\Models\paymentgateway;
 use App\Models\profileclient;
 use App\Models\receipt_account;
 use App\Models\receiptdocument;
@@ -183,7 +184,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                             $banktransfers->date =date('y-m-d');
                             $banktransfers->client_id = $completepyinvoice->client_id;
                             $banktransfers->amount = $completepyinvoice->total_with_tax;
-                            $banktransfers->description = 'description';
                             $banktransfers->user_id = $completepyinvoice->user_id;
                             $banktransfers->save();
 
@@ -364,6 +364,36 @@ class InvoicesRepository implements InvoiceRepositoryInterface
             $client->createOrGetStripeCustomer();
             $client->updateDefaultPaymentMethod($paymentMethod);
             $client->invoiceFor($order->invoice->invoice_number, $order->price);
+
+                // store paymentgateway_accounts
+                $banktransfers = new paymentgateway();
+                $banktransfers->date =date('y-m-d');
+                $banktransfers->client_id = $order->invoice->client_id;
+                $banktransfers->amount = $order->invoice->total_with_tax;
+                $banktransfers->user_id = $order->invoice->user_id;
+                $banktransfers->save();
+
+                // store fund_accounts
+                $fund_accounts = new fund_account();
+                $fund_accounts->date =date('y-m-d');
+                $fund_accounts->bank_id = $banktransfers->id;
+                $fund_accounts->invoice_id = $order->invoice->id;
+                $fund_accounts->Debit = $order->invoice->total_with_tax;
+                $fund_accounts->user_id = $order->invoice->user_id;
+                $fund_accounts->credit = 0.00;
+                $fund_accounts->save();
+
+                // store client_accounts
+                $client_accounts = new client_account();
+                $client_accounts->date =date('y-m-d');
+                $client_accounts->client_id = $order->invoice->client_id;
+                $client_accounts->bank_id = $banktransfers->id;
+                $client_accounts->invoice_id = $order->invoice->id;
+                $client_accounts->user_id = $order->invoice->user_id;
+                $client_accounts->Debit = 0.00;
+                $client_accounts->credit = $order->invoice->Debit;
+                $client_accounts->save();
+
         } catch (\Exception $ex) {
             return back()->with('error', $ex->getMessage());
         }

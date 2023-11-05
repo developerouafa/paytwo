@@ -43,12 +43,12 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesPostpaid', ['invoices' => $invoices]);
     }
 
-    public function indexcard(){
-        $invoices = invoice::latest()->where('type', '3')->where('client_id', Auth::user()->id)->get();
+    public function indexbanktransfer(){
+        $invoices = invoice::latest()->where('type', '3')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicescard', ['invoices' => $invoices]);
     }
 
-    public function indexbanktransfer(){
+    public function indexcard(){
         $invoices = invoice::latest()->where('type', '4')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
     }

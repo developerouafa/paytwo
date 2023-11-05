@@ -458,24 +458,24 @@
                                 @endif
                                 @if ($invoice->invoice_status == 4)
                                     <!-- row opened -->
-                                    <div class="row row-sm row-deck">
-                                        <div class="col-md-12 col-lg-12 col-xl-12">
-                                            <div class="card card-dashboard-eight pb-2">
-                                                <div class="list-group">
-                                                    <div class="border-top-0" style="text-align: center">
-                                                        <h1 style="color: #79CCBC">{{__('Dashboard/services.Complete')}}</h1>
-                                                        <span> {{__('Dashboard/services.invoicenumber')}} : #{{$invoice->invoice_number}}</span>
-                                                    </div>
-                                                    <div style="text-align: center">
-                                                        <a href="{{route('Invoices.showinvoice',$invoice->id)}}" class="btn btn-primary waves-effect waves-light">
-                                                            {{__('Dashboard/clients_trans.backinvoice')}}
-                                                        </a>
+                                        <div class="row row-sm row-deck">
+                                            <div class="col-md-12 col-lg-12 col-xl-12">
+                                                <div class="card card-dashboard-eight pb-2">
+                                                    <div class="list-group">
+                                                        <div class="border-top-0" style="text-align: center">
+                                                            <h1 style="color: #79CCBC">{{__('Dashboard/services.Complete')}}</h1>
+                                                            <span> {{__('Dashboard/services.invoicenumber')}} : #{{$invoice->invoice_number}}</span>
+                                                        </div>
+                                                        <div style="text-align: center">
+                                                            <a href="{{route('Invoices.showinvoice',$invoice->id)}}" class="btn btn-primary waves-effect waves-light">
+                                                                {{__('Dashboard/clients_trans.backinvoice')}}
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <!-- /row -->
+                                    <!-- /row -->
                                 @endif
 
                             </div>

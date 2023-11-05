@@ -4,7 +4,9 @@ namespace App\Repository\Clients\Invoices;
 use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use App\Mail\clienttouserinvoiceMailMarkdown;
 use App\Mail\clienttouserMailMarkdown;
+use App\Models\banktransfer;
 use App\Models\Client;
+use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\order;
@@ -160,15 +162,52 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function Confirmpayment($request)
     {
         $completepyinvoice = invoice::findorFail($request->invoice_id);
-            try{
+            // try{
                 if($request->has('invoice')){
-                    DB::beginTransaction();
+                    // DB::beginTransaction();
+
                     $image = $this->uploaddocument($request, 'invoice');
                         receiptdocument::create([
                             'invoice_id' => $request->invoice_id,
                             'invoice' => $image,
                             'client_id' => auth()->user()->id,
                         ]);
+
+                        $completepyinvoice->update([
+                            'invoice_status' => '3'
+                        ]);
+
+                        if($completepyinvoice->type == 3){
+                            // store banktransfer_accounts
+                            $banktransfers = new banktransfer();
+                            $banktransfers->date =date('y-m-d');
+                            $banktransfers->client_id = $completepyinvoice->client_id;
+                            $banktransfers->amount = $completepyinvoice->total_with_tax;
+                            $banktransfers->description = 'description';
+                            $banktransfers->user_id = $completepyinvoice->user_id;
+                            $banktransfers->save();
+
+                            // store fund_accounts
+                            $fund_accounts = new fund_account();
+                            $fund_accounts->date =date('y-m-d');
+                            $fund_accounts->bank_id = $banktransfers->id;
+                            $fund_accounts->invoice_id = $completepyinvoice->invoice_id;
+                            $fund_accounts->Debit = $completepyinvoice->total_with_tax;
+                            $fund_accounts->user_id = $completepyinvoice->user_id;
+                            $fund_accounts->credit = 0.00;
+                            $fund_accounts->save();
+
+                            // store client_accounts
+                            $client_accounts = new client_account();
+                            $client_accounts->date =date('y-m-d');
+                            $client_accounts->client_id = $completepyinvoice->client_id;
+                            $client_accounts->bank_id = $banktransfers->id;
+                            $client_accounts->invoice_id = $completepyinvoice->invoice_id;
+                            $client_accounts->user_id = $completepyinvoice->user_id;
+                            $client_accounts->Debit = 0.00;
+                            $client_accounts->credit =$completepyinvoice->Debit;
+                            $client_accounts->save();
+                        }
 
                         //* Payment Completed notification Database & email
                             $user = User::where('id', '=', $completepyinvoice->user_id)->first();
@@ -186,16 +225,16 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                         return redirect()->route('Invoice.Completepayment', $request->invoice_id);
                 }
                 // No Add photo
-                else{
-                    toastr()->error(trans('Dashboard/messages.imagerequired'));
-                    return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
-                }
-            }
-            catch(\Exception $exception){
-                DB::rollBack();
-                toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
-            }
+            //     else{
+            //         toastr()->error(trans('Dashboard/messages.imagerequired'));
+            //         return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+            //     }
+            // }
+            // catch(\Exception $exception){
+            //     DB::rollBack();
+            //     toastr()->error(trans('Dashboard/messages.error'));
+            //     return redirect()->route('Invoice.Errorinpayment', $request->invoice_id);
+            // }
     }
 
     public function Completepayment($id)

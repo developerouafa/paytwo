@@ -35,4 +35,14 @@ class client_account extends Model
     {
         return $this->belongsTo(paymentaccount::class,'Payment_id');
     }
+
+    public function banktransfer()
+    {
+        return $this->belongsTo(banktransfer::class, 'bank_id');
+    }
+
+    public function paymentgateway()
+    {
+        return $this->belongsTo(paymentgateway::class, 'Gateway_id');
+    }
 }

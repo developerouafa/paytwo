@@ -196,7 +196,7 @@ class SingleInvoices extends Component
 
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
-                        $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+                        $url = url('en/Invoices/showinvoice/'.$invoice_id);
                         Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
@@ -280,7 +280,7 @@ class SingleInvoices extends Component
 
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
-                        $url = url('en/Invoices/showinvoicePostpaid/'.$invoice_id);
+                        $url = url('en/Invoices/showinvoice/'.$invoice_id);
                         Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
@@ -364,7 +364,7 @@ class SingleInvoices extends Component
 
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
-                        $url = url('en/Invoices/showinvoicebanktransfer/'.$invoice_id);
+                        $url = url('en/Invoices/showinvoice/'.$invoice_id);
                         Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
@@ -447,7 +447,7 @@ class SingleInvoices extends Component
 
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
-                        $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+                        $url = url('en/Invoices/showinvoice/'.$invoice_id);
                         Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
                     }
                 }
@@ -546,7 +546,7 @@ class SingleInvoices extends Component
 
             $mailclient = Client::findorFail($single_invoice->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicemonetary/'.$invoice_id);
+            $url = url('en/Invoices/showinvoice/'.$invoice_id);
             Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
 
@@ -563,7 +563,7 @@ class SingleInvoices extends Component
 
             $mailclient = Client::findorFail($single_invoice->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicePostpaid/'.$invoice_id);
+            $url = url('en/Invoices/showinvoice/'.$invoice_id);
             Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
 
@@ -580,7 +580,7 @@ class SingleInvoices extends Component
 
             $mailclient = Client::findorFail($single_invoice->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicebanktransfer/'.$invoice_id);
+            $url = url('en/Invoices/showinvoice/'.$invoice_id);
             Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
 
@@ -597,7 +597,7 @@ class SingleInvoices extends Component
 
             $mailclient = Client::findorFail($single_invoice->client_id);
             $nameclient = $mailclient->name;
-            $url = url('en/Invoices/showinvoicecard/'.$invoice_id);
+            $url = url('en/Invoices/showinvoice/'.$invoice_id);
             Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
         }
     }

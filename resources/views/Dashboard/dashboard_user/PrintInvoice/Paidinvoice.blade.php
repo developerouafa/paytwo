@@ -116,7 +116,7 @@
                         <hr class="mg-b-40">
 
                         @foreach ($receiptdocuments as $receiptdocument)
-                            <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="800px" height="2100px" />
+                            <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="800px" height="800px" />
                         @endforeach
 
                     </div>

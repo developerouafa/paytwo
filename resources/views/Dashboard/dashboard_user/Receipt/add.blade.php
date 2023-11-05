@@ -56,8 +56,7 @@
                                     <label>{{__('Dashboard/receipt_trans.price')}}</label>
                                 </div>
                                 <div class="col-md-11 mg-t-5 mg-md-t-0">
-                                    {{-- <input class="form-control" name="Debit" type="number"> --}}
-                                    <input class="form-control" name="Debit" type="text" value="{{$invoice->total_with_tax}}">
+                                    <input class="form-control" name="Debit" type="number">
                                 </div>
                             </div>
 

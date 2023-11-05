@@ -8,7 +8,6 @@ use App\Mail\CatchreceiptMailMarkdown;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
-use App\Models\invoice;
 use App\Models\receipt_account;
 use App\Notifications\catchreceipt;
 use Illuminate\Support\Facades\Notification;
@@ -33,9 +32,8 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     public function create($request)
     {
         $invoice_id = $request->invoice_id;
-        $invoice = invoice::findorFail($invoice_id);
         $client_id = $request->client_id;
-        return view('Dashboard.dashboard_user.Receipt.add',compact('invoice_id', 'invoice', 'client_id'));
+        return view('Dashboard.dashboard_user.Receipt.add',compact('invoice_id', 'client_id'));
     }
 
     public function show($id)

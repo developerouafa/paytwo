@@ -12,6 +12,8 @@ class paymentaccount extends Model
 
     protected $dates = ['deleted_at'];
 
+    public $guarded=[];
+
     /*-------------------- Relations --------------------*/
 
     public function user()

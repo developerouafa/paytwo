@@ -90,6 +90,9 @@
                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                 <td>
+
+                    <button wire:click="updatepaymenttype({{ $single_invoice->id }})" class="btn btn-primary btn-sm">update payment type</button>
+
                     @can('Edit Single Invoices')
                         <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                     @endcan

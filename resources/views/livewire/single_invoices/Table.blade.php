@@ -67,14 +67,29 @@
                         {{__('Dashboard/services.noselectionyet')}}
                     @elseif ($single_invoice->type == 2)
                         @can('Create Catch Payment')
-                            <form action="{{ route('Payment.createpy') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                    <button type="submit" class="btn btn-purple">
-                                        {{__('Dashboard/payment_trans.addpayment')}}
-                                    </button>
-                            </form>
+                            @if ($fund_accountreceipt)
+                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                    {{__('Dashboard/services.rcpyment')}}
+                                @else
+                                    <form action="{{ route('Payment.createpy') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                        <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                            <button type="submit" class="btn btn-purple">
+                                                {{__('Dashboard/payment_trans.addpayment')}}
+                                            </button>
+                                    </form>
+                                @endif
+                            @else
+                                <form action="{{ route('Payment.createpy') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                    <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                        <button type="submit" class="btn btn-purple">
+                                            {{__('Dashboard/payment_trans.addpayment')}}
+                                        </button>
+                                </form>
+                            @endif
                         @endcan
                         {{__('Dashboard/services.Okay')}}
                     @elseif ($single_invoice->type == 3)

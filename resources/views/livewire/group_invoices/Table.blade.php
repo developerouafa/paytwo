@@ -69,14 +69,29 @@
                             @elseif ($group_invoice->type == 2)
                                 {{__('Dashboard/services.Okay')}}
                                 @can('Create Catch Payment')
-                                    <form action="{{ route('Payment.createpy') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
-                                        <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
-                                            <button type="submit" class="btn btn-purple">
-                                                {{__('Dashboard/payment_trans.addpayment')}}
-                                            </button>
-                                    </form>
+                                    @if ($fund_accountreceipt)
+                                        @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                            {{__('Dashboard/services.rcpyment')}}
+                                        @else
+                                            <form action="{{ route('Payment.createpy') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                                    <button type="submit" class="btn btn-purple">
+                                                        {{__('Dashboard/payment_trans.addpayment')}}
+                                                    </button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <form action="{{ route('Payment.createpy') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                            <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                                <button type="submit" class="btn btn-purple">
+                                                    {{__('Dashboard/payment_trans.addpayment')}}
+                                                </button>
+                                        </form>
+                                    @endif
                                 @endcan
                                 @elseif ($group_invoice->type == 3)
                                     {{__('Dashboard/services.Banktransfer')}}

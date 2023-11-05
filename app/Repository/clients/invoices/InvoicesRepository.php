@@ -365,18 +365,23 @@ class InvoicesRepository implements InvoiceRepositoryInterface
             $client->updateDefaultPaymentMethod($paymentMethod);
             $client->invoiceFor($order->invoice->invoice_number, $order->price);
 
+                $completepyinvoice = invoice::findorFail($order->invoice->id);
+                $completepyinvoice->update([
+                    'invoice_status' => '3'
+                ]);
+
                 // store paymentgateway_accounts
-                $banktransfers = new paymentgateway();
-                $banktransfers->date =date('y-m-d');
-                $banktransfers->client_id = $order->invoice->client_id;
-                $banktransfers->amount = $order->invoice->total_with_tax;
-                $banktransfers->user_id = $order->invoice->user_id;
-                $banktransfers->save();
+                $paymentgateways = new paymentgateway();
+                $paymentgateways->date =date('y-m-d');
+                $paymentgateways->client_id = $order->invoice->client_id;
+                $paymentgateways->amount = $order->invoice->total_with_tax;
+                $paymentgateways->user_id = $order->invoice->user_id;
+                $paymentgateways->save();
 
                 // store fund_accounts
                 $fund_accounts = new fund_account();
                 $fund_accounts->date =date('y-m-d');
-                $fund_accounts->bank_id = $banktransfers->id;
+                $fund_accounts->Gateway_id = $paymentgateways->id;
                 $fund_accounts->invoice_id = $order->invoice->id;
                 $fund_accounts->Debit = $order->invoice->total_with_tax;
                 $fund_accounts->user_id = $order->invoice->user_id;
@@ -387,7 +392,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                 $client_accounts = new client_account();
                 $client_accounts->date =date('y-m-d');
                 $client_accounts->client_id = $order->invoice->client_id;
-                $client_accounts->bank_id = $banktransfers->id;
+                $client_accounts->Gateway_id = $paymentgateways->id;
                 $client_accounts->invoice_id = $order->invoice->id;
                 $client_accounts->user_id = $order->invoice->user_id;
                 $client_accounts->Debit = 0.00;

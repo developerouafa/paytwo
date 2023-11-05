@@ -51,5 +51,7 @@ return [
     "AlRajhiBank" => "Al Rajhi Bank",
     "banktransfermade" => "The bank from which the transfer was made",
     "nameincard" => "Name in Card",
-    "paywithcard" => "Pay With Card"
+    "paywithcard" => "Pay With Card",
+    "confirmpayment" => "Confirm Payment",
+    "paymentrefused" => "Payment refused"
 ];

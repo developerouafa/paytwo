@@ -51,5 +51,7 @@ return [
     "AlRajhiBank" => "مصرف الراجحي",
     "banktransfermade" => "البنك الذي تم التحويل منه",
     "nameincard" => "الاسم في البطاقة",
-    "paywithcard" => "الدفع بالبطاقة"
+    "paywithcard" => "الدفع بالبطاقة",
+    "confirmpayment" => "تأكيد الدفع",
+    "paymentrefused" => "رفض الدفع"
 ];

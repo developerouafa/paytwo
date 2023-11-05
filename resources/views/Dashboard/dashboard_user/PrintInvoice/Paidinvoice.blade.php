@@ -23,6 +23,41 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
+
+    <div class="card">
+        <div class="card-body">
+            <div class="tabs-menu ">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs profile navtab-custom panel-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.confirmpayment')}}</span> </a>
+                    </li>
+                    <li class="">
+                        <a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.paymentrefused')}}</span> </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
+                <div class="tab-pane active" id="home">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" name="descriptiontoclient">{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.confirmpayment')}} </textarea>
+                        </div>
+                        <button class="btn btn-primary waves-effect waves-light w-md" type="submit">{{__('Dashboard/services.save')}}</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="settings">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea id="AboutMe" class="form-control" name="descriptiontoclient">{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.paymentrefused')}} </textarea>
+                        </div>
+                        <button class="btn btn-primary waves-effect waves-light w-md" type="submit">{{__('Dashboard/services.save')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- row -->
     <div class="row row-sm">
         <div class="col-md-12 col-xl-12">

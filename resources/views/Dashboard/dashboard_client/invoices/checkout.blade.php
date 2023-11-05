@@ -21,7 +21,7 @@
                             <div class="col-md-6">
                                 <div id="card-element"></div>
                                 <button type="button" class="mt-4 btn btn-primary" id="payment-button">
-                                    {{__('Dashboard/clients_trans.Pay')}} ${{ round($order->invoice->price / 100, 2) }}</button>
+                                    {{__('Dashboard/clients_trans.Pay')}} ${{ round($order->invoice->total_with_tax / 100, 2) }}</button>
                                 @if (session('error'))
                                     <div class="alert alert-danger mt-4">{{ session('error') }}</div>
                                 @endif

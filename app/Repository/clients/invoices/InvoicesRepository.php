@@ -336,7 +336,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $client->orders()->create([
             'invoice_id' => $invoice->id,
             'nameincard' => 'nameincard',
-            'price' => $invoice->price
+            'price' => $invoice->total_with_tax
         ]);
         return redirect()->route('Invoices.checkout');
     }

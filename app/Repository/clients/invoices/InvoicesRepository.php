@@ -29,7 +29,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     use UploadImageTraitt;
 
     public function index(){
-        $invoices = invoice::latest()->where('type', '0')->where('client_id', Auth::user()->id)->get();
+        $invoices = invoice::latest()->where('type', '0')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
         return view('Dashboard.dashboard_client.invoices.invoices', ['invoices' => $invoices]);
     }
 

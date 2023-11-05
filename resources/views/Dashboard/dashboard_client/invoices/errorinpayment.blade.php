@@ -81,7 +81,7 @@
                         </div>
 
                         <div style="text-align: center">
-                            <a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}" class="btn btn-primary waves-effect waves-light">
+                            <a href="{{route('Invoices.print',$invoice->id)}}" class="btn btn-primary waves-effect waves-light">
                                 {{__('Dashboard/clients_trans.backinvoice')}}
                             </a>
                         </div>

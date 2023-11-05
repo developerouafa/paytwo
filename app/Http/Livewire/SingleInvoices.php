@@ -556,7 +556,7 @@ class SingleInvoices extends Component
         ]);
     }
 
-    public function updatepaymenttype($id)
+    public function invoicestatus($id)
     {
         $single_invoice = invoice::findorfail($id);
         $single_invoice->invoice_status = '2';

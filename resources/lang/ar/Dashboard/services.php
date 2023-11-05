@@ -54,6 +54,7 @@ return [
     'Singleservicebill' => 'فاتوره خدمه مفرده',
     'invoicenumber' => 'رقم الفاتورة',
     'Sent' => 'مرسلة',
+    'New' => 'جديدة',
     'Under review' => 'قيدة المراجعة',
     'Complete' => 'مكتملة',
     'Draft' => 'مسودة',

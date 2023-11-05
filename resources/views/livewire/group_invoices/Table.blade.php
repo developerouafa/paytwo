@@ -79,12 +79,14 @@
                             @endif
                         </td>
                         <td>
-                            @if ($group_invoice->invoice_type == 1)
-                                {{__('Dashboard/services.Draft')}}
-                            @elseif ($group_invoice->invoice_type == 2)
-                                {{__('Dashboard/services.Paid')}}
-                            @elseif ($group_invoice->invoice_type == 3)
-                                {{__('Dashboard/services.Canceled')}}
+                            @if ($single_invoice->invoice_status == 1)
+                                {{__('Dashboard/services.New')}}
+                            @elseif ($single_invoice->invoice_status == 2)
+                                {{__('Dashboard/services.Sent')}}
+                            @elseif ($single_invoice->invoice_status == 3)
+                                {{__('Dashboard/services.Under review')}}
+                            @elseif ($single_invoice->invoice_status == 4)
+                                {{__('Dashboard/services.Complete')}}
                             @endif
                         </td>
                         <td>{{$group_invoice->user->name}}</td>

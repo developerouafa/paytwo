@@ -54,6 +54,7 @@ return [
     'Singleservicebill' => 'Single service bill',
     'invoicenumber' => 'Number Invoice',
     'Sent' => 'Sent',
+    'New' => 'New',
     'Under review' => 'Under review',
     'Complete' => 'Complete',
     'Draft' => 'Draft',

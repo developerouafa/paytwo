@@ -39,14 +39,29 @@
                     @if ($single_invoice->type == 1)
                         {{__('Dashboard/services.monetary')}}
                        @can('Create Receipt')
-                            <form action="{{ route('Receipt.createrc') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                    <button type="submit" class="btn btn-purple">
-                                        {{__('Dashboard/receipt_trans.addreceipt')}}
-                                    </button>
-                            </form>
+                            @if ($fund_account)
+                                @if ($fund_account->invoice->id == $single_invoice->id)
+                                    {{__('Dashboard/services.rcpyment')}}
+                                @else
+                                    <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                        <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                            <button type="submit" class="btn btn-purple">
+                                                {{__('Dashboard/receipt_trans.addreceipt')}}
+                                            </button>
+                                    </form>
+                                @endif
+                            @else
+                                <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
+                                    <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                        <button type="submit" class="btn btn-purple">
+                                            {{__('Dashboard/receipt_trans.addreceipt')}}
+                                        </button>
+                                </form>
+                            @endif
                         @endcan
                     @elseif ($single_invoice->type == 0)
                         {{__('Dashboard/services.noselectionyet')}}

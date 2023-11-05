@@ -63,4 +63,5 @@ return [
     'card' => 'بطاقة',
     'Banktransfer' => 'حوالة بنكية',
     'noselectionyet' => 'لم يتم الاختيار بعد',
+    'rcpyment' => 'سند الاستلام موجود',
 ];

@@ -63,4 +63,5 @@ return [
     'card' => 'Card',
     'Banktransfer' => 'Bank transfer',
     'noselectionyet' => 'No selection yet',
+    'rcpyment' => 'Receipt Exist',
 ];

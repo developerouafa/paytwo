@@ -39,8 +39,8 @@
                     @if ($single_invoice->type == 1)
                         {{__('Dashboard/services.monetary')}}
                        @can('Create Receipt')
-                            @if ($fund_account)
-                                @if ($fund_account->invoice->id == $single_invoice->id)
+                            @if ($fund_accountreceipt)
+                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
                                     {{__('Dashboard/services.rcpyment')}}
                                 @else
                                     <form action="{{ route('Receipt.createrc') }}" method="POST">

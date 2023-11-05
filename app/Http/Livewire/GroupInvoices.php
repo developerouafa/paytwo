@@ -44,12 +44,15 @@ class GroupInvoices extends Component
 
     public function render()
     {
+        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
+
         return view('livewire.group_invoices.group-invoices',[
             'group_invoices'=>invoice::latest()->where('invoice_classify',2)->get(),
             'Clients'=> Client::all(),
             'Groups'=> groupprodcut::all(),
             'subtotal' => $Total_after_discount = ((is_numeric($this->price) ? $this->price : 0)) - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
-            'tax_value'=> $Total_after_discount * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100)
+            'tax_value'=> $Total_after_discount * ((is_numeric($this->tax_rate) ? $this->tax_rate : 0) / 100),
+            'fund_accountreceipt'=> $fund_accountreceipt
         ]);
     }
 

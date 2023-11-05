@@ -40,14 +40,29 @@
                             @if ($group_invoice->type == 1)
                                 {{__('Dashboard/services.monetary')}}
                                 @can('Create Receipt')
-                                    <form action="{{ route('Receipt.createrc') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
-                                        <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
-                                            <button type="submit" class="btn btn-purple">
-                                                {{__('Dashboard/receipt_trans.addreceipt')}}
-                                            </button>
-                                    </form>
+                                @if ($fund_accountreceipt)
+                                    @if ($fund_accountreceipt->invoice->id == $group_invoice->id)
+                                        {{__('Dashboard/services.rcpyment')}}
+                                        @else
+                                            <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                                <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
+                                                    <button type="submit" class="btn btn-purple">
+                                                        {{__('Dashboard/receipt_trans.addreceipt')}}
+                                                    </button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <form action="{{ route('Receipt.createrc') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                            <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
+                                                <button type="submit" class="btn btn-purple">
+                                                    {{__('Dashboard/receipt_trans.addreceipt')}}
+                                                </button>
+                                        </form>
+                                    @endif
                                 @endcan
                             @elseif ($group_invoice->type == 0)
                                 {{__('Dashboard/services.noselectionyet')}}

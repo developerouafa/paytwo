@@ -71,6 +71,7 @@
                 <td>
                     @if ($single_invoice->invoice_status == 1)
                         {{__('Dashboard/services.New')}}
+                        <button wire:click="invoicestatus({{ $single_invoice->id }})" class="btn btn-primary btn-sm">{{__('Dashboard/services.Sent')}}</button>
                     @elseif ($single_invoice->invoice_status == 2)
                         {{__('Dashboard/services.Sent')}}
                     @elseif ($single_invoice->invoice_status == 3)
@@ -92,9 +93,6 @@
                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                 <td>
-
-                    <button wire:click="invoicestatus({{ $single_invoice->id }})" class="btn btn-primary btn-sm">update payment type</button>
-
                     @can('Edit Single Invoices')
                         <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                     @endcan

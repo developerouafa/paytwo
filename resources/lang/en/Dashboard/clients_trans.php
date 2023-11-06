@@ -53,5 +53,6 @@ return [
     "nameincard" => "Name in Card",
     "paywithcard" => "Pay With Card",
     "confirmpayment" => "Confirm Payment",
-    "paymentrefused" => "Payment refused"
+    "paymentrefused" => "Payment refused",
+    "mssgntfnewaccount" => "A new account has been created for you as a customer using your number and password",
 ];

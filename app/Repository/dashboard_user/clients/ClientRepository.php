@@ -6,6 +6,8 @@ use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+use function Symfony\Component\String\b;
+
 class ClientRepository implements ClientRepositoryInterface
 {
 
@@ -37,20 +39,21 @@ class ClientRepository implements ClientRepositoryInterface
                 'user_id' => auth()->user()->id,
                 'password' => Hash::make($request->password)
             ]);
-            $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
-            $client = new \Vonage\Client($basic);
+                $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
+                $client = new \Vonage\Client($basic);
+                $message = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone') .$request->phone. __('Dashboard/auth.password'). $request->password;
 
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS("212682201021", BRAND_NAME, 'A text message sent using the Nexmo SMS API')
-            );
+                $response = $client->sms()->send(
+                    new \Vonage\SMS\Message\SMS("212682201021", 'TikTik', $message)
+                );
 
-            $message = $response->current();
+                $message = $response->current();
 
-            if ($message->getStatus() == 0) {
-                echo "The message was sent successfully\n";
-            } else {
-                echo "The message failed with status: " . $message->getStatus() . "\n";
-            }
+                if ($message->getStatus() == 0) {
+                    echo "The message was sent successfully\n";
+                } else {
+                    echo "The message failed with status: " . $message->getStatus() . "\n";
+                }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Clients.index');

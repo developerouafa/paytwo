@@ -53,5 +53,6 @@ return [
     "nameincard" => "الاسم في البطاقة",
     "paywithcard" => "الدفع بالبطاقة",
     "confirmpayment" => "تأكيد الدفع",
-    "paymentrefused" => "رفض الدفع"
+    "paymentrefused" => "رفض الدفع",
+    "mssgntfnewaccount" => "لقد تم إنشاء حساب جديد لك كعميل باستخدام رقمك وكلمة المرور الخاصة بك",
 ];

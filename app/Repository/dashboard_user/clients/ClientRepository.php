@@ -39,6 +39,18 @@ class ClientRepository implements ClientRepositoryInterface
             ]);
             $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
             $client = new \Vonage\Client($basic);
+
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS("212682201021", BRAND_NAME, 'A text message sent using the Nexmo SMS API')
+            );
+
+            $message = $response->current();
+
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Clients.index');

@@ -19,4 +19,6 @@ return [
     'nicasepaymentup' => 'Update Invoice PostPaid',
     'nicasebanktransfer' => 'New Invoice Bank Transfer',
     'nicasebanktransferup' => 'Update Invoice Bank Transfer',
+    'confirmpyinvoice' => 'Confirm Payment Invoice',
+    'refusedpyinvoice' => 'Refused Payment Invoice',
 ];

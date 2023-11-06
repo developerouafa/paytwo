@@ -19,4 +19,6 @@ return [
     'nicasepaymentup' => 'تعديل فاتورة سند الآجل ',
     'nicasebanktransfer' => 'فاتورة جديدة في حالة الدفع ببطاقة',
     'nicasebanktransferup' => 'فاتورة جديدة في حالة الدفع ببطاقة',
+    'confirmpyinvoice' => 'تم تأكيد دفع',
+    'refusedpyinvoice' => 'تم رفض دفع',
 ];

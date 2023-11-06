@@ -120,9 +120,9 @@
                         @if ($invoice->invoice_type == 1)
                             <a class="btn btn-purple float-left mt-3 mr-2" href="{{route('Invoices.showinvoice',$invoice->id)}}"><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/clients_trans.Pay')}}</a>
                         @elseif ($invoice->invoice_type == 2)
-                            <a class="btn btn-purple float-left mt-3 mr-2" href=""><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/services.Paid')}}</a>
+                            <a class="btn btn-purple float-left mt-3 mr-2" href="">{{__('Dashboard/services.Paid')}}</a>
                         @elseif ($single_invoice->invoice_type == 3)
-                            <a class="btn btn-purple float-left mt-3 mr-2" href=""><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/services.Canceled')}}</a>
+                            <a class="btn btn-purple float-left mt-3 mr-2" href="">{{__('Dashboard/services.Canceled')}}</a>
                         @endif
                         <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
                             <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}

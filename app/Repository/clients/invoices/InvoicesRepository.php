@@ -278,12 +278,12 @@ class InvoicesRepository implements InvoiceRepositoryInterface
             return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
         }
         if($invoice->type == '3'){
-            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\paymentgateways')->pluck('id');
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\App\Notifications\banktransferntf')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
             return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
         }
         if($invoice->type == '4'){
-            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\banktransferntf')->pluck('id');
+            $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\paymentgateways')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
             return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
         }

@@ -309,7 +309,7 @@ class UserController extends Controller
             $url = url('en/Invoices/print/'.$invoice_id);
             Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
-        if($confirmpyinvoice->type == 3){
+        if($confirmpyinvoice->type == 4){
             $fund_account = fund_account::whereNotNull('Gateway_id')->where('invoice_id', $confirmpyinvoice->id)->first();
             $postpaid = paymentgateway::findorfail($fund_account->Gateway_id);
             $postpaid->update([

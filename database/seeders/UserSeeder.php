@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         $user_id = User::latest()->first()->id;
         Client::create([
             'name' => 'client',
-            'phone' => '0582201021',
+            'phone' => '0682201021',
             'email' => 'developerouafa@gmail.com',
             'password' => Hash::make('123456'),
             'user_id' => $user_id,

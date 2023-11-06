@@ -37,6 +37,8 @@ class ClientRepository implements ClientRepositoryInterface
                 'user_id' => auth()->user()->id,
                 'password' => Hash::make($request->password)
             ]);
+            $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
+            $client = new \Vonage\Client($basic);
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Clients.index');

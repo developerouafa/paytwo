@@ -8,5 +8,5 @@
 </x-mail::button>
 
 {{__('Dashboard/mail.Thanks')}},<br>
-{{ config('app.name') }} : {{$message}}
+Tik : {{$message}}
 </x-mail::message>

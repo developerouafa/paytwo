@@ -43,22 +43,27 @@ class ClientRepository implements ClientRepositoryInterface
                 'user_id' => auth()->user()->id,
                 'password' => Hash::make($request->password)
             ]);
-                $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
-                $client = new \Vonage\Client($basic);
-                $messagenewaccount = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone') .$request->phone. __('Dashboard/auth.password'). $request->password;
+                // $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
+                // $client = new \Vonage\Client($basic);
+                // $messagenewaccount = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone'). ': ' .$request->phone. ': ' .__('Dashboard/auth.password').': ' . $request->password;
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($request->phone, 'TikTik', $messagenewaccount)
-                );
-                $message = $response->current();
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS('2120682201021', 'TikTik', 'mmmm')
+                // );
+                // $message = $response->current();
+                // if ($message->getStatus() == 0) {
+                //     echo "The message was sent successfully\n";
+                // } else {
+                //     echo "The message failed with status: " . $message->getStatus() . "\n";
+                // }
 
-                $client_id = Client::latest()->first()->id;
+                // $client_id = Client::latest()->first()->id;
 
                 //* Notification Email
-                $mailclient = Client::findorFail($client_id);
-                $nameclient = $mailclient->name;
-                $url = url('en/login');
-                Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
+                // $mailclient = Client::findorFail($client_id);
+                // $nameclient = $mailclient->name;
+                // $url = url('en/login');
+                // Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));

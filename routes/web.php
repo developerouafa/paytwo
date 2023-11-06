@@ -57,6 +57,8 @@ Route::get('/clear', function() {
                 Route::get('editstatusactiveuser/{id}', 'editstatusactive')->name('editstatusactiveuser');
                 Route::get('/clienttouser/{id}', 'clienttouser')->name('clienttouser');
                 Route::get('/clienttouserinvoice/{id}', 'clienttouserinvoice')->name('clienttouserinvoice');
+                Route::patch('/confirmpayment', 'confirmpayment')->name('Invoice.confirmpayment');
+                Route::patch('/refusedpayment', 'refusedpayment')->name('Invoice.refusedpayment');
             });
         //############################# end Partie User|permissions|roles route ######################################
 

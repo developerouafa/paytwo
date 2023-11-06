@@ -39,17 +39,23 @@
             </div>
             <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
                 <div class="tab-pane active" id="home">
-                    <form role="form">
+                    <form method="post" action="{{ route('Invoice.confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                        @csrf
+                        @method('patch')
                         <div class="form-group">
-                            <textarea class="form-control" name="descriptiontoclient">{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.confirmpayment')}} </textarea>
+                            <textarea class="form-control" name="descriptiontoclient" placeholder="{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.confirmpayment')}}"></textarea>
+                            <input type="hidden" value="{{$invoice->id}}" name="invoice_id">
                         </div>
                         <button class="btn btn-primary waves-effect waves-light w-md" type="submit">{{__('Dashboard/services.save')}}</button>
                     </form>
                 </div>
                 <div class="tab-pane" id="settings">
-                    <form role="form">
+                    <form method="post" action="{{ route('Invoice.refusedpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
+                        @csrf
+                        @method('patch')
                         <div class="form-group">
-                            <textarea id="AboutMe" class="form-control" name="descriptiontoclient">{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.paymentrefused')}} </textarea>
+                            <textarea id="AboutMe" class="form-control" name="descriptiontoclient" placeholder="{{__('Dashboard/services.description')}} {{__('Dashboard/clients_trans.paymentrefused')}}"></textarea>
+                            <input type="hidden" value="{{$invoice->id}}" name="invoice_id">
                         </div>
                         <button class="btn btn-primary waves-effect waves-light w-md" type="submit">{{__('Dashboard/services.save')}}</button>
                     </form>

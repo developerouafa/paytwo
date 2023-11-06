@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Users\StoreUserRequest;
+use App\Models\fund_account;
 use App\Models\imageuser;
 use App\Models\invoice;
+use App\Models\receipt_account;
 use App\Models\receiptdocument;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -238,5 +240,40 @@ class UserController extends Controller
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\clienttouserinvoice')->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
         return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
+    }
+
+    public function confirmpayment(Request $request){
+        $completepyinvoice = invoice::findorFail($request->invoice_id);
+        if($completepyinvoice->type == 1){
+            $fund_account = fund_account::whereNotNull('receipt_id')->where('invoice_id', $completepyinvoice->id)->first();
+            $receipt = receipt_account::findorfail($fund_account->receipt_id);
+            $receipt->update([
+                'descriptiontoclient' => $request->descriptiontoclient
+            ]);
+        }
+        if($completepyinvoice->type == 2){
+            return '2';
+
+        }
+        if($completepyinvoice->type == 3){
+            $fund_account = fund_account::whereNotNull('receipt_id')->where('invoice_id', $completepyinvoice->id)->first();
+            dd($fund_account);
+        }
+        if($completepyinvoice->type == 3){
+            return '4';
+        }
+        $completepyinvoice->update([
+            'invoice_status' => '3',
+            'invoice_type' => '2',
+        ]);
+    }
+
+    public function refusedpayment(Request $request){
+        return $request;
+        // $completepyinvoice = invoice::findorFail($request->invoice_id);
+        // $completepyinvoice->update([
+        //     'invoice_status' => '3',
+        //     'invoice_type' => '3',
+        // ]);
     }
 }

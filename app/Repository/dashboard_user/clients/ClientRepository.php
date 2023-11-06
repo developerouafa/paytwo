@@ -2,9 +2,13 @@
 namespace App\Repository\dashboard_user\Clients;
 
 use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
+use App\Mail\newaccountclient;
 use App\Models\Client;
+use App\Notifications\newaccountclientnotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 use function Symfony\Component\String\b;
 
@@ -32,7 +36,7 @@ class ClientRepository implements ClientRepositoryInterface
     {
         try{
             DB::beginTransaction();
-            Client::create([
+            $client = Client::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'email' => $request->email,
@@ -41,19 +45,21 @@ class ClientRepository implements ClientRepositoryInterface
             ]);
                 $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
                 $client = new \Vonage\Client($basic);
-                $message = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone') .$request->phone. __('Dashboard/auth.password'). $request->password;
+                $messagenewaccount = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone') .$request->phone. __('Dashboard/auth.password'). $request->password;
 
                 $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS("212682201021", 'TikTik', $message)
+                    new \Vonage\SMS\Message\SMS($request->phone, 'TikTik', $messagenewaccount)
                 );
-
                 $message = $response->current();
 
-                if ($message->getStatus() == 0) {
-                    echo "The message was sent successfully\n";
-                } else {
-                    echo "The message failed with status: " . $message->getStatus() . "\n";
-                }
+                $client_id = Client::latest()->first()->id;
+
+                //* Notification Email
+                $mailclient = Client::findorFail($client_id);
+                $nameclient = $mailclient->name;
+                $url = url('en/login');
+                Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
+
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Clients.index');

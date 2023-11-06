@@ -6,5 +6,5 @@ return [
     'ViewInvoice' => 'عرض الفاتورة',
     'ViewInvoicereceipt' => 'عرض فاتورة سند قبض',
     'ViewInvoicepayment' => 'عرض فاتورة سند صرف',
-
+    'viewaccount' => 'عرض الحساب'
 ];

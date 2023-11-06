@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "96b39e39117946183a54f3ef32a60808",
+    "content-hash": "5ce0acef10aab3c651aabee58185c379",
     "packages": [
         {
             "name": "brick/math",
@@ -7587,6 +7587,63 @@
                 }
             ],
             "time": "2022-03-08T17:03:00+00:00"
+        },
+        {
+            "name": "vonage/client",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Vonage/vonage-php-sdk.git",
+                "reference": "9a21c83fee90e5da410146b965383bebccfc93b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vonage/vonage-php-sdk/zipball/9a21c83fee90e5da410146b965383bebccfc93b0",
+                "reference": "9a21c83fee90e5da410146b965383bebccfc93b0",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "~8.0 || ~8.1 || ~8.2",
+                "vonage/client-core": "^4.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Seconde",
+                    "email": "jim.seconde@vonage.com",
+                    "role": "PHP Developer Advocate"
+                },
+                {
+                    "name": "Tim Lytle",
+                    "homepage": "https://twitter.com/tjlytle",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Michael Heap",
+                    "homepage": "https://www.twitter.com/mheap",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Lorna Mitchell",
+                    "homepage": "https://lornajane.net/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Chris Tankersley",
+                    "homepage": "https://twitter.com/dragonmantank",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Client for using Vonage's API.",
+            "support": {
+                "email": "devrel@vonage.com"
+            },
+            "time": "2023-01-16T11:02:48+00:00"
         },
         {
             "name": "vonage/client-core",

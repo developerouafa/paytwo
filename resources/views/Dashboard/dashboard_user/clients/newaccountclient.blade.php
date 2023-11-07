@@ -310,7 +310,7 @@
                                         <option value="263">Zimbabwe </option>
 
                                     </select>
-                                    <input type="number" placeholder="{{__('Dashboard/clients_trans.donotwrite')}}" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone">
+                                    <input type="number" placeholder="{{__('Dashboard/users.phone')}}" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone">
                                 </div><!-- input-group -->
                             </div>
                         </div>

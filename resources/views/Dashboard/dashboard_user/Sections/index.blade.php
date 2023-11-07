@@ -78,7 +78,6 @@
                                                         <input type="checkbox" name="delete_select" value="{{$section->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
-
                                                 <td><a href="{{route('Sections.showsection',$section->id)}}">{{$section->name}}</a> </td>
                                                 <td>
                                                     @if ($section->status == 0)

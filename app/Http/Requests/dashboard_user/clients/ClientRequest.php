@@ -24,7 +24,7 @@ class ClientRequest extends FormRequest
         // validations
         return [
             'name' => 'required',
-            'phone' => 'required|unique:clients,phone|regex:/[1-9]{20}/',
+            'phone' => 'required|unique:clients,phone|regex:/[0-9]/',
             'email' => 'required|email|unique:clients,email',
             'password' => 'required|same:confirm-password',
         ];

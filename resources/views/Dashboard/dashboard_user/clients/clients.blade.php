@@ -78,7 +78,7 @@
                                                         <input type="checkbox" name="delete_select" value="{{$client->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
-                                                <td>{{$client->name}}</td>
+                                                <td><a href="{{route('Clients.showinvoice',$client->id)}}">{{$client->name}}</a> </td>
                                                 <td>{{$client->email}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>
@@ -95,7 +95,6 @@
                                                         </a>
                                                     @endif
                                                 </td>
-                                                {{-- <td><a href="{{route('Sections.showsection',$client->id)}}">{{$client->user->phone}}</a> </td> --}}
                                                 <td><a href="#">{{$client->user->name}}</a> </td>
                                                 <td> {{ $client->created_at->diffForHumans() }} </td>
                                                 <td> {{ $client->updated_at->diffForHumans() }} </td>

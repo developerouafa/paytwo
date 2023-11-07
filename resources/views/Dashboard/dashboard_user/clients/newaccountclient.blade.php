@@ -54,7 +54,7 @@
 
                         <div class="modal-body">
                             <label for="phone">{{trans('Dashboard/clients_trans.phone')}}<span class="tx-danger">*</span></label>
-                                <select name="pays" class="form-control">
+                                <select name="pays" class="form-control select2">
                                     <option label="Choose one">
                                     </option>
                                     <option value="93">Afghanistan </option>

@@ -55,4 +55,5 @@ return [
     "confirmpayment" => "Confirm Payment",
     "paymentrefused" => "Payment refused",
     "mssgntfnewaccount" => "A new account has been created for you as a customer using your number and password",
+    "donotwrite" => "Do not write 0"
 ];

@@ -13,6 +13,9 @@ interface ClientRepositoryInterface
     //* get All Clients
     public function create();
 
+    //* Create Client Account
+    public function createclient();
+
     //* store Clients
     public function store($request);
 

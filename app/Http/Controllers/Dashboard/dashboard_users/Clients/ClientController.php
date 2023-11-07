@@ -32,6 +32,11 @@ class ClientController extends Controller
       return  $this->Clients->create();
     }
 
+    public function createclient()
+    {
+      return  $this->Clients->createclient();
+    }
+
     public function showsection($id)
     {
        return $this->Clients->showsection($id);

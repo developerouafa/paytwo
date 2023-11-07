@@ -32,6 +32,10 @@ class ClientRepository implements ClientRepositoryInterface
       return view('Dashboard/dashboard_user/clients.create');
     }
 
+    public function createclient(){
+        return view('Dashboard/dashboard_user/clients.newaccountclient');
+    }
+
     public function store($request)
     {
         return $request->pays;

@@ -150,9 +150,9 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function showinvoice($id)
     {
-        // $section = Section::findOrFail($id);
+        $client = Client::findOrFail($id);
         // $products = product::where('section_id', $id)->get();
-        return view('Dashboard/dashboard_user/clients.invoices',compact('section', 'products'));
+        return view('Dashboard/dashboard_user/clients.invoices',compact('client'));
     }
 
     public function editstatusactive($id)

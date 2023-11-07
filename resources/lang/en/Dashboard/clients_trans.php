@@ -55,5 +55,8 @@ return [
     "confirmpayment" => "Confirm Payment",
     "paymentrefused" => "Payment refused",
     "mssgntfnewaccount" => "A new account has been created for you as a customer using your number and password",
-    "donotwrite" => "Do not write 0"
+    "cashpyinvoice" => "Cash Payment Invoice",
+    "cashpyinvoicepaid" => "Postpaid bill",
+    "banktransferpy" => "Bank transfer payment invoice",
+    "bankcardpy" => "Bank card payment bill"
 ];

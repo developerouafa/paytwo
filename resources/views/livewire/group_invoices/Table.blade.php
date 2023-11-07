@@ -70,13 +70,13 @@
                                 {{__('Dashboard/services.Okay')}}
                                 @can('Create Catch Payment')
                                     @if ($fund_accountreceipt)
-                                        @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                        @if ($fund_accountreceipt->invoice->id == $group_invoice->id)
                                             {{__('Dashboard/services.rcpyment')}}
                                         @else
                                             <form action="{{ route('Payment.createpy') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                                <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                                <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                                <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
                                                     <button type="submit" class="btn btn-purple">
                                                         {{__('Dashboard/payment_trans.addpayment')}}
                                                     </button>
@@ -85,8 +85,8 @@
                                     @else
                                         <form action="{{ route('Payment.createpy') }}" method="POST">
                                             @csrf
-                                            <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                            <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
+                                            <input type="hidden" name="invoice_id" value="{{ $group_invoice->id }}" />
+                                            <input type="hidden" name="client_id" value="{{ $group_invoice->Client->id }}" />
                                                 <button type="submit" class="btn btn-purple">
                                                     {{__('Dashboard/payment_trans.addpayment')}}
                                                 </button>

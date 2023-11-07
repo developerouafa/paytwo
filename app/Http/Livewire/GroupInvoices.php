@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\banktransferMailMarkdown;
 use App\Mail\mailclient;
 use App\Models\banktransfer;
 use App\Models\Client;
@@ -10,7 +9,6 @@ use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\groupprodcut;
 use App\Models\invoice;
-use App\Models\paymentgateway;
 use App\Notifications\banktransferntf;
 use App\Notifications\montaryinvoice;
 use App\Notifications\invoicent;
@@ -427,7 +425,7 @@ class GroupInvoices extends Component
                     $group_invoices = invoice::findorfail($this->group_invoice_id);
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
-                    $group_invoices->product_id = $this->product_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
                     $group_invoices->price = $this->price;
                     $group_invoices->discount_value = $this->discount_value;
                     $group_invoices->tax_rate = $this->tax_rate;
@@ -458,7 +456,7 @@ class GroupInvoices extends Component
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
                         $url = url('en/Invoices/print/'.$invoice_id);
-                        Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
                 }
@@ -470,7 +468,7 @@ class GroupInvoices extends Component
                     $group_invoices->invoice_classify = 2;
                     $group_invoices->invoice_date = date('Y-m-d');
                     $group_invoices->client_id = $this->client_id;
-                    $group_invoices->product_id = $this->product_id;
+                    $group_invoices->groupprodcut_id = $this->groupprodcut_id;
                     $group_invoices->price = $this->price;
                     $group_invoices->discount_value = $this->discount_value;
                     $group_invoices->tax_rate = $this->tax_rate;
@@ -618,7 +616,7 @@ class GroupInvoices extends Component
             $mailclient = Client::findorFail($group_invoice->client_id);
             $nameclient = $mailclient->name;
             $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
+            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
     }
 }

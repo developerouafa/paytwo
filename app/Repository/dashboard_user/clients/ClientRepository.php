@@ -4,6 +4,9 @@ namespace App\Repository\dashboard_user\Clients;
 use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
 use App\Mail\newaccountclient;
 use App\Models\Client;
+use App\Models\invoice;
+use App\Models\receipt_account;
+use App\Models\receiptdocument;
 use App\Notifications\newaccountclientnotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -151,8 +154,19 @@ class ClientRepository implements ClientRepositoryInterface
     public function showinvoice($id)
     {
         $client = Client::findOrFail($id);
-        // $products = product::where('section_id', $id)->get();
-        return view('Dashboard/dashboard_user/clients.invoices',compact('client'));
+        $invoices = invoice::where('client_id', $id)->where('client_id', $id)->where('type', 0)->get();
+        $invoicescatchpayment = invoice::where('id', $id)->where('client_id', $id)->where('type', 1)->get();
+        $invoicespostpaid = invoice::where('id', $id)->where('client_id', $id)->where('type', 2)->get();
+        $invoicesbanktransfer = invoice::where('id', $id)->where('client_id', $id)->where('type', 3)->get();
+        $invoicescard = invoice::where('id', $id)->where('client_id', $id)->where('type', 4)->get();
+        return view('Dashboard/dashboard_user/clients.invoices',compact('client', 'invoices', 'invoicescatchpayment', 'invoicespostpaid', 'invoicesbanktransfer', 'invoicescard'));
+    }
+
+    public function clientinvoice($id)
+    {
+        $invoice = invoice::where('id', $id)->first();
+        $receiptdocument = receiptdocument::where('invoice_id', $id)->where('client_id', $invoice->client_id)->with('Client')->with('Invoice')->first();
+        return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
     }
 
     public function editstatusactive($id)

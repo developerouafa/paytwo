@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Events\createinvoice;
 use App\Mail\mailclient;
-use App\Mail\banktransferMailMarkdown;
 use App\Models\banktransfer;
 use App\Models\Client;
 use App\Models\client_account;
@@ -453,7 +452,7 @@ class SingleInvoices extends Component
                         $mailclient = Client::findorFail($this->client_id);
                         $nameclient = $mailclient->name;
                         $url = url('en/Invoices/print/'.$invoice_id);
-                        Mail::to($mailclient->email)->send(new banktransferMailMarkdown($message, $nameclient, $url));
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
                 }
                 // في حالة الاضافة

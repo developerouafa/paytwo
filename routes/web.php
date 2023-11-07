@@ -167,6 +167,7 @@ Route::get('/clear', function() {
                 Route::controller(ClientController::class)->group(function() {
                     Route::get('/createclient', 'createclient')->name('Clients.createclient');
                     Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('Clients.showinvoice');
+                    Route::get('/clientinvoice/{id}', 'clientinvoice')->name('Clients.clientinvoice');
                     Route::get('/Deleted_Product', 'softdelete')->name('Clients.softdelete');
                     Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');
                     Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');

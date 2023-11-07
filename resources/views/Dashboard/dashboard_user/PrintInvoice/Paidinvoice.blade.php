@@ -24,6 +24,7 @@
 @endsection
 @section('content')
 
+    @if($invoice->invoice_status == 3)
     <div class="card">
         <div class="card-body">
             <div class="tabs-menu ">
@@ -63,6 +64,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!-- row -->
     <div class="row row-sm">
@@ -156,7 +158,9 @@
                         </div>
                         <hr class="mg-b-40">
 
+                        @if ($receiptdocument)
                         <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="100%" height="1000px" />
+                        @endif
 
                     </div>
                 </div>

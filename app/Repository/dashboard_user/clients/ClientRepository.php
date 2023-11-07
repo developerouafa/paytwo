@@ -154,11 +154,11 @@ class ClientRepository implements ClientRepositoryInterface
     public function showinvoice($id)
     {
         $client = Client::findOrFail($id);
-        $invoices = invoice::where('client_id', $id)->where('client_id', $id)->where('type', 0)->get();
-        $invoicescatchpayment = invoice::where('id', $id)->where('client_id', $id)->where('type', 1)->get();
-        $invoicespostpaid = invoice::where('id', $id)->where('client_id', $id)->where('type', 2)->get();
-        $invoicesbanktransfer = invoice::where('id', $id)->where('client_id', $id)->where('type', 3)->get();
-        $invoicescard = invoice::where('id', $id)->where('client_id', $id)->where('type', 4)->get();
+        $invoices = invoice::where('client_id', $client->id)->where('type', 0)->get();
+        $invoicescatchpayment = invoice::where('client_id', $client->id)->where('type', 1)->get();
+        $invoicespostpaid = invoice::where('client_id', $client->id)->where('type', 2)->get();
+        $invoicesbanktransfer = invoice::where('client_id', $client->id)->where('type', 3)->get();
+        $invoicescard = invoice::where('client_id', $client->id)->where('type', 4)->get();
         return view('Dashboard/dashboard_user/clients.invoices',compact('client', 'invoices', 'invoicescatchpayment', 'invoicespostpaid', 'invoicesbanktransfer', 'invoicescard'));
     }
 

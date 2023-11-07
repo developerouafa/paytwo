@@ -28,6 +28,9 @@ interface ClientRepositoryInterface
     //* show Invoice Client
     public function showinvoice($id);
 
+    //* show Invoice Client Print
+    public function clientinvoice($id);
+
     //* Hide Client
     public function editstatusdéactive($id);
 

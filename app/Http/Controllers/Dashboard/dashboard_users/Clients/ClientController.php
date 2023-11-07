@@ -37,9 +37,9 @@ class ClientController extends Controller
       return  $this->Clients->createclient();
     }
 
-    public function showsection($id)
+    public function showinvoice($id)
     {
-       return $this->Clients->showsection($id);
+       return $this->Clients->showinvoice($id);
     }
 
     public function store(ClientRequest $request)

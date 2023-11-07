@@ -25,8 +25,8 @@ interface ClientRepositoryInterface
     //* destroy Clients
     public function destroy($request);
 
-    //* show Client
-    public function showsection($id);
+    //* show Invoice Client
+    public function showinvoice($id);
 
     //* Hide Client
     public function editstatusdéactive($id);

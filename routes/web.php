@@ -165,6 +165,7 @@ Route::get('/clear', function() {
             Route::prefix('Clients')->group(function (){
                 Route::resource('Clients', ClientController::class);
                 Route::controller(ClientController::class)->group(function() {
+                    Route::get('/createclient', 'createclient')->name('Clients.createclient');
                     Route::get('/Deleted_Product', 'softdelete')->name('Clients.softdelete');
                     Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');
                     Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');

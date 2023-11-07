@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -10,6 +9,7 @@
             </div>
             <form action="{{ route('Clients.store') }}" method="post" autocomplete="off">
                 @csrf
+
                 <div class="modal-body">
                     <label for="inputName1" class="control-label">{{__('Dashboard/clients_trans.name')}}<span class="tx-danger">*</span></label>
                     <input type="text" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
@@ -17,10 +17,9 @@
 
                 <div class="modal-body">
                     <label for="phone">{{trans('Dashboard/clients_trans.phone')}}<span class="tx-danger">*</span></label>
-
-                    <div class="flex-container">
-                        <select name="pays" class="form-control">
-
+                        <select name="pays" class="form-control select2">
+                            <option label="Choose one">
+                            </option>
                             <option value="93">Afghanistan </option>
                             <option value="27">Afrique_du_Sud </option>
                             <option value="358">Îles Åland </option>
@@ -272,8 +271,7 @@
                             <option value="263">Zimbabwe </option>
 
                         </select>
-                        <input type="number" class="form-control" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="{{__('Dashboard/clients_trans.phone')}}">
-                    </div>
+                        <input type="number" class="form-control" placeholder="(00) 000-0000" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="{{__('Dashboard/clients_trans.phone')}}">
                 </div>
 
                 <div class="modal-body">
@@ -299,3 +297,4 @@
         </div>
     </div>
 </div>
+

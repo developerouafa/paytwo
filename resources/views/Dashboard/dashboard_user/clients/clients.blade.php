@@ -37,9 +37,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Create Client')
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
-                                    {{__('Dashboard/clients_trans.add_clients')}}
-                                </button>
+                                <a class="btn btn-primary" href="{{route('product.createprod')}}">{{__('Dashboard/clients_trans.add_clients')}}</a>
                             @endcan
 
                             @can('Delete All Client')
@@ -130,7 +128,6 @@
             </div>
             <!--/div-->
 
-        @include('Dashboard.dashboard_user.clients.create')
         <!-- /row -->
 
     </div>

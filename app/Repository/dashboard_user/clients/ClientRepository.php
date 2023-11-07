@@ -34,15 +34,16 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function store($request)
     {
-        try{
-            DB::beginTransaction();
-            $client = Client::create([
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'email' => $request->email,
-                'user_id' => auth()->user()->id,
-                'password' => Hash::make($request->password)
-            ]);
+        return $request->pays;
+        // try{
+        //     DB::beginTransaction();
+        //     $client = Client::create([
+        //         'name' => $request->name,
+        //         'phone' => $request->phone,
+        //         'email' => $request->email,
+        //         'user_id' => auth()->user()->id,
+        //         'password' => Hash::make($request->password)
+        //     ]);
                 // $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
                 // $client = new \Vonage\Client($basic);
                 // $messagenewaccount = __('Dashboard/clients_trans.mssgntfnewaccount').'...'. __('Dashboard/users.phone'). ': ' .$request->phone. ': ' .__('Dashboard/auth.password').': ' . $request->password;
@@ -65,15 +66,15 @@ class ClientRepository implements ClientRepositoryInterface
                 // $url = url('en/login');
                 // Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
 
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.add'));
-            return redirect()->route('Clients.index');
-        }
-        catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Clients.index');
-        }
+        //     DB::commit();
+        //     toastr()->success(trans('Dashboard/messages.add'));
+        //     return redirect()->route('Clients.index');
+        // }
+        // catch(\Exception $exception){
+        //     DB::rollBack();
+        //     toastr()->error(trans('Dashboard/messages.error'));
+        //     return redirect()->route('Clients.index');
+        // }
     }
 
     public function update($request)

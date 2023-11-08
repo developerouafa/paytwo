@@ -24,23 +24,23 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Bank Tranktransfer')
+                            @can('Delete All Bank Card')
                                 <a class="btn btn-danger" href="{{route('Receipt.deleteallbt')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            @can('Delete Group Bank Tranktransfer')
+                            @can('Delete Group Bank Card')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
                         </div>
                     </div>
-                    @can('Show Bank Tranktransfer')
+                    @can('Show Bank Card')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        @can('Delete Group Bank Tranktransfer')
+                                        @can('Delete Group Bank Card')
                                             <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         @endcan
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
@@ -57,31 +57,31 @@
                                     @foreach($fund_accounts as $fund_account)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            @can('Delete Group Bank Tranktransfer')
+                                            @can('Delete Group Bank Card')
                                                 <td></td>
-                                                    <input type="checkbox" name="delete_select" value="{{$fund_account->banktransfer->id}}" class="delete_select">
+                                                    <input type="checkbox" name="delete_select" value="{{$fund_account->paymentgateway->id}}" class="delete_select">
                                                 </td>
                                             @endcan
                                             <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
-                                            <td><a href="{{route('Clients.showinvoice',$fund_account->banktransfer->clients->id)}}">{{$fund_account->banktransfer->clients->name}}</a> </td>
-                                            <td>{{ number_format($fund_account->banktransfer->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($fund_account->banktransfer->description, 50) }}</td>
-                                            <td><a href="#">{{$fund_account->banktransfer->user->name}}</a> </td>
-                                            <td> {{ $fund_account->banktransfer->created_at->diffForHumans() }} </td>
-                                            <td> {{ $fund_account->banktransfer->updated_at->diffForHumans() }} </td>
+                                            <td><a href="{{route('Clients.showinvoice',$fund_account->paymentgateway->clients->id)}}">{{$fund_account->paymentgateway->clients->name}}</a> </td>
+                                            <td>{{ number_format($fund_account->paymentgateway->amount, 2) }}</td>
+                                            <td>{{ \Str::limit($fund_account->paymentgateway->description, 50) }}</td>
+                                            <td><a href="#">{{$fund_account->paymentgateway->user->name}}</a> </td>
+                                            <td> {{ $fund_account->paymentgateway->created_at->diffForHumans() }} </td>
+                                            <td> {{ $fund_account->paymentgateway->updated_at->diffForHumans() }} </td>
                                             <td>
-                                                @can('Delete Bank Tranktransfer')
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->banktransfer->id}}"><i class="las la-trash"></i></a>
+                                                @can('Delete Bank Card')
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->paymentgateway->id}}"><i class="las la-trash"></i></a>
                                                 @endcan
 
-                                                @can('Print Bank Tranktransfer')
-                                                    <a href="{{route('Receipt.show',$fund_account->banktransfer->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                @can('Print Bank Card')
+                                                    <a href="{{route('Receipt.show',$fund_account->paymentgateway->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>
                                         @include('Dashboard.dashboard_user.Receipt.delete')
 
-                                        @can('Delete Group Bank Tranktransfer')
+                                        @can('Delete Group Bank Card')
                                             @include('Dashboard.dashboard_user.Receipt.delete_select')
                                         @endcan
 

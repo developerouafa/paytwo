@@ -38,18 +38,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($banktransfers as $banktransfer)
+                                    @foreach($paymentgateways as $paymentgateway)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{ $banktransfer->clients->name }}</td>
-                                            <td>{{ number_format($banktransfer->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($banktransfer->description, 50) }}</td>
-                                            <td><a href="#">{{$banktransfer->user->name}}</a> </td>
-                                            <td> {{ $banktransfer->created_at->diffForHumans() }} </td>
-                                            <td> {{ $banktransfer->updated_at->diffForHumans() }} </td>
+                                            <td>{{ $paymentgateway->clients->name }}</td>
+                                            <td>{{ number_format($paymentgateway->amount, 2) }}</td>
+                                            <td>{{ \Str::limit($paymentgateway->description, 50) }}</td>
+                                            <td><a href="#">{{$paymentgateway->user->name}}</a> </td>
+                                            <td> {{ $paymentgateway->created_at->diffForHumans() }} </td>
+                                            <td> {{ $paymentgateway->updated_at->diffForHumans() }} </td>
                                             <td>
-                                                <a href="{{route('restorebt', $banktransfer->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                <form action="{{route('forcedeletebt', $banktransfer->id)}}" method="get">
+                                                <a href="{{route('restorebt', $paymentgateway->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                <form action="{{route('forcedeletebt', $paymentgateway->id)}}" method="get">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                                                 </form>

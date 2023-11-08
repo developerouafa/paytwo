@@ -30,9 +30,9 @@
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
-                            <h1 class="invoice-title">{{__('Dashboard/receipt_trans.receipt')}}</h1>
+                            <h1 class="invoice-title">{{__('Dashboard/services.card')}}</h1>
                             <div class="billed-from">
-                                <h6>{{__('Dashboard/receipt_trans.receipt')}}</h6>
+                                <h6>{{__('Dashboard/services.card')}}</h6>
                                 <p>{{$receipt->user->name}}<br>
                                     {{__('Dashboard/users.phone')}}: {{$receipt->user->phone}}<br>
                                     {{__('Dashboard/users.email')}}: {{$receipt->user->email}}</p>

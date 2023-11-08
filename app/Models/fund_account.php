@@ -12,7 +12,20 @@ class fund_account extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $guarded=[];
+    protected $fillable =[
+        'id',
+        'date',
+        'invoice_id',
+        'receipt_id',
+        'Payment_id',
+        'bank_id',
+        'Gateway_id',
+        'user_id',
+        'Debit',
+        'credit',
+        'created_at',
+        'updated_at'
+    ];
 
     /*-------------------- Relations --------------------*/
 
@@ -23,7 +36,7 @@ class fund_account extends Model
 
     public function invoice()
     {
-        return $this->belongsTo(invoice::class);
+        return $this->belongsTo(invoice::class, 'invoice_id');
     }
 
     public function receiptaccount()

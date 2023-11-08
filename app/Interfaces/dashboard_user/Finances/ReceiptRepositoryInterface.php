@@ -13,7 +13,7 @@ interface ReceiptRepositoryInterface
     public function softdelete();
 
     //* show form add
-    public function create($request);
+    public function create($id);
 
     //* store Receipt
     public function store($request);

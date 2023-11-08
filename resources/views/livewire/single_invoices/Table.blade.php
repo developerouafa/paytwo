@@ -43,24 +43,10 @@
                                 @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
                                     {{__('Dashboard/services.rcpyment')}}
                                 @else
-                                    <form action="{{ route('Receipt.createrc') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                        <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                            <button type="submit" class="btn btn-purple">
-                                                {{__('Dashboard/receipt_trans.addreceipt')}}
-                                            </button>
-                                    </form>
+                                    <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                                 @endif
                             @else
-                                <form action="{{ route('Receipt.createrc') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                    <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                        <button type="submit" class="btn btn-purple">
-                                            {{__('Dashboard/receipt_trans.addreceipt')}}
-                                        </button>
-                                </form>
+                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                             @endif
                         @endcan
                     @elseif ($single_invoice->type == 0)

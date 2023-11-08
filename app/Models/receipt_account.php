@@ -12,7 +12,17 @@ class receipt_account extends Model
 
     protected $dates = ['deleted_at'];
 
-    public $guarded=[];
+    protected $fillable =[
+        'id',
+        'date',
+        'client_id',
+        'user_id',
+        'amount',
+        'description',
+        'descriptiontoclient',
+        'created_at',
+        'updated_at'
+    ];
 
     /*-------------------- Relations --------------------*/
 

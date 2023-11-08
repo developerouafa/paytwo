@@ -43,6 +43,7 @@
                                         @can('Delete Group Receipt')
                                             <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         @endcan
+                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.descr')}} </th>
@@ -53,31 +54,32 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($receipts as $receipt)
+                                    @foreach($fund_accounts as $fund_account)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             @can('Delete Group Receipt')
                                                 <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
+                                                    <input type="checkbox" name="delete_select" value="{{$fund_account->receiptaccount->id}}" class="delete_select">
                                                 </td>
                                             @endcan
-                                            <td><a href="{{route('Clients.showinvoice',$receipt->clients->id)}}">{{$receipt->clients->name}}</a> </td>
-                                            <td>{{ number_format($receipt->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($receipt->description, 50) }}</td>
-                                            <td><a href="#">{{$receipt->user->name}}</a> </td>
-                                            <td> {{ $receipt->created_at->diffForHumans() }} </td>
-                                            <td> {{ $receipt->updated_at->diffForHumans() }} </td>
+                                            <td><a href="">{{$fund_account->invoice->invoice_number}}</a> </td>
+                                            <td><a href="{{route('Clients.showinvoice',$fund_account->receiptaccount->clients->id)}}">{{$fund_account->receiptaccount->clients->name}}</a> </td>
+                                            <td>{{ number_format($fund_account->receiptaccount->amount, 2) }}</td>
+                                            <td>{{ \Str::limit($fund_account->receiptaccount->description, 50) }}</td>
+                                            <td><a href="#">{{$fund_account->receiptaccount->user->name}}</a> </td>
+                                            <td> {{ $fund_account->receiptaccount->created_at->diffForHumans() }} </td>
+                                            <td> {{ $fund_account->receiptaccount->updated_at->diffForHumans() }} </td>
                                             <td>
                                                 @can('Edit Receipt')
-                                                    <a href="{{route('Receipt.edit',$receipt->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{route('Receipt.edit',$fund_account->receiptaccount->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                 @endcan
 
                                                 @can('Delete Receipt')
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$receipt->id}}"><i class="las la-trash"></i></a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->receiptaccount->id}}"><i class="las la-trash"></i></a>
                                                 @endcan
 
                                                 @can('Print Receipt')
-                                                    <a href="{{route('Receipt.show',$receipt->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                    <a href="{{route('Receipt.show',$fund_account->receiptaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>

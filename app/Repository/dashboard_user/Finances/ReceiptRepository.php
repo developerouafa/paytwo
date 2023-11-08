@@ -20,8 +20,8 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function index()
     {
-        $receipts =  receipt_account::latest()->get();
-        return view('Dashboard.dashboard_user.Receipt.index',compact('receipts'));
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->get();
+        return view('Dashboard.dashboard_user.Receipt.index',compact('fund_accounts'));
     }
 
     public function softdelete()
@@ -30,11 +30,11 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         return view('Dashboard.dashboard_user.Receipt.softdelete',compact('receipts'));
     }
 
-    public function create($request)
+    public function create($id)
     {
-        $invoice_id = $request->invoice_id;
-        $invoice = invoice::findorFail($invoice_id);
-        $client_id = $request->client_id;
+        $invoice_id = $id;
+        $invoice = invoice::findorFail($id);
+        $client_id = $invoice->client_id;
         return view('Dashboard.dashboard_user.Receipt.add',compact('invoice_id', 'invoice', 'client_id'));
     }
 
@@ -97,7 +97,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         catch (\Exception $exception) {
             DB::rollback();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Receipt.createrc');
+            return redirect()->route('Receipt.index');
         }
     }
 

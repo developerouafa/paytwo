@@ -25,4 +25,9 @@ class paymentgateway extends Model
     {
         return $this->belongsTo(invoice::class,'invoice_id');
     }
+
+    public function fundaccount()
+    {
+        return $this->hasMany(fund_account::class, 'Gateway_id');
+    }
 }

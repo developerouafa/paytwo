@@ -5,6 +5,7 @@ namespace App\Repository\dashboard_user\Finances;
 
 use App\Interfaces\dashboard_user\Finances\PaymentgatewayRepositoryInterface;
 use App\Models\fund_account;
+use App\Models\paymentgateway;
 use Illuminate\Support\Facades\DB;
 
 class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
@@ -12,22 +13,22 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
 
     public function index()
     {
-        $fund_accounts = fund_account::whereNotNull('bank_id')->with('invoice')->with('banktransfer')->get();
-        return view('Dashboard.dashboard_user.banktransfer.index',compact('fund_accounts'));
+        $fund_accounts = fund_account::whereNotNull('Gateway_id')->with('invoice')->with('paymentgateway')->get();
+        return view('Dashboard.dashboard_user.paymentgateway.index',compact('fund_accounts'));
     }
 
     public function softdelete()
     {
-        $banktransfers =  banktransfer::onlyTrashed()->latest()->get();
-        return view('Dashboard.dashboard_user.banktransfer.softdelete',compact('banktransfers'));
+        $paymentgateways =  paymentgateway::onlyTrashed()->latest()->get();
+        return view('Dashboard.dashboard_user.paymentgateway.softdelete',compact('paymentgateways'));
     }
 
     public function show($id)
     {
-        $banktransfer = banktransfer::findorfail($id);
-        $fund_account = fund_account::where('bank_id', $id)->with('invoice')->first();
+        $paymentgateway = paymentgateway::findorfail($id);
+        $fund_account = fund_account::where('Gateway_id', $id)->with('invoice')->first();
         $invoice_number = $fund_account->invoice->invoice_number;
-        return view('Dashboard.dashboard_user.banktransfer.print',compact('banktransfer', 'invoice_number'));
+        return view('Dashboard.dashboard_user.paymentgateway.print',compact('paymentgateway', 'invoice_number'));
     }
 
     public function destroy($request)
@@ -36,14 +37,14 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                banktransfer::findorFail($request->id)->delete();
+                paymentgateway::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('Banktransfer.index');
+                return redirect()->route('paymentgateway.index');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Banktransfer.index');
+                return redirect()->route('paymentgateway.index');
             }
         }
         // Delete Group Request
@@ -51,36 +52,36 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                banktransfer::destroy($delete_select_id);
+                paymentgateway::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('Banktransfer.index');
+                return redirect()->route('paymentgateway.index');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Banktransfer.index');
+                return redirect()->route('paymentgateway.index');
             }
         }
     }
 
     public function deleteall()
     {
-        DB::table('banktransfer')->delete();
-        return redirect()->route('Banktransfer.index');
+        DB::table('paymentgateways')->delete();
+        return redirect()->route('paymentgateway.index');
     }
 
     public function restore($id)
     {
         try{
             DB::beginTransaction();
-            banktransfer::withTrashed()->where('id', $id)->restore();
+            paymentgateway::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('Banktransfer.softdelete');
+            return redirect()->route('paymentgateway.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
-            return redirect()->route('Banktransfer.softdelete');
+            return redirect()->route('paymentgateway.softdelete');
         }
     }
 
@@ -88,14 +89,14 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
     {
         try{
             DB::beginTransaction();
-              banktransfer::onlyTrashed()->find($id)->forcedelete();
+            paymentgateway::onlyTrashed()->find($id)->forcedelete();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('Banktransfer.softdelete');
+            return redirect()->route('paymentgateway.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
-            return redirect()->route('Banktransfer.softdelete');
+            return redirect()->route('paymentgateway.softdelete');
         }
     }
 }

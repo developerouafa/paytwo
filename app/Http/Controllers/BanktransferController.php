@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\dashboard_user\Finances\BanktransferRepositoryInterface;
 use App\Models\banktransfer;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class BanktransferController extends Controller
 {
     private $Banktransfer;
 
-    public function __construct(ReceiptRepositoryInterface $Banktransfer)
+    public function __construct(BanktransferRepositoryInterface $Banktransfer)
     {
         $this->Banktransfer = $Banktransfer;
     }

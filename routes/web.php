@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BanktransferController;
 use App\Http\Controllers\Dashboard\dashboard_users\Clients\ClientController;
 use App\Http\Controllers\Dashboard\dashboard_users\childrens\childrenController;
 use App\Http\Controllers\Dashboard\dashboard_users\PaymentaccountController;
@@ -223,6 +224,18 @@ Route::get('/clear', function() {
             Route::get('forcedeletepy/{id}', [PaymentaccountController::class, 'forcedelete'])->name('forcedeletepy');
 
         //############################# end Payment route ######################################
+
+        //############################# BankTransfer route ##########################################
+
+            Route::resource('Banktransfer', BanktransferController::class);
+            Route::get('/createbt/{id}', [BanktransferController::class, 'create'])->name('Banktransfer.createbt');
+            Route::post('/storebt', [BanktransferController::class, 'store'])->name('Banktransfer.storebt');
+            Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
+            Route::get('/Deleted_Paymentbt', [BanktransferController::class, 'softdelete'])->name('Banktransfer.softdelete');
+            Route::get('restorebt/{id}', [BanktransferController::class, 'restore'])->name('restorebt');
+            Route::get('forcedeletebt/{id}', [BanktransferController::class, 'forcedelete'])->name('forcedeletebt');
+
+        //############################# end BankTransfer route ######################################
 
         // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         // Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');

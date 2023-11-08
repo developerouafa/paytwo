@@ -7,59 +7,65 @@ use Illuminate\Http\Request;
 
 class BanktransferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $Banktransfer;
+
+    public function __construct(ReceiptRepositoryInterface $Banktransfer)
+    {
+        $this->Banktransfer = $Banktransfer;
+    }
+
     public function index()
     {
-        //
+        return $this->Banktransfer->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function softdelete()
     {
-        //
+      return  $this->Banktransfer->softdelete();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create($id)
     {
-        //
+        return $this->Banktransfer->create($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(banktransfer $banktransfer)
+    public function store(receiptRequest $request)
     {
-        //
+       return $this->Banktransfer->store($request);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(banktransfer $banktransfer)
+    public function show($id)
     {
-        //
+        return $this->Banktransfer->show($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, banktransfer $banktransfer)
+    public function edit($id)
     {
-        //
+        return $this->Banktransfer->edit($id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(banktransfer $banktransfer)
+    public function update(receiptRequest $request)
     {
-        //
+        return $this->Banktransfer->update($request);
+    }
+
+    public function destroy(Request $request)
+    {
+        return $this->Banktransfer->destroy($request);
+    }
+
+    public function deleteall()
+    {
+        return $this->Banktransfer->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->Banktransfer->restore($id);
+    }
+
+    public function forcedelete($id)
+    {
+        return $this->Banktransfer->forcedelete($id);
     }
 }

@@ -42,7 +42,7 @@
                                     @foreach($receipts as $receipt)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{ $receipt->clients->name }}</td>
+                                            <td><a href="{{route('Clients.showinvoice',$receipt->clients->id)}}">{{$receipt->clients->name}}</a> </td>
                                             <td>{{ number_format($receipt->amount, 2) }}</td>
                                             <td>{{ \Str::limit($receipt->description, 50) }}</td>
                                             <td><a href="#">{{$receipt->user->name}}</a> </td>

@@ -24,23 +24,23 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Receipt')
+                            @can('Delete All Bank Tranktransfer')
                                 <a class="btn btn-danger" href="{{route('Receipt.deleteallbt')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            @can('Delete Group Receipt')
+                            @can('Delete Group Bank Tranktransfer')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
                         </div>
                     </div>
-                    @can('Show Receipt')
+                    @can('Show Bank Tranktransfer')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        @can('Delete Group Receipt')
+                                        @can('Delete Group Bank Tranktransfer')
                                             <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                         @endcan
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
@@ -57,7 +57,7 @@
                                     @foreach($fund_accounts as $fund_account)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            @can('Delete Group Receipt')
+                                            @can('Delete Group Bank Tranktransfer')
                                                 <td></td>
                                                     <input type="checkbox" name="delete_select" value="{{$fund_account->banktransfer->id}}" class="delete_select">
                                                 </td>
@@ -70,18 +70,18 @@
                                             <td> {{ $fund_account->banktransfer->created_at->diffForHumans() }} </td>
                                             <td> {{ $fund_account->banktransfer->updated_at->diffForHumans() }} </td>
                                             <td>
-                                                @can('Delete Receipt')
+                                                @can('Delete Bank Tranktransfer')
                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->banktransfer->id}}"><i class="las la-trash"></i></a>
                                                 @endcan
 
-                                                @can('Print Receipt')
+                                                @can('Print Bank Tranktransfer')
                                                     <a href="{{route('Receipt.show',$fund_account->banktransfer->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>
                                         @include('Dashboard.dashboard_user.Receipt.delete')
 
-                                        @can('Delete Group Receipt')
+                                        @can('Delete Group Bank Tranktransfer')
                                             @include('Dashboard.dashboard_user.Receipt.delete_select')
                                         @endcan
 

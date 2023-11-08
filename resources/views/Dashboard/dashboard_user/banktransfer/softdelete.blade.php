@@ -22,7 +22,6 @@
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card">
-                    @can('Show Receipt')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap">
@@ -61,7 +60,6 @@
                                 </table>
                             </div>
                         </div><!-- bd -->
-                    @endcan
 
                 </div><!-- bd -->
             </div>

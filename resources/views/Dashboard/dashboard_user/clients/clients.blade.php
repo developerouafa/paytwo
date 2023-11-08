@@ -78,7 +78,12 @@
                                                         <input type="checkbox" name="delete_select" value="{{$client->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
-                                                <td><a href="{{route('Clients.showinvoice',$client->id)}}">{{$client->name}}</a> </td>
+                                                @can('View Invoices Client')
+                                                    <td><a href="{{route('Clients.showinvoice',$client->id)}}">{{$client->name}}</a> </td>
+                                                @endcan
+                                                @cannot('View Invoices Client')
+                                                    <td>{{$client->name}}</td>
+                                                @endcannot
                                                 <td>{{$client->email}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>

@@ -61,6 +61,7 @@ return [
     'Paid' => 'Paid',
     'Canceled' => 'Canceled',
     'card' => 'Card',
+    'deletecard' => 'Delete Card',
     'Banktransfer' => 'Bank transfer',
     'deletebanktransfer' => 'Delete Bank transfer',
     'noselectionyet' => 'No selection yet',

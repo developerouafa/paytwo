@@ -61,6 +61,7 @@ return [
     'Paid' => 'مدفوعة',
     'Canceled' => 'تم الإلغاء',
     'card' => 'بطاقة',
+    'deletecard' => 'حذف بطاقة',
     'Banktransfer' => 'حوالة بنكية',
     'deletebanktransfer' => 'حذف حوالة بنكية',
     'noselectionyet' => 'لم يتم الاختيار بعد',

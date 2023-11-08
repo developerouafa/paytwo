@@ -128,10 +128,10 @@
                             <li><a class="slide-item" href="{{ route('Payment.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedpayment')}} </a></li>
                         @endcan
                         @can('sidebar Bank Card')
-                            <li><a class="slide-item" href="{{ route('Banktransfer.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch payment')}} </a></li>
+                            <li><a class="slide-item" href="{{ route('Banktransfer.index') }}"> {{__('Dashboard/services.Banktransfer')}} </a></li>
                         @endcan
                         @can('sidebar Deleted Bank Card')
-                            <li><a class="slide-item" href="{{ route('Banktransfer.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedpayment')}} </a></li>
+                            <li><a class="slide-item" href="{{ route('Banktransfer.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletebanktransfer')}} </a></li>
                         @endcan
                         @can('sidebar Bank Card')
                             <li><a class="slide-item" href="{{ route('paymentgateway.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch payment')}} </a></li>

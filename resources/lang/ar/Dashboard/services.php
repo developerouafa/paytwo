@@ -62,6 +62,7 @@ return [
     'Canceled' => 'تم الإلغاء',
     'card' => 'بطاقة',
     'Banktransfer' => 'حوالة بنكية',
+    'deletebanktransfer' => 'حذف حوالة بنكية',
     'noselectionyet' => 'لم يتم الاختيار بعد',
     'rcpyment' => 'سند الاستلام موجود',
 ];

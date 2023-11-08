@@ -62,6 +62,7 @@ return [
     'Canceled' => 'Canceled',
     'card' => 'Card',
     'Banktransfer' => 'Bank transfer',
+    'deletebanktransfer' => 'Delete Bank transfer',
     'noselectionyet' => 'No selection yet',
     'rcpyment' => 'Receipt Exist',
 ];

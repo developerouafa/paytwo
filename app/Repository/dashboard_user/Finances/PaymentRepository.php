@@ -8,6 +8,7 @@ use App\Mail\CatchpaymentMailMarkdown;
 use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
+use App\Models\invoice;
 use App\Models\PaymentAccount;
 use App\Notifications\catchpayment;
 use Illuminate\Support\Facades\DB;
@@ -29,11 +30,12 @@ class PaymentRepository implements PaymentRepositoryInterface
         return view('Dashboard.dashboard_user.Payment.softdelete',compact('payments'));
     }
 
-    public function create($request)
+    public function create($id)
     {
-        $invoice_id = $request->invoice_id;
-        $client_id = $request->client_id;
-        return view('Dashboard.dashboard_user.Payment.add',compact('invoice_id', 'client_id'));
+        $invoice_id = $id;
+        $invoice = invoice::findorFail($id);
+        $client_id = $invoice->client_id;
+        return view('Dashboard.dashboard_user.Payment.add',compact('invoice_id', 'invoice', 'client_id'));
     }
 
     public function show($id)

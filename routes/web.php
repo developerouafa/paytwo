@@ -215,7 +215,7 @@ Route::get('/clear', function() {
         //############################# Payment route ##########################################
 
             Route::resource('Payment', PaymentaccountController::class);
-            Route::get('/createpy', [PaymentaccountController::class, 'create'])->name('Payment.createpy');
+            Route::get('/createpy/{id}', [PaymentaccountController::class, 'create'])->name('Payment.createpy');
             Route::post('/storepy', [PaymentaccountController::class, 'store'])->name('Payment.storepy');
             Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
             Route::get('/Deleted_Payment', [PaymentaccountController::class, 'softdelete'])->name('Payment.softdelete');

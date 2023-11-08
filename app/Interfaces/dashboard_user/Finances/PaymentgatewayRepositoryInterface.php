@@ -4,7 +4,7 @@
 namespace App\Interfaces\dashboard_user\Finances;
 
 
-interface BankcardRepositoryInterface
+interface PaymentgatewayRepositoryInterface
 {
     //* get All Bankcard
     public function index();

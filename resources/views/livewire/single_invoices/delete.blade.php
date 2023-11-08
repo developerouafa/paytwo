@@ -11,7 +11,7 @@
             </div>
 
             <div class="modal-body">
-                {{__('Dashboard/services.surdelete')}} 
+                {{__('Dashboard/services.surdelete')}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{__('Dashboard/services.close')}} </button>

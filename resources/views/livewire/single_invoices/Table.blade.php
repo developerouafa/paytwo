@@ -117,3 +117,4 @@
     @include('livewire.single_invoices.delete')
 
 </div>
+

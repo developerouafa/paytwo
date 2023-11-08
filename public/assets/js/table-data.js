@@ -1,7 +1,7 @@
 $(function(e) {
 	//file export datatable
 	var table = $('#example').DataTable({
-		lengthChange: true,
+		lengthChange: false,
 		buttons: [ 'copy', 'excel', 'pdf', 'colvis' ],
 		responsive: true,
 		language: {

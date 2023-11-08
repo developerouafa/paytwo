@@ -146,18 +146,7 @@
                 }
             });
         })
-    </script>
-
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
-        })
-    </script>
+    </script
 
     <script type="text/javascript">
         $(function () {

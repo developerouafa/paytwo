@@ -6,6 +6,7 @@ use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
 use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface;
 use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\BanktransferRepositoryInterface;
+use App\Interfaces\dashboard_user\Finances\PaymentgatewayRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\mainRepositoryInterface;

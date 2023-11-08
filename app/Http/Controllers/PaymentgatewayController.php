@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\dashboard_user\Finances\PaymentgatewayRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PaymentgatewayController extends Controller
 {
     private $Bankcard;
 
-    public function __construct(BanktransferRepositoryInterface $Bankcard)
+    public function __construct(PaymentgatewayRepositoryInterface $Bankcard)
     {
         $this->Bankcard = $Bankcard;
     }

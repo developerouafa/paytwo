@@ -54,6 +54,7 @@
                                             @can('Delete Group Catch Payment')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
+                                            <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
                                             <th> {{__('Dashboard/payment_trans.price')}} </th>
                                             <th> {{__('Dashboard/payment_trans.descr')}} </th>
@@ -64,31 +65,32 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($payments as $payment)
+                                            @foreach($fund_accounts as $fund_account)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     @can('Delete Group Catch Payment')
                                                         <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$payment->id}}" class="delete_select">
+                                                            <input type="checkbox" name="delete_select" value="{{$fund_account->paymentaccount->id}}" class="delete_select">
                                                         </td>
                                                     @endcan
-                                                    <td>{{ $payment->clients->name }}</td>
-                                                    <td>{{ number_format($payment->amount, 2) }}</td>
-                                                    <td>{{ \Str::limit($payment->description, 50) }}</td>
-                                                    <td><a href="#">{{$payment->user->name}}</a> </td>
-                                                    <td> {{ $payment->created_at->diffForHumans() }} </td>
-                                                    <td> {{ $payment->updated_at->diffForHumans() }} </td>
+                                                    <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
+                                                    <td><a href="{{route('Clients.showinvoice',$fund_account->paymentaccount->clients->id)}}">{{$fund_account->paymentaccount->clients->name}}</a> </td>
+                                                    <td>{{ number_format($fund_account->paymentaccount->amount, 2) }}</td>
+                                                    <td>{{ \Str::limit($fund_account->paymentaccount->description, 50) }}</td>
+                                                    <td><a href="#">{{$fund_account->paymentaccount->user->name}}</a> </td>
+                                                    <td> {{ $fund_account->paymentaccount->created_at->diffForHumans() }} </td>
+                                                    <td> {{ $fund_account->paymentaccount->updated_at->diffForHumans() }} </td>
                                                     <td>
                                                         @can('Edit Catch Payment')
-                                                            <a href="{{route('Payment.edit',$payment->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                                                            <a href="{{route('Payment.edit',$fund_account->paymentaccount->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                         @endcan
 
                                                         @can('Delete Catch Payment')
-                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$payment->id}}"><i class="las la-trash"></i></a>
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->paymentaccount->id}}"><i class="las la-trash"></i></a>
                                                         @endcan
 
                                                         @can('Print Catch Payment')
-                                                            <a href="{{route('Payment.show',$payment->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                            <a href="{{route('Payment.show',$fund_account->paymentaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                                         @endcan
                                                     </td>
                                                 </tr>

@@ -57,10 +57,10 @@
                                 @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
                                     {{__('Dashboard/services.rcpyment')}}
                                 @else
-                                    <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                    <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                                 @endif
                             @else
-                                <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                             @endif
                         @endcan
                         {{__('Dashboard/services.Okay')}}

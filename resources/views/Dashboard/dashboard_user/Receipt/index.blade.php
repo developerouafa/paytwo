@@ -58,7 +58,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             @can('Delete Group Receipt')
-                                                <td>
+                                                <td></td>
                                                     <input type="checkbox" name="delete_select" value="{{$fund_account->receiptaccount->id}}" class="delete_select">
                                                 </td>
                                             @endcan

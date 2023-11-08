@@ -20,8 +20,8 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function index()
     {
-        $payments =  PaymentAccount::latest()->get();
-        return view('Dashboard.dashboard_user.Payment.index',compact('payments'));
+        $fund_accounts = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->get();
+        return view('Dashboard.dashboard_user.Payment.index',compact('fund_accounts'));
     }
 
     public function softdelete()
@@ -99,7 +99,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         catch (\Exception $exception) {
             DB::rollback();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Payment.createpy');
+            return redirect()->route('Payment.index');
         }
     }
 

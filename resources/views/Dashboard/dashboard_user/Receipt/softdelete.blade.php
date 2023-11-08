@@ -29,7 +29,6 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.descr')}} </th>
@@ -43,8 +42,7 @@
                                     @foreach($receipts as $receipt)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
-                                            <td><a href="{{route('Clients.showinvoice',$receipt->clients->id)}}">{{$receipt->clients->name}}</a> </td>
+                                            <td>{{ $receipt->clients->name }}</td>
                                             <td>{{ number_format($receipt->amount, 2) }}</td>
                                             <td>{{ \Str::limit($receipt->description, 50) }}</td>
                                             <td><a href="#">{{$receipt->user->name}}</a> </td>

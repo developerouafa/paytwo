@@ -582,10 +582,10 @@ class SingleInvoices extends Component
             $message = __('Dashboard/main-header_trans.nicasepymgtw');
             Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
 
-            $mailclient = Client::findorFail($single_invoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+            // $mailclient = Client::findorFail($single_invoice->client_id);
+            // $nameclient = $mailclient->name;
+            // $url = url('en/Invoices/print/'.$invoice_id);
+            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
 
         // في حالة كانت الفاتورة بطاقة
@@ -599,11 +599,10 @@ class SingleInvoices extends Component
             $message = __('Dashboard/main-header_trans.nicasebanktransfer');
             Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
 
-            $mailclient = Client::findorFail($single_invoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-
+            // $mailclient = Client::findorFail($single_invoice->client_id);
+            // $nameclient = $mailclient->name;
+            // $url = url('en/Invoices/print/'.$invoice_id);
+            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
         }
     }
 

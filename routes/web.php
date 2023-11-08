@@ -228,8 +228,6 @@ Route::get('/clear', function() {
         //############################# BankTransfer route ##########################################
 
             Route::resource('Banktransfer', BanktransferController::class);
-            Route::get('/createbt/{id}', [BanktransferController::class, 'create'])->name('Banktransfer.createbt');
-            Route::post('/storebt', [BanktransferController::class, 'store'])->name('Banktransfer.storebt');
             Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
             Route::get('/Deleted_Paymentbt', [BanktransferController::class, 'softdelete'])->name('Banktransfer.softdelete');
             Route::get('restorebt/{id}', [BanktransferController::class, 'restore'])->name('restorebt');

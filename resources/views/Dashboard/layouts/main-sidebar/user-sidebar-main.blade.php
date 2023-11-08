@@ -133,6 +133,12 @@
                         @can('sidebar Deleted Bank Tranktransfer')
                             <li><a class="slide-item" href="{{ route('Banktransfer.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedpayment')}} </a></li>
                         @endcan
+                        {{-- @can('sidebar Bank Tranktransfer') --}}
+                            <li><a class="slide-item" href="{{ route('paymentgateway.index') }}"> {{__('Dashboard/main-sidebar_trans.Catch payment')}} </a></li>
+                        {{-- @endcan --}}
+                        {{-- @can('sidebar Deleted Bank Tranktransfer') --}}
+                            <li><a class="slide-item" href="{{ route('paymentgateway.softdelete') }}"> {{__('Dashboard/main-sidebar_trans.deletedpayment')}} </a></li>
+                        {{-- @endcan --}}
                     </ul>
                 </li>
             @endcan

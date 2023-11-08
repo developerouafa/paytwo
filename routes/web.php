@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\dashboard_users\users\UserController;
 use App\Http\Controllers\Dashboard\dashboard_users\users\ImageuserController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\PromotionController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\StockproductController;
+use App\Http\Controllers\PaymentgatewayController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -234,6 +235,16 @@ Route::get('/clear', function() {
             Route::get('forcedeletebt/{id}', [BanktransferController::class, 'forcedelete'])->name('forcedeletebt');
 
         //############################# end BankTransfer route ######################################
+
+        //############################# BankCard route ##########################################
+
+            Route::resource('paymentgateway', PaymentgatewayController::class);
+            Route::get('/deleteallpg', [PaymentgatewayController::class, 'deleteall'])->name('paymentgateway.deleteallpg');
+            Route::get('/Deleted_Paymentpg', [PaymentgatewayController::class, 'softdelete'])->name('paymentgateway.softdelete');
+            Route::get('restorepg/{id}', [PaymentgatewayController::class, 'restore'])->name('restorepg');
+            Route::get('forcedeletepg/{id}', [PaymentgatewayController::class, 'forcedelete'])->name('forcedeletepg');
+
+        //############################# end BankCard route ######################################
 
         // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         // Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');

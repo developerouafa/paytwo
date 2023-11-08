@@ -2,64 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\paymentgateway;
 use Illuminate\Http\Request;
 
 class PaymentgatewayController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $Bankcard;
+
+    public function __construct(BanktransferRepositoryInterface $Bankcard)
+    {
+        $this->Bankcard = $Bankcard;
+    }
+
     public function index()
     {
-        //
+        return $this->Bankcard->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function softdelete()
     {
-        //
+      return  $this->Bankcard->softdelete();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show($id)
     {
-        //
+        return $this->Bankcard->show($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(paymentgateway $paymentgateway)
+    public function destroy(Request $request)
     {
-        //
+        return $this->Bankcard->destroy($request);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(paymentgateway $paymentgateway)
+    public function deleteall()
     {
-        //
+        return $this->Bankcard->deleteall();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, paymentgateway $paymentgateway)
+    public function restore($id)
     {
-        //
+        return $this->Bankcard->restore($id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(paymentgateway $paymentgateway)
+    public function forcedelete($id)
     {
-        //
+        return $this->Bankcard->forcedelete($id);
     }
 }

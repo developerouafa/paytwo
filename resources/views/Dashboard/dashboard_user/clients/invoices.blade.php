@@ -109,7 +109,6 @@
                 </ul>
             </div>
             <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
-
                 <div class="tab-pane active" id="noselectionyet">
                     <h1 style="color:purple">{{__('Dashboard/services.noselectionyet')}}</h1>
                     <!--div-->
@@ -117,7 +116,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example1" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -200,7 +199,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example2" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -283,7 +282,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-delete" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -366,7 +365,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="examplee" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -535,4 +534,26 @@
     <!-- main-content closed -->
 @endsection
 @section('js')
+    <script>
+        $(function(e) {
+        //file export datatable
+        var table = $('#examplee').DataTable({
+            lengthChange: true,
+            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ],
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ ',
+            }
+        });
+        table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
+        $('#button').click( function () {
+            table.row('.selected').remove().draw( false );
+        } );
+    });
+
+    </script>
 @endsection

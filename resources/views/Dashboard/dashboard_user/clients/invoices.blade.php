@@ -92,6 +92,9 @@
                 <!-- Tabs -->
                 <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                     <li class="active">
+                        <a href="#allinvoices" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.invoices')}}</span> </a>
+                    </li>
+                    <li class="">
                         <a href="#noselectionyet" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.noselectionyet')}}</span> </a>
                     </li>
                     <li class="">
@@ -109,14 +112,14 @@
                 </ul>
             </div>
             <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
-                <div class="tab-pane active" id="noselectionyet">
-                    <h1 style="color:purple">{{__('Dashboard/services.noselectionyet')}}</h1>
+                <div class="tab-pane active" id="allinvoices">
+                    <h1 style="color:deeppink">{{__('Dashboard/services.invoices')}}</h1>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example1" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -192,6 +195,89 @@
                     </div>
                     <!--/div-->
                 </div>
+                <div class="tab-pane" id="noselectionyet">
+                    <h1 style="color:purple">{{__('Dashboard/services.noselectionyet')}}</h1>
+                    <!--div-->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example-11" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th> {{__('Dashboard/services.print')}} </th>
+                                                <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                <th> {{__('Dashboard/services.client')}} </th>
+                                                <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                <th> {{__('Dashboard/sections_trans.created_at')}} </th>
+                                                <th> {{__('Dashboard/sections_trans.updated_at')}} </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($invoicesnomethodpay as $invoice)
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>
+                                                            <a href="{{route('Clients.clientinvoice', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                <i class="fas fa-print"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            {{$invoice->invoice_number}}
+                                                        </td>
+                                                        @if ($invoice->invoice_classify == 1)
+                                                            <td>{{ $invoice->Service->name }}</td>
+                                                        @elseif ($invoice->invoice_classify == 2)
+                                                            <td>{{ $invoice->Group->name }}</td>
+                                                        @endif
+                                                        <td>{{ $invoice->Client->name }}</td>
+                                                        <td>{{ $invoice->invoice_date }}</td>
+                                                        <td>{{ number_format($invoice->price, 2) }}</td>
+                                                        <td>{{ number_format($invoice->discount_value, 2) }}</td>
+                                                        <td>{{ $invoice->tax_rate }}%</td>
+                                                        <td>{{ number_format($invoice->tax_value, 2) }}</td>
+                                                        <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
+                                                        <td>
+                                                            @if ($invoice->invoice_status == 1)
+                                                                {{__('Dashboard/services.Sent')}}
+                                                            @elseif ($invoice->invoice_status == 2)
+                                                                {{__('Dashboard/services.Under review')}}
+                                                            @elseif ($invoice->invoice_status == 3)
+                                                                {{__('Dashboard/services.Complete')}}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($invoice->invoice_type == 1)
+                                                                {{__('Dashboard/services.Draft')}}
+                                                            @elseif ($invoice->invoice_type == 2)
+                                                                {{__('Dashboard/services.Paid')}}
+                                                            @elseif ($invoice->invoice_type == 3)
+                                                                {{__('Dashboard/services.Canceled')}}
+                                                            @endif
+                                                        </td>
+                                                        <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
+                                                        <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
+                                                        <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
+                                                    </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div><!-- bd -->
+                            </div><!-- bd -->
+                        </div><!-- bd -->
+                    </div>
+                    <!--/div-->
+                </div>
                 <div class="tab-pane" id="cashpyinvoice">
                     <h1 style="color: blue">{{__('Dashboard/clients_trans.cashpyinvoice')}}</h1>
                     <!--div-->
@@ -199,7 +285,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example2" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-12" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -282,7 +368,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-delete" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-13" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -365,7 +451,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="examplee" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-14" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -448,7 +534,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-15" class="table table-striped mg-b-0 text-md-nowrap table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -536,24 +622,116 @@
 @section('js')
     <script>
         $(function(e) {
-        //file export datatable
-        var table = $('#examplee').DataTable({
-            lengthChange: true,
-            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ],
-            responsive: true,
-            language: {
-                searchPlaceholder: 'Search...',
-                sSearch: '',
-                lengthMenu: '_MENU_ ',
-            }
+            //Details display datatable
+            $('#example-11').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-12').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-13').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-14').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-15').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
         });
-        table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-
-        $('#button').click( function () {
-            table.row('.selected').remove().draw( false );
-        } );
-    });
-
     </script>
 @endsection

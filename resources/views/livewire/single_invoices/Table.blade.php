@@ -57,24 +57,10 @@
                                 @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
                                     {{__('Dashboard/services.rcpyment')}}
                                 @else
-                                    <form action="{{ route('Payment.createpy') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                        <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                            <button type="submit" class="btn btn-purple">
-                                                {{__('Dashboard/payment_trans.addpayment')}}
-                                            </button>
-                                    </form>
+                                    <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                                 @endif
                             @else
-                                <form action="{{ route('Payment.createpy') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="invoice_id" value="{{ $single_invoice->id }}" />
-                                    <input type="hidden" name="client_id" value="{{ $single_invoice->Client->id }}" />
-                                        <button type="submit" class="btn btn-purple">
-                                            {{__('Dashboard/payment_trans.addpayment')}}
-                                        </button>
-                                </form>
+                                <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                             @endif
                         @endcan
                         {{__('Dashboard/services.Okay')}}

@@ -62,7 +62,7 @@
                                                     <input type="checkbox" name="delete_select" value="{{$fund_account->receiptaccount->id}}" class="delete_select">
                                                 </td>
                                             @endcan
-                                            <td><a href="">{{$fund_account->invoice->invoice_number}}</a> </td>
+                                            <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
                                             <td><a href="{{route('Clients.showinvoice',$fund_account->receiptaccount->clients->id)}}">{{$fund_account->receiptaccount->clients->name}}</a> </td>
                                             <td>{{ number_format($fund_account->receiptaccount->amount, 2) }}</td>
                                             <td>{{ \Str::limit($fund_account->receiptaccount->description, 50) }}</td>

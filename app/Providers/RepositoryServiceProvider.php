@@ -51,6 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
         $this->app->bind(InvoiceRepositoryInterface::class, InvoicesRepository::class);
         $this->app->bind(BanktransferRepositoryInterface::class, BanktransferRepository::class);
+        $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
     }
 
     /**

@@ -11,6 +11,7 @@ return [
     'Singleservicebill' => 'Single service bill',
     'Servicepackageinvoice' => 'Service package invoice',
     'invoices' => 'Invoices',
+    'allinvoices' => 'All Invoices',
     'addotherinvoice' => 'Add New Invoice',
     'nameservice' => 'Name Service',
     'dateinvoice' => 'Date Invoice',

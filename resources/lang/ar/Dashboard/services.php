@@ -11,6 +11,7 @@ return [
     'Singleservicebill' => 'فاتورة خدمة واحدة',
     'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
     'invoices' => 'الفواتير',
+    'allinvoices' => 'جميع الفواتير',
     'addotherinvoice' => 'اضافة فاتورة جديدة',
     'nameservice' => 'اسم الخدمة',
     'dateinvoice' => 'تاريخ الفاتورة ',

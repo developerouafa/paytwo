@@ -92,7 +92,7 @@
                 <!-- Tabs -->
                 <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                     <li class="active">
-                        <a href="#allinvoices" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.invoices')}}</span> </a>
+                        <a href="#allinvoices" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.allinvoices')}}</span> </a>
                     </li>
                     <li class="">
                         <a href="#noselectionyet" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.noselectionyet')}}</span> </a>
@@ -113,7 +113,7 @@
             </div>
             <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
                 <div class="tab-pane active" id="allinvoices">
-                    <h1 style="color:deeppink">{{__('Dashboard/services.invoices')}}</h1>
+                    <h1 style="color:deeppink">{{__('Dashboard/services.allinvoices')}}</h1>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">

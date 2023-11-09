@@ -16,6 +16,9 @@ interface InvoicesRepositoryInterface
     //* delete All Invoice singleinvoice
     public function deleteallsingleinvoice();
 
+    //* Invoice Status singleinvoice
+    public function invoicestatus($id);
+
     //* Restore singleinvoice
     public function restoresingleinvoice($id);
 

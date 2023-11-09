@@ -253,6 +253,8 @@ Route::get('/clear', function() {
             Route::group(['prefix' => 'SingleInvoices'], function(){
                 Route::controller(InvoiceController::class)->group(function() {
                     Route::get('/indexsingleinvoice', 'indexsingleinvoice')->name('SingleInvoices.indexsingleinvoice');
+                    Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('SingleInvoices.showinvoice');
+                    Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
                     Route::get('/Deleted_Productsingleinvoice', 'softdeletesingleinvoice')->name('SingleInvoices.softdeletesingleinvoice');
                     Route::delete('/destroysingleinvoice', 'destroysingleinvoice')->name('SingleInvoices.destroysingleinvoice');
                     Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoice')->name('SingleInvoices.deleteallsingleinvoice');

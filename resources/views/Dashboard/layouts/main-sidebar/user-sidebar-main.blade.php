@@ -118,9 +118,15 @@
                         @can('sidebar Details Singleservice')
                             <li><a class="slide-item" href="{{ route('SingleInvoices.indexsingleinvoice') }}">{{__('Dashboard/main-sidebar_trans.Singleservicebill')}}</a></li>
                         @endcan
-                        @can('sidebar Details groupservice')
+                        @can('sidebar Deleted Singleservice')
+                            <li><a class="slide-item" href="{{ route('SingleInvoices.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedclients')}}</a></li>
+                        @endcan
+                        {{-- @can('sidebar Details groupservice')
                             <li><a class="slide-item" href="{{ route('GroupInvoices.indexgroupInvoices') }}">{{__('Dashboard/main-sidebar_trans.Servicepackageinvoice')}}</a></li>
                         @endcan
+                        @can('sidebar Deleted groupservice')
+                            <li><a class="slide-item" href="{{ route('GroupInvoices.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedclients')}}</a></li>
+                        @endcan --}}
                     </ul>
                 </li>
             @endcan

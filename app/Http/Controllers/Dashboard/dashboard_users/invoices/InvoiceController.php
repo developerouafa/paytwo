@@ -35,6 +35,11 @@ class InvoiceController extends Controller
         return $this->invoices->deleteallsingleinvoice();
     }
 
+    public function invoicestatus($id)
+    {
+        return $this->invoices->invoicestatus($id);
+    }
+
     public function restoresingleinvoice($id)
     {
         return $this->invoices->restoresingleinvoice($id);

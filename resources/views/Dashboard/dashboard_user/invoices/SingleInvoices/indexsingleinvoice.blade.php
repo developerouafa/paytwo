@@ -55,7 +55,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            @can('Delete Group Product')
+                                            @can('Delete Group SingleInvoice')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
@@ -81,7 +81,7 @@
                                         @foreach ($single_invoices as $single_invoice)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
-                                                @can('Delete Group Product')
+                                                @can('Delete Group SingleInvoice')
                                                     <td>
                                                         <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
                                                     </td>
@@ -120,6 +120,7 @@
                                                 <td>
                                                     @if ($single_invoice->invoice_status == 1)
                                                         {{__('Dashboard/services.New')}}
+                                                        <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
                                                     @elseif ($single_invoice->invoice_status == 2)
                                                         {{__('Dashboard/services.Sent')}}
                                                     @elseif ($single_invoice->invoice_status == 3)
@@ -151,7 +152,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        @can('Delete Group Product')
+                                        @can('Delete Group SingleInvoice')
                                             @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoice')
                                         @endcan
                                     </tbody>
@@ -209,17 +210,6 @@
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
-        })
-    </script>
-
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
         })
     </script>
 

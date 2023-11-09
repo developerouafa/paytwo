@@ -25,9 +25,9 @@ class InvoiceController extends Controller
       return  $this->invoices->softdeletesingleinvoice();
     }
 
-    public function destroysingleinvoice(Request $request)
+    public function destroy(Request $request)
     {
-        return $this->invoices->destroysingleinvoice($request);
+        return $this->invoices->destroy($request);
     }
 
     public function deleteallsingleinvoice()
@@ -43,5 +43,25 @@ class InvoiceController extends Controller
     public function restoresingleinvoice($id)
     {
         return $this->invoices->restoresingleinvoice($id);
+    }
+
+    public function indexgroupInvoices()
+    {
+      return  $this->invoices->indexgroupInvoices();
+    }
+
+    public function softdeletegroupInvoices()
+    {
+      return  $this->invoices->softdeletegroupInvoices();
+    }
+
+    public function deleteallgroupInvoices()
+    {
+        return $this->invoices->deleteallgroupInvoices();
+    }
+
+    public function restoregroupInvoices($id)
+    {
+        return $this->invoices->restoregroupInvoices($id);
     }
 }

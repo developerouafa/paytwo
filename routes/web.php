@@ -256,7 +256,7 @@ Route::get('/clear', function() {
                     Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('SingleInvoices.showinvoice');
                     Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
                     Route::get('/Deleted_Singleinvoice', 'softdeletesingleinvoice')->name('SingleInvoices.softdeletesingleinvoice');
-                    Route::delete('/destroysingleinvoice', 'destroysingleinvoice')->name('SingleInvoices.destroysingleinvoice');
+                    Route::delete('/destroysingleinvoice', 'destroy')->name('SingleInvoices.destroysingleinvoice');
                     Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoice')->name('SingleInvoices.deleteallsingleinvoice');
                     Route::get('restoresingleinvoice/{id}', 'restoresingleinvoice')->name('SingleInvoices.restoresingleinvoice');
                     Route::get('forcedeletesingleinvoice/{id}', 'forcedeletesingleinvoice')->name('SingleInvoices.forcedeletesingleinvoice');
@@ -270,8 +270,10 @@ Route::get('/clear', function() {
         Route::group(['prefix' => 'GroupInvoices'], function(){
             Route::controller(InvoiceController::class)->group(function() {
                 Route::get('/indexgroupInvoices', 'indexgroupInvoices')->name('GroupInvoices.indexgroupInvoices');
+                Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('GroupInvoices.showinvoice');
+                Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
                 Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
-                Route::delete('/destroygroupInvoices', 'destroygroupInvoices')->name('GroupInvoices.destroygroupInvoices');
+                Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroygroupInvoices');
                 Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
                 Route::get('restoregroupInvoices/{id}', 'restoregroupInvoices')->name('GroupInvoices.restoregroupInvoices');
                 Route::get('forcedeletegroupInvoices/{id}', 'forcedeletegroupInvoices')->name('GroupInvoices.forcedeletegroupInvoices');

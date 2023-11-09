@@ -29,11 +29,11 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function softdeletesingleinvoice(){
-        $single_invoices = invoice::onlyTrashed()->latest()->get();
+        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',1)->get();
         return view('Dashboard/dashboard_user/invoices.SingleInvoices.softdeletesingleinvoice',compact('single_invoices'));
     }
 
-    public function destroysingleinvoice($request){
+    public function destroy($request){
         // Delete One Request
         if($request->page_id==1){
             try{
@@ -220,6 +220,41 @@ class InvoiceRepository implements InvoicesRepositoryInterface
             DB::rollBack();
             toastr()->error(trans('message.error'));
             return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+        }
+    }
+
+    public function indexgroupInvoices(){
+        $invoices = invoice::latest()->where('invoice_classify',1)->get();
+        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
+        $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
+        return view('Dashboard/dashboard_user/invoices.GroupInvoices.indexgroupInvoices', [
+            'group_invoices'=>$invoices,
+            'fund_accountreceipt'=> $fund_accountreceipt,
+            'fund_accountpostpaid'=> $fund_accountpostpaid,
+        ]);
+    }
+
+    public function softdeletegroupInvoices(){
+        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',1)->get();
+        return view('Dashboard/dashboard_user/invoices.GroupInvoices.softdeletegroupInvoices',compact('single_invoices'));
+    }
+
+    public function deleteallgroupInvoices(){
+        DB::table('invoices')->where('invoice_classify',1)->delete();
+        return redirect()->route('GroupInvoices.indexgroupInvoices');
+    }
+
+    public function restoregroupInvoices($id){
+        try{
+            DB::beginTransaction();
+                invoice::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
         }
     }
 }

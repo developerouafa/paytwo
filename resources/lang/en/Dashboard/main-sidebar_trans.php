@@ -15,6 +15,7 @@ return [
     'Servicepackageinvoice' => 'Service package invoice',
     'invoices' => 'Invoices',
     'invoice' => 'Invoice',
+    'detailsinvoices' => 'Details Invoice',
     'Catch Receipt' => 'Catch Receipt',
     'theaccounts' => 'The Accounts',
     'Catch payment' => 'Catch payment',

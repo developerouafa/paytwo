@@ -15,6 +15,7 @@ return [
     'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
     'invoices' => 'الفواتير',
     'invoice' => 'الفاتورة',
+    'detailsinvoices' => 'تفاصيل الفاتورة',
     'Catch Receipt' => 'سند قبض',
     'theaccounts' => 'الحسابات',
     'Catch payment' => 'سند صرف',

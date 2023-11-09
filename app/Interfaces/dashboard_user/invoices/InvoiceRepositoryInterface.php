@@ -4,21 +4,21 @@ namespace App\Interfaces\dashboard_user\Invoices;
 
 interface InvoiceRepositoryInterface
 {
-    //* get All Invoices
-    public function index();
+    //* get All Softdeletesingleinvoice
+    public function indexsingleinvoice();
 
-    //* get All Softdelete
-    public function softdelete();
+    //* get All Softdelete singleinvoice
+    public function softdeletesingleinvoice();
 
-    //* destroy Product
-    public function destroy($request);
+    //* destroy Invoice singleinvoice
+    public function destroysingleinvoice($request);
 
-    //* delete All Product
-    public function deleteall();
+    //* delete All Invoice singleinvoice
+    public function deleteallsingleinvoice();
 
-    //* Restore
-    public function restore($id);
+    //* Restore singleinvoice
+    public function restoresingleinvoice($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* Force Delete singleinvoice
+    public function forcedeletesingleinvoice($id);
 }

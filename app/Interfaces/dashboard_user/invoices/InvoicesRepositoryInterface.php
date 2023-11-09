@@ -21,7 +21,4 @@ interface InvoicesRepositoryInterface
 
     //* Restore singleinvoice
     public function restoresingleinvoice($id);
-
-    //* Force Delete singleinvoice
-    public function forcedeletesingleinvoice($id);
 }

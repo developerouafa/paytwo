@@ -29,8 +29,8 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function softdeletesingleinvoice(){
-        $invoices = invoice::onlyTrashed()->latest()->get();
-        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('invoices'));
+        $single_invoices = invoice::onlyTrashed()->latest()->get();
+        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('single_invoices'));
     }
 
     public function destroysingleinvoice($request){
@@ -213,20 +213,6 @@ class InvoiceRepository implements InvoicesRepositoryInterface
                 invoice::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-        }catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('message.error'));
-            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-        }
-    }
-
-    public function forcedeletesingleinvoice($id){
-        try{
-            DB::beginTransaction();
-            invoice::onlyTrashed()->find($id)->forcedelete();
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
             return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }catch(\Exception $exception){
             DB::rollBack();

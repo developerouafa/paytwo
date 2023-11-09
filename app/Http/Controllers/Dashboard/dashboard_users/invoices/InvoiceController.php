@@ -44,9 +44,4 @@ class InvoiceController extends Controller
     {
         return $this->invoices->restoresingleinvoice($id);
     }
-
-    public function forcedeletesingleinvoice($id)
-    {
-        return $this->invoices->forcedeletesingleinvoice($id);
-    }
 }

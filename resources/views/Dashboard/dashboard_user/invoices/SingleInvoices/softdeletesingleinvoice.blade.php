@@ -143,6 +143,12 @@
                                                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
                                                     @can('Delete Single Invoices softdelete')
+                                                    <a href="{{route('restorepr', $single_invoice->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                    {{-- <form action="{{route('forcedeletepr', $x->id)}}" method="get">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
+                                                    </form> --}}
+
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                             data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
                                                             data-toggle="modal" href="#modaldemo9" title="Delete">

@@ -55,7 +55,6 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted Singleservice',
             'sidebar Deleted groupservice',
             'Delete All SingleInvoice softdelete',
-            'Delete Group SingleInvoice softdelete',
             'Show Single Invoices softdelete',
             'Delete Group SingleInvoice softdelete',
             'Delete Single Invoices softdelete',

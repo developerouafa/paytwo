@@ -125,7 +125,7 @@
                             <li><a class="slide-item" href="{{ route('GroupInvoices.indexgroupInvoices') }}">{{__('Dashboard/main-sidebar_trans.Servicepackageinvoice')}}</a></li>
                         @endcan
                         @can('sidebar Deleted groupservice')
-                            <li><a class="slide-item" href="{{ route('GroupInvoices.softdelete') }}">{{__('Dashboard/main-sidebar_trans.deletedclients')}}</a></li>
+                            <li><a class="slide-item" href="{{ route('GroupInvoices.softdeletegroupInvoices') }}">{{__('Dashboard/main-sidebar_trans.deletedServicepackageinvoice')}}</a></li>
                         @endcan
                     </ul>
                 </li>

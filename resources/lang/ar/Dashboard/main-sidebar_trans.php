@@ -23,6 +23,7 @@ return [
     'deletedchildrens' => 'أطفال محذوفة',
     'deletedproducts' => 'المنتجات المحذوفة',
     'deletedSingleservicebill' => 'فواتير لخدمة لواحدة المحذوفة',
+    'deletedServicepackageinvoice' => 'فواتير متعددةالخدمات المحذوفة',
     'deletedclients' => 'العملاء المحذوفين',
     'deletedreceipt' => 'الإيصال المحذوف',
     'deletedpayment' => 'الدفع المحذوف',

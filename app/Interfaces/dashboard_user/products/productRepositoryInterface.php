@@ -4,7 +4,6 @@ namespace App\Interfaces\dashboard_user\Products;
 
 interface productRepositoryInterface
 {
-
     //* get All Products
     public function index();
 

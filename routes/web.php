@@ -3,6 +3,7 @@
 use App\Http\Controllers\BanktransferController;
 use App\Http\Controllers\Dashboard\dashboard_users\Clients\ClientController;
 use App\Http\Controllers\Dashboard\dashboard_users\childrens\childrenController;
+use App\Http\Controllers\Dashboard\dashboard_users\invoices\InvoiceController;
 use App\Http\Controllers\Dashboard\dashboard_users\PaymentaccountController;
 use App\Http\Controllers\Dashboard\dashboard_users\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\MainimageproductController;
@@ -245,6 +246,36 @@ Route::get('/clear', function() {
             Route::get('forcedeletepg/{id}', [PaymentgatewayController::class, 'forcedelete'])->name('forcedeletepg');
 
         //############################# end BankCard route ######################################
+
+        //############################# SingleInvoices route ##########################################
+
+            Route::group(['prefix' => 'SingleInvoices'], function(){
+                Route::controller(InvoiceController::class)->group(function() {
+                    Route::get('/indexsingleinvoice', 'indexsingleinvoice')->name('SingleInvoices.indexsingleinvoice');
+                    Route::get('/Deleted_Productsingleinvoice', 'softdeletesingleinvoice')->name('SingleInvoices.softdeletesingleinvoice');
+                    Route::delete('/destroysingleinvoice', 'destroysingleinvoice')->name('SingleInvoices.destroysingleinvoice');
+                    Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoice')->name('SingleInvoices.deleteallsingleinvoice');
+                    Route::get('restoresingleinvoice/{id}', 'restoresingleinvoice')->name('SingleInvoices.restoresingleinvoice');
+                    Route::get('forcedeletesingleinvoice/{id}', 'forcedeletesingleinvoice')->name('SingleInvoices.forcedeletesingleinvoice');
+                });
+            });
+
+        //############################# end SingleInvoices route ######################################
+
+        //############################# SingleInvoices route ##########################################
+
+        Route::group(['prefix' => 'GroupInvoices'], function(){
+            Route::controller(InvoiceController::class)->group(function() {
+                Route::get('/indexgroupInvoices', 'indexgroupInvoices')->name('GroupInvoices.indexgroupInvoices');
+                Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
+                Route::delete('/destroygroupInvoices', 'destroygroupInvoices')->name('GroupInvoices.destroygroupInvoices');
+                Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
+                Route::get('restoregroupInvoices/{id}', 'restoregroupInvoices')->name('GroupInvoices.restoregroupInvoices');
+                Route::get('forcedeletegroupInvoices/{id}', 'forcedeletegroupInvoices')->name('GroupInvoices.forcedeletegroupInvoices');
+            });
+        });
+
+    //############################# end SingleInvoices route ######################################
 
         // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         // Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');

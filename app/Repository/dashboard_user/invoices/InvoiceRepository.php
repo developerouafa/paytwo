@@ -49,6 +49,37 @@ class InvoiceRepository implements InvoicesRepositoryInterface
                 return redirect()->route('SingleInvoices.indexsingleinvoice');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                DB::beginTransaction();
+                invoice::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                invoice::onlyTrashed()->find($delete_select_id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+            }
+        }
         // Delete Group Request
         else{
             try{

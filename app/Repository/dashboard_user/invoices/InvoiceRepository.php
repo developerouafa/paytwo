@@ -1,12 +1,12 @@
 <?php
-namespace App\Repository\dashboard_user\Products;
+namespace App\Repository\dashboard_user\Invoices;
 
-use App\Interfaces\dashboard_user\Invoices\InvoiceRepositoryInterface;
+use App\Interfaces\dashboard_user\Invoices\InvoicesRepositoryInterface;
 use App\Models\fund_account;
 use App\Models\invoice;
 use Illuminate\Support\Facades\DB;
 
-class InvoiceRepository implements InvoiceRepositoryInterface
+class InvoiceRepository implements InvoicesRepositoryInterface
 {
     public function indexsingleinvoice(){
         $invoices = invoice::latest()->where('invoice_classify',1)->get();

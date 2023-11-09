@@ -2,7 +2,7 @@
 namespace App\Interfaces\dashboard_user\Invoices;
 
 
-interface InvoiceRepositoryInterface
+interface InvoicesRepositoryInterface
 {
     //* get All Softdeletesingleinvoice
     public function indexsingleinvoice();

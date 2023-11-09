@@ -3,45 +3,45 @@
 namespace App\Http\Controllers\Dashboard\dashboard_users\invoices;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\dashboard_user\Invoices\InvoiceRepositoryInterface;
+use App\Interfaces\dashboard_user\Invoices\InvoicesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    private $Invoices;
+    private $invoices;
 
-    public function __construct(InvoiceRepositoryInterface $Invoices)
+    public function __construct(InvoicesRepositoryInterface $invoices)
     {
-        $this->Invoices = $Invoices;
+        $this->invoices = $invoices;
     }
 
     public function indexsingleinvoice()
     {
-      return  $this->Invoices->indexsingleinvoice();
+      return  $this->invoices->indexsingleinvoice();
     }
 
     public function softdeletesingleinvoice()
     {
-      return  $this->Invoices->softdeletesingleinvoice();
+      return  $this->invoices->softdeletesingleinvoice();
     }
 
     public function destroysingleinvoice(Request $request)
     {
-        return $this->Invoices->destroysingleinvoice($request);
+        return $this->invoices->destroysingleinvoice($request);
     }
 
     public function deleteallsingleinvoice()
     {
-        return $this->Invoices->deleteallsingleinvoice();
+        return $this->invoices->deleteallsingleinvoice();
     }
 
     public function restoresingleinvoice($id)
     {
-        return $this->Invoices->restoresingleinvoice($id);
+        return $this->invoices->restoresingleinvoice($id);
     }
 
     public function forcedeletesingleinvoice($id)
     {
-        return $this->Invoices->forcedeletesingleinvoice($id);
+        return $this->invoices->forcedeletesingleinvoice($id);
     }
 }

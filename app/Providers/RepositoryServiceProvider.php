@@ -9,7 +9,7 @@ use App\Interfaces\dashboard_user\Finances\BanktransferRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\PaymentgatewayRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\PaymentRepositoryInterface;
 use App\Interfaces\dashboard_user\Finances\ReceiptRepositoryInterface;
-use App\Interfaces\dashboard_user\Invoices\InvoiceRepositoryInterface as InvoicesInvoiceRepositoryInterface;
+use App\Interfaces\dashboard_user\Invoices\InvoicesRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\mainRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\multipeRepositoryInterface;
 use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
@@ -24,7 +24,7 @@ use App\Repository\dashboard_user\Finances\BanktransferRepository;
 use App\Repository\dashboard_user\Finances\PaymentGatewayRepository;
 use App\Repository\dashboard_user\Finances\PaymentRepository;
 use App\Repository\dashboard_user\Finances\ReceiptRepository;
-use App\Repository\dashboard_user\Products\InvoiceRepository;
+use App\Repository\dashboard_user\Invoices\InvoiceRepository;
 use App\Repository\dashboard_user\Products\mainimageRepository;
 use App\Repository\dashboard_user\Products\multipimageRepository;
 use App\Repository\dashboard_user\Products\productRepository;
@@ -55,7 +55,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(InvoiceRepositoryInterface::class, InvoicesRepository::class);
         $this->app->bind(BanktransferRepositoryInterface::class, BanktransferRepository::class);
         $this->app->bind(PaymentgatewayRepositoryInterface::class, PaymentGatewayRepository::class);
-        $this->app->bind(InvoicesInvoiceRepositoryInterface::class, InvoicesRepository::class);
+        $this->app->bind(InvoicesRepositoryInterface::class, InvoiceRepository::class);
     }
 
     /**

@@ -39,282 +39,128 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Product')
+                            {{-- @can('Delete All Product')
                                 <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
+                            @endcan --}}
 
-                            @can('Delete Group Product')
+                            {{-- @can('Delete Group Product')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                            @endcan
+                            @endcan --}}
                         </div>
                     </div>
-                    @can('Show Product')
+                    @can('Show Single Invoices')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            @can('Delete Group Product')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
-                                            <th>{{__('Dashboard/products.product')}}</th>
-                                            <th>{{__('Dashboard/products.description')}}</th>
-                                            <th>{{__('Dashboard/products.price')}}</th>
-                                            <th>{{__('Dashboard/products.section')}}</th>
-                                            <th>{{__('Dashboard/products.children')}}</th>
-                                            <th>{{__('Dashboard/products.status')}}</th>
-                                            <th>{{__('Dashboard/products.images')}}</th>
-                                            @can('promotion Product')
-                                                <th>{{__('Dashboard/products.promotion')}}</th>
-                                            @endauth
-                                            @can('stock Product')
-                                                <th>{{__('Dashboard/products.stock')}}</th>
-                                            @endauth
-                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                            <th> {{__('Dashboard/services.nameservice')}} </th>
+                                            <th> {{__('Dashboard/services.client')}} </th>
+                                            <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                            <th> {{__('Dashboard/services.priceservice')}} </th>
+                                            <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                            <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                            <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                            <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                            <th> {{__('Dashboard/services.type')}} </th>
+                                            <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                            <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                            <th> {{__('Dashboard/users.createdbyuser')}} </th>
                                             <th>{{__('Dashboard/sections_trans.created_at')}}</th>
                                             <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                            <th></th>
+                                            <th> {{__('Dashboard/services.Processes')}} </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $x)
-                                            @if (!empty($x->section_id && $x->parent_id))
-                                                @if ($x->section->status == 0)
-                                                    @if ($x->subsections->status == 0)
-                                                        <tr>
-                                                            <td> {{$x->id}} </td>
-                                                            @can('Delete Group Product')
-                                                                <td>
-                                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                                </td>
-                                                            @endcan
-                                                            <td> {{$x->name}} </td>
-                                                            <td>{{ \Str::limit($x->description, 50) }}</td>
-                                                            <td> {{$x->price}}</td>
-                                                            <td> {{$x->section->name}} </td>
-                                                            <td> {{$x->subsections->name}} </td>
-                                                            <td>
-                                                                @if ($x->status == 0)
-                                                                    <a href="{{route('editstatusdéactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
-                                                                @endif
-                                                                @if ($x->status == 1)
-                                                                    <a href="{{route('editstatusactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
-                                                                @endif
-                                                            </td>
-                                                            <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                            <td>
-                                                                @can('promotion Product')
-                                                                    @forelse ($x->promotion as $promo)
-                                                                        @if ($promo->expired == 0)
-                                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                                {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                            </a>
-                                                                        @else
-                                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                                {{__('Dashboard/products.promotioniscancel')}}
-                                                                            </a>
-                                                                        @endif
-                                                                    @empty
-                                                                        <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                                        data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                                        href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                                    @endforelse ()
-                                                                @endcan
-                                                            </td>
-                                                            <td>
-                                                                @can('stock Product')
-                                                                    @foreach ($stockproduct as $ss)
-                                                                        @if ($ss->product_id == $x->id)
-                                                                            @if ($ss->stock == "0")
-                                                                                <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
-                                                                            @endif
-                                                                            @if ($ss->stock == "1")
-                                                                                <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endcan
-                                                            </td>
-                                                            <td><a href="#">{{$x->user->name}}</a> </td>
-                                                            <td> {{ $x->created_at->diffForHumans() }} </td>
-                                                            <td> {{ $x->updated_at->diffForHumans() }} </td>
-                                                            <td>
-                                                                @can('Edit Product')
-                                                                   <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                        data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-children_id="{{ $x->subsections->name }}" data-toggle="modal"
-                                                                        href="#exampleModal2" title="Update">
-                                                                        <i class="las la-pen"></i>
-                                                                    </a>
-                                                                @endcan
-
-                                                                @can('Delete Product')
-                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                                        data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                                        <i class="las la-trash"></i>
-                                                                    </a>
-                                                                @endcan
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endif
-                                            @endif
-                                            @if (empty($x->parent_id) && !empty($x->section_id))
-                                                @if ($x->section->status == 0)
-                                                    <tr>
-                                                        <td> {{$x->id}} </td>
-                                                        @can('Delete Group Product')
-                                                            <td>
-                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                            </td>
-                                                        @endcan
-                                                        <td> {{$x->name}} </td>
-                                                        <td>{{ \Str::limit($x->description, 50) }}</td>
-                                                        <td> {{$x->price}}</td>
-                                                        <td> {{$x->section->name}} </td>
-                                                        <td> {{__('Dashboard/sections_trans.nochildsection')}} </td>
-                                                        <td>
-                                                            @if ($x->status == 0)
-                                                                <a href="{{route('editstatusdéactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
-                                                            @endif
-                                                            @if ($x->status == 1)
-                                                                <a href="{{route('editstatusactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
-                                                            @endif
-                                                        </td>
-                                                        <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                        <td>
-                                                            @forelse ($x->promotion as $promo)
-                                                                @if ($promo->expired == 0)
-                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                        {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                    </a>
+                                        @foreach ($single_invoices as $single_invoice)
+                                            <tr>
+                                                <td>{{ $loop->iteration}}</td>
+                                                <td>{{ $single_invoice->invoice_number }}</td>
+                                                <td>{{ $single_invoice->Service->name }}</td>
+                                                <td>{{ $single_invoice->Client->name }}</td>
+                                                <td>{{ $single_invoice->invoice_date }}</td>
+                                                <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                <td>{{ $single_invoice->tax_rate }}%</td>
+                                                <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                <td>
+                                                    @if ($single_invoice->type == 1)
+                                                        {{__('Dashboard/services.monetary')}}
+                                                    @can('Create Receipt')
+                                                            @if ($fund_accountreceipt)
+                                                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                    {{__('Dashboard/services.rcpyment')}}
                                                                 @else
-                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                        {{__('Dashboard/products.promotioniscancel')}}
-                                                                    </a>
+                                                                    <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                                                                 @endif
-                                                            @empty
-                                                                <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                                href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                            @endforelse ()
-                                                        </td>
-                                                        <td>
-                                                            @foreach ($stockproduct as $ss)
-                                                                @if ($ss->product_id == $x->id)
-                                                                    @if ($ss->stock == "0")
-                                                                        <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
-                                                                    @endif
-                                                                    @if ($ss->stock == "1")
-                                                                        <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
-                                                                    @endif
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                        <td><a href="#">{{$x->user->name}}</a> </td>
-                                                        <td> {{ $x->created_at->diffForHumans() }} </td>
-                                                        <td> {{ $x->updated_at->diffForHumans() }} </td>
-                                                        <td>
-                                                            @can('Edit Product')
-                                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                                    data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                    data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-section_id="{{ $x->section->name }}" data-toggle="modal"
-                                                                    href="#exampleModal2" title="Update">
-                                                                    <i class="las la-pen"></i>
-                                                                </a>
-                                                            @endcan
-
-                                                            @can('Delete Product')
-                                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                                    data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                    data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                                    <i class="las la-trash"></i>
-                                                                </a>
-                                                            @endcan
-
-                                                        </td>
-                                                    </tr>
-                                                @endif
-                                            @endif
-                                            @if (empty($x->section_id))
-                                                <tr>
-                                                    <td> {{$x->id}} </td>
-                                                    @can('Delete Group Product')
-                                                        <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                        </td>
-                                                    @endcan
-                                                    <td> {{$x->name}} </td>
-                                                    <td>{{ \Str::limit($x->description, 50) }}</td>
-                                                    <td> {{$x->price}}</td>
-                                                    <td> {{__('Dashboard/sections_trans.nosection')}} </td>
-                                                    <td> {{__('Dashboard/sections_trans.nochildsection')}} </td>
-                                                    <td>
-                                                        @if ($x->status == 0)
-                                                            <a href="{{route('editstatusdéactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.disabled')}}</a>
-                                                        @endif
-                                                        @if ($x->status == 1)
-                                                            <a href="{{route('editstatusactivepr', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/products.active')}}</a>
-                                                        @endif
-                                                    </td>
-                                                    <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                    <td>
-                                                        @forelse ($x->promotion as $promo)
-                                                            @if ($promo->expired == 0)
-                                                                <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                    {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                </a>
                                                             @else
-                                                                <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                    {{__('Dashboard/products.promotioniscancel')}}
-                                                                </a>
+                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                                                             @endif
-                                                        @empty
-                                                            <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                            data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                            href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                        @endforelse ()
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($stockproduct as $ss)
-                                                            @if ($ss->product_id == $x->id)
-                                                                @if ($ss->stock == "0")
-                                                                    <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
-                                                                @endif
-                                                                @if ($ss->stock == "1")
-                                                                    <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
-                                                    <td><a href="#">{{$x->user->name}}</a> </td>
-                                                    <td> {{ $x->created_at->diffForHumans() }} </td>
-                                                    <td> {{ $x->updated_at->diffForHumans() }} </td>
-                                                    <td>
-                                                        @can('Edit Product')
-                                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                data-description="{{ $x->description }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                                href="#exampleModal2" title="Update">
-                                                                <i class="las la-pen"></i>
-                                                            </a>
                                                         @endcan
+                                                    @elseif ($single_invoice->type == 0)
+                                                        {{__('Dashboard/services.noselectionyet')}}
+                                                    @elseif ($single_invoice->type == 2)
+                                                        @can('Create Catch Payment')
+                                                            @if ($fund_accountreceipt)
+                                                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                    {{__('Dashboard/services.rcpyment')}}
+                                                                @else
+                                                                    <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                @endif
+                                                            @else
+                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                            @endif
+                                                        @endcan
+                                                        {{__('Dashboard/services.Okay')}}
+                                                    @elseif ($single_invoice->type == 3)
+                                                        {{__('Dashboard/services.Banktransfer')}}
+                                                    @elseif ($single_invoice->type == 4)
+                                                        {{__('Dashboard/services.card')}}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($single_invoice->invoice_status == 1)
+                                                        {{__('Dashboard/services.New')}}
+                                                        <button wire:click="invoicestatus({{ $single_invoice->id }})" class="btn btn-primary btn-sm">{{__('Dashboard/services.Sent')}}</button>
+                                                    @elseif ($single_invoice->invoice_status == 2)
+                                                        {{__('Dashboard/services.Sent')}}
+                                                    @elseif ($single_invoice->invoice_status == 3)
+                                                        {{__('Dashboard/services.Under review')}}
+                                                    @elseif ($single_invoice->invoice_status == 4)
+                                                        {{__('Dashboard/services.Complete')}}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($single_invoice->invoice_type == 1)
+                                                        {{__('Dashboard/services.Draft')}}
+                                                    @elseif ($single_invoice->invoice_type == 2)
+                                                        {{__('Dashboard/services.Paid')}}
+                                                    @elseif ($single_invoice->invoice_type == 3)
+                                                        {{__('Dashboard/services.Canceled')}}
+                                                    @endif
+                                                </td>
+                                                <td>{{$single_invoice->user->name}}</td>
+                                                <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Edit Single Invoices')
+                                                        <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                                    @endcan
 
-                                                        @can('Delete Product')
-                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-name="{{ $x->name }}"
-                                                                data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                                <i class="las la-trash"></i>
-                                                            </a>
-                                                        @endcan
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            @can('Delete Group Product')
-                                                @include('Dashboard.dashboard_user.products.delete_select')
-                                            @endcan
+                                                    @can('Delete Single Invoices')
+                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" >
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    @endcan
+
+                                                    @can('Print Single Invoices')
+                                                        <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
+                                                    @endcan
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -322,92 +168,6 @@
                         </div>
                     @endcan
 
-                </div>
-            </div>
-
-
-        <!-- Add Promotion -->
-            <div class="modal" id="modaldemopromotion">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">{{__('Dashboard/products.addpromotion')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                            <div class="modal-body">
-                                <form action="{{route('promotions.create')}}" method="post" enctype="multipart/form-data" autocomplete="off">
-                                    @csrf
-                                        <div class="form-group">
-                                            <input type="hidden" name="id" id="id">
-                                            <label for="price">{{__('Dashboard/products.updatepricepromotion')}}</label>
-                                            <input placeholder="{{__('Dashboard/products.updatepricepromotion')}}" class="form-control" name="price" id="price" type="text">
-                                            <br>
-                                            <label for="price">{{__('Dashboard/products.start_time')}}</label>
-                                            <input class="form-control fc-datepicker" name="start_time" placeholder="{{__('Dashboard/products.start_time')}}"
-                                            type="date" value="{{ date('Y-m-d') }}" id="start_time">
-                                            <br>
-                                            <label for="price">{{__('Dashboard/products.end_time')}}</label>
-                                            <input class="form-control fc-datepicker" name="end_time" placeholder="{{__('Dashboard/products.end_time')}}"
-                                            type="date" id="end_time">
-                                            <br>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn ripple btn-primary" type="submit">{{__('Dashboard/products.submit')}}</button>
-                                            <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{__('Dashboard/products.Close')}}</button>
-                                        </div>
-                                </form>
-                            </div>
-                    </div>
-                </div>
-            </div>
-
-        <!-- edit -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{__('Dashboard/products.updateproduct')}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{route('product.update')}}" enctype="multipart/form-data" method="post" autocomplete="off">
-                                {{ method_field('patch') }}
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <input type="hidden" name="id" id="id">
-                                    <input placeholder="{{__('Dashboard/products.product')}}" class="form-control @error('description') is-invalid @enderror" name="name_{{app()->getLocale()}}" id="name" type="text">
-                                    <br>
-                                    <textarea placeholder="{{__('Dashboard/products.description')}}" type="text" value="{{old('description')}}" class="form-control @error('description') is-invalid @enderror" id="description" name="description_{{app()->getLocale()}}" cols="5" rows="1"></textarea>
-                                    <br>
-                                    <input placeholder="{{__('Dashboard/products.price')}}" class="form-control" name="price" id="price" type="text">
-                                    <br>
-                                    <div class="col">
-                                        <label for="inputName" class="control-label">{{__('Dashboard/products.section')}}</label>
-                                        <select name="section" class="form-control SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
-                                            <option value="" selected disabled>{{__('Dashboard/products.selectsection')}}</option>
-                                            @foreach ($sections as $section)
-                                                @if ($section->status == 0)
-                                                    <option value="{{ $section->id }}"> {{ $section->name }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="inputName1" class="control-label">{{__('Dashboard/products.children')}}</label>
-                                        <select id="children" name="children" class="form-control">
-                                        </select>
-                                    </div>
-                                    <br>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">{{__('Dashboard/products.submit')}}</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
 

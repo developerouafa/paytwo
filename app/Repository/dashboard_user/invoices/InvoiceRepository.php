@@ -30,7 +30,7 @@ class InvoiceRepository implements InvoicesRepositoryInterface
 
     public function softdeletesingleinvoice(){
         $single_invoices = invoice::onlyTrashed()->latest()->get();
-        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('single_invoices'));
+        return view('Dashboard/dashboard_user/invoices.SingleInvoices.softdeletesingleinvoice',compact('single_invoices'));
     }
 
     public function destroysingleinvoice($request){
@@ -69,7 +69,9 @@ class InvoiceRepository implements InvoicesRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                invoice::onlyTrashed()->find($delete_select_id)->forcedelete();
+                foreach($delete_select_id as $dl){
+                    invoice::where('id', $dl)->withTrashed()->forceDelete();
+                }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('SingleInvoices.softdeletesingleinvoice');

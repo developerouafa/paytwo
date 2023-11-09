@@ -40,12 +40,12 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All SingleInvoice')
-                                <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('SingleInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            {{-- @can('Delete Group Product')
+                            {{-- @can('Delete Group SingleInvoice') --}}
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                            @endcan --}}
+                            {{-- @endcan --}}
                         </div>
                     </div>
                     @can('Show Single Invoices')
@@ -55,6 +55,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            @can('Delete Group Product')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
@@ -78,6 +81,11 @@
                                         @foreach ($single_invoices as $single_invoice)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
+                                                @can('Delete Group Product')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
                                                 <td>
                                                     <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
@@ -145,6 +153,9 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @can('Delete Group Product')
+                                            @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoice')
+                                        @endcan
                                     </tbody>
                                 </table>
                             </div>

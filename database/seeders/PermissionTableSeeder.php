@@ -49,6 +49,8 @@ class PermissionTableSeeder extends Seeder
             'Delete Group User',
             'Delete All Promotions',
             'Delete Group Promotions',
+            'Delete Group SingleInvoice',
+            'Delete All SingleInvoice',
             'Show Promotions',
             'Update Promotion',
             'Delete Promotion',

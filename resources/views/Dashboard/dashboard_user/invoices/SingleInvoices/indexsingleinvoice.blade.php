@@ -49,116 +49,868 @@
                         </div>
                     </div>
                     @can('Show Single Invoices')
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            @can('Delete Group SingleInvoice')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
-                                            <th> {{__('Dashboard/services.print')}} </th>
-                                            <th> {{__('Dashboard/services.invoicenumber')}} </th>
-                                            <th> {{__('Dashboard/services.nameservice')}} </th>
-                                            <th> {{__('Dashboard/services.client')}} </th>
-                                            <th> {{__('Dashboard/services.dateinvoice')}} </th>
-                                            <th> {{__('Dashboard/services.priceservice')}} </th>
-                                            <th> {{__('Dashboard/services.discountvalue')}} </th>
-                                            <th> {{__('Dashboard/services.Taxrate')}} </th>
-                                            <th> {{__('Dashboard/services.Taxvalue')}} </th>
-                                            <th> {{__('Dashboard/services.Totalwithtax')}} </th>
-                                            <th> {{__('Dashboard/services.type')}} </th>
-                                            <th> {{__('Dashboard/services.Invoicestatus')}} </th>
-                                            <th> {{__('Dashboard/services.Invoicetype')}} </th>
-                                            <th> {{__('Dashboard/users.createdbyuser')}} </th>
-                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                            <th> {{__('Dashboard/services.Processes')}} </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($single_invoices as $single_invoice)
-                                            <tr>
-                                                <td>{{ $loop->iteration}}</td>
-                                                @can('Delete Group SingleInvoice')
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
-                                                    </td>
-                                                @endcan
-                                                <td>
-                                                    <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
-                                                        <i class="fas fa-print"></i>
-                                                    </a>
-                                                </td>
-                                                <td>{{ $single_invoice->invoice_number }}</td>
-                                                <td>
-                                                    <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
-                                                </td>
-                                                <td>{{ $single_invoice->invoice_date }}</td>
-                                                <td>{{ number_format($single_invoice->price, 2) }}</td>
-                                                <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
-                                                <td>{{ $single_invoice->tax_rate }}%</td>
-                                                <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
-                                                <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
-                                                <td>
-                                                    @if ($single_invoice->type == 1)
-                                                        {{__('Dashboard/services.monetary')}}
-                                                    @elseif ($single_invoice->type == 0)
-                                                        {{__('Dashboard/services.noselectionyet')}}
-                                                    @elseif ($single_invoice->type == 2)
-                                                        {{__('Dashboard/services.Okay')}}
-                                                    @elseif ($single_invoice->type == 3)
-                                                        {{__('Dashboard/services.Banktransfer')}}
-                                                    @elseif ($single_invoice->type == 4)
-                                                        {{__('Dashboard/services.card')}}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($single_invoice->invoice_status == 1)
-                                                        {{__('Dashboard/services.New')}}
-                                                        <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
-                                                    @elseif ($single_invoice->invoice_status == 2)
-                                                        {{__('Dashboard/services.Sent')}}
-                                                    @elseif ($single_invoice->invoice_status == 3)
-                                                        {{__('Dashboard/services.Under review')}}
-                                                    @elseif ($single_invoice->invoice_status == 4)
-                                                        {{__('Dashboard/services.Complete')}}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($single_invoice->invoice_type == 1)
-                                                        {{__('Dashboard/services.Draft')}}
-                                                    @elseif ($single_invoice->invoice_type == 2)
-                                                        {{__('Dashboard/services.Paid')}}
-                                                    @elseif ($single_invoice->invoice_type == 3)
-                                                        {{__('Dashboard/services.Canceled')}}
-                                                    @endif
-                                                </td>
-                                                <td>{{$single_invoice->user->name}}</td>
-                                                <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
-                                                <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
-                                                <td>
-                                                    @can('Delete Single Invoices')
-                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
-                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                            <i class="las la-trash"></i>
-                                                        </a>
-                                                    @endcan
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        @can('Delete Group SingleInvoice')
-                                            @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoice')
-                                        @endcan
-                                    </tbody>
-                                </table>
+                        {{-- Invoices Client --}}
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tabs-menu ">
+                                        <!-- Tabs -->
+                                        <ul class="nav nav-tabs profile navtab-custom panel-tabs">
+                                            <li class="active">
+                                                <a href="#allinvoices" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.allinvoices')}}</span> </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#noselectionyet" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/services.noselectionyet')}}</span> </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#cashpyinvoice" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.cashpyinvoice')}}</span> </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#cashpyinvoicepaid" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.cashpyinvoicepaid')}}</span> </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#banktransferpy" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.banktransferpy')}}</span> </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#bankcardpy" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">{{__('Dashboard/clients_trans.bankcardpy')}}</span> </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
+                                        <div class="tab-pane active" id="allinvoices">
+                                            <h1 style="color:deeppink">{{__('Dashboard/services.allinvoices')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($single_invoices as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                    @can('Delete Group SingleInvoice')
+                                                                        @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoice')
+                                                                    @endcan
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                        <div class="tab-pane" id="noselectionyet">
+                                            <h1 style="color:purple">{{__('Dashboard/services.noselectionyet')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example-11" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($invoices_nomethodpay as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- bd -->
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                        <div class="tab-pane" id="cashpyinvoice">
+                                            <h1 style="color: blue">{{__('Dashboard/clients_trans.cashpyinvoice')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example-12" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($invoices_catchpayment as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- bd -->
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                        <div class="tab-pane" id="cashpyinvoicepaid">
+                                            <h1 style="color:darkred">{{__('Dashboard/clients_trans.cashpyinvoicepaid')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example-13" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($invoices_postpaid as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- bd -->
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                        <div class="tab-pane" id="banktransferpy">
+                                            <h1 style="color:darkblue">{{__('Dashboard/clients_trans.banktransferpy')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example-14" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($invoices_banktransfer as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- bd -->
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                        <div class="tab-pane" id="bankcardpy">
+                                            <h1 style="color:orangered">{{__('Dashboard/clients_trans.bankcardpy')}}</h1>
+                                            <!--div-->
+                                            <div class="col-xl-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="example-15" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        @can('Delete Group SingleInvoice')
+                                                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                                        @endcan
+                                                                        <th> {{__('Dashboard/services.print')}} </th>
+                                                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.client')}} </th>
+                                                                        <th> {{__('Dashboard/services.dateinvoice')}} </th>
+                                                                        <th> {{__('Dashboard/services.priceservice')}} </th>
+                                                                        <th> {{__('Dashboard/services.discountvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxrate')}} </th>
+                                                                        <th> {{__('Dashboard/services.Taxvalue')}} </th>
+                                                                        <th> {{__('Dashboard/services.Totalwithtax')}} </th>
+                                                                        <th> {{__('Dashboard/services.type')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicestatus')}} </th>
+                                                                        <th> {{__('Dashboard/services.Invoicetype')}} </th>
+                                                                        <th> {{__('Dashboard/users.createdbyuser')}} </th>
+                                                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                                        <th> {{__('Dashboard/services.Processes')}} </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($invoices_card as $single_invoice)
+                                                                        <tr>
+                                                                            <td>{{ $loop->iteration}}</td>
+                                                                            @can('Delete Group SingleInvoice')
+                                                                                <td>
+                                                                                    <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
+                                                                                </td>
+                                                                            @endcan
+                                                                            <td>
+                                                                                <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                                                    <i class="fas fa-print"></i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_number }}</td>
+                                                                            <td>
+                                                                                <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                                            </td>
+                                                                            <td>{{ $single_invoice->invoice_date }}</td>
+                                                                            <td>{{ number_format($single_invoice->price, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->discount_value, 2) }}</td>
+                                                                            <td>{{ $single_invoice->tax_rate }}%</td>
+                                                                            <td>{{ number_format($single_invoice->tax_value, 2) }}</td>
+                                                                            <td>{{ number_format($single_invoice->total_with_tax, 2) }}</td>
+                                                                            <td>
+                                                                                @if ($single_invoice->type == 1)
+                                                                                    {{__('Dashboard/services.monetary')}}
+                                                                                    @can('Create Receipt')
+                                                                                        @if ($fund_accountreceipt)
+                                                                                            @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 0)
+                                                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                                                @elseif ($single_invoice->type == 2)
+                                                                                    {{__('Dashboard/services.Okay')}}
+                                                                                    @can('Create Catch Payment')
+                                                                                        @if ($fund_accountpostpaid)
+                                                                                            @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                                                {{__('Dashboard/services.rcpyment')}}
+                                                                                            @else
+                                                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                                        @endif
+                                                                                    @endcan
+                                                                                @elseif ($single_invoice->type == 3)
+                                                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                                                @elseif ($single_invoice->type == 4)
+                                                                                    {{__('Dashboard/services.card')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_status == 1)
+                                                                                    {{__('Dashboard/services.New')}}
+                                                                                    <a href="{{route('invoicestatus', $single_invoice->id)}}">{{__('Dashboard/services.Sent')}}</a>
+                                                                                @elseif ($single_invoice->invoice_status == 2)
+                                                                                    {{__('Dashboard/services.Sent')}}
+                                                                                @elseif ($single_invoice->invoice_status == 3)
+                                                                                    {{__('Dashboard/services.Under review')}}
+                                                                                @elseif ($single_invoice->invoice_status == 4)
+                                                                                    {{__('Dashboard/services.Complete')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                @if ($single_invoice->invoice_type == 1)
+                                                                                    {{__('Dashboard/services.Draft')}}
+                                                                                @elseif ($single_invoice->invoice_type == 2)
+                                                                                    {{__('Dashboard/services.Paid')}}
+                                                                                @elseif ($single_invoice->invoice_type == 3)
+                                                                                    {{__('Dashboard/services.Canceled')}}
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>{{$single_invoice->user->name}}</td>
+                                                                            <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
+                                                                            <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
+                                                                            <td>
+                                                                                @can('Delete Single Invoices')
+                                                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                                        data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                                        <i class="las la-trash"></i>
+                                                                                    </a>
+                                                                                @endcan
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div><!-- bd -->
+                                                    </div><!-- bd -->
+                                                </div><!-- bd -->
+                                            </div>
+                                            <!--/div-->
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
                     @endcan
                 </div>
             </div>
@@ -236,6 +988,122 @@
                     $('input[id="delete_select_id"]').val(selected);
                 }
             });
+        });
+    </script>
+
+    <script>
+        $(function(e) {
+            //Details display datatable
+            $('#example-11').DataTable( {
+                responsive: true,
+		        lengthChange: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-12').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-13').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-14').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
+            //Details display datatable
+            $('#example-15').DataTable( {
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return 'Details for '+data[0]+' '+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table border mb-0'
+                        } )
+                    }
+                }
+            } );
         });
     </script>
 @endsection

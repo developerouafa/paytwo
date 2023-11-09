@@ -155,11 +155,13 @@ class ClientRepository implements ClientRepositoryInterface
     {
         $client = Client::findOrFail($id);
         $invoices = invoice::where('client_id', $client->id)->get();
+
         $invoicesnomethodpay = invoice::where('client_id', $client->id)->where('type', 0)->get();
         $invoicescatchpayment = invoice::where('client_id', $client->id)->where('type', 1)->get();
         $invoicespostpaid = invoice::where('client_id', $client->id)->where('type', 2)->get();
         $invoicesbanktransfer = invoice::where('client_id', $client->id)->where('type', 3)->get();
         $invoicescard = invoice::where('client_id', $client->id)->where('type', 4)->get();
+
         return view('Dashboard/dashboard_user/clients.invoices',compact('client', 'invoices', 'invoicesnomethodpay', 'invoicescatchpayment', 'invoicespostpaid', 'invoicesbanktransfer', 'invoicescard'));
     }
 

@@ -79,7 +79,6 @@ class CreateGroupProducts extends Component
         $this->GroupsItems[$index]['is_saved'] = false;
     }
 
-
     public function saveService($index)
     {
         $this->resetErrorBag();

@@ -26,6 +26,7 @@ class product extends Model
         'created_at',
         'updated_at'
     ];
+
     public $translatable = ['name', 'description'];
 
         // Scopes

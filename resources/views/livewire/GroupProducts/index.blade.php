@@ -26,7 +26,11 @@
                     @foreach ($groups as $group)
                         <tr>
                             <td>{{ $loop->iteration}}</td>
-                            <td>{{ $group->name }}</td>
+                            <td>
+                                <button wire:click="groupproduct({{ $group->id }})" class="btn btn-primary btn-sm">
+                                    {{ $group->name }}
+                                </button>
+                            </td>
                             <td>{{ number_format($group->Total_with_tax, 2) }}</td>
                             <td>{{ \Str::limit($group->notes, 50) }}</td>
                             <td>{{$group->user->name}}</td>

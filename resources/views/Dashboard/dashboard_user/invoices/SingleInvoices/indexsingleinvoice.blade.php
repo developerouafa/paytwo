@@ -43,9 +43,9 @@
                                 <a class="btn btn-danger" href="{{route('SingleInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            {{-- @can('Delete Group SingleInvoice') --}}
+                            @can('Delete Group SingleInvoice')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                            {{-- @endcan --}}
+                            @endcan
                         </div>
                     </div>
                     @can('Show Single Invoices')
@@ -141,15 +141,13 @@
                                                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                                                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    {{-- @can('Delete Single Invoices')
-                                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" >
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
+                                                    @can('Delete Single Invoices')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                            data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
+                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                            <i class="las la-trash"></i>
+                                                        </a>
                                                     @endcan
-
-                                                    @can('Print Single Invoices')
-                                                        <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
-                                                    @endcan --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -173,7 +171,7 @@
                             <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
                                 type="button"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <form action="{{route('product.destroy')}}" method="post">
+                        <form action="{{route('SingleInvoices.destroysingleinvoice')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
                             <div class="modal-body">

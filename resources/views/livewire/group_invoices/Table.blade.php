@@ -55,8 +55,8 @@
                             @elseif ($group_invoice->type == 2)
                                 {{__('Dashboard/services.Okay')}}
                                 @can('Create Catch Payment')
-                                    @if ($fund_accountreceipt)
-                                        @if ($fund_accountreceipt->invoice->id == $group_invoice->id)
+                                    @if ($fund_accountpostpaid)
+                                        @if ($fund_accountpostpaid->invoice->id == $group_invoice->id)
                                             {{__('Dashboard/services.rcpyment')}}
                                         @else
                                             <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>

@@ -22,6 +22,11 @@ class ProductController extends Controller
       return  $this->Products->index();
     }
 
+    public function show($id)
+    {
+       return $this->Products->show($id);
+    }
+
     public function softdelete()
     {
       return  $this->Products->softdelete();

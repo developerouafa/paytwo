@@ -7,6 +7,9 @@ interface productRepositoryInterface
     //* get All Products
     public function index();
 
+    //* Show One Product
+    public function show($id);
+
     //* get All Softdelete
     public function softdelete();
 

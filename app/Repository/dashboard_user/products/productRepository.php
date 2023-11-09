@@ -20,6 +20,15 @@ class productRepository implements productRepositoryInterface
         return view('Dashboard/dashboard_user/Products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
+    public function show($id)
+    {
+        $product = product::findOrFail($id);
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_user/Products.Show',compact('product', 'childrens', 'sections', 'stockproduct'));
+    }
+
     public function softdelete()
     {
         $products = product::onlyTrashed()->latest()->productselect()->productwith()->get();

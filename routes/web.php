@@ -117,6 +117,7 @@ Route::get('/clear', function() {
             Route::group(['prefix' => 'Products'], function(){
                 Route::controller(ProductController::class)->group(function() {
                     Route::get('/index', 'index')->name('Products.index');
+                    Route::get('/Show_Product/{id}', 'show')->name('Product.show');
                     Route::get('/Deleted_Product', 'softdelete')->name('Products.softdelete');
                     Route::get('/create', 'create')->name('product.createprod');
                     Route::post('/store', 'store')->name('product.store');

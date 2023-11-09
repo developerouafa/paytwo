@@ -9,12 +9,12 @@ class InvoiceRepository implements InvoiceRepositoryInterface
 {
     public function indexsingleinvoice(){
         $invoices = invoice::latest()->get();
-        return view('Dashboard/dashboard_user/Invoices.SingleInvoices.invoices',compact('invoices'));
+        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('invoices'));
     }
 
     public function softdeletesingleinvoice(){
         $invoices = invoice::onlyTrashed()->latest()->get();
-        return view('Dashboard/dashboard_user/Invoices.SingleInvoices.invoices',compact('invoices'));
+        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('invoices'));
     }
 
     public function destroysingleinvoice($request){
@@ -25,12 +25,12 @@ class InvoiceRepository implements InvoiceRepositoryInterface
                     invoice::findOrFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('Invoices.SingleInvoices.indexsingleinvoice');
+                return redirect()->route('SingleInvoices.indexsingleinvoice');
             }
             catch(\Exception $exception){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Invoices.SingleInvoices.indexsingleinvoice');
+                return redirect()->route('SingleInvoices.indexsingleinvoice');
             }
         }
         // Delete Group Request
@@ -41,18 +41,18 @@ class InvoiceRepository implements InvoiceRepositoryInterface
                 invoice::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('Invoices.SingleInvoices.indexsingleinvoice');
+                return redirect()->route('SingleInvoices.indexsingleinvoice');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('Invoices.SingleInvoices.indexsingleinvoice');
+                return redirect()->route('SingleInvoices.indexsingleinvoice');
             }
         }
     }
 
     public function deleteallsingleinvoice(){
         DB::table('invoices')->delete();
-        return redirect()->route('Invoices.SingleInvoices.indexsingleinvoice');
+        return redirect()->route('SingleInvoices.indexsingleinvoice');
     }
 
     public function restoresingleinvoice($id){
@@ -61,11 +61,11 @@ class InvoiceRepository implements InvoiceRepositoryInterface
                 invoice::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('Invoices.SingleInvoices.softdeletesingleinvoice');
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
-            return redirect()->route('Invoices.SingleInvoices.softdeletesingleinvoice');
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }
     }
 
@@ -75,11 +75,11 @@ class InvoiceRepository implements InvoiceRepositoryInterface
             invoice::onlyTrashed()->find($id)->forcedelete();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.delete'));
-            return redirect()->route('Invoices.SingleInvoices.softdeletesingleinvoice');
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('message.error'));
-            return redirect()->route('Invoices.SingleInvoices.softdeletesingleinvoice');
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }
     }
 }

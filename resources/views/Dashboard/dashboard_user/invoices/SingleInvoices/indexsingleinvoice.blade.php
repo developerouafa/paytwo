@@ -89,31 +89,9 @@
                                                 <td>
                                                     @if ($single_invoice->type == 1)
                                                         {{__('Dashboard/services.monetary')}}
-                                                    @can('Create Receipt')
-                                                            @if ($fund_accountreceipt)
-                                                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
-                                                                    {{__('Dashboard/services.rcpyment')}}
-                                                                @else
-                                                                    <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
-                                                                @endif
-                                                            @else
-                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
-                                                            @endif
-                                                        @endcan
                                                     @elseif ($single_invoice->type == 0)
                                                         {{__('Dashboard/services.noselectionyet')}}
                                                     @elseif ($single_invoice->type == 2)
-                                                        @can('Create Catch Payment')
-                                                            @if ($fund_accountreceipt)
-                                                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
-                                                                    {{__('Dashboard/services.rcpyment')}}
-                                                                @else
-                                                                    <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
-                                                                @endif
-                                                            @else
-                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
-                                                            @endif
-                                                        @endcan
                                                         {{__('Dashboard/services.Okay')}}
                                                     @elseif ($single_invoice->type == 3)
                                                         {{__('Dashboard/services.Banktransfer')}}
@@ -124,7 +102,6 @@
                                                 <td>
                                                     @if ($single_invoice->invoice_status == 1)
                                                         {{__('Dashboard/services.New')}}
-                                                        <button wire:click="invoicestatus({{ $single_invoice->id }})" class="btn btn-primary btn-sm">{{__('Dashboard/services.Sent')}}</button>
                                                     @elseif ($single_invoice->invoice_status == 2)
                                                         {{__('Dashboard/services.Sent')}}
                                                     @elseif ($single_invoice->invoice_status == 3)
@@ -146,11 +123,7 @@
                                                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                                                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    @can('Edit Single Invoices')
-                                                        <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                                    @endcan
-
-                                                    @can('Delete Single Invoices')
+                                                    {{-- @can('Delete Single Invoices')
                                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" >
                                                             <i class="fa fa-trash"></i>
                                                         </button>
@@ -158,7 +131,7 @@
 
                                                     @can('Print Single Invoices')
                                                         <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
-                                                    @endcan
+                                                    @endcan --}}
                                                 </td>
                                             </tr>
                                         @endforeach

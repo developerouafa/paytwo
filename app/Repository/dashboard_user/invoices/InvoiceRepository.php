@@ -224,10 +224,10 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function indexgroupInvoices(){
-        $invoices = invoice::latest()->where('invoice_classify',1)->get();
+        $invoices = invoice::latest()->where('invoice_classify',2)->get();
         $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
         $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
-        return view('Dashboard/dashboard_user/invoices.GroupInvoices.indexgroupInvoices', [
+        return view('Dashboard/dashboard_user/invoices.GroupInvoices.indexgroupInvoice', [
             'group_invoices'=>$invoices,
             'fund_accountreceipt'=> $fund_accountreceipt,
             'fund_accountpostpaid'=> $fund_accountpostpaid,
@@ -235,12 +235,12 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function softdeletegroupInvoices(){
-        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',1)->get();
+        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',2)->get();
         return view('Dashboard/dashboard_user/invoices.GroupInvoices.softdeletegroupInvoices',compact('single_invoices'));
     }
 
     public function deleteallgroupInvoices(){
-        DB::table('invoices')->where('invoice_classify',1)->delete();
+        DB::table('invoices')->where('invoice_classify',2)->delete();
         return redirect()->route('GroupInvoices.indexgroupInvoices');
     }
 

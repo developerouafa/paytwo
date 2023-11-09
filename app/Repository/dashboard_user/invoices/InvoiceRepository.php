@@ -2,14 +2,21 @@
 namespace App\Repository\dashboard_user\Products;
 
 use App\Interfaces\dashboard_user\Invoices\InvoiceRepositoryInterface;
+use App\Models\fund_account;
 use App\Models\invoice;
 use Illuminate\Support\Facades\DB;
 
 class InvoiceRepository implements InvoiceRepositoryInterface
 {
     public function indexsingleinvoice(){
-        $invoices = invoice::latest()->get();
-        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice',compact('invoices'));
+        $invoices = invoice::latest()->where('invoice_classify',1)->get();
+        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
+        $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
+        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice', [
+            'single_invoices'=>$invoices,
+            'fund_accountreceipt'=> $fund_accountreceipt,
+            'fund_accountpostpaid'=> $fund_accountpostpaid,
+        ]);
     }
 
     public function softdeletesingleinvoice(){

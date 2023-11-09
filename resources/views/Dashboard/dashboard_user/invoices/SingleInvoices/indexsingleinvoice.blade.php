@@ -13,7 +13,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-children mb-0 my-auto">{{__('Dashboard/products.products')}}</h4>
+                <h4 class="content-title mb-0 my-auto"> {{__('Dashboard/services.invoices')}} </h4><span
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/      {{__('Dashboard/services.Singleservicebill')}} </span>
             </div>
         </div>
     </div>
@@ -38,10 +39,6 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Create Product Product')
-                                <a class="btn btn-primary" href="{{route('product.createprod')}}">{{__('Dashboard/products.addproduct')}}</a>
-                            @endcan
-
                             @can('Delete All Product')
                                 <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
@@ -451,60 +448,6 @@
     <!--Internal  Notify js -->
     <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('select[name="section"]').on('change', function() {
-                var sectionId = $(this).val();
-                if (sectionId) {
-                    $.ajax({
-                        url: "{{ URL::to('section') }}/" + sectionId,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="children"]').empty();
-                            $.each(data, function(key, value) {
-                                $('select[name="children"]').append('<option value="' +
-                                value + '">' + key + '</option>');
-                            });
-                        },
-                    });
-                } else {
-                    console.log('AJAX load did not work');
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $('#exampleModal2').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var name = button.data('name')
-            var description = button.data('description')
-            var section_id = button.data('section_id')
-            var children_id = button.data('children_id')
-            var price = button.data('price')
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #name').val(name);
-            modal.find('.modal-body #description').val(description);
-            modal.find('.modal-body #section_id').val(section_id);
-            modal.find('.modal-body #children_id').val(children_id);
-            modal.find('.modal-body #price').val(price);
-        })
-    </script>
-
-    <script>
-        $('#modaldemopromotion').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var price = button.data('price')
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #price').val(price);
-        })
-    </script>
 
     <script>
         $('#modaldemo9').on('show.bs.modal', function(event) {

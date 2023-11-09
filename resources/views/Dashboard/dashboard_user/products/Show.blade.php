@@ -453,5 +453,4 @@
             modal.find('.modal-body #name').val(name);
         })
     </script>
-
 @endsection

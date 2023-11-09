@@ -39,9 +39,9 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            {{-- @can('Delete All Product')
+                            @can('Delete All SingleInvoice')
                                 <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan --}}
+                            @endcan
 
                             {{-- @can('Delete Group Product')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
@@ -55,6 +55,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th> {{__('Dashboard/services.client')}} </th>
@@ -77,9 +78,18 @@
                                         @foreach ($single_invoices as $single_invoice)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
+                                                <td>
+                                                    <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                        <i class="fas fa-print"></i>
+                                                    </a>
+                                                </td>
                                                 <td>{{ $single_invoice->invoice_number }}</td>
-                                                <td>{{ $single_invoice->Service->name }}</td>
-                                                <td>{{ $single_invoice->Client->name }}</td>
+                                                <td>
+                                                    <a href="{{route('Product.show', $single_invoice->Service->id)}}">{{ $single_invoice->Service->name }}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('Clients.showinvoice',$single_invoice->client->id)}}">{{$single_invoice->client->name}}</a>
+                                                </td>
                                                 <td>{{ $single_invoice->invoice_date }}</td>
                                                 <td>{{ number_format($single_invoice->price, 2) }}</td>
                                                 <td>{{ number_format($single_invoice->discount_value, 2) }}</td>

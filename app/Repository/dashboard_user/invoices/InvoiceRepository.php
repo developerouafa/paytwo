@@ -58,7 +58,7 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function deleteallsingleinvoice(){
-        DB::table('invoices')->delete();
+        DB::table('invoices')->where('invoice_classify',1)->delete();
         return redirect()->route('SingleInvoices.indexsingleinvoice');
     }
 

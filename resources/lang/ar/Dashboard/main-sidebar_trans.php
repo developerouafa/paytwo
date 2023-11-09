@@ -21,6 +21,7 @@ return [
     'deletedsections' => 'القسم المحذوف',
     'deletedchildrens' => 'أطفال محذوفة',
     'deletedproducts' => 'المنتجات المحذوفة',
+    'deletedSingleservicebill' => 'فواتير لخدمة لواحدة المحذوفة',
     'deletedclients' => 'العملاء المحذوفين',
     'deletedreceipt' => 'الإيصال المحذوف',
     'deletedpayment' => 'الدفع المحذوف',

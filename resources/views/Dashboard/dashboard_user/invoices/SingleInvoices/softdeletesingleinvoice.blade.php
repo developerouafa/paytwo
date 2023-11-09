@@ -1,6 +1,6 @@
 @extends('Dashboard/layouts.master')
 @section('title')
-    {{__('Dashboard/main-sidebar_trans.Singleservicebill')}}
+    {{__('Dashboard/main-sidebar_trans.deletedSingleservicebill')}}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -14,7 +14,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto"> {{__('Dashboard/services.invoices')}} </h4><span
-                    class="text-muted mt-1 tx-13 mr-2 mb-0">/      {{__('Dashboard/services.Singleservicebill')}} </span>
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/      {{__('Dashboard/services.deletedSingleservicebill')}} </span>
             </div>
         </div>
     </div>

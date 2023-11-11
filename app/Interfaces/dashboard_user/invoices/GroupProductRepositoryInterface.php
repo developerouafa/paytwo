@@ -4,21 +4,21 @@ namespace App\Interfaces\dashboard_user\Invoices;
 
 interface GroupProductRepositoryInterface
 {
-    //* get All Softdeletesingleinvoice
-    public function indexsingleinvoice();
+    //* get All Group Product(services)
+    public function index();
 
-    //* get All Softdelete singleinvoice
-    public function softdeletesingleinvoice();
+    //* get All Softdelete Group Product(services)
+    public function softdelete();
 
-    //* destroy Invoice singleinvoice
+    //* View Group Product(services)
+    public function show($id);
+
+    //* destroy Group Product(services)
     public function destroy($request);
 
-    //* delete All Invoice singleinvoice
-    public function deleteallsingleinvoice();
+    //* delete All Group Product(services)
+    public function deleteall();
 
-    //* Invoice Status singleinvoice
-    public function invoicestatus($id);
-
-    //* Restore singleinvoice
-    public function restoresingleinvoice($id);
+    //* Restore Group Product(services)
+    public function restore($id);
 }

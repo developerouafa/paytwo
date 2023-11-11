@@ -14,14 +14,18 @@ class GroupproductController extends Controller
         $this->groupproducts = $groupproducts;
     }
 
-    public function indexsingleinvoice()
+    public function index()
     {
-      return  $this->groupproducts->indexsingleinvoice();
+      return  $this->groupproducts->index();
     }
 
-    public function softdeletesingleinvoice()
+    public function softdelete()
     {
-      return  $this->groupproducts->softdeletesingleinvoice();
+      return  $this->groupproducts->softdelete();
+    }
+
+    public function show($id){
+      return  $this->groupproducts->show($id);
     }
 
     public function destroy(Request $request)
@@ -29,8 +33,13 @@ class GroupproductController extends Controller
         return $this->groupproducts->destroy($request);
     }
 
-    public function deleteallsingleinvoice()
+    public function deleteall()
     {
-        return $this->groupproducts->deleteallsingleinvoice();
+        return $this->groupproducts->deleteall();
+    }
+
+    public function restore($id)
+    {
+        return $this->groupproducts->restore($id);
     }
 }

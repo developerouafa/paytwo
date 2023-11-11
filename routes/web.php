@@ -250,6 +250,21 @@ Route::get('/clear', function() {
 
         //############################# SingleInvoices route ##########################################
 
+                Route::group(['prefix' => 'GroupServices'], function(){
+                    Route::controller(InvoiceController::class)->group(function() {
+                        Route::get('/index', 'index')->name('GroupServices.index');
+                        // Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
+                        Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
+                        Route::delete('/destroysingleinvoice', 'destroy')->name('GroupServices.destroy');
+                        Route::get('/deleteallsingleinvoice', 'deleteall')->name('GroupServices.deleteall');
+                        Route::get('restoresingleinvoice/{id}', 'restore')->name('GroupServices.restore');
+                    });
+                });
+
+        //############################# end SingleInvoices route ######################################
+
+        //############################# SingleInvoices route ##########################################
+
             Route::group(['prefix' => 'SingleInvoices'], function(){
                 Route::controller(InvoiceController::class)->group(function() {
                     Route::get('/indexsingleinvoice', 'indexsingleinvoice')->name('SingleInvoices.indexsingleinvoice');
@@ -259,7 +274,6 @@ Route::get('/clear', function() {
                     Route::delete('/destroysingleinvoice', 'destroy')->name('SingleInvoices.destroy');
                     Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoice')->name('SingleInvoices.deleteallsingleinvoice');
                     Route::get('restoresingleinvoice/{id}', 'restoresingleinvoice')->name('SingleInvoices.restoresingleinvoice');
-                    Route::get('forcedeletesingleinvoice/{id}', 'forcedeletesingleinvoice')->name('SingleInvoices.forcedeletesingleinvoice');
                 });
             });
 
@@ -276,7 +290,6 @@ Route::get('/clear', function() {
                 Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
                 Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
                 Route::get('restoregroupInvoices/{id}', 'restoregroupInvoices')->name('GroupInvoices.restoregroupInvoices');
-                Route::get('forcedeletegroupInvoices/{id}', 'forcedeletegroupInvoices')->name('GroupInvoices.forcedeletegroupInvoices');
             });
         });
 

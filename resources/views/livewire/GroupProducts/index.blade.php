@@ -27,9 +27,7 @@
                         <tr>
                             <td>{{ $loop->iteration}}</td>
                             <td>
-                                <button wire:click="groupproduct({{ $group->id }})" class="btn btn-primary btn-sm">
-                                    {{ $group->name }}
-                                </button>
+                                {{ $group->name }}
                             </td>
                             <td>{{ number_format($group->Total_with_tax, 2) }}</td>
                             <td>{{ \Str::limit($group->notes, 50) }}</td>

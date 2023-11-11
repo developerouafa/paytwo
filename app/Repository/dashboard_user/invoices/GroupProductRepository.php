@@ -48,15 +48,15 @@ class GroupProductRepository implements GroupProductRepositoryInterface
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
-                invoice::onlyTrashed()->find($request->id)->forcedelete();
+                    groupprodcut::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+                return redirect()->route('GroupServices.softdelete');
             }
             catch(\Exception $exception){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+                return redirect()->route('GroupServices.softdelete');
             }
         }
         // Delete Group SoftDelete
@@ -65,16 +65,16 @@ class GroupProductRepository implements GroupProductRepositoryInterface
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
-                    invoice::where('id', $dl)->withTrashed()->forceDelete();
+                    groupprodcut::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+                return redirect()->route('GroupServices.softdelete');
             }
             catch(\Exception $exception){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+                return redirect()->route('GroupServices.softdelete');
             }
         }
         // Delete Group Request

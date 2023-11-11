@@ -79,7 +79,7 @@
                                                     </td>
                                                 @endcan
                                                 <td>
-                                                        {{ $group->name }}
+                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group->name }}</a>
                                                 </td>
                                                 <td>{{ number_format($group->Total_with_tax, 2) }}</td>
                                                 <td>{{ \Str::limit($group->notes, 50) }}</td>

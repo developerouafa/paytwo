@@ -39,7 +39,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All GroupInvoice')
-                                <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallgroupInvoices')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group GroupInvoice')
@@ -91,8 +91,8 @@
                                                     </a>
                                                 </td>
                                                 <td>{{ $group_invoice->invoice_number }}</td>
-                                                <td> {{ $group_invoice->Group->name }}
-                                                    {{-- <a href="{{route('Product.show', $group_invoice->Group->id)}}">{{ $group_invoice->Group->name }}</a> --}}
+                                                <td>
+                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group_invoice->Group->name }}</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{route('Clients.showinvoice',$group_invoice->client->id)}}">{{$group_invoice->client->name}}</a>

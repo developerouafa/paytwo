@@ -43,16 +43,16 @@
                                 <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallgroupInvoices')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            @can('Restore All GroupInvoice')
-                                <a class="btn btn-danger" href="{{route('GroupInvoices.restoreallgroupInvoices')}}">{{__('Dashboard/messages.restoreall')}}</a>
-                            @endcan
-
                             @can('Delete Group GroupInvoice softdelete')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
 
+                            @can('Restore All GroupInvoice')
+                                <a class="btn btn-info" href="{{route('GroupInvoices.restoreallgroupInvoices')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                            @endcan
+
                             @can('Restore Group GroupInvoice')
-                                <button type="button" class="btn btn-danger" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                                <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
                             @endcan
 
                         </div>
@@ -68,7 +68,7 @@
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             @can('Restore Group GroupInvoice')
-                                                <th><input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
+                                                <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
@@ -282,7 +282,7 @@
 
                 if (selected.length > 0) {
                     $('#restore').modal('show')
-                    $('input[id="delete_select_id"]').val(selected);
+                    $('input[id="restore_select_id"]').val(selected);
                 }
             });
         });

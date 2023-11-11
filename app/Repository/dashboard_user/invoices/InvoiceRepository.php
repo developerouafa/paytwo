@@ -263,7 +263,7 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     public function restoreallgroupInvoices($request)
     {
         try{
-            $restore_select_id = explode(",", $request->delete_select_id);
+            $restore_select_id = explode(",", $request->restore_select_id);
             DB::beginTransaction();
                 foreach($restore_select_id as $rs){
                     invoice::withTrashed()->where('id', $rs)->restore();

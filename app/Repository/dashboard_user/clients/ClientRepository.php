@@ -165,7 +165,8 @@ class ClientRepository implements ClientRepositoryInterface
         return view('Dashboard/dashboard_user/clients.invoices',compact('client', 'invoices', 'invoicesnomethodpay', 'invoicescatchpayment', 'invoicespostpaid', 'invoicesbanktransfer', 'invoicescard'));
     }
 
-    public function destroy_invoices_client($request){
+    public function destroy_invoices_client($request)
+    {
 
     }
 

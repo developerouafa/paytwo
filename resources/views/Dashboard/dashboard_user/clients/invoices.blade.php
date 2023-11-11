@@ -114,6 +114,15 @@
             <div class="tab-content border-left border-bottom border-right border-top-0 p-4">
                 <div class="tab-pane active" id="allinvoices">
                     <h1 style="color:deeppink">{{__('Dashboard/services.allinvoices')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="5" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
@@ -201,6 +210,15 @@
                 </div>
                 <div class="tab-pane" id="noselectionyet">
                     <h1 style="color:purple">{{__('Dashboard/services.noselectionyet')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="0" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
@@ -288,6 +306,15 @@
                 </div>
                 <div class="tab-pane" id="cashpyinvoice">
                     <h1 style="color: blue">{{__('Dashboard/clients_trans.cashpyinvoice')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="1" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
@@ -375,6 +402,15 @@
                 </div>
                 <div class="tab-pane" id="cashpyinvoicepaid">
                     <h1 style="color:darkred">{{__('Dashboard/clients_trans.cashpyinvoicepaid')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="2" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
@@ -462,6 +498,15 @@
                 </div>
                 <div class="tab-pane" id="banktransferpy">
                     <h1 style="color:darkblue">{{__('Dashboard/clients_trans.banktransferpy')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="3" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">
@@ -549,6 +594,15 @@
                 </div>
                 <div class="tab-pane" id="bankcardpy">
                     <h1 style="color:orangered">{{__('Dashboard/clients_trans.bankcardpy')}}</h1>
+                    <br/>
+                        <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="4" name="page_id">
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
+                        </form>
+                    <br/>
                     <!--div-->
                     <div class="col-xl-12">
                         <div class="card">

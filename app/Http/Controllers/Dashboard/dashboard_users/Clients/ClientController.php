@@ -42,6 +42,11 @@ class ClientController extends Controller
        return $this->Clients->showinvoice($id);
     }
 
+    public function destroy_invoices_client($request)
+    {
+       return $this->Clients->destroy_invoices_client($request);
+    }
+
     public function clientinvoice($id){
        return $this->Clients->clientinvoice($id);
     }

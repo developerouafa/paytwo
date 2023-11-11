@@ -28,6 +28,9 @@ interface ClientRepositoryInterface
     //* show Invoice Client
     public function showinvoice($id);
 
+    //* destroy_invoices_client
+    public function destroy_invoices_client($request);
+
     //* show Invoice Client Print
     public function clientinvoice($id);
 

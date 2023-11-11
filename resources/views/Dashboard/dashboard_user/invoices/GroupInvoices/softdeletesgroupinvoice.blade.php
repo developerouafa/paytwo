@@ -43,13 +43,17 @@
                                 <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallgroupInvoices')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            <a class="btn btn-danger" href="{{route('GroupInvoices.restoreallgroupInvoices')}}">Restore All</a>
+                            @can('Restore All GroupInvoice')
+                                <a class="btn btn-danger" href="{{route('GroupInvoices.restoreallgroupInvoices')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                            @endcan
 
                             @can('Delete Group GroupInvoice softdelete')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
 
-                            <button type="button" class="btn btn-danger" id="btn_restore_all">Restore Group</button>
+                            @can('Restore Group GroupInvoice')
+                                <button type="button" class="btn btn-danger" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                            @endcan
 
                         </div>
                     </div>
@@ -63,7 +67,9 @@
                                             @can('Delete Group GroupInvoice softdelete')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
-                                            <th><input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
+                                            @can('Restore Group GroupInvoice')
+                                                <th><input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
@@ -92,9 +98,11 @@
                                                         <input type="checkbox" name="delete_select" value="{{$group_invoice->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
-                                                <td>
-                                                    <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
-                                                </td>
+                                                @can('Restore Group GroupInvoice')
+                                                    <td>
+                                                        <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
                                                 <td>
                                                     <a href="{{route('Clients.clientinvoice', $group_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
@@ -151,8 +159,10 @@
                                                 <td> {{ $group_invoice->created_at->diffForHumans() }} </td>
                                                 <td> {{ $group_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
+                                                    @can('Restore Group GroupInvoice')
+                                                        <a href="{{route('GroupInvoices.restoregroupInvoices', $group_invoice->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                    @endcan
                                                     @can('Delete Group Invoices softdelete')
-                                                    <a href="{{route('GroupInvoices.restoregroupInvoices', $group_invoice->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                             data-id="{{ $group_invoice->id }}" data-name="{{ $group_invoice->invoice_number }}"
                                                             data-toggle="modal" href="#modaldemo9" title="Delete">

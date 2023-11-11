@@ -260,11 +260,14 @@ class InvoiceRepository implements InvoicesRepositoryInterface
         }
     }
 
-    public function restoreallgroupInvoices()
+    public function restoreallgroupInvoices($request)
     {
         try{
+            $restore_select_id = explode(",", $request->delete_select_id);
             DB::beginTransaction();
-                invoice::withTrashed()->where('invoice_classify', 2)->restore();
+                foreach($restore_select_id as $rs){
+                    invoice::withTrashed()->where('id', $rs)->restore();
+                }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('GroupInvoices.softdeletegroupInvoices');

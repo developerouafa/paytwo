@@ -48,6 +48,9 @@
                             @can('Delete Group GroupInvoice softdelete')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
+
+                            <button type="button" class="btn btn-danger" id="btn_restore_all">Restore Group</button>
+
                         </div>
                     </div>
                     @can('Show Group Invoices softdelete')
@@ -60,6 +63,7 @@
                                             @can('Delete Group GroupInvoice softdelete')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
+                                            <th><input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
@@ -88,6 +92,9 @@
                                                         <input type="checkbox" name="delete_select" value="{{$group_invoice->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
+                                                <td>
+                                                    <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
+                                                </td>
                                                 <td>
                                                     <a href="{{route('Clients.clientinvoice', $group_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
@@ -163,6 +170,8 @@
                     @can('Delete Group GroupInvoice softdelete')
                         @include('Dashboard.dashboard_user.invoices.GroupInvoices.delete_selectgroupinvoicesoftdelete')
                     @endcan
+                    @include('Dashboard.dashboard_user.invoices.GroupInvoices.restoreall')
+
                 </div>
             </div>
 
@@ -236,6 +245,33 @@
 
                 if (selected.length > 0) {
                     $('#delete_select').modal('show')
+                    $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_allrestore]").click(function(source) {
+                checkboxes = jQuery("[name=restore]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_restore_all").click(function () {
+                var selected = [];
+                $("#example input[name=restore]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#restore').modal('show')
                     $('input[id="delete_select_id"]').val(selected);
                 }
             });

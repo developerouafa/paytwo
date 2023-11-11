@@ -68,14 +68,14 @@ class GroupProductRepository implements GroupProductRepositoryInterface
     }
 
     public function deleteall(){
-        DB::table('invoices')->where('invoice_classify',1)->delete();
-        return redirect()->route('SingleInvoices.indexsingleinvoice');
+        DB::table('groupprodcuts')->delete();
+        return redirect()->route('GroupServices.index');
     }
 
     public function restore($id){
         try{
             DB::beginTransaction();
-                invoice::withTrashed()->where('id', $id)->restore();
+                groupprodcut::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('SingleInvoices.softdeletesingleinvoice');

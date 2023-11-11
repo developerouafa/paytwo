@@ -92,7 +92,7 @@
                                                 </td>
                                                 <td>{{ $group_invoice->invoice_number }}</td>
                                                 <td>
-                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group_invoice->Group->name }}</a>
+                                                    <a href="{{route('GroupServices.show', $group_invoice->id)}}">{{ $group_invoice->Group->name }}</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{route('Clients.showinvoice',$group_invoice->client->id)}}">{{$group_invoice->client->name}}</a>

@@ -42,7 +42,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All GroupServices')
-                                <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('GroupInvoices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group GroupServices')
@@ -57,6 +57,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            @can('Delete Group GroupServices')
+                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                                             <th>{{__('Dashboard/services.description')}}</th>
@@ -70,6 +73,11 @@
                                         @foreach ($groupservices as $group)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
+                                                @can('Delete Group GroupServices')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
                                                 <td>
                                                     {{-- <button wire:click="groupproduct({{ $group->id }})" class="btn btn-primary btn-sm"> --}}
                                                         {{ $group->name }}
@@ -91,6 +99,9 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @can('Delete Group GroupServices')
+                                            @include('Dashboard.dashboard_user.invoices.GroupProducts.delete_select')
+                                        @endcan
                                 </table>
                             </div>
                         </div>

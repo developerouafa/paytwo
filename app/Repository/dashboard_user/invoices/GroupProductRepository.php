@@ -55,14 +55,14 @@ class GroupProductRepository implements GroupProductRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                invoice::destroy($delete_select_id);
+                    groupprodcut::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.indexsingleinvoice');
+                return redirect()->route('GroupServices.index');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.indexsingleinvoice');
+                return redirect()->route('GroupServices.index');
             }
         }
     }

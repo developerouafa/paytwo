@@ -24,6 +24,7 @@ return [
     'deletedproducts' => 'deleted Products',
     'deletedSingleservicebill' => 'Deleted Invoices Single service bill',
     'deletedServicepackageinvoice' => 'Deleted Invoices Service package invoice',
+    'deletedGroupServices' => 'Deleted deletedGroupServices',
     'deletedclients' => 'deleted Clients',
     'deletedreceipt' => 'deleted Receipt',
     'deletedpayment' => 'deleted Payment',

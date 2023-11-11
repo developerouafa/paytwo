@@ -24,6 +24,7 @@ return [
     'deletedproducts' => 'المنتجات المحذوفة',
     'deletedSingleservicebill' => 'فواتير لخدمة لواحدة المحذوفة',
     'deletedServicepackageinvoice' => 'فواتير متعددةالخدمات المحذوفة',
+    'deletedGroupServices' => 'مجموعة الخدمات المحذوفة',
     'deletedclients' => 'العملاء المحذوفين',
     'deletedreceipt' => 'الإيصال المحذوف',
     'deletedpayment' => 'الدفع المحذوف',

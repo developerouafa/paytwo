@@ -4,6 +4,7 @@ return [
     'product'=>'Product',
     'products'=>'Products',
     'client'=>'Client',
+    'quantity'=>'Quantity',
     'clientphone'=>'Name Client & Number phone',
     'clients'=>'Clients',
     'services' => 'Services',

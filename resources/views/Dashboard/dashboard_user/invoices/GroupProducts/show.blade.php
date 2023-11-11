@@ -47,6 +47,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th> {{__('Dashboard/products.product')}} </th>
+                                            <th> {{__('Dashboard/services.quantity')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                                             <th>{{__('Dashboard/services.description')}}</th>
@@ -62,6 +63,7 @@
                                                 <td>
                                                     <a href="{{route('Product.show', $group->product->id)}}">{{ $group->product->name }}</a>
                                                 </td>
+                                                <td>{{ $group->quantity }}</td>
                                                 <td>{{ $group->groupprodcut->name }}</td>
                                                 <td>{{ number_format($group->groupprodcut->Total_with_tax, 2) }}</td>
                                                 <td>{{ \Str::limit($group->groupprodcut->notes, 50) }}</td>

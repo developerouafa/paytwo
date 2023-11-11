@@ -5,6 +5,7 @@ return [
     'product'=>'المنتج',
     'clients'=>'العملاء',
     'client'=>'العميل',
+    'quantity'=>'العميل',
     'clientphone'=>'اسم العميل و رقمه',
     'services' => 'خدمات',
     'group_services' => 'مجموعة خدمات',

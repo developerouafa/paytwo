@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Dashboard\dashboard_users\invoices;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\dashboard_user\Invoices\GroupProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GroupproductController extends Controller
 {
     private $groupproducts;
 
-    public function __construct( $groupproducts)
+    public function __construct(GroupProductRepositoryInterface $groupproducts)
     {
         $this->groupproducts = $groupproducts;
     }

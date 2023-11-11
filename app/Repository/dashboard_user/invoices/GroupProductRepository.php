@@ -3,26 +3,21 @@ namespace App\Repository\dashboard_user\Invoices;
 
 use App\Interfaces\dashboard_user\Invoices\GroupProductRepositoryInterface;
 use App\Models\fund_account;
+use App\Models\groupprodcut;
 use App\Models\invoice;
 use Illuminate\Support\Facades\DB;
 
 class GroupProductRepository implements GroupProductRepositoryInterface
 {
     public function index(){
-        $invoices = invoice::latest()->where('invoice_classify',1)->get();
-        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
-        $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
-
-        return view('Dashboard/dashboard_user/invoices.SingleInvoices.indexsingleinvoice', [
-            'single_invoices'=>$invoices,
-            'fund_accountreceipt'=> $fund_accountreceipt,
-            'fund_accountpostpaid'=> $fund_accountpostpaid
+        return view('Dashboard/dashboard_user/invoices.GroupProducts.index', [
+            'groupservices'=>groupprodcut::latest()->get()
         ]);
     }
 
     public function softdelete(){
-        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',1)->get();
-        return view('Dashboard/dashboard_user/invoices.SingleInvoices.softdeletesingleinvoice',compact('single_invoices'));
+        $single_invoices = groupprodcut::onlyTrashed()->latest()->where('invoice_classify',1)->get();
+        return view('Dashboard/dashboard_user/invoices.GroupProducts.softdelete',compact('single_invoices'));
     }
 
     public function show($id){

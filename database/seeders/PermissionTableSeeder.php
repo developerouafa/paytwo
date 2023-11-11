@@ -44,6 +44,8 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted Bank Card',
             'sidebar Deleted Singleservice',
             'sidebar Deleted groupservice',
+            'sidebar Details GroupServices',
+            'sidebar Deleted GroupServices',
             'Create User',
             'Show users',
             'Edit User',

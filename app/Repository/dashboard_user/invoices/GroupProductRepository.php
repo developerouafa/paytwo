@@ -5,6 +5,7 @@ use App\Interfaces\dashboard_user\Invoices\GroupProductRepositoryInterface;
 use App\Models\fund_account;
 use App\Models\groupprodcut;
 use App\Models\invoice;
+use App\Models\pivot_product_group;
 use Illuminate\Support\Facades\DB;
 
 class GroupProductRepository implements GroupProductRepositoryInterface
@@ -21,17 +22,10 @@ class GroupProductRepository implements GroupProductRepositoryInterface
     }
 
     public function show($id){
-        try{
-            DB::beginTransaction();
-                invoice::withTrashed()->where('id', $id)->restore();
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-        }catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('message.error'));
-            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-        }
+
+        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
+        return view('Dashboard/dashboard_user/invoices.GroupProducts.show',compact('product_group'));
+
     }
 
     public function destroy($request){

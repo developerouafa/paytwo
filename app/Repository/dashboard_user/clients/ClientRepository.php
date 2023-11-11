@@ -162,7 +162,6 @@ class ClientRepository implements ClientRepositoryInterface
         $invoicesbanktransfer = invoice::where('client_id', $client->id)->where('type', 3)->get();
         $invoicescard = invoice::where('client_id', $client->id)->where('type', 4)->get();
 
-
         // $invoices_statusNew = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 1)->get();
         // $invoices_statusSent = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 2)->get();
         // $invoices_statusUnderreview = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 3)->get();

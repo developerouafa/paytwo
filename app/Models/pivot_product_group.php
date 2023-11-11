@@ -9,6 +9,8 @@ class pivot_product_group extends Model
 {
     use HasFactory;
 
+    protected $table = 'Product_Group';
+
     protected $fillable = [
         'id',
         'product_id',

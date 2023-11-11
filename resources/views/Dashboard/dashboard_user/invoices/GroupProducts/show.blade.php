@@ -39,17 +39,6 @@
         <!-- Index -->
             <div class="col-xl-12">
                 <div class="card mg-b-20">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            @can('Delete All GroupServices')
-                                <a class="btn btn-danger" href="{{route('GroupServices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
-
-                            @can('Delete Group GroupServices')
-                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                            @endcan
-                        </div>
-                    </div>
                     @can('Show Group Services')
                         <div class="card-body">
                             <div class="table-responsive">
@@ -57,9 +46,6 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            @can('Delete Group GroupServices')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                                             <th>{{__('Dashboard/services.description')}}</th>
@@ -70,17 +56,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($groupservices as $group)
+                                        @foreach ($product_group as $group)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
-                                                @can('Delete Group GroupServices')
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
-                                                    </td>
-                                                @endcan
-                                                <td>
-                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group->name }}</a>
-                                                </td>
+                                                {{-- <td>{{ $group->name }}</td>
                                                 <td>{{ number_format($group->Total_with_tax, 2) }}</td>
                                                 <td>{{ \Str::limit($group->notes, 50) }}</td>
                                                 <td>{{$group->user->name}}</td>
@@ -94,12 +73,9 @@
                                                             <i class="las la-trash"></i>
                                                         </a>
                                                     @endcan
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
-                                        @can('Delete Group GroupServices')
-                                            @include('Dashboard.dashboard_user.invoices.GroupProducts.delete_select')
-                                        @endcan
                                 </table>
                             </div>
                         </div>
@@ -154,32 +130,5 @@
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
         })
-    </script>
-
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
-        })
-    </script>
-
-    <script type="text/javascript">
-        $(function () {
-            $("#btn_delete_all").click(function () {
-                var selected = [];
-                $("#example input[name=delete_select]:checked").each(function () {
-                    selected.push(this.value);
-                });
-
-                if (selected.length > 0) {
-                    $('#delete_select').modal('show')
-                    $('input[id="delete_select_id"]').val(selected);
-                }
-            });
-        });
     </script>
 @endsection

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BanktransferController;
 use App\Http\Controllers\Dashboard\dashboard_users\Clients\ClientController;
 use App\Http\Controllers\Dashboard\dashboard_users\childrens\childrenController;
+use App\Http\Controllers\Dashboard\dashboard_users\invoices\GroupproductController;
 use App\Http\Controllers\Dashboard\dashboard_users\invoices\InvoiceController;
 use App\Http\Controllers\Dashboard\dashboard_users\PaymentaccountController;
 use App\Http\Controllers\Dashboard\dashboard_users\ReceiptAccountController;
@@ -251,9 +252,9 @@ Route::get('/clear', function() {
         //############################# SingleInvoices route ##########################################
 
                 Route::group(['prefix' => 'GroupServices'], function(){
-                    Route::controller(InvoiceController::class)->group(function() {
+                    Route::controller(GroupproductController::class)->group(function() {
                         Route::get('/index', 'index')->name('GroupServices.index');
-                        // Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
+                        Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
                         Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
                         Route::delete('/destroysingleinvoice', 'destroy')->name('GroupServices.destroy');
                         Route::get('/deleteallsingleinvoice', 'deleteall')->name('GroupServices.deleteall');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\dashboard_users\groupproducts;
+namespace App\Http\Controllers\Dashboard\dashboard_users\invoices;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

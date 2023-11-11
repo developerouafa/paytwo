@@ -162,6 +162,15 @@ class ClientRepository implements ClientRepositoryInterface
         $invoicesbanktransfer = invoice::where('client_id', $client->id)->where('type', 3)->get();
         $invoicescard = invoice::where('client_id', $client->id)->where('type', 4)->get();
 
+
+        // $invoices_statusNew = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 1)->get();
+        // $invoices_statusSent = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 2)->get();
+        // $invoices_statusUnderreview = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 3)->get();
+        // $invoices_statusComplete = invoice::latest()->where('invoice_classify',1)->where('invoice_status', 3)->get();
+
+        // $invoices_typeDraft = invoice::latest()->where('invoice_classify',1)->where('invoice_type', 1)->get();
+        // $invoices_typePaid = invoice::latest()->where('invoice_classify',1)->where('invoice_type', 2)->get();
+        // $invoices_typeCanceled = invoice::latest()->where('invoice_classify',1)->where('invoice_type', 3)->get();
         return view('Dashboard/dashboard_user/clients.invoices',compact('client', 'invoices', 'invoicesnomethodpay', 'invoicescatchpayment', 'invoicespostpaid', 'invoicesbanktransfer', 'invoicescard'));
     }
 

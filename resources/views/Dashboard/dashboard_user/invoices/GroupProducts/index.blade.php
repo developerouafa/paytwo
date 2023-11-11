@@ -51,46 +51,48 @@
                         </div>
                     </div>
                     @can('Show Group Services')
-                        <div class="table-responsive">
-                            <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th> {{__('Dashboard/services.nameservice')}} </th>
-                                        <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
-                                        <th>{{__('Dashboard/services.description')}}</th>
-                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th>{{__('Dashboard/services.Processes')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($groupservices as $group)
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration}}</td>
-                                            <td>
-                                                {{-- <button wire:click="groupproduct({{ $group->id }})" class="btn btn-primary btn-sm"> --}}
-                                                    {{ $group->name }}
-                                                {{-- </button> --}}
-                                            </td>
-                                            <td>{{ number_format($group->Total_with_tax, 2) }}</td>
-                                            <td>{{ \Str::limit($group->notes, 50) }}</td>
-                                            <td>{{$group->user->name}}</td>
-                                            <td> {{ $group->created_at->diffForHumans() }} </td>
-                                            <td> {{ $group->updated_at->diffForHumans() }} </td>
-                                            <td>
-                                                @can('Edit Group Services')
-                                                    <button wire:click="edit({{ $group->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                                @endcan
-
-                                                @can('Delete Group Services')
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteGroup{{$group->id}}"><i class="fa fa-trash"></i></button>
-                                                @endcan
-                                            </td>
+                                            <th>#</th>
+                                            <th> {{__('Dashboard/services.nameservice')}} </th>
+                                            <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
+                                            <th>{{__('Dashboard/services.description')}}</th>
+                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th>{{__('Dashboard/services.Processes')}}</th>
                                         </tr>
-                                    @endforeach
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($groupservices as $group)
+                                            <tr>
+                                                <td>{{ $loop->iteration}}</td>
+                                                <td>
+                                                    {{-- <button wire:click="groupproduct({{ $group->id }})" class="btn btn-primary btn-sm"> --}}
+                                                        {{ $group->name }}
+                                                    {{-- </button> --}}
+                                                </td>
+                                                <td>{{ number_format($group->Total_with_tax, 2) }}</td>
+                                                <td>{{ \Str::limit($group->notes, 50) }}</td>
+                                                <td>{{$group->user->name}}</td>
+                                                <td> {{ $group->created_at->diffForHumans() }} </td>
+                                                <td> {{ $group->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Delete Group Services')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                            data-id="{{ $group->id }}" data-name="{{ $group->name }}"
+                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                            <i class="las la-trash"></i>
+                                                        </a>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                </table>
+                            </div>
                         </div>
                     @endcan
                 </div>
@@ -104,7 +106,7 @@
                             <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
                                 type="button"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <form action="{{route('GroupInvoices.destroy')}}" method="post">
+                        <form action="{{route('GroupServices.destroy')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
                             <div class="modal-body">

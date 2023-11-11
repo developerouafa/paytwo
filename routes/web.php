@@ -292,6 +292,7 @@ Route::get('/clear', function() {
                 Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
                 Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
                 Route::get('restoregroupInvoices/{id}', 'restoregroupInvoices')->name('GroupInvoices.restoregroupInvoices');
+                Route::get('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
             });
         });
 

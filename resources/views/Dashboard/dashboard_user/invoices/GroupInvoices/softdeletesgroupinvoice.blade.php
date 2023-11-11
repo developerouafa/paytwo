@@ -43,6 +43,8 @@
                                 <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallgroupInvoices')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
+                            <a class="btn btn-danger" href="{{route('GroupInvoices.restoreallgroupInvoices')}}">Restore All</a>
+
                             @can('Delete Group GroupInvoice softdelete')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -93,7 +95,7 @@
                                                 </td>
                                                 <td>{{ $group_invoice->invoice_number }}</td>
                                                 <td>
-                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group_invoice->Group->name }}</a>
+                                                    <a href="{{route('GroupServices.show', $group_invoice->id)}}">{{ $group_invoice->Group->name }}</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{route('Clients.showinvoice',$group_invoice->client->id)}}">{{$group_invoice->client->name}}</a>

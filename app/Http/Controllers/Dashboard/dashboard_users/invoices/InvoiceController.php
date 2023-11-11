@@ -64,4 +64,9 @@ class InvoiceController extends Controller
     {
         return $this->invoices->restoregroupInvoices($id);
     }
+
+    public function restoreallgroupInvoices()
+    {
+        return $this->invoices->restoreallgroupInvoices();
+    }
 }

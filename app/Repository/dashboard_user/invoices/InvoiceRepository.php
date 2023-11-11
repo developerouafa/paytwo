@@ -237,8 +237,8 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function softdeletegroupInvoices(){
-        $single_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',2)->get();
-        return view('Dashboard/dashboard_user/invoices.GroupInvoices.softdeletegroupInvoices',compact('single_invoices'));
+        $group_invoices = invoice::onlyTrashed()->latest()->where('invoice_classify',2)->get();
+        return view('Dashboard/dashboard_user/invoices.GroupInvoices.softdeletesgroupInvoice',compact('group_invoices'));
     }
 
     public function deleteallgroupInvoices(){
@@ -250,6 +250,21 @@ class InvoiceRepository implements InvoicesRepositoryInterface
         try{
             DB::beginTransaction();
                 invoice::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+        }
+    }
+
+    public function restoreallgroupInvoices()
+    {
+        try{
+            DB::beginTransaction();
+                invoice::withTrashed()->where('invoice_classify', 2)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('GroupInvoices.softdeletegroupInvoices');

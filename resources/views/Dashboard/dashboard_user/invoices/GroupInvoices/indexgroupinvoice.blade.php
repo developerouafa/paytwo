@@ -108,13 +108,13 @@
                                                         {{__('Dashboard/services.monetary')}}
                                                         @can('Create Receipt')
                                                             @if ($fund_accountreceipt)
-                                                                @if ($fund_accountreceipt->invoice->id == $single_invoice->id)
+                                                                @if ($fund_accountreceipt->invoice->id == $group_invoice->id)
                                                                     {{__('Dashboard/services.rcpyment')}}
                                                                 @else
-                                                                    <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                    <a href="{{route('Receipt.createrc',$group_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                                                                 @endif
                                                             @else
-                                                                <a href="{{route('Receipt.createrc',$single_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
+                                                                <a href="{{route('Receipt.createrc',$group_invoice->id)}}">{{__('Dashboard/receipt_trans.addreceipt')}}</a>
                                                             @endif
                                                         @endcan
                                                     @elseif ($group_invoice->type == 0)
@@ -123,13 +123,13 @@
                                                         {{__('Dashboard/services.Okay')}}
                                                         @can('Create Catch Payment')
                                                             @if ($fund_accountpostpaid)
-                                                                @if ($fund_accountpostpaid->invoice->id == $single_invoice->id)
+                                                                @if ($fund_accountpostpaid->invoice->id == $group_invoice->id)
                                                                     {{__('Dashboard/services.rcpyment')}}
                                                                 @else
-                                                                    <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                    <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                                                                 @endif
                                                             @else
-                                                                <a href="{{route('Payment.createpy',$single_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
+                                                                <a href="{{route('Payment.createpy',$group_invoice->id)}}">{{__('Dashboard/payment_trans.addpayment')}}</a>
                                                             @endif
                                                         @endcan
                                                     @elseif ($group_invoice->type == 3)

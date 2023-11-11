@@ -33,4 +33,7 @@ interface InvoicesRepositoryInterface
 
     //* Restore groupinvoice
     public function restoregroupInvoices($id);
+
+    //* Restore All groupinvoice
+    public function restoreallgroupInvoices();
 }

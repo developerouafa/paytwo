@@ -46,34 +46,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th> {{__('Dashboard/products.product')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
                                             <th>{{__('Dashboard/services.description')}}</th>
                                             <th>{{__('Dashboard/users.createdbyuser')}}</th>
                                             <th>{{__('Dashboard/sections_trans.created_at')}}</th>
                                             <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                            <th>{{__('Dashboard/services.Processes')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($product_group as $group)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
-                                                {{-- <td>{{ $group->name }}</td>
-                                                <td>{{ number_format($group->Total_with_tax, 2) }}</td>
-                                                <td>{{ \Str::limit($group->notes, 50) }}</td>
-                                                <td>{{$group->user->name}}</td>
-                                                <td> {{ $group->created_at->diffForHumans() }} </td>
-                                                <td> {{ $group->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    @can('Delete Group Services')
-                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $group->id }}" data-name="{{ $group->name }}"
-                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                            <i class="las la-trash"></i>
-                                                        </a>
-                                                    @endcan
-                                                </td> --}}
+                                                    <a href="{{route('Product.show', $group->product->id)}}">{{ $group->product->name }}</a>
+                                                </td>
+                                                <td>{{ $group->groupprodcut->name }}</td>
+                                                <td>{{ number_format($group->groupprodcut->Total_with_tax, 2) }}</td>
+                                                <td>{{ \Str::limit($group->groupprodcut->notes, 50) }}</td>
+                                                <td>{{$group->groupprodcut->user->name}}</td>
+                                                <td> {{ $group->groupprodcut->created_at->diffForHumans() }} </td>
+                                                <td> {{ $group->groupprodcut->updated_at->diffForHumans() }} </td>
                                             </tr>
                                         @endforeach
                                 </table>

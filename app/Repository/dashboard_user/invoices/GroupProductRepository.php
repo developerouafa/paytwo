@@ -39,48 +39,15 @@ class GroupProductRepository implements GroupProductRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                    invoice::findOrFail($request->id)->delete();
+                    groupprodcut::findOrFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.indexsingleinvoice');
+                return redirect()->route('GroupServices.index');
             }
             catch(\Exception $exception){
                 DB::rollBack();
                 toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.indexsingleinvoice');
-            }
-        }
-        // Delete One SoftDelete
-        if($request->page_id==3){
-            try{
-                DB::beginTransaction();
-                invoice::onlyTrashed()->find($request->id)->forcedelete();
-                DB::commit();
-                toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-            }
-            catch(\Exception $exception){
-                DB::rollBack();
-                toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-            }
-        }
-        // Delete Group SoftDelete
-        if($request->page_id==2){
-            try{
-                $delete_select_id = explode(",", $request->delete_select_id);
-                DB::beginTransaction();
-                foreach($delete_select_id as $dl){
-                    invoice::where('id', $dl)->withTrashed()->forceDelete();
-                }
-                DB::commit();
-                toastr()->success(trans('Dashboard/messages.delete'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
-            }
-            catch(\Exception $exception){
-                DB::rollBack();
-                toastr()->error(trans('Dashboard/messages.error'));
-                return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+                return redirect()->route('GroupServices.index');
             }
         }
         // Delete Group Request

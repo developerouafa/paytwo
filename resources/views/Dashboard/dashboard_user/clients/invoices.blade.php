@@ -118,7 +118,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="5" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>
@@ -214,7 +214,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="0" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>
@@ -310,7 +310,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="1" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>
@@ -406,7 +406,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="2" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>
@@ -502,7 +502,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="3" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>
@@ -598,7 +598,7 @@
                         <form action="{{route('Clients.destroy_invoices_client')}}" method="post">
                             {{ method_field('delete') }}
                             {{ csrf_field() }}
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" value="{{$client->id}}">
                                 <input type="hidden" value="4" name="page_id">
                                 <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.Deleteall')}}</button>
                         </form>

@@ -167,7 +167,114 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function destroy_invoices_client($request)
     {
-
+        if($request->page_id==5){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
+        if($request->page_id==0){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->where('type', 0)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
+        if($request->page_id==1){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->where('type', 1)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
+        if($request->page_id==2){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->where('type', 2)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
+        if($request->page_id==3){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->where('type', 3)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
+        if($request->page_id==4){
+            try{
+                $invoices = invoice::where('client_id', $request->id)->where('type', 4)->get();
+                foreach($invoices as $invoice){
+                    $delete_select_id = explode(",", $invoice->id);
+                    DB::beginTransaction();
+                        invoice::destroy($delete_select_id);
+                    DB::commit();
+                }
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->back();
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->back();
+            }
+        }
     }
 
     public function clientinvoice($id)

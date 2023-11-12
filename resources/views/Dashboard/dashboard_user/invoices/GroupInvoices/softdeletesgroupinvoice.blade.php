@@ -159,7 +159,7 @@
                                                 <td> {{ $group_invoice->created_at->diffForHumans() }} </td>
                                                 <td> {{ $group_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    @can('Restore Group GroupInvoice')
+                                                    @can('Restore One GroupInvoice')
                                                         <a href="{{route('GroupInvoices.restoregroupInvoices', $group_invoice->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                                     @endcan
                                                     @can('Delete Group Invoices softdelete')
@@ -180,7 +180,9 @@
                     @can('Delete Group GroupInvoice softdelete')
                         @include('Dashboard.dashboard_user.invoices.GroupInvoices.delete_selectgroupinvoicesoftdelete')
                     @endcan
-                    @include('Dashboard.dashboard_user.invoices.GroupInvoices.restoreall')
+                    @can('Restore Group GroupInvoice')
+                        @include('Dashboard.dashboard_user.invoices.GroupInvoices.restoreall')
+                    @endcan
 
                 </div>
             </div>

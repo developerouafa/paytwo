@@ -274,8 +274,10 @@ Route::get('/clear', function() {
                     Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
                     Route::get('/Deleted_Singleinvoice', 'softdeletesingleinvoice')->name('SingleInvoices.softdeletesingleinvoice');
                     Route::delete('/destroysingleinvoice', 'destroy')->name('SingleInvoices.destroy');
-                    Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoice')->name('SingleInvoices.deleteallsingleinvoice');
+                    Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoices')->name('SingleInvoices.deleteallsingleinvoice');
                     Route::get('restoresingleinvoice/{id}', 'restoresingleinvoice')->name('SingleInvoices.restoresingleinvoice');
+                    Route::get('restoreallsingleinvoice', 'restoreallsingleinvoices')->name('SingleInvoices.restoreallsingleinvoice');
+                    Route::post('restoreallselectsingleinvoice', 'restoreallselectsingleinvoices')->name('SingleInvoices.restoreallselectsingleinvoice');
                 });
             });
 
@@ -291,8 +293,9 @@ Route::get('/clear', function() {
                 Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
                 Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
                 Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
-                Route::get('restoregroupInvoices/{id}', 'restoregroupInvoices')->name('GroupInvoices.restoregroupInvoices');
-                Route::post('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
+                Route::get('restoregroupInvoices/{id}', 'restoregroupInvoice')->name('GroupInvoices.restoregroupInvoices');
+                Route::get('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
+                Route::post('restoreallselectgroupInvoices', 'restoreallselectgroupInvoices')->name('GroupInvoices.restoreallselectgroupInvoices');
             });
         });
 

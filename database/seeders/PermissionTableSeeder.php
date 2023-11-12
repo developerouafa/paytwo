@@ -147,7 +147,11 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Services',
             'View Invoices Client',
             'Restore All GroupInvoice',
-            'Restore Group GroupInvoice'
+            'Restore Group GroupInvoice',
+            'Restore One GroupInvoice',
+            'Restore All SingleInvoice',
+            'Restore Group SingleInvoice',
+            'Restore One SingleInvoice'
         ];
 
         foreach ($permissions as $permission) {

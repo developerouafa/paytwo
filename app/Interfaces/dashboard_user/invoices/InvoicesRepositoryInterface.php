@@ -14,13 +14,19 @@ interface InvoicesRepositoryInterface
     public function destroy($request);
 
     //* delete All Invoice singleinvoice
-    public function deleteallsingleinvoice();
+    public function deleteallsingleinvoices();
 
     //* Invoice Status singleinvoice
     public function invoicestatus($id);
 
     //* Restore singleinvoice
     public function restoresingleinvoice($id);
+
+    //* Restore All singleinvoice
+    public function restoreallsingleinvoices();
+
+    //* Restore Select singleinvoice
+    public function restoreallselectsingleinvoices($request);
 
     //* get All groupinvoice
     public function indexgroupInvoices();
@@ -35,5 +41,8 @@ interface InvoicesRepositoryInterface
     public function restoregroupInvoices($id);
 
     //* Restore All groupinvoice
-    public function restoreallgroupInvoices($request);
+    public function restoreallgroupInvoices();
+
+    //* Restore Select groupinvoice
+    public function restoreallselectgroupInvoices($request);
 }

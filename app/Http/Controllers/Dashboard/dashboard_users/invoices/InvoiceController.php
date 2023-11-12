@@ -30,9 +30,9 @@ class InvoiceController extends Controller
         return $this->invoices->destroy($request);
     }
 
-    public function deleteallsingleinvoice()
+    public function deleteallsingleinvoices()
     {
-        return $this->invoices->deleteallsingleinvoice();
+        return $this->invoices->deleteallsingleinvoices();
     }
 
     public function invoicestatus($id)
@@ -43,6 +43,16 @@ class InvoiceController extends Controller
     public function restoresingleinvoice($id)
     {
         return $this->invoices->restoresingleinvoice($id);
+    }
+
+    public function restoreallsingleinvoices()
+    {
+        return $this->invoices->restoreallsingleinvoices();
+    }
+
+    public function restoreallselectsingleinvoices(Request $request)
+    {
+        return $this->invoices->restoreallselectsingleinvoices($request);
     }
 
     public function indexgroupInvoices()
@@ -65,8 +75,13 @@ class InvoiceController extends Controller
         return $this->invoices->restoregroupInvoices($id);
     }
 
-    public function restoreallgroupInvoices(Request $request)
+    public function restoreallgroupInvoices()
     {
-        return $this->invoices->restoreallgroupInvoices($request);
+        return $this->invoices->restoreallgroupInvoices();
+    }
+
+    public function restoreallselectgroupInvoices(Request $request)
+    {
+        return $this->invoices->restoreallselectgroupInvoices($request);
     }
 }

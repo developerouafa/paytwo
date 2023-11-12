@@ -100,7 +100,7 @@ class InvoiceRepository implements InvoicesRepositoryInterface
         }
     }
 
-    public function deleteallsingleinvoice(){
+    public function deleteallsingleinvoices(){
         DB::table('invoices')->where('invoice_classify',1)->delete();
         return redirect()->route('SingleInvoices.indexsingleinvoice');
     }
@@ -224,6 +224,39 @@ class InvoiceRepository implements InvoicesRepositoryInterface
         }
     }
 
+    public function restoreallsingleinvoices()
+    {
+        try{
+            DB::beginTransaction();
+                invoice::withTrashed()->where('invoice_classify', 1)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+        }
+    }
+
+    public function restoreallselectsingleinvoices($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    invoice::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('SingleInvoices.softdeletesingleinvoice');
+        }
+    }
+
     public function indexgroupInvoices(){
         $invoices = invoice::latest()->where('invoice_classify',2)->get();
         $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
@@ -260,7 +293,22 @@ class InvoiceRepository implements InvoicesRepositoryInterface
         }
     }
 
-    public function restoreallgroupInvoices($request)
+    public function restoreallgroupInvoices()
+    {
+        try{
+            DB::beginTransaction();
+                invoice::withTrashed()->where('invoice_classify', 2)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+        }
+    }
+
+    public function restoreallselectgroupInvoices($request)
     {
         try{
             $restore_select_id = explode(",", $request->restore_select_id);

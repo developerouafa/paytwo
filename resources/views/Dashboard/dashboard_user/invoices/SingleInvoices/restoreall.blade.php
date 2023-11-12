@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('GroupInvoices.restoreallselectgroupInvoices', 'test') }}" method="post">
+            <form action="{{ route('SingleInvoices.restoreallselectsingleinvoice', 'test') }}" method="post">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <h5>{{trans('Dashboard/sections_trans.aresuredeleting')}}</h5>

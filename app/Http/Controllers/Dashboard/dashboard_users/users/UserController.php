@@ -276,7 +276,7 @@ class UserController extends Controller
         }
     }
 
-    public function restoreallselectusers($request)
+    public function restoreallselectusers(Request $request)
     {
         try{
             $restore_select_id = explode(",", $request->restore_select_id);

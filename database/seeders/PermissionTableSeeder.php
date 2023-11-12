@@ -56,6 +56,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Users softdelete',
             'Restore One User',
             'Restore Group Users',
+            'Restore All Users',
             'Delete One User softdelete',
             'Delete All Promotions',
             'Delete Group Promotions',

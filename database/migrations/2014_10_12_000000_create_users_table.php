@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('roles_name')->nullable();
             $table->tinyInteger('UserStatus')->default(0);
             $table->tinyInteger('Status')->default(0);
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

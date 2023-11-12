@@ -2,6 +2,7 @@
 
 return [
     'users' => "Users",
+    'deletedusers' => "Deleted Users",
     'addauser' => "Add User",
     'name' => "Name",
     'nameen' => "Name In English",

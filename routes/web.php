@@ -63,6 +63,11 @@ Route::get('/clear', function() {
                 Route::get('/clienttouserinvoice/{id}', 'clienttouserinvoice')->name('clienttouserinvoice');
                 Route::patch('/confirmpayment', 'confirmpayment')->name('Invoice.confirmpayment');
                 Route::patch('/refusedpayment', 'refusedpayment')->name('Invoice.refusedpayment');
+                Route::get('/Deleted_Users', 'softusers')->name('Users.softdeleteusers');
+                Route::get('/deleteallusers', 'deleteallusers')->name('Users.deleteallusers');
+                Route::get('restoreusers/{id}', 'restoreusers')->name('Users.restoreusers');
+                Route::get('restoreallusers', 'restoreallusers')->name('Users.restoreallusers');
+                Route::post('restoreallselectusers', 'restoreallselectusers')->name('Users.restoreallselectusers');
             });
         //############################# end Partie User|permissions|roles route ######################################
 

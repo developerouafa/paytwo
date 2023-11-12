@@ -1,6 +1,6 @@
 @extends('Dashboard/layouts.master')
 @section('title')
-{{__('Dashboard/users.users')}}
+{{__('Dashboard/users.deletedusers')}}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -13,7 +13,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/users.users')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.deletedusers')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/users.deletedusers')}}</span>
             </div>
         </div>
     </div>
@@ -34,13 +34,23 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    @can('Create User')
-                        <a class="btn btn-primary" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
+
+                    @can('Delete All Users')
+                        <a class="btn btn-danger" href="{{route('Users.deleteallusers')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                     @endcan
 
-                    @can('Delete Group Users')
+                    @can('Delete Group Users softdelete')
                         <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                     @endcan
+
+                    @can('Restore All Users')
+                        <a class="btn btn-info" href="{{route('Users.restoreusers')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                    @endcan
+
+                    @can('Restore Group Users')
+                        <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                    @endcan
+
                 </div>
             </div>
             @can('Show users')
@@ -50,15 +60,17 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    @can('Delete Group Users')
-                                        <th> {{__('Dashboard/messages.DeleteGroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                    @can('Delete Group Users softdelete')
+                                        <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                    @endcan
+                                    @can('Restore Group Users')
+                                        <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                     @endcan
                                     <th> {{__('Dashboard/users.name')}} </th>
                                     <th> {{__('Dashboard/users.phone')}} </th>
                                     <th> {{__('Dashboard/users.email')}} </th>
                                     <th> {{__('Dashboard/users.userstatus')}} </th>
                                     <th> {{__('Dashboard/users.usertype')}} </th>
-                                    <th> {{__('Dashboard/users.userolestaus')}} </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -66,9 +78,14 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        @can('Delete Group Users')
+                                        @can('Delete Group Users softdelete')
                                             <td>
                                                 <input type="checkbox" name="delete_select" value="{{$user->id}}" class="delete_select">
+                                            </td>
+                                        @endcan
+                                        @can('Restore Group Users')
+                                            <td>
+                                                <input type="checkbox" name="restore" value="{{$user->id}}" class="delete_select">
                                             </td>
                                         @endcan
                                         <td>{{ $user->name }}</td>
@@ -93,38 +110,24 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($user->Status == 1)
-                                                <span class="label text-success">
-                                                    <a href="{{route('editstatusdéactiveuser', $user->id)}}" class="ml-1 d-flex">
-                                                        <i class="text-warning ti-back-right"></i>
-                                                        <div class="dot-label bg-success ml-1"></div>
-                                                    </a>
-                                                </span>
-                                            @else
-                                                <span class="label text-danger">
-                                                    <a href="{{route('editstatusactiveuser', $user->id)}}" class="ml-1 d-flex">
-                                                        <i class="text-warning ti-back-right"></i>
-                                                        <div class="dot-label bg-danger ml-1"></div>
-                                                    </a>
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @can('Edit User')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="تعديل"><i class="las la-pen"></i></a>
+                                            @can('Restore One User')
+                                                <a href="{{route('Users.restoreusers', $user->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                             @endcan
-
-                                            @can('Delete User')
+                                            @can('Delete One User softdelete')
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
-                                                    class="las la-trash"></i></a>
+                                                    data-id="{{ $user->id }}" data-name="{{ $user->name }}"
+                                                    data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                    <i class="las la-trash"></i>
+                                                </a>
                                             @endcan
                                         </td>
                                     </tr>
-                                    @can('Delete Group Users')
-                                        @include('Dashboard.dashboard_user.users.delete_select')
+                                    @can('Delete Group Users softdelete')
+                                        @include('Dashboard.dashboard_user.users.delete_selectsoftdelete')
+                                    @endcan
+
+                                    @can('Restore Group Users')
+                                        @include('Dashboard.dashboard_user.users.restoreall')
                                     @endcan
                                 @endforeach
                             </tbody>
@@ -149,7 +152,7 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>{{__('Dashboard/users.aresureofthedeleting')}}</p><br>
-                        <input type="hidden" value="1" name="page_id">
+                        <input type="hidden" value="3" name="page_id">
                         <input type="hidden" name="user_id" id="user_id" value="">
                         <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
@@ -194,6 +197,33 @@
                 if (selected.length > 0) {
                     $('#delete_select').modal('show')
                     $('input[id="delete_select_id"]').val(selected);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(function() {
+            jQuery("[name=select_allrestore]").click(function(source) {
+                checkboxes = jQuery("[name=restore]");
+                for(var i in checkboxes){
+                    checkboxes[i].checked = source.target.checked;
+                }
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_restore_all").click(function () {
+                var selected = [];
+                $("#example input[name=restore]:checked").each(function () {
+                    selected.push(this.value);
+                });
+
+                if (selected.length > 0) {
+                    $('#restore').modal('show')
+                    $('input[id="restore_select_id"]').val(selected);
                 }
             });
         });

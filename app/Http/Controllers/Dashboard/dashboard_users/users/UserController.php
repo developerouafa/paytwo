@@ -175,6 +175,53 @@ class UserController extends Controller
                 return redirect()->route('users.index');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                $id = $request->user_id;
+                $tableimageuser = imageuser::where('user_id',$id)->first();
+                if(!empty($tableimageuser)){
+                    $image = $tableimageuser->image;
+
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
+                DB::beginTransaction();
+                    invoice::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(__('Dashboard/messages.delete'));
+                return redirect()->route('users.softdeleteusers');
+            }catch(\Exception $execption){
+                DB::rollBack();
+                toastr()->error(__('Dashboard/messages.error'));
+                return redirect()->route('users.softdeleteusers');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                $tableimageuser = imageuser::where('user_id',$delete_select_id)->first();
+                if(!empty($tableimageuser)){
+                    $image = $tableimageuser->image;
+
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
+                DB::beginTransaction();
+                foreach($delete_select_id as $dl){
+                    User::where('id', $dl)->withTrashed()->forceDelete();
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Users.softdeleteusers');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Users.softdeleteusers');
+            }
+        }
         // Delete Group Request
         else{
             try{
@@ -198,6 +245,53 @@ class UserController extends Controller
             }
         }
 
+    }
+
+    public function restoreusers($id){
+        try{
+            DB::beginTransaction();
+                User::withTrashed()->where('id', $id)->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Users.softdeleteusers');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Users.softdeleteusers');
+        }
+    }
+
+    public function restoreallusers()
+    {
+        try{
+            DB::beginTransaction();
+                User::withTrashed()->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Users.softdeleteusers');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Users.softdeleteusers');
+        }
+    }
+
+    public function restoreallselectusers($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    User::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Users.softdeleteusers');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Users.softdeleteusers');
+        }
     }
 
     public function editstatusactive($id)
@@ -411,5 +505,16 @@ class UserController extends Controller
             'invoice_status' => '3',
             'invoice_type' => '3',
         ]);
+    }
+
+    public function softusers(Request $request)
+    {
+        $users = User::onlyTrashed()->latest()->whereNot('id', '1')->whereNot('id', auth()->user()->id)->paginate(5);
+        return view('Dashboard/dashboard_user/users.softdeletesusers',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function deleteallusers(){
+        DB::table('users')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
+        return redirect()->route('Users.softdeleteusers');
     }
 }

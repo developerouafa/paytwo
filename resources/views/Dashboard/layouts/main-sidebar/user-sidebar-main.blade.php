@@ -33,6 +33,9 @@
                         @can('sidebar users')
                             <li><a class="slide-item" href="{{ url('/' . ($page = 'users')) }}">{{__('Dashboard/users.users')}}</a></li>
                         @endcan
+                        @can('sidebar Deleted users')
+                            <li><a class="slide-item" href="{{ url('/' . ($page = 'users')) }}">{{__('Dashboard/users.deletedusers')}}</a></li>
+                        @endcan
                         @can('sidebar permissions')
                            <li><a class="slide-item" href="{{ url('/' . ($page = 'roles')) }}">{{__('Dashboard/permissions.userpermissions')}}</a></li>
                         @endcan

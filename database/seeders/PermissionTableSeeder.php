@@ -16,6 +16,7 @@ class PermissionTableSeeder extends Seeder
         $permissions = [
             'sidebar users & permissions',
             'sidebar users',
+            'sidebar Deleted users',
             'sidebar permissions',
             'sidebar Section & Children',
             'sidebar section',

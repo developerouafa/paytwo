@@ -39,7 +39,7 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All GroupInvoice softdelete')
+                            @can('Delete All GroupInvoice')
                                 <a class="btn btn-danger" href="{{route('GroupInvoices.deleteallgroupInvoices')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 

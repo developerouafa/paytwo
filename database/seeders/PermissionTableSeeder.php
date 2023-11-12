@@ -55,8 +55,6 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Promotions',
             'Delete Group SingleInvoice',
             'Delete All SingleInvoice',
-            'Delete All SingleInvoice softdelete',
-            'Delete All GroupInvoice softdelete',
             'Delete Group GroupInvoice softdelete',
             'Delete All GroupServices',
             'Delete Group GroupServices',

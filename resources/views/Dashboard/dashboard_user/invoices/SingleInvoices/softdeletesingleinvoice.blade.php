@@ -39,7 +39,7 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All SingleInvoice softdelete')
+                            @can('Delete All SingleInvoice')
                                 <a class="btn btn-danger" href="{{route('SingleInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
@@ -47,13 +47,13 @@
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
 
-                            {{-- @can('Restore All SingleInvoice') --}}
+                            @can('Restore All SingleInvoice')
                                 <a class="btn btn-info" href="{{route('SingleInvoices.restoreallsingleinvoice')}}">{{__('Dashboard/messages.restoreall')}}</a>
-                            {{-- @endcan --}}
+                            @endcan
 
-                            {{-- @can('Restore Group SingleInvoice') --}}
+                            @can('Restore Group SingleInvoice')
                                 <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
-                            {{-- @endcan --}}
+                            @endcan
 
                         </div>
                     </div>
@@ -67,9 +67,9 @@
                                             @can('Delete Group SingleInvoice softdelete')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
-                                            {{-- @can('Restore Group SingleInvoice') --}}
+                                            @can('Restore Group SingleInvoice')
                                                 <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
-                                            {{-- @endcan --}}
+                                            @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
@@ -98,11 +98,11 @@
                                                         <input type="checkbox" name="delete_select" value="{{$single_invoice->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
-                                                {{-- @can('Restore Group SingleInvoice') --}}
+                                                @can('Restore Group SingleInvoice')
                                                     <td>
                                                         <input type="checkbox" name="restore" value="{{$single_invoice->id}}" class="delete_select">
                                                     </td>
-                                                {{-- @endcan --}}
+                                                @endcan
                                                 <td>
                                                     <a href="{{route('Clients.clientinvoice', $single_invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
                                                         <i class="fas fa-print"></i>
@@ -159,9 +159,9 @@
                                                 <td> {{ $single_invoice->created_at->diffForHumans() }} </td>
                                                 <td> {{ $single_invoice->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    {{-- @can('Restore One SingleInvoice') --}}
+                                                    @can('Restore One SingleInvoice')
                                                         <a href="{{route('SingleInvoices.restoresingleinvoice', $single_invoice->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                    {{-- @endcan --}}
+                                                    @endcan
                                                     @can('Delete Single Invoices softdelete')
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                             data-id="{{ $single_invoice->id }}" data-name="{{ $single_invoice->invoice_number }}"
@@ -180,9 +180,9 @@
                     @can('Delete Group SingleInvoice softdelete')
                         @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoicesoftdelete')
                     @endcan
-                    {{-- @can('Restore Group SingleInvoice') --}}
+                    @can('Restore Group SingleInvoice')
                         @include('Dashboard.dashboard_user.invoices.Singleinvoices.restoreall')
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
 

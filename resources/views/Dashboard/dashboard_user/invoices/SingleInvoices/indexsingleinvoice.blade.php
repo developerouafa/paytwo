@@ -39,10 +39,6 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All SingleInvoice')
-                                <a class="btn btn-danger" href="{{route('SingleInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
-
                             @can('Delete Group SingleInvoice')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -57,7 +53,7 @@
                                         <tr>
                                             <th>#</th>
                                             @can('Delete Group SingleInvoice')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th> {{__('Dashboard/services.print')}} </th>
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>

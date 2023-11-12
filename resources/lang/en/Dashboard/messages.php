@@ -14,5 +14,6 @@ return [
     'restore' => 'Restore',
     'deletee' => 'Delete',
     'restoreall' => 'Restore All',
-    'RestoreGroup' => 'Restore Group'
+    'RestoreGroup' => 'Restore Group',
+    'DeleteGroup' => 'Delete Group'
 ];

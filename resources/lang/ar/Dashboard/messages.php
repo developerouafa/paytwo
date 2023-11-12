@@ -14,5 +14,6 @@ return [
     'restore' => 'اعادته',
     'deletee' => 'حذف',
     'restoreall' => 'استعادة الكل',
-    'RestoreGroup' => 'استعادة بالمجموعة'
+    'RestoreGroup' => 'استعادة بالمجموعة',
+    'DeleteGroup' => 'حذف بالمجموعة'
 ];

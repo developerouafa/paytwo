@@ -65,8 +65,11 @@ class PaymentaccountController extends Controller
         return $this->Payment->restore($id);
     }
 
-    public function forcedelete($id)
-    {
-        return $this->Payment->forcedelete($id);
+    public function restoreallPaymentaccount(){
+        return $this->Payment->restoreallPaymentaccount();
+    }
+
+    public function restoreallselectPaymentaccount(Request $request){
+        return $this->Payment->restoreallselectPaymentaccount($request);
     }
 }

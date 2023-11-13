@@ -66,8 +66,11 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->restore($id);
     }
 
-    public function forcedelete($id)
-    {
-        return $this->Receipt->forcedelete($id);
+    public function restoreallReceiptAccount(){
+        return $this->Receipt->restoreallReceiptAccount();
+    }
+
+    public function restoreallselectReceiptAccount(Request $request){
+        return $this->Receipt->restoreallselectReceiptAccount($request);
     }
 }

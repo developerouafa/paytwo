@@ -36,6 +36,9 @@ interface ReceiptRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* restore all ReceiptAccount
+    public function restoreallReceiptAccount();
+
+    //* restore all select ReceiptAccount
+    public function restoreallselectReceiptAccount($request);
 }

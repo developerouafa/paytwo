@@ -24,6 +24,9 @@ interface PaymentgatewayRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* restore all Paymentgateway
+    public function restoreallPaymentgateway();
+
+    //* restore all select Paymentgateway
+    public function restoreallselectPaymentgateway($request);
 }

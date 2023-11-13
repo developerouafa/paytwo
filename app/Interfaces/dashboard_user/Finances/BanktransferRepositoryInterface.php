@@ -24,6 +24,9 @@ interface BanktransferRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* restore all Banktransfer
+    public function restoreallBanktransfer();
+
+    //* restore all select Banktransfer
+    public function restoreallselectBanktransfer($request);
 }

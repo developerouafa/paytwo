@@ -44,8 +44,11 @@ class BanktransferController extends Controller
         return $this->Banktransfer->restore($id);
     }
 
-    public function forcedelete($id)
-    {
-        return $this->Banktransfer->forcedelete($id);
+    public function restoreallBanktransfer(){
+        return $this->Banktransfer->restoreallBanktransfer();
+    }
+
+    public function restoreallselectBanktransfer(Request $request){
+        return $this->Banktransfer->restoreallselectBanktransfer($request);
     }
 }

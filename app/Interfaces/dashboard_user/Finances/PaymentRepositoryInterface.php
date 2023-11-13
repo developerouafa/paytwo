@@ -36,6 +36,9 @@ interface PaymentRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* restore all Paymentaccount
+    public function restoreallPaymentaccount();
+
+    //* restore all select Paymentaccount
+    public function restoreallselectPaymentaccount($request);
 }

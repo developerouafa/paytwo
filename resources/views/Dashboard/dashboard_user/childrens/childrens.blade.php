@@ -57,7 +57,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 @can('Delete Group Children Section')
-                                                    <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                    <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                                 @endcan
                                                 <th>{{__('Dashboard/sections_trans.children')}}</th>
                                                 <th>{{__('Dashboard/sections_trans.status')}}</th>
@@ -265,17 +265,6 @@
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #children').val(children);
-        })
-    </script>
-
-    <script>
-        $(function() {
-            jQuery("[name=select_all]").click(function(source) {
-                checkboxes = jQuery("[name=delete_select]");
-                for(var i in checkboxes){
-                    checkboxes[i].checked = source.target.checked;
-                }
-            });
         })
     </script>
 

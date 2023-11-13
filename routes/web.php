@@ -114,8 +114,10 @@ Route::get('/clear', function() {
                     Route::delete('/deletechild', 'destroy')->name('Children.delete');
                     Route::get('editstatusdéactivech/{id}', 'editstatusdéactive')->name('editstatusdéactivech');
                     Route::get('editstatusactivech/{id}', 'editstatusactive')->name('editstatusactivech');
+                    Route::get('/deleteall', 'deleteall')->name('Children.deleteall');
                     Route::get('restorech/{id}', 'restore')->name('restorech');
-                    Route::get('forcedeletech/{id}', 'forcedelete')->name('forcedeletech');
+                    Route::get('restoreallchildrens', 'restoreallchildrens')->name('Children.restoreallchildrens');
+                    Route::post('restoreallselectchildrens', 'restoreallselectchildrens')->name('Children.restoreallselectchildrens');
                 });
             });
         //############################# end Section & Children Section route ######################################

@@ -130,6 +130,39 @@ class childrenRepository implements childrenRepositoryInterface
                 return redirect()->route('Children_index');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                DB::beginTransaction();
+                    Section::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Children.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Children.softdelete');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                foreach($delete_select_id as $dl){
+                    Section::where('id', $dl)->withTrashed()->forceDelete();
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Children.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Children.softdelete');
+            }
+        }
         // Delete Group Request
         else{
             try{
@@ -147,6 +180,12 @@ class childrenRepository implements childrenRepositoryInterface
         }
     }
 
+    public function deleteall()
+    {
+        DB::table('sections')->child()->delete();
+        return redirect()->route('Children.index');
+    }
+
     public function restore($id)
     {
         try{
@@ -162,13 +201,31 @@ class childrenRepository implements childrenRepositoryInterface
         }
     }
 
-    public function forcedelete($id)
+    public function restoreallchildrens()
     {
         try{
             DB::beginTransaction();
-                Section::onlyTrashed()->find($id)->forcedelete();
+                Section::withTrashed()->restore();
             DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Children.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Children.softdelete');
+        }
+    }
+
+    public function restoreallselectchildrens($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    Section::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Children.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();

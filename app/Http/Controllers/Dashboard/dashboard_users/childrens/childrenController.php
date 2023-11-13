@@ -66,13 +66,23 @@ class childrenController extends Controller
         return $this->Sections->destroy($request);
     }
 
+    public function deleteall()
+    {
+        return $this->Sections->deleteall();
+    }
+
     public function restore($id)
     {
         return $this->Sections->restore($id);
     }
 
-    public function forcedelete($id)
+    public function restoreallchildrens()
     {
-        return $this->Sections->forcedelete($id);
+        return $this->Sections->restoreallchildrens();
+    }
+
+    public function restoreallselectchildrens(Request $request)
+    {
+        return $this->Sections->restoreallselectchildrens($request);
     }
 }

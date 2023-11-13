@@ -29,9 +29,15 @@ interface childrenRepositoryInterface
     //* destroy Children
     public function destroy($request);
 
+    //* delete All Children
+    public function deleteall();
+
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* Restore  All Children
+    public function restoreallchildrens();
+
+    //* Restore  All Select Children
+    public function restoreallselectchildrens($request);
 }

@@ -47,6 +47,39 @@ class BanktransferRepository implements BanktransferRepositoryInterface
                 return redirect()->route('Banktransfer.index');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                DB::beginTransaction();
+                banktransfer::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Banktransfer.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Banktransfer.softdelete');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                foreach($delete_select_id as $dl){
+                    banktransfer::where('id', $dl)->withTrashed()->forceDelete();
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Banktransfer.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Banktransfer.softdelete');
+            }
+        }
         // Delete Group Request
         else{
             try{
@@ -85,13 +118,31 @@ class BanktransferRepository implements BanktransferRepositoryInterface
         }
     }
 
-    public function forcedelete($id)
+    public function restoreallBanktransfer()
     {
         try{
             DB::beginTransaction();
-              banktransfer::onlyTrashed()->find($id)->forcedelete();
+                banktransfer::withTrashed()->restore();
             DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Banktransfer.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Banktransfer.softdelete');
+        }
+    }
+
+    public function restoreallselectBanktransfer($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    banktransfer::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Banktransfer.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();

@@ -178,6 +178,39 @@ class PaymentRepository implements PaymentRepositoryInterface
                 return redirect()->route('Payment.destroy');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                DB::beginTransaction();
+                PaymentAccount::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Payment.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Payment.softdelete');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                foreach($delete_select_id as $dl){
+                    PaymentAccount::where('id', $dl)->withTrashed()->forceDelete();
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('Payment.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('Payment.softdelete');
+            }
+        }
         // Delete Group Request
         else{
             try{
@@ -216,13 +249,13 @@ class PaymentRepository implements PaymentRepositoryInterface
         }
     }
 
-    public function forcedelete($id)
+    public function restoreallPaymentaccount()
     {
         try{
             DB::beginTransaction();
-                PaymentAccount::onlyTrashed()->find($id)->forcedelete();
+                PaymentAccount::withTrashed()->restore();
             DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();
@@ -230,4 +263,23 @@ class PaymentRepository implements PaymentRepositoryInterface
             return redirect()->route('Payment.softdelete');
         }
     }
+
+    public function restoreallselectPaymentaccount($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    PaymentAccount::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('Payment.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('Payment.softdelete');
+        }
+    }
+
 }

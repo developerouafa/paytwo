@@ -47,6 +47,39 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
                 return redirect()->route('paymentgateway.index');
             }
         }
+        // Delete One SoftDelete
+        if($request->page_id==3){
+            try{
+                DB::beginTransaction();
+                paymentgateway::onlyTrashed()->find($request->id)->forcedelete();
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('paymentgateway.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('paymentgateway.softdelete');
+            }
+        }
+        // Delete Group SoftDelete
+        if($request->page_id==2){
+            try{
+                $delete_select_id = explode(",", $request->delete_select_id);
+                DB::beginTransaction();
+                foreach($delete_select_id as $dl){
+                    paymentgateway::where('id', $dl)->withTrashed()->forceDelete();
+                }
+                DB::commit();
+                toastr()->success(trans('Dashboard/messages.delete'));
+                return redirect()->route('paymentgateway.softdelete');
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                toastr()->error(trans('Dashboard/messages.error'));
+                return redirect()->route('paymentgateway.softdelete');
+            }
+        }
         // Delete Group Request
         else{
             try{
@@ -85,13 +118,31 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
         }
     }
 
-    public function forcedelete($id)
+    public function restoreallPaymentgateway()
     {
         try{
             DB::beginTransaction();
-            paymentgateway::onlyTrashed()->find($id)->forcedelete();
+                paymentgateway::withTrashed()->restore();
             DB::commit();
-            toastr()->success(trans('Dashboard/messages.delete'));
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('paymentgateway.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('paymentgateway.softdelete');
+        }
+    }
+
+    public function restoreallselectPaymentgateway($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    paymentgateway::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('paymentgateway.softdelete');
         }catch(\Exception $exception){
             DB::rollBack();

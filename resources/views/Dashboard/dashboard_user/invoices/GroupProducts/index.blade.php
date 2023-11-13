@@ -41,10 +41,6 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All GroupServices')
-                                <a class="btn btn-danger" href="{{route('GroupServices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
-
                             @can('Delete Group GroupServices')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -75,7 +71,7 @@
                                                 <td>{{ $loop->iteration}}</td>
                                                 @can('Delete Group GroupServices')
                                                     <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
+                                                        {{__('Dashboard/messages.DeleteGroup')}} <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
                                                 <td>

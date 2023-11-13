@@ -112,4 +112,37 @@ class GroupProductRepository implements GroupProductRepositoryInterface
             return redirect()->route('SingleInvoices.softdeletesingleinvoice');
         }
     }
+
+    public function restoreallGroupServices()
+    {
+        try{
+            DB::beginTransaction();
+                groupprodcut::withTrashed()->restore();
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('GroupServices.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('GroupServices.softdelete');
+        }
+    }
+
+    public function restoreallselectGroupServices($request)
+    {
+        try{
+            $restore_select_id = explode(",", $request->restore_select_id);
+            DB::beginTransaction();
+                foreach($restore_select_id as $rs){
+                    groupprodcut::withTrashed()->where('id', $rs)->restore();
+                }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->route('GroupServices.softdelete');
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->route('GroupServices.softdelete');
+        }
+    }
 }

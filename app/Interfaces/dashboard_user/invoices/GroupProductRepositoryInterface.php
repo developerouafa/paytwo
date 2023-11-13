@@ -21,4 +21,10 @@ interface GroupProductRepositoryInterface
 
     //* Restore Group Product(services)
     public function restore($id);
+
+    //* Restore Group Product(services)
+    public function restoreallGroupServices();
+
+    //* Restore Group Product(services)
+    public function restoreallselectGroupServices($request);
 }

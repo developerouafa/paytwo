@@ -184,6 +184,7 @@ Route::get('/clear', function() {
                     Route::get('/clientinvoice/{id}', 'clientinvoice')->name('Clients.clientinvoice');
                     Route::get('/Deleted_Product', 'softdelete')->name('Clients.softdelete');
                     Route::delete('/destroy_invoices_client', 'destroy_invoices_client')->name('Clients.destroy_invoices_client');
+                    Route::delete('/destroy', 'destroy')->name('Clients.destroy');
                     Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');
                     Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');
                     Route::get('/deleteall', 'deleteall')->name('Clients.deleteall');
@@ -260,20 +261,22 @@ Route::get('/clear', function() {
 
         //############################# end BankCard route ######################################
 
-        //############################# SingleInvoices route ##########################################
+        //############################# GroupServices route ##########################################
 
                 Route::group(['prefix' => 'GroupServices'], function(){
                     Route::controller(GroupproductController::class)->group(function() {
                         Route::get('/index', 'index')->name('GroupServices.index');
                         Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
                         Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
-                        Route::delete('/destroysingleinvoice', 'destroy')->name('GroupServices.destroy');
-                        Route::get('/deleteallsingleinvoice', 'deleteall')->name('GroupServices.deleteall');
-                        Route::get('restoresingleinvoice/{id}', 'restore')->name('GroupServices.restore');
+                        Route::delete('/destroyGroupServices', 'destroy')->name('GroupServices.destroy');
+                        Route::get('/deleteallGroupServices', 'deleteall')->name('GroupServices.deleteall');
+                        Route::get('restoreGroupServices/{id}', 'restore')->name('GroupServices.restore');
+                        Route::get('restoreallGroupServices', 'restoreallGroupServices')->name('GroupServices.restoreallGroupServices');
+                        Route::post('restoreallselectGroupServices', 'restoreallselectGroupServices')->name('GroupServices.restoreallselectGroupServices');
                     });
                 });
 
-        //############################# end SingleInvoices route ######################################
+        //############################# end GroupServices route ######################################
 
         //############################# SingleInvoices route ##########################################
 
@@ -294,22 +297,20 @@ Route::get('/clear', function() {
         //############################# end SingleInvoices route ######################################
 
         //############################# SingleInvoices route ##########################################
-
-        Route::group(['prefix' => 'GroupInvoices'], function(){
-            Route::controller(InvoiceController::class)->group(function() {
-                Route::get('/indexgroupInvoices', 'indexgroupInvoices')->name('GroupInvoices.indexgroupInvoices');
-                Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('GroupInvoices.showinvoice');
-                Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
-                Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
-                Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
-                Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
-                Route::get('restoregroupInvoices/{id}', 'restoregroupInvoice')->name('GroupInvoices.restoregroupInvoices');
-                Route::get('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
-                Route::post('restoreallselectgroupInvoices', 'restoreallselectgroupInvoices')->name('GroupInvoices.restoreallselectgroupInvoices');
+            Route::group(['prefix' => 'GroupInvoices'], function(){
+                Route::controller(InvoiceController::class)->group(function() {
+                    Route::get('/indexgroupInvoices', 'indexgroupInvoices')->name('GroupInvoices.indexgroupInvoices');
+                    Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('GroupInvoices.showinvoice');
+                    Route::get('/invoice_status/{id}', 'invoicestatus')->name('invoicestatus');
+                    Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
+                    Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
+                    Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
+                    Route::get('restoregroupInvoices/{id}', 'restoregroupInvoice')->name('GroupInvoices.restoregroupInvoices');
+                    Route::get('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
+                    Route::post('restoreallselectgroupInvoices', 'restoreallselectgroupInvoices')->name('GroupInvoices.restoreallselectgroupInvoices');
+                });
             });
-        });
-
-    //############################# end SingleInvoices route ######################################
+        //############################# end SingleInvoices route ######################################
 
         // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         // Route::get('buy/{product_id}', [App\Http\Controllers\HomeController::class, 'buy'])->name('buy');

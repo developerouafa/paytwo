@@ -43,4 +43,12 @@ class GroupproductController extends Controller
     {
         return $this->groupproducts->restore($id);
     }
+
+    public function restoreallGroupServices(){
+        return $this->groupproducts->restoreallGroupServices();
+    }
+
+    public function restoreallselectGroupServices(Request $request){
+        return $this->groupproducts->restoreallselectGroupServices($request);
+    }
 }

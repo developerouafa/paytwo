@@ -48,6 +48,15 @@
                             @can('Delete Group GroupServices softdelete')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
+
+                            @can('Restore All GroupServices')
+                                <a class="btn btn-info" href="{{route('GroupServices.restoreallGroupServices')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                            @endcan
+
+                            @can('Restore Group GroupServices')
+                                <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                            @endcan
+
                         </div>
                     </div>
                     @can('Show Group Services')
@@ -59,6 +68,9 @@
                                             <th>#</th>
                                             @can('Delete Group GroupServices softdelete')
                                                 <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
+                                            @can('Restore Group GroupServices')
+                                                <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th> {{__('Dashboard/services.nameservice')}} </th>
                                             <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
@@ -78,6 +90,11 @@
                                                         <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
                                                     </td>
                                                 @endcan
+                                                @can('Restore Group GroupServices')
+                                                    <td>
+                                                        <input type="checkbox" name="restore" value="{{$group->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
                                                 <td>
                                                     <a href="{{route('GroupServices.show', $group->id)}}">{{ $group->name }}</a>
                                                 </td>
@@ -87,9 +104,12 @@
                                                 <td> {{ $group->created_at->diffForHumans() }} </td>
                                                 <td> {{ $group->updated_at->diffForHumans() }} </td>
                                                 <td>
-                                                    @can('Delete Group Services')
+                                                    @can('Restore One GroupServices')
+                                                        <a href="{{route('GroupServices.restore', $group->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                    @endcan
+                                                    @can('Delete Group Services softdelete')
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $group->id }}" data-name="{{ $group->name }}"
+                                                            data-id="{{ $group->id }}" data-name="{{ $group->invoice_number }}"
                                                             data-toggle="modal" href="#modaldemo9" title="Delete">
                                                             <i class="las la-trash"></i>
                                                         </a>

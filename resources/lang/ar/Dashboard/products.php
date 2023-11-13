@@ -62,5 +62,6 @@ return [
     'addimagesmain' => 'إضافة الصورة الرئيسية',
     'uploadmoreimage' => 'تحميل الصورة الرئيسية',
     'section_products' => 'كشف منتوجات القسم',
-    'children_products' => 'كشف منتوجات طفل القسم'
+    'children_products' => 'كشف منتوجات طفل القسم',
+    'nopromotion' => 'لا توجد تخفيضات'
 ];

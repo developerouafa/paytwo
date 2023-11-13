@@ -39,7 +39,6 @@
         <!-- Index -->
             <div class="col-xl-12">
                 <div class="card mg-b-20">
-                    @can('Show Group Services')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
@@ -61,7 +60,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
                                                 <td>
-                                                    <a href="{{route('Product.show', $group->product->id)}}">{{ $group->product->name }}</a>
+                                                    <a href="{{route('Invoices.showService', $group->product->id)}}">{{ $group->product->name }}</a>
                                                 </td>
                                                 <td>{{ $group->quantity }}</td>
                                                 <td>{{ $group->groupprodcut->name }}</td>
@@ -76,7 +75,6 @@
                                 </table>
                             </div>
                         </div>
-                    @endcan
                 </div>
             </div>
 
@@ -118,14 +116,4 @@
     <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
 
-    <script>
-        $('#modaldemo9').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var name = button.data('name')
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #name').val(name);
-        })
-    </script>
 @endsection

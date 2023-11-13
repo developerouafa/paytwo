@@ -67,8 +67,11 @@ Route::group(
                 Route::get('/showinvoice/{id}', 'showinvoice')->name('Invoices.showinvoice');
                 Route::get('/showinvoicent/{id}', 'showinvoicent')->name('Invoices.showinvoicent');
 
-                Route::get('/Show_Service/{id}', 'showService')->name('Product.showService');
+                Route::get('/Show_Service/{id}', 'showService')->name('Invoices.showService');
                 Route::get('/Show_Group_Services/{id}', 'showServices')->name('Invoices.showServices');
+
+                Route::get('/promotions/{id}', 'promotion')->name('promotion.promotion');
+                Route::get('/images/{id}', 'image')->name('image.image');
 
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');

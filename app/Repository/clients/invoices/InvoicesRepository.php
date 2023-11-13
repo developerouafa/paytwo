@@ -9,12 +9,15 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
+use App\Models\mainimageproduct;
+use App\Models\multipimage;
 use App\Models\order;
 use App\Models\paymentaccount;
 use App\Models\paymentgateway;
 use App\Models\pivot_product_group;
 use App\Models\product;
 use App\Models\profileclient;
+use App\Models\promotion;
 use App\Models\receipt_account;
 use App\Models\receiptdocument;
 use App\Models\Section;
@@ -338,6 +341,20 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
     }
 
+    public function promotion($id)
+    {
+        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
+        $product = product::where('id', $id)->first();
+        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
+    }
+
+    public function image($id)
+    {
+        $Product = product::where('id',$id)->firstOrFail();
+        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
+        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
+        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
+    }
 
     public function showServices($id){
         $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();

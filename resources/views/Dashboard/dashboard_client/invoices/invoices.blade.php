@@ -76,9 +76,13 @@
                                                 @endif
                                             </td>
                                             @if ($invoice->invoice_classify == 1)
-                                                <td>{{ $invoice->Service->name }}</td>
+                                                <td>
+                                                    <a href="{{route('Invoices.showService', $invoice->Service->id)}}">{{ $invoice->Service->name }}</a>
+                                                </td>
                                             @elseif ($invoice->invoice_classify == 2)
-                                                <td>{{ $invoice->Group->name }}</td>
+                                                <td>
+                                                    <a href="{{route('Invoices.showServices', $invoice->Group->id)}}">{{ $invoice->Group->name }}</a>
+                                                </td>
                                             @endif
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>

@@ -73,14 +73,6 @@ Route::group(
                 Route::get('/promotions/{id}', 'promotion')->name('promotion.promotion');
                 Route::get('/images/{id}', 'image')->name('image.image');
 
-                Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
-                Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');
-                Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
-                Route::get('/showinvoicePostpaidnt/{id}', 'showinvoicePostpaidnt')->name('Invoices.showinvoicePostpaidnt');
-                Route::get('/showinvoicebanktransfer/{id}', 'showinvoicebanktransfer')->name('Invoices.showinvoicebanktransfer');
-                Route::get('/showinvoicebanktransfernt/{id}', 'showinvoicebanktransfernt')->name('Invoices.showinvoicebanktransfernt');
-                Route::get('/showinvoicecard/{id}', 'showinvoicecard')->name('Invoices.showinvoicecard');
-                Route::get('/showinvoicecardnt/{id}', 'showinvoicecardnt')->name('Invoices.showinvoicecardnt');
                 Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
                 Route::get('/showinvoicereceipt/{id}', 'showinvoicereceipt')->name('Invoices.showinvoicereceipt');
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');

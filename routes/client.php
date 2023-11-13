@@ -66,6 +66,10 @@ Route::group(
                 Route::get('/Errorinpayment/{id}', 'Errorinpayment')->name('Invoice.Errorinpayment');
                 Route::get('/showinvoice/{id}', 'showinvoice')->name('Invoices.showinvoice');
                 Route::get('/showinvoicent/{id}', 'showinvoicent')->name('Invoices.showinvoicent');
+
+                Route::get('/Show_Service/{id}', 'showService')->name('Product.showService');
+                Route::get('/Show_Group_Services/{id}', 'showServices')->name('Invoices.showServices');
+
                 Route::get('/showinvoicemonetary/{id}', 'showinvoicemonetary')->name('Invoices.showinvoicemonetary');
                 Route::get('/showinvoicemonetarynt/{id}', 'showinvoicemonetarynt')->name('Invoices.showinvoicemonetarynt');
                 Route::get('/showinvoicePostpaid/{id}', 'showinvoicePostpaid')->name('Invoices.showinvoicePostpaid');
@@ -78,6 +82,7 @@ Route::group(
                 Route::get('/showinvoicereceipt/{id}', 'showinvoicereceipt')->name('Invoices.showinvoicereceipt');
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
                 Route::get('/showinvoicereceiptPostpaid/{id}', 'showinvoicereceiptPostpaid')->name('Invoices.showinvoicereceiptPostpaid');
+
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
                 Route::get('receiptpostpaid/{id}', 'receiptpostpaid')->name('Invoices.receiptpostpaid');
                 Route::post('modifypymethod', 'modifypymethod')->name('Invoices.modifypymethod');

@@ -12,9 +12,13 @@ use App\Models\invoice;
 use App\Models\order;
 use App\Models\paymentaccount;
 use App\Models\paymentgateway;
+use App\Models\pivot_product_group;
+use App\Models\product;
 use App\Models\profileclient;
 use App\Models\receipt_account;
 use App\Models\receiptdocument;
+use App\Models\Section;
+use App\Models\stockproduct;
 use App\Models\User;
 use App\Notifications\clienttouser;
 use App\Notifications\clienttouserinvoice;
@@ -324,6 +328,14 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function showinvoicereceiptPostpaid($id){
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
+    }
+
+    public function showService($id)
+    {
+    }
+
+
+    public function showServices($id){
     }
 
     public function printreceipt($id){

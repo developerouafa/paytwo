@@ -22,10 +22,8 @@ class GroupProductRepository implements GroupProductRepositoryInterface
     }
 
     public function show($id){
-
         $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
         return view('Dashboard/dashboard_user/invoices.GroupProducts.show',compact('product_group'));
-
     }
 
     public function destroy($request){

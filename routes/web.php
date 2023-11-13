@@ -188,7 +188,8 @@ Route::get('/clear', function() {
                     Route::get('editstatusactivecl/{id}', 'editstatusactive')->name('editstatusactivecl');
                     Route::get('/deleteall', 'deleteall')->name('Clients.deleteall');
                     Route::get('restorecl/{id}', 'restore')->name('restorecl');
-                    Route::get('forcedeletecl/{id}', 'forcedelete')->name('forcedeletecl');
+                    Route::get('restoreallclients', 'restoreallclients')->name('Clients.restoreallclients');
+                    Route::post('restoreallselectclients', 'restoreallselectclients')->name('Clients.restoreallselectclients');
                 });
             });
         //############################# end Clients route ######################################

@@ -46,6 +46,9 @@ interface ClientRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* Restore All Clients
+    public function restoreallclients();
+
+    //* Restore All Select Clients
+    public function restoreallselectclients($request);
 }

@@ -101,8 +101,13 @@ class ClientController extends Controller
         return $this->Clients->restore($id);
     }
 
-    public function forcedelete($id)
+    public function restoreallclients()
     {
-        return $this->Clients->forcedelete($id);
+        return $this->Clients->restoreallclients();
+    }
+
+    public function restoreallselectclients(Request $request)
+    {
+        return $this->Clients->restoreallselectclients($request);
     }
 }

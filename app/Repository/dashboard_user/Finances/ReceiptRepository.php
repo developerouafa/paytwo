@@ -86,10 +86,10 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 $message = __('Dashboard/main-header_trans.nicasereceipt');
                 Notification::send($client, new catchreceipt($user_create_id, $invoice_id, $message));
 
-                $mailclient = Client::findorFail($request->client_id);
-                $nameclient = $mailclient->name;
-                $url = url('en/Invoices/receipt/'.$invoice_id);
-                Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
+                // $mailclient = Client::findorFail($request->client_id);
+                // $nameclient = $mailclient->name;
+                // $url = url('en/Invoices/receipt/'.$invoice_id);
+                // Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
             return redirect()->route('Receipt.index');
@@ -139,10 +139,10 @@ class ReceiptRepository implements ReceiptRepositoryInterface
             $message = __('Dashboard/main-header_trans.nicasereceiptup');
             Notification::send($client, new catchreceipt($user_create_id, $invoice_id, $message));
 
-            $mailclient = Client::findorFail($request->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/receipt/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
+            // $mailclient = Client::findorFail($request->client_id);
+            // $nameclient = $mailclient->name;
+            // $url = url('en/Invoices/receipt/'.$invoice_id);
+            // Mail::to($mailclient->email)->send(new CatchreceiptMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

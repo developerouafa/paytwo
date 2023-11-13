@@ -23,5 +23,7 @@ return [
     'print' => 'Print',
     'Print preview' => 'Print preview',
     'Print a document' => 'Print a document',
-    'Catch Receipt' => 'Catch Receipt'
+    'Catch Receipt' => 'Catch Receipt',
+    'viewreceipt' => 'View Receipt',
+    'noreceipt' => 'There is no bond yet',
 ];

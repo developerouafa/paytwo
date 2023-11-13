@@ -43,6 +43,7 @@
                                         <th> {{__('Dashboard/services.print')}} </th>
                                         <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th> {{__('Dashboard/services.nameservice')}} </th>
+                                        <th> {{__('Dashboard/receipt_trans.Catch Receipt')}} </th>
                                         <th> {{__('Dashboard/services.client')}} </th>
                                         <th> {{__('Dashboard/services.dateinvoice')}} </th>
                                         <th> {{__('Dashboard/services.priceservice')}} </th>
@@ -68,7 +69,7 @@
                                             </td>
                                             <td>
                                                 @if ($invoice->invoice_type == 1)
-                                                    <a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                    <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
                                                 @else
                                                     {{$invoice->invoice_number}}
                                                 @endif
@@ -78,6 +79,17 @@
                                             @elseif ($invoice->invoice_classify == 2)
                                                 <td>{{ $invoice->Group->name }}</td>
                                             @endif
+                                            <td>
+                                                @if ($fund_accountreceipt)
+                                                    @if ($fund_accountreceipt->invoice->id == $invoice->id)
+                                                        <a href="{{route('Invoices.showinvoicereceipt',$invoice->id)}}">{{__('Dashboard/receipt_trans.viewreceipt')}}</a>
+                                                    @else
+                                                        {{__('Dashboard/receipt_trans.noreceipt')}}
+                                                    @endif
+                                                @else
+                                                {{__('Dashboard/receipt_trans.noreceipt')}}
+                                                @endif
+                                            </td>
                                             <td>{{ $invoice->Client->name }}</td>
                                             <td>{{ $invoice->invoice_date }}</td>
                                             <td>{{ number_format($invoice->price, 2) }}</td>

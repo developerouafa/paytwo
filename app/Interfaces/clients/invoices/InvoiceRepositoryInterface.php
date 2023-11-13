@@ -46,8 +46,14 @@ interface InvoiceRepositoryInterface
     //* Receipt Invoices notifications
     public function showinvoicereceiptnt($id);
 
+    //* Receipt Invoices
+    public function showinvoicereceipt($id);
+
     //* PostPaid Invoices notifications
     public function showinvoicereceiptPostpaidnt($id);
+
+    //* PostPaid Invoices
+    public function showinvoicereceiptPostpaid($id);
 
     //* Receipt Invoices
     public function receipt($id);

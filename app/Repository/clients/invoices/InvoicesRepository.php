@@ -35,12 +35,14 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function indexmonetary(){
         $invoices = invoice::latest()->where('type', '1')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesmonetary', ['invoices' => $invoices]);
+        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
+        return view('Dashboard.dashboard_client.invoices.invoicesmonetary', ['invoices' => $invoices, 'fund_accountreceipt' => $fund_accountreceipt]);
     }
 
     public function indexPostpaid(){
         $invoices = invoice::latest()->where('type', '2')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesPostpaid', ['invoices' => $invoices]);
+        $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
+        return view('Dashboard.dashboard_client.invoices.invoicesPostpaid', ['invoices' => $invoices, 'fund_accountpostpaid' => $fund_accountpostpaid]);
     }
 
     public function indexbanktransfer(){
@@ -145,10 +147,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                     $message = __('Dashboard/users.pyupdatent');
                     Notification::send($user, new clienttouser($invoice_id, $message));
 
-                    $mailuser = User::findorFail($modifypymethodinvoice->user_id);
-                    $nameuser = $mailuser->name;
-                    $url = url('en/showpinvoicent/'.$invoice_id);
-                    Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
+                    // $mailuser = User::findorFail($modifypymethodinvoice->user_id);
+                    // $nameuser = $mailuser->name;
+                    // $url = url('en/showpinvoicent/'.$invoice_id);
+                    // Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
@@ -215,10 +217,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                             $message = __('Dashboard/users.billpaid');
                             Notification::send($user, new clienttouserinvoice($invoice_id, $message));
 
-                            $mailuser = User::findorFail($completepyinvoice->user_id);
-                            $nameuser = $mailuser->name;
-                            $url = url('en/showpinvoicent/'.$invoice_id);
-                            Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+                            // $mailuser = User::findorFail($completepyinvoice->user_id);
+                            // $nameuser = $mailuser->name;
+                            // $url = url('en/showpinvoicent/'.$invoice_id);
+                            // Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
 
                         DB::commit();
                         toastr()->success(trans('Dashboard/messages.add'));
@@ -307,10 +309,20 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
     }
 
+    public function showinvoicereceipt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
+    }
+
     public function showinvoicereceiptPostpaidnt($id){
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\catchpayment')->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
+    }
+
+    public function showinvoicereceiptPostpaid($id){
+        $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
     }
 
@@ -405,10 +417,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                 $message = __('Dashboard/users.billpaid');
                 Notification::send($user, new clienttouserinvoice($invoice_id, $message));
 
-                $mailuser = User::findorFail($order->invoice->user_id);
-                $nameuser = $mailuser->name;
-                $url = url('en/showpinvoicent/'.$invoice_id);
-                Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+                // $mailuser = User::findorFail($order->invoice->user_id);
+                // $nameuser = $mailuser->name;
+                // $url = url('en/showpinvoicent/'.$invoice_id);
+                // Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
 
 
         } catch (\Exception $ex) {

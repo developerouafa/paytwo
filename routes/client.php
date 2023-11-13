@@ -75,7 +75,9 @@ Route::group(
                 Route::get('/showinvoicecard/{id}', 'showinvoicecard')->name('Invoices.showinvoicecard');
                 Route::get('/showinvoicecardnt/{id}', 'showinvoicecardnt')->name('Invoices.showinvoicecardnt');
                 Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
+                Route::get('/showinvoicereceipt/{id}', 'showinvoicereceipt')->name('Invoices.showinvoicereceipt');
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
+                Route::get('/showinvoicereceiptPostpaid/{id}', 'showinvoicereceiptPostpaid')->name('Invoices.showinvoicereceiptPostpaid');
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
                 Route::get('receiptpostpaid/{id}', 'receiptpostpaid')->name('Invoices.receiptpostpaid');
                 Route::post('modifypymethod', 'modifypymethod')->name('Invoices.modifypymethod');

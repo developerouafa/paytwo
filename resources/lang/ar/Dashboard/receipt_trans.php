@@ -23,5 +23,7 @@ return [
     'print' => 'مطبعة',
     'Print preview' => 'معاينة الطباعة',
     'Print a document' => 'طباعه سند',
-    'Catch Receipt' => 'سند قبض'
+    'Catch Receipt' => 'سند قبض',
+    'viewreceipt' => 'مشاهدة سند',
+    'noreceipt' => 'لا يوجد سند بعد',
 ];

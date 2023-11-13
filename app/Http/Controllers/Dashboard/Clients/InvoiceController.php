@@ -86,8 +86,16 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoicereceiptnt($id);
     }
 
+    public function showinvoicereceipt($id){
+        return  $this->invoices->showinvoicereceipt($id);
+    }
+
     public function showinvoicereceiptPostpaidnt($id){
         return  $this->invoices->showinvoicereceiptPostpaidnt($id);
+    }
+
+    public function showinvoicereceiptPostpaid($id){
+        return  $this->invoices->showinvoicereceiptPostpaid($id);
     }
 
     public function print($id){

@@ -43,9 +43,9 @@
                         <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                     @endcan
 
-                    {{-- @can('Restore All Users') --}}
+                    @can('Restore All Users')
                         <a class="btn btn-info" href="{{route('Users.restoreallusers')}}">{{__('Dashboard/messages.restoreall')}}</a>
-                    {{-- @endcan --}}
+                    @endcan
 
                     @can('Restore Group Users')
                         <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>

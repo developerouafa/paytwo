@@ -54,7 +54,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             @can('Delete Group Bank Tranktransfer')
-                                                <td></td>
+                                                <td>
                                                     <input type="checkbox" name="delete_select" value="{{$fund_account->banktransfer->id}}" class="delete_select">
                                                 </td>
                                             @endcan

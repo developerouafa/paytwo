@@ -35,6 +35,9 @@ interface SectionRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* Restore  All Sections
+    public function restoreallsections();
+
+    //* Restore  All Select Section
+    public function restoreallselectsections($request);
 }

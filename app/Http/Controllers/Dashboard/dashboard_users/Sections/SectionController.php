@@ -75,8 +75,13 @@ class SectionController extends Controller
         return $this->Sections->restore($id);
     }
 
-    public function forcedelete($id)
+    public function restoreallsections()
     {
-        return $this->Sections->forcedelete($id);
+        return $this->Sections->restoreallsections();
+    }
+
+    public function restoreallselectsections(Request $request)
+    {
+        return $this->Sections->restoreallselectsections($request);
     }
 }

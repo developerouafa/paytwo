@@ -42,10 +42,6 @@
                                 </button>
                             @endcan
 
-                            @can('Delete All Section')
-                                <a class="btn btn-danger" href="{{route('Sections.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
-
                             @can('Delete Group Section')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -59,7 +55,7 @@
                                         <tr>
                                             <th>#</th>
                                             @can('Delete Group Section')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                <th> {{__('Dashboard/messages.DeleteGroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th>{{__('Dashboard/sections_trans.name_sections')}}</th>
                                             <th>{{__('Dashboard/sections_trans.status')}}</th>

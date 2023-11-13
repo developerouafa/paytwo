@@ -101,7 +101,8 @@ Route::get('/clear', function() {
                     Route::get('editstatusactivesec/{id}', 'editstatusactive')->name('editstatusactivesec');
                     Route::get('/deleteall', 'deleteall')->name('Sections.deleteall');
                     Route::get('restoresc/{id}', 'restore')->name('restoresc');
-                    Route::get('forcedeletesc/{id}', 'forcedelete')->name('forcedeletesc');
+                    Route::get('restoreallsections', 'restoreallsections')->name('Sections.restoreallsections');
+                    Route::post('restoreallselectsections', 'restoreallselectsections')->name('Sections.restoreallselectsections');
                 });
 
                 Route::controller(childrenController::class)->group(function() {

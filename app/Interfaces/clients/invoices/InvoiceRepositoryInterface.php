@@ -67,6 +67,12 @@ interface InvoiceRepositoryInterface
     //* Show Services Invoices
     public function showServices($id);
 
+    //* Show Promotion Service
+    public function promotion($id);
+
+    //* Show Image Service
+    public function image($id);
+
     //* Print Invoices
     public function print($id);
 

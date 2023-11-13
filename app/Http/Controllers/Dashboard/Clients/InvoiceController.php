@@ -106,6 +106,14 @@ class InvoiceController extends Controller
         return  $this->invoices->showServices($id);
     }
 
+    public function promotion($id){
+        return  $this->invoices->promotion($id);
+    }
+
+    public function image($id){
+        return  $this->invoices->image($id);
+    }
+
     public function print($id){
         return  $this->invoices->print($id);
     }

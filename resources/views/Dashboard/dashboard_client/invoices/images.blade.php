@@ -51,18 +51,22 @@
                                         <tr>
                                             <td>{{$Product->id}}</td>
                                             <td>{{$Product->name}}</td>
-                                            @foreach ($mainimage as $x)
+                                            @forelse ($mainimage as $x)
                                                 <td>
                                                     <img src="{{asset('storage/'.$x->mainimage)}}" alt="" style="width: 80px; height:80px;">
                                                     <br>
                                                 </td>
-                                            @endforeach
-                                            @foreach ($multimg as $x)
+                                            @empty
+                                               <td> <b> {{__('Dashboard/products.noimage')}} </b> </td>
+                                            @endforelse
+                                            @forelse ($multimg as $x)
                                                 <td>
                                                     <img src="{{asset('storage/'.$x->multipimage)}}" alt="" style="width: 80px; height:80px;">
                                                     <br>
                                                 </td>
-                                            @endforeach
+                                            @empty
+                                                <td> <b> {{__('Dashboard/products.noimage')}} </b> </td>
+                                            @endforelse
                                         </tr>
                                 </tbody>
                             </table>

@@ -64,5 +64,6 @@ return [
     'uploadmoreimage' => 'Upload Image Main',
     'section_products' => 'Show_Products_Section',
     'children_products' => 'Show_Products_Children_Section',
-    'nopromotion' => 'There are no discounts'
+    'nopromotion' => 'There are no discounts',
+    'noimage' => 'There are no Images',
 ];

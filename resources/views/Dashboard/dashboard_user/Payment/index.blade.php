@@ -52,7 +52,7 @@
                                         <tr>
                                             <th>#</th>
                                             @can('Delete Group Catch Payment')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                <th> {{__('Dashboard/messages.DeleteGroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                             <th> {{__('Dashboard/payment_trans.nameclient')}} </th>

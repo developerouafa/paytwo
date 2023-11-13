@@ -222,10 +222,11 @@ Route::get('/clear', function() {
             Route::resource('Receipt', ReceiptAccountController::class);
             Route::get('/createrc/{id}', [ReceiptAccountController::class, 'create'])->name('Receipt.createrc');
             Route::post('/storerc', [ReceiptAccountController::class, 'store'])->name('Receipt.storerc');
-            Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
             Route::get('/Deleted_Receipt', [ReceiptAccountController::class, 'softdelete'])->name('Receipt.softdelete');
+            Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
             Route::get('restorerc/{id}', [ReceiptAccountController::class, 'restore'])->name('restorerc');
-            Route::get('forcedeleterc/{id}', [ReceiptAccountController::class, 'forcedelete'])->name('forcedeleterc');
+            Route::get('restoreallReceiptAccount', [ReceiptAccountController::class, 'restoreallReceiptAccount'])->name('ReceiptAccount.restoreallReceiptAccount');
+            Route::post('restoreallselectReceiptAccount', [ReceiptAccountController::class, 'restoreallselectReceiptAccount'])->name('ReceiptAccount.restoreallselectReceiptAccount');
 
         //############################# end Receipt route ######################################
 
@@ -234,30 +235,34 @@ Route::get('/clear', function() {
             Route::resource('Payment', PaymentaccountController::class);
             Route::get('/createpy/{id}', [PaymentaccountController::class, 'create'])->name('Payment.createpy');
             Route::post('/storepy', [PaymentaccountController::class, 'store'])->name('Payment.storepy');
-            Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
             Route::get('/Deleted_Payment', [PaymentaccountController::class, 'softdelete'])->name('Payment.softdelete');
+            Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
             Route::get('restorepy/{id}', [PaymentaccountController::class, 'restore'])->name('restorepy');
-            Route::get('forcedeletepy/{id}', [PaymentaccountController::class, 'forcedelete'])->name('forcedeletepy');
+            Route::get('restoreallPaymentaccount', [PaymentaccountController::class, 'restoreallPaymentaccount'])->name('Payment.restoreallPaymentaccount');
+            Route::post('restoreallselectPaymentaccount', [PaymentaccountController::class, 'restoreallselectPaymentaccount'])->name('Payment.restoreallselectPaymentaccount');
+
 
         //############################# end Payment route ######################################
 
         //############################# BankTransfer route ##########################################
 
             Route::resource('Banktransfer', BanktransferController::class);
-            Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
             Route::get('/Deleted_Paymentbt', [BanktransferController::class, 'softdelete'])->name('Banktransfer.softdelete');
+            Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
             Route::get('restorebt/{id}', [BanktransferController::class, 'restore'])->name('restorebt');
-            Route::get('forcedeletebt/{id}', [BanktransferController::class, 'forcedelete'])->name('forcedeletebt');
+            Route::get('restoreallBanktransfer', [BanktransferController::class, 'restoreallBanktransfer'])->name('Payment.restoreallBanktransfer');
+            Route::post('restoreallselectBanktransfer', [BanktransferController::class, 'restoreallselectBanktransfer'])->name('Payment.restoreallselectBanktransfer');
 
         //############################# end BankTransfer route ######################################
 
         //############################# BankCard route ##########################################
 
             Route::resource('paymentgateway', PaymentgatewayController::class);
-            Route::get('/deleteallpg', [PaymentgatewayController::class, 'deleteall'])->name('paymentgateway.deleteallpg');
             Route::get('/Deleted_Paymentpg', [PaymentgatewayController::class, 'softdelete'])->name('paymentgateway.softdelete');
+            Route::get('/deleteallpg', [PaymentgatewayController::class, 'deleteall'])->name('paymentgateway.deleteallpg');
             Route::get('restorepg/{id}', [PaymentgatewayController::class, 'restore'])->name('restorepg');
-            Route::get('forcedeletepg/{id}', [PaymentgatewayController::class, 'forcedelete'])->name('forcedeletepg');
+            Route::get('restoreallPaymentgateway', [PaymentgatewayController::class, 'restoreallPaymentgateway'])->name('Payment.restoreallPaymentgateway');
+            Route::post('restoreallselectPaymentgateway', [PaymentgatewayController::class, 'restoreallselectPaymentgateway'])->name('Payment.restoreallselectPaymentgateway');
 
         //############################# end BankCard route ######################################
 

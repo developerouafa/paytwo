@@ -86,8 +86,13 @@ class ProductController extends Controller
         return $this->Products->restore($id);
     }
 
-    public function forcedelete($id)
-    {
-        return $this->Products->forcedelete($id);
+    //* Restore All Products
+    public function restoreallproducts(){
+        return $this->Products->restoreallproducts();
+    }
+
+    //* Restore All Select Products
+    public function restoreallselectproducts(Request $request){
+        return $this->Products->restoreallselectproducts($request);
     }
 }

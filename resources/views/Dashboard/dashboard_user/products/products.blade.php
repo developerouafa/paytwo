@@ -42,10 +42,6 @@
                                 <a class="btn btn-primary" href="{{route('product.createprod')}}">{{__('Dashboard/products.addproduct')}}</a>
                             @endcan
 
-                            @can('Delete All Product')
-                                <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
-
                             @can('Delete Group Product')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -89,7 +85,7 @@
                                                             <td> {{$x->id}} </td>
                                                             @can('Delete Group Product')
                                                                 <td>
-                                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                                    {{__('Dashboard/messages.DeleteGroup')}} <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                                 </td>
                                                             @endcan
                                                             <td>
@@ -172,7 +168,7 @@
                                                         <td> {{$x->id}} </td>
                                                         @can('Delete Group Product')
                                                             <td>
-                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                                {{__('Dashboard/messages.DeleteGroup')}} <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                             </td>
                                                         @endcan
                                                         <td> <a href="{{route('Product.show', $x->id)}}">{{$x->name}}</a> </td>
@@ -248,7 +244,7 @@
                                                     <td> {{$x->id}} </td>
                                                     @can('Delete Group Product')
                                                         <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                            {{__('Dashboard/messages.DeleteGroup')}} <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                         </td>
                                                     @endcan
                                                     <td> <a href="{{route('Product.show', $x->id)}}">{{$x->name}}</a> </td>

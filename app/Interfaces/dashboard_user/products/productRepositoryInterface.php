@@ -40,6 +40,9 @@ interface productRepositoryInterface
     //* Restore
     public function restore($id);
 
-    //* Force Delete
-    public function forcedelete($id);
+    //* Restore All Products
+    public function restoreallproducts();
+
+    //* Restore All Select Products
+    public function restoreallselectproducts($request);
 }

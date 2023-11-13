@@ -136,7 +136,8 @@ Route::get('/clear', function() {
                     Route::delete('/destroy', 'destroy')->name('product.destroy');
                     Route::get('/deleteall', 'deleteall')->name('product.deleteall');
                     Route::get('restorepr/{id}', 'restore')->name('restorepr');
-                    Route::get('forcedeletepr/{id}', 'forcedelete')->name('forcedeletepr');
+                    Route::get('restoreallproducts', 'restoreallproducts')->name('product.restoreallproducts');
+                    Route::post('restoreallselectproducts', 'restoreallselectproducts')->name('product.restoreallselectproducts');
                 });
 
                 Route::prefix('promotions')->group(function (){

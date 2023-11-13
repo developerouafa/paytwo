@@ -22,6 +22,25 @@
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            @can('Delete All Receipt')
+                                <a class="btn btn-danger" href="{{route('Receipt.deleteallrc')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
+                            @can('Delete Group Receipt softdelete')
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
+
+                            @can('Restore All Receipt')
+                                <a class="btn btn-info" href="{{route('Receipt.restoreallReceiptAccount')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                            @endcan
+
+                            @can('Restore Group Receipt')
+                                <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                            @endcan
+                        </div>
+                    </div>
                     @can('Show Receipt')
                         <div class="card-body">
                             <div class="table-responsive">
@@ -29,6 +48,12 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        @can('Delete Group Receipt softdelete')
+                                            <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                        @endcan
+                                        @can('Restore Group Receipt')
+                                            <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
+                                        @endcan
                                         <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.price')}} </th>
                                         <th> {{__('Dashboard/receipt_trans.descr')}} </th>
@@ -42,6 +67,16 @@
                                     @foreach($receipts as $receipt)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            @can('Delete Group Receipt softdelete')
+                                                <td>
+                                                    <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
+                                                </td>
+                                            @endcan
+                                            @can('Restore Group Receipt')
+                                                <td>
+                                                    <input type="checkbox" name="restore" value="{{$receipt->id}}" class="delete_select">
+                                                </td>
+                                            @endcan
                                             <td>{{ $receipt->clients->name }}</td>
                                             <td>{{ number_format($receipt->amount, 2) }}</td>
                                             <td>{{ \Str::limit($receipt->description, 50) }}</td>
@@ -49,11 +84,16 @@
                                             <td> {{ $receipt->created_at->diffForHumans() }} </td>
                                             <td> {{ $receipt->updated_at->diffForHumans() }} </td>
                                             <td>
-                                                <a href="{{route('restorerc', $receipt->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                <form action="{{route('forcedeleterc', $receipt->id)}}" method="get">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-danger">{{__('Dashboard/messages.deletee')}}</button>
-                                                </form>
+                                                @can('Restore One Receipt')
+                                                    <a href="{{route('restorerc', $receipt->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                @endcan
+                                                @can('Delete Receipt softdelete')
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                        data-id="{{ $receipt->id }}" data-name="{{ $receipt->amount }}"
+                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                        <i class="las la-trash"></i>
+                                                    </a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
@@ -62,11 +102,41 @@
                             </div>
                         </div><!-- bd -->
                     @endcan
-
+                    @can('Delete Group Receipt softdelete')
+                        @include('Dashboard.dashboard_user.Receipt.delete_selectsoftdelete')
+                    @endcan
+                    @can('Restore Group Receipt')
+                        @include('Dashboard.dashboard_user.Receipt.restoreall')
+                    @endcan
                 </div><!-- bd -->
             </div>
             <!--/div-->
 
+        <!-- delete -->
+        <div class="modal" id="modaldemo9">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                            type="button"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form action="{{route('Receipt.destroy')}}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
+                            <input type="hidden" name="id" id="id">
+                            <input type="hidden" value="3" name="page_id">
+                            <input class="form-control" name="name" id="name" type="text" readonly>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                            <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- /row -->
 
     </div>

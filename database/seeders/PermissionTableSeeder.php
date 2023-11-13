@@ -152,6 +152,32 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Receipt',
             'Delete Group Bank Tranktransfer',
             'Delete Group Bank Card',
+
+            'Delete Group Receipt softdelete',
+            'Restore All Receipt',
+            'Restore Group Receipt',
+            'Restore One Receipt',
+            'Delete Receipt softdelete',
+
+
+            'Delete Group Bank Card softdelete',
+            'Restore All Bank Card',
+            'Restore Group Bank Card',
+            'Restore One Bank Card',
+            'Delete Bank Card softdelete',
+
+            'Delete Group Catch Payment softdelete',
+            'Restore All Catch Payment',
+            'Restore Group Catch Payment',
+            'Restore One Catch Payment',
+            'Delete Catch Payment softdelete',
+
+            'Delete Group Bank Tranktransfer softdelete',
+            'Restore All Bank Tranktransfer',
+            'Restore Group Bank Tranktransfer',
+            'Restore One Bank Tranktransfer',
+            'Delete Bank Tranktransfer softdelete',
+
             'Show Receipt',
             'Show Bank Tranktransfer',
             'Show Bank Card',

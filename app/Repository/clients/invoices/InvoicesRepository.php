@@ -330,12 +330,18 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
     }
 
-    public function showService($id)
-    {
+    public function showService($id){
+        $product = product::findOrFail($id);
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
     }
 
 
     public function showServices($id){
+        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
+        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
     }
 
     public function printreceipt($id){

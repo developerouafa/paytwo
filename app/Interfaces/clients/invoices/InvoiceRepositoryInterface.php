@@ -61,6 +61,12 @@ interface InvoiceRepositoryInterface
     //* Receipt Postpaid Invoices
     public function receiptpostpaid($id);
 
+    //* Show Service Invoices
+    public function showService($id);
+
+    //* Show Services Invoices
+    public function showServices($id);
+
     //* Print Invoices
     public function print($id);
 

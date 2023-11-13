@@ -98,6 +98,14 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoicereceiptPostpaid($id);
     }
 
+    public function showService($id){
+        return  $this->invoices->showService($id);
+    }
+
+    public function showServices($id){
+        return  $this->invoices->showServices($id);
+    }
+
     public function print($id){
         return  $this->invoices->print($id);
     }

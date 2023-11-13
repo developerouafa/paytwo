@@ -62,7 +62,7 @@
                                         <tr>
                                             <th class="wd-15p border-bottom-0">#</th>
                                             @can('Delete Group Clients softdelete')
-                                                <th><input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             @can('Restore Group Clients')
                                                 <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>

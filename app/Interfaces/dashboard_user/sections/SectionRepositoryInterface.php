@@ -32,6 +32,9 @@ interface SectionRepositoryInterface
     //* delete All Section
     public function deleteall();
 
+    //* delete All Section softdelete
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

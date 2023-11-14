@@ -177,7 +177,13 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('sections')->parent()->delete();
+        DB::table('sections')->whereNull('deleted_at')->parent()->delete();
+        return redirect()->route('Sections.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('sections')->whereNotNull('deleted_at')->parent()->delete();
         return redirect()->route('Sections.index');
     }
 

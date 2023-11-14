@@ -32,6 +32,9 @@ interface childrenRepositoryInterface
     //* delete All Children
     public function deleteall();
 
+    //* delete Softdelete All Children
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

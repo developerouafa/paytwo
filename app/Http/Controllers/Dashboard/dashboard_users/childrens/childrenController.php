@@ -71,6 +71,11 @@ class childrenController extends Controller
         return $this->Sections->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->Sections->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->Sections->restore($id);

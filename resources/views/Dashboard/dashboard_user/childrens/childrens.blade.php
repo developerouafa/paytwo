@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -17,7 +16,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -32,100 +30,97 @@
 
     <!-- row -->
         <div class="row">
+            <div class="col-xl-12">
+                <div class="card mg-b-20">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            @can('Delete All Children')
+                                <a class="btn btn-danger" href="{{route('Children.deleteallChildrens')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
 
-            {{-- <div class="row row-sm"> --}}
-                <div class="col-xl-12">
-                    <div class="card mg-b-20">
-                        <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                                @can('Create Children Section')
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaldemo8">
-                                        {{__('Dashboard/sections_trans.addchildren')}}
-                                    </button>
-                                @endcan
+                            @can('Create Children Section')
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modaldemo8">
+                                    {{__('Dashboard/sections_trans.addchildren')}}
+                                </button>
+                            @endcan
 
-                                @can('Delete Group Children Section')
-                                    <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                                @endcan
+                            @can('Delete Group Children Section')
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
+                        </div>
+                    </div>
+                    @can('Show Children Section')
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            @can('Delete Group Children Section')
+                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
+                                            <th>{{__('Dashboard/sections_trans.children')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.status')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.section')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.usersection')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.userchildren')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($childrens as $x)
+                                            @if ($x->section->status == 0)
+                                                <tr>
+                                                    <td>{{$x->id}}</td>
+                                                    @can('Delete Group Children Section')
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
+                                                    <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
+                                                    <td>
+                                                        @if ($x->status == 0)
+                                                            <a href="{{route('editstatusdéactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
+                                                        @endif
+                                                        @if ($x->status == 1)
+                                                            <a href="{{route('editstatusactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$x->section->name}}</td>
+                                                    <td>{{$x->section->user->name}}</td>
+                                                    <td>{{$x->user->name}}</td>
+                                                    <td> {{ $x->created_at->diffForHumans() }} </td>
+                                                    <td> {{ $x->updated_at->diffForHumans() }} </td>
+                                                    <td>
+                                                        @can('Edit Children Section')
+                                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                                            data-id="{{ $x->id }}" data-children="{{ $x->name }}"
+                                                            data-section_id="{{ $x->parent_id }}" data-toggle="modal"
+                                                            href="#exampleModal2" children="Update">
+                                                            <i class="las la-pen"></i></a>
+                                                        @endcan
+                                                        @can('Delete Children Section')
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                            data-id="{{ $x->id }}" data-children="{{ $x->name }}"
+                                                            data-toggle="modal" href="#modaldemo9" children="Delete">
+                                                            <i class="las la-trash"></i></a>
+                                                        @endcan
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            @can('Delete Group Children Section')
+                                                @include('Dashboard.dashboard_user.childrens.delete_select')
+                                            @endcan
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        @can('Show Children Section')
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                @can('Delete Group Children Section')
-                                                    <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                                @endcan
-                                                <th>{{__('Dashboard/sections_trans.children')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.status')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.section')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.usersection')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.userchildren')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                                <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($childrens as $x)
-                                                @if ($x->section->status == 0)
-                                                    <tr>
-                                                        <td>{{$x->id}}</td>
-                                                        @can('Delete Group Children Section')
-                                                            <td>
-                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
-                                                            </td>
-                                                        @endcan
-                                                        <td><a href="{{route('Children.showchildren',$x->id)}}">{{$x->name}}</a> </td>
-                                                        <td>
-                                                            @if ($x->status == 0)
-                                                                <a href="{{route('editstatusdéactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.disabled')}}</a>
-                                                            @endif
-                                                            @if ($x->status == 1)
-                                                                <a href="{{route('editstatusactivech', $x->id)}}"><i   class="text-warning ti-back-right"></i>{{__('Dashboard/sections_trans.active')}}</a>
-                                                            @endif
-                                                        </td>
-                                                        <td>{{$x->section->name}}</td>
-                                                        <td>{{$x->section->user->name}}</td>
-                                                        <td>{{$x->user->name}}</td>
-                                                        <td> {{ $x->created_at->diffForHumans() }} </td>
-                                                        <td> {{ $x->updated_at->diffForHumans() }} </td>
-                                                        <td>
-                                                            @can('Edit Children Section')
-                                                                <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-children="{{ $x->name }}"
-                                                                data-section_id="{{ $x->parent_id }}" data-toggle="modal"
-                                                                href="#exampleModal2" children="Update">
-                                                                <i class="las la-pen"></i></a>
-                                                            @endcan
-
-                                                            @can('Delete Children Section')
-                                                               <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-children="{{ $x->name }}"
-                                                                data-toggle="modal" href="#modaldemo9" children="Delete">
-                                                                <i class="las la-trash"></i></a>
-                                                            @endcan
-
-                                                        </td>
-                                                    </tr>
-                                                @endif
-
-                                                @can('Delete Group Children Section')
-                                                    @include('Dashboard.dashboard_user.childrens.delete_select')
-                                                @endcan
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        @endcan
-                    </div>
+                    @endcan
                 </div>
-            {{-- </div> --}}
-
+            </div>
 
             <!-- Create -->
                 <div class="modal" id="modaldemo8">
@@ -158,7 +153,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn ripple btn-primary" type="submit">{{__('Dashboard/sections_trans.submit')}}</button>
-                                                <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{__('Dashboard/sections_trans.Close')}}</button>
+                                                <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{__('Dashboard/messages.deletee')}}</button>
                                             </div>
                                     </form>
                                 </div>
@@ -237,10 +232,7 @@
 
         </div>
     <!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+			
 @endsection
 @section('js')
 

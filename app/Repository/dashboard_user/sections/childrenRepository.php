@@ -182,7 +182,13 @@ class childrenRepository implements childrenRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('sections')->child()->delete();
+        DB::table('sections')->whereNull('deleted_at')->child()->delete();
+        return redirect()->route('Children.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('sections')->whereNotNull('deleted_at')->child()->delete();
         return redirect()->route('Children.index');
     }
 

@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -17,7 +16,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -38,8 +36,8 @@
                     <div class="card mg-b-20">
                         <div class="card-header pb-0">
                             <div class="d-flex justify-content-between">
-                                @can('Delete All Children')
-                                    <a class="btn btn-danger" href="{{route('Children.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                @can('Delete All Children softdelete')
+                                    <a class="btn btn-danger" href="{{route('Children.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                                 @endcan
 
                                 @can('Delete Group Children softdelete')
@@ -53,7 +51,6 @@
                                 @can('Restore Group Children')
                                     <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
                                 @endcan
-
                             </div>
                         </div>
                         @can('Show Children Section')
@@ -93,7 +90,7 @@
                                                                 <input type="checkbox" name="restore" value="{{$x->id}}" class="delete_select">
                                                             </td>
                                                         @endcan
-                                                        <td><a href="">{{$x->name}}</a> </td>
+                                                        <td>{{$x->name}}</td>
                                                         <td>{{$x->section->name}}</td>
                                                         <td>{{$x->section->user->name}}</td>
                                                         <td>{{$x->user->name}}</td>
@@ -148,7 +145,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
-                                <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                             </div>
                         </form>
                     </div>
@@ -157,10 +154,7 @@
 
         </div>
     <!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+			
 @endsection
 @section('js')
     <!--Internal  Notify js -->

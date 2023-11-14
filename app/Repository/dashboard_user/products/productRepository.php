@@ -216,9 +216,15 @@ class productRepository implements productRepositoryInterface
         }
     }
 
+    public function deleteallsoftdelete()
+    {
+        DB::table('products')->whereNotNull('deleted_at')->delete();
+        return redirect()->route('Products.index');
+    }
+
     public function deleteall()
     {
-        DB::table('products')->delete();
+        DB::table('products')->whereNull('deleted_at')->delete();
         return redirect()->route('Products.index');
     }
 

@@ -81,6 +81,11 @@ class ProductController extends Controller
         return $this->Products->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->Products->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->Products->restore($id);

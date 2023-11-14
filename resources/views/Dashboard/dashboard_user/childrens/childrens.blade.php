@@ -3,10 +3,19 @@
     {{__('Dashboard/sections_trans.childrens')}}
 @endsection
 @section('css')
-    <!-- Internal Data table css -->
+    {{-- <!-- Internal Data table css -->
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <!--Internal   Notify -->
-    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/> --}}
+
+    <!-- Internal Select2 css -->
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<!--Internal  Datetimepicker-slider css -->
+<link href="{{URL::asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
+<!-- Internal Spectrum-colorpicker css -->
+<link href="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
     <div class="breadcrumb-header justify-content-between">
@@ -137,7 +146,7 @@
                                                 <br>
                                                 <input placeholder="{{__('Dashboard/sections_trans.childrenar')}}" type="text" value="{{old('name_ar')}}" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar">
                                                 <br>
-                                                <select name="section_id" value="{{old('section_id')}}" class="form-control SlectBox" class="@error('section_id') is-invalid @enderror">
+                                                <select name="section_id" value="{{old('section_id')}}" class="form-control SlectBox select2" class="@error('section_id') is-invalid @enderror">
                                                     <option value="" selected disabled>{{__('Dashboard/sections_trans.sections')}}</option>
                                                         @forelse ($sections as $section)
                                                             @if ($section->status == 0)
@@ -288,6 +297,27 @@
     </script>
 
     <!--Internal  Notify js -->
-    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
-    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+    {{-- <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script> --}}
+
+
+
+    <!--Internal  Datepicker js -->
+<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+<!-- Internal Select2.min js -->
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<!--Internal Ion.rangeSlider.min js -->
+<script src="{{URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+<!--Internal  jquery-simple-datetimepicker js -->
+<script src="{{URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+<!-- Ionicons js -->
+<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+<!--Internal  pickerjs js -->
+<script src="{{URL::asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
+<!-- Internal form-elements js -->
+<script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
 @endsection

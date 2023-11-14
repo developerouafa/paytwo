@@ -37,6 +37,9 @@ interface productRepositoryInterface
     //* delete All Product
     public function deleteall();
 
+    //* delete All Product softdelete
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

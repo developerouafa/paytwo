@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -17,7 +16,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -38,7 +36,11 @@
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Create Product Product')
+                            @can('Delete All Product')
+                                <a class="btn btn-danger" href="{{route('product.deleteallproducts')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
+                            @can('Create Product')
                                 <a class="btn btn-primary" href="{{route('product.createprod')}}">{{__('Dashboard/products.addproduct')}}</a>
                             @endcan
 

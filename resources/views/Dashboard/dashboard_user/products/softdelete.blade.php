@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -17,7 +16,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -32,14 +30,13 @@
 
 	<!-- row -->
     <div class="row">
-
         <!-- Index -->
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Product')
-                                <a class="btn btn-danger" href="{{route('product.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @can('Delete All Product softdelete')
+                                <a class="btn btn-danger" href="{{route('product.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Product softdelete')
@@ -309,37 +306,32 @@
             </div>
 
         <!-- delete -->
-        <div class="modal" id="modaldemo9">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content modal-content-demo">
-                    <div class="modal-header">
-                        <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                            type="button"><span aria-hidden="true">&times;</span></button>
+            <div class="modal" id="modaldemo9">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content modal-content-demo">
+                        <div class="modal-header">
+                            <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                type="button"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <form action="{{route('product.destroy')}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ csrf_field() }}
+                            <div class="modal-body">
+                                <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" value="3" name="page_id">
+                                <input class="form-control" name="name" id="name" type="text" readonly>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                                <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                            </div>
+                        </form>
                     </div>
-                    <form action="{{route('product.destroy')}}" method="post">
-                        {{ method_field('delete') }}
-                        {{ csrf_field() }}
-                        <div class="modal-body">
-                            <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
-                            <input type="hidden" name="id" id="id">
-                            <input type="hidden" value="3" name="page_id">
-                            <input class="form-control" name="name" id="name" type="text" readonly>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
-                            <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
-
     </div>
-				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+	<!-- row closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

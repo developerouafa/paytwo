@@ -159,7 +159,7 @@ class UserController extends Controller
 
     public function destroy(Request $request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try{
                 $id = $request->user_id;
@@ -181,7 +181,7 @@ class UserController extends Controller
                 return redirect()->route('users.index');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
                 $id = $request->user_id;
@@ -203,7 +203,7 @@ class UserController extends Controller
                 return redirect()->route('users.softdeleteusers');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -228,7 +228,7 @@ class UserController extends Controller
                 return redirect()->route('Users.softdeleteusers');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -250,9 +250,9 @@ class UserController extends Controller
                 return redirect()->route('users.index');
             }
         }
-
     }
 
+    //* Restore One User
     public function restoreusers($id){
         try{
             DB::beginTransaction();
@@ -267,6 +267,7 @@ class UserController extends Controller
         }
     }
 
+    //* Restore All Users
     public function restoreallusers()
     {
         try{
@@ -282,6 +283,7 @@ class UserController extends Controller
         }
     }
 
+    //* Restore All Select Users
     public function restoreallselectusers(Request $request)
     {
         try{
@@ -522,7 +524,12 @@ class UserController extends Controller
     }
 
     public function deleteallusers(){
-        DB::table('users')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
+        DB::table('users')->whereNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
+        return redirect()->route('Users.softdeleteusers');
+    }
+
+    public function deletealluserssoftdelete(){
+        DB::table('users')->whereNotNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
         return redirect()->route('Users.softdeleteusers');
     }
 }

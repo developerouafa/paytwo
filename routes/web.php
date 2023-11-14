@@ -65,6 +65,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 Route::patch('/refusedpayment', 'refusedpayment')->name('Invoice.refusedpayment');
                 Route::get('/Deleted_Users', 'softusers')->name('Users.softdeleteusers');
                 Route::get('/deleteallusers', 'deleteallusers')->name('Users.deleteallusers');
+                Route::get('/deleteallusers_softdelete', 'deletealluserssoftdelete')->name('Users.deletealluserssoftdelete');
                 Route::get('restoreusers/{id}', 'restoreusers')->name('Users.restoreusers');
                 Route::get('restoreallusers', 'restoreallusers')->name('Users.restoreallusers');
                 Route::post('restoreallselectusers', 'restoreallselectusers')->name('Users.restoreallselectusers');

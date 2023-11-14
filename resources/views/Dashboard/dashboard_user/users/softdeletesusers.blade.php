@@ -34,9 +34,8 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-
-                    @can('Delete All Users')
-                        <a class="btn btn-danger" href="{{route('Users.deleteallusers')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                    @can('Delete All Users softdelete')
+                        <a class="btn btn-danger" href="{{route('Users.deletealluserssoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                     @endcan
 
                     @can('Delete Group Users softdelete')
@@ -50,7 +49,6 @@
                     @can('Restore Group Users')
                         <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
                     @endcan
-
                 </div>
             </div>
             @can('Show users')

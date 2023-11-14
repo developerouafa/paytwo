@@ -33,6 +33,10 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
+                        @can('Delete All Users')
+                            <a class="btn btn-danger" href="{{route('Users.deleteallusers')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                        @endcan
+
                         @can('Create User')
                             <a class="btn btn-primary" href="{{ route('users.create') }}">{{__('Dashboard/users.addauser')}}</a>
                         @endcan
@@ -140,8 +144,10 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">{{__('Dashboard/users.deletetheuser')}}</h6><button aria-label="Close" class="close"
-                            data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title">{{__('Dashboard/users.deletetheuser')}} </h6>
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <form action="{{ route('users.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
@@ -154,10 +160,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/users.cancel')}}</button>
-                            <button type="submit" class="btn btn-danger">{{__('Dashboard/users.save')}}</button>
+                            <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>

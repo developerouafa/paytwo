@@ -172,7 +172,7 @@
                                     </a>
                                 @endif
                                 @if ($notification->type == 'App\Notifications\montaryinvoice')
-                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicemonetarynt',$notification->data['invoice_id'])}}">
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                         <div class="notifyimg bg-pink">
                                             <i class="la la-file-alt text-white"></i>
                                         </div>
@@ -186,7 +186,7 @@
                                     </a>
                                 @endif
                                 @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
-                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicePostpaidnt',$notification->data['invoice_id'])}}">
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                         <div class="notifyimg bg-success">
                                             <i class="la la-shopping-basket text-white"></i>
                                         </div>
@@ -200,7 +200,7 @@
                                     </a>
                                 @endif
                                 @if ($notification->type == 'App\Notifications\paymentgateways')
-                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicecardnt',$notification->data['invoice_id'])}}">
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                         <div class="notifyimg bg-purple">
                                             <i class="la la-gem text-white"></i>
                                         </div>
@@ -242,7 +242,7 @@
                                     </a>
                                 @endif
                                 @if ($notification->type == 'App\Notifications\banktransferntf')
-                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicebanktransfernt',$notification->data['invoice_id'])}}">
+                                    <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                         <div class="notifyimg bg-primary">
                                             <i class="la la-check-circle text-white"></i>
                                         </div>

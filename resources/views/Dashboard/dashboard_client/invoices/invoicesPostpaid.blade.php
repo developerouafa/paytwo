@@ -123,7 +123,6 @@
                                             <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

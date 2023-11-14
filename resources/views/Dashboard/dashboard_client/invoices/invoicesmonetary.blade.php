@@ -20,15 +20,6 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
     <!-- row -->
         <!-- row opened -->
         <div class="row row-sm">
@@ -123,7 +114,6 @@
                                             <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
                                             <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

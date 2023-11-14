@@ -13,7 +13,6 @@
         <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6" autocomplete="off">
             @csrf
             @method('put')
-
             <div class="form-group ">
                 <div class="row">
                     <div class="col-md-3">

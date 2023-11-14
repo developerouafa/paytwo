@@ -18,8 +18,7 @@ class ProfileController extends Controller
     //* Display the user's profile form
     public function edit(Request $request): View
     {
-        $id = Auth::user()->id;
-        $imageuser = User::query()->select('id')->where('id', '=', $id)->with('image')->get();
+        $imageuser = User::query()->select('id')->where('id', Auth::user()->id)->with('image')->get();
         return view('profile.edit', ['user' => $request->user(),], compact('imageuser'));
     }
 
@@ -52,7 +51,7 @@ class ProfileController extends Controller
         }
     }
 
-    //* function Delete Information User
+    //* function Delete Information User & Logout
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();

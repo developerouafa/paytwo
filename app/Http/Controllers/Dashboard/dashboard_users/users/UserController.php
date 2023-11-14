@@ -523,11 +523,13 @@ class UserController extends Controller
         return view('Dashboard/dashboard_user/users.softdeletesusers',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
+    //* Delete All Users (Except the user who is logged in) & (Except for the Super Admin)
     public function deleteallusers(){
         DB::table('users')->whereNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
         return redirect()->route('Users.softdeleteusers');
     }
 
+    //* Delete All Users Sofdelete (Except the user who is logged in) & (Except for the Super Admin)
     public function deletealluserssoftdelete(){
         DB::table('users')->whereNotNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
         return redirect()->route('Users.softdeleteusers');

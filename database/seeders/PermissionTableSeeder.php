@@ -14,6 +14,7 @@ class PermissionTableSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            //! Users
             'sidebar users & permissions',
             'sidebar users',
             'sidebar Deleted users',
@@ -29,9 +30,14 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Users',
             'Restore All Users',
             'Delete One User softdelete',
-
-            
+            //! Permissions
             'sidebar permissions',
+            'Create role',
+            'Show roles',
+            'Modify roles',
+            'Delete role',
+
+
             'sidebar Section & Children',
             'sidebar section',
             'sidebar Deleted sections',
@@ -61,6 +67,9 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted groupservice',
             'sidebar Details GroupServices',
             'sidebar Deleted GroupServices',
+
+
+
 
             'Delete All Promotions',
             'Delete Group Promotions',
@@ -97,10 +106,7 @@ class PermissionTableSeeder extends Seeder
             'Show Promotions',
             'Update Promotion',
             'Delete Promotion',
-            'Create role',
-            'Show roles',
-            'Modify roles',
-            'Delete role',
+
             'Create Section',
             'Delete All Section',
             'Delete Group Section',

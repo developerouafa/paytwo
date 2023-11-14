@@ -18,4 +18,5 @@ return [
     'viewpowers' => 'عرض الصلاحيات',
     "back" => "عودة",
     'buttonupdate' => 'تحديث',
+    'modifythepowers' => 'تعديل الصلاحيات'
 ];

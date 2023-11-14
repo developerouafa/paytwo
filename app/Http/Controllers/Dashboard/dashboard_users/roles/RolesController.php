@@ -18,18 +18,21 @@ class RolesController extends Controller
     //     $this->middleware('permission:role-delete', ['only' => ['destroy']]);
     // }
 
+    //* Page Show Roles
     public function index(Request $request)
     {
         $roles = Role::orderBy('id','DESC')->paginate(5);
         return view('Dashboard/dashboard_user/roles.index',compact('roles'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
+    //* Page Create Role
     public function create()
     {
         $permission = Permission::get();
         return view('Dashboard/dashboard_user/roles.create',compact('permission'));
     }
 
+    //* Store Role
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -55,6 +58,7 @@ class RolesController extends Controller
         }
     }
 
+    //* View One Role
     public function show($id)
     {
         $role = Role::find($id);
@@ -64,6 +68,7 @@ class RolesController extends Controller
         return view('Dashboard/dashboard_user/roles.show',compact('role','rolePermissions'));
     }
 
+    //* Page Edit Role
     public function edit($id)
     {
         $role = Role::find($id);
@@ -74,6 +79,7 @@ class RolesController extends Controller
         return view('Dashboard/dashboard_user/roles.edit',compact('role','permission','rolePermissions'));
     }
 
+    //* Update Role
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -110,6 +116,7 @@ class RolesController extends Controller
         }
     }
 
+    //* Delete One Role
     public function destroy($id)
     {
         try{

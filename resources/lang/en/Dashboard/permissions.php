@@ -18,4 +18,5 @@ return [
     'viewpowers' => 'View Powers',
     "back" => "Back",
     'buttonupdate' => 'Update',
+    'modifythepowers' => 'Modify The Powers'
 ];

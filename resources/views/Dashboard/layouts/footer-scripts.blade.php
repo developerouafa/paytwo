@@ -25,6 +25,12 @@
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
 <!-- Eva-icons js -->
 <script src="{{URL::asset('assets/js/eva-icons.min.js')}}"></script>
+
+<!-- Internal Form-validation js -->
+<script src="{{URL::asset('assets/js/form-validation.js')}}"></script>
+
+<!--Internal  Parsley.min js -->
+<script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
 @yield('js')
 <!-- Sticky js -->
 <script src="{{URL::asset('assets/js/sticky.js')}}"></script>

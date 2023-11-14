@@ -36,12 +36,14 @@ class UserController extends Controller
         return view('Dashboard/dashboard_user/users.show_users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
+    //* Create New User
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
         return view('Dashboard/dashboard_user/users.Add_user',compact('roles'));
     }
 
+    //* Store User
     public function store(StoreUserRequest $request)
     {
         try{
@@ -53,14 +55,13 @@ class UserController extends Controller
                     'password' => Hash::make($request->password)
                 ]);
                 $user->assignRole($request->input('roles_name'));
-
             DB::commit();
             toastr()->success(__('Dashboard/messages.add'));
             return redirect()->route('users.index');
         }catch(\Exception $execption){
             DB::rollBack();
             toastr()->error(__('Dashboard/messages.error'));
-            return redirect()->route('users.index');
+            return redirect()->route('users.create');
         }
     }
 

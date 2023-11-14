@@ -13,7 +13,7 @@ return [
     "currentpassword" => "Current Password",
     "email" => "Email",
     "userstatus" => "User Status",
-    "userolestaus" => "User role status",
+    "userolestaus" => "User Login",
     "deletetheuser" => "Delete this User",
     "aresureofthedeleting" => "Are Sure Of the deleting",
     "save" => "Save",

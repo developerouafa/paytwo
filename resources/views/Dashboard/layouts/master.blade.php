@@ -27,14 +27,18 @@
             @if(\Auth::guard('client')->check())
                 @include('Dashboard.layouts.main-header.client-main-header')
             @endif
-			<!-- container -->
-			<div class="container-fluid">
-				@yield('page-header')
-				@yield('content')
-				@include('Dashboard/layouts.sidebar')
-				@include('Dashboard/layouts.models')
-            	@include('Dashboard/layouts.footer')
-				@include('Dashboard/layouts.footer-scripts')
+                <!-- container -->
+                <div class="container-fluid">
+                    @yield('page-header')
+                    @yield('content')
+                    @include('Dashboard/layouts.sidebar')
+                    @include('Dashboard/layouts.models')
+                    @include('Dashboard/layouts.footer')
+                    @include('Dashboard/layouts.footer-scripts')
+                </div>
+                <!-- Container closed -->
+        </div>
+        <!-- main-content closed -->
 	</body>
 </html>
 <script>

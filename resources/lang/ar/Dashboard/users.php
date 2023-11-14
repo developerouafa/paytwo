@@ -13,7 +13,7 @@ return [
     "currentpassword" => "كلمة السر الحالية",
     "email" => "البريد الالكتروني",
     "userstatus" => "حالة المستخدم",
-    "userolestaus" => "حالة دور المستخدم",
+    "userolestaus" => "تسجيل دخول المستخدم",
     "deletetheuser" => "حذف هذا المستخدم",
     "aresureofthedeleting" => "متأكدون من الحذف",
     "save" => "حفظ",

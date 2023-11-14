@@ -53,10 +53,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             return view('Dashboard/index');
         })->name('dashboard');
 
-        //############################# Start Partie User|permissions|roles route ##########################################
-            Route::resource('roles', RolesController::class);
+        //############################# Start Partie User|permissions|Roles route ##########################################
             Route::resource('users', UserController::class);
-
+            Route::resource('roles', RolesController::class);
             Route::controller(UserController::class)->group(function() {
                 Route::get('editstatusdéactiveuser/{id}', 'editstatusdéactive')->name('editstatusdéactiveuser');
                 Route::get('editstatusactiveuser/{id}', 'editstatusactive')->name('editstatusactiveuser');

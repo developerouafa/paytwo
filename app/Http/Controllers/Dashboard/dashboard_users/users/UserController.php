@@ -29,6 +29,7 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    //* Page Show Users (Except the user who is logged in) & (Except for the Super Admin)
     public function index(Request $request)
     {
         $users = User::orderBy('id','DESC')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->paginate(5);

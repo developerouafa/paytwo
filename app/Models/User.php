@@ -17,11 +17,6 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, HasTranslations, Billable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'id',
         'name',
@@ -37,62 +32,44 @@ class User extends Authenticatable implements JWTSubject
 
     public $translatable = ['name'];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'roles_name' => 'array',
     ];
 
-    /*-------------------- Relations --------------------*/
-    public function image()
-    {
-        return $this->hasOne(imageuser::class);
-    }
+    /*-------------------- Start Relations --------------------*/
+        public function image()
+        {
+            return $this->hasOne(imageuser::class);
+        }
 
-    public function client()
-    {
-        return $this->hasOne(client::class);
-    }
+        public function client()
+        {
+            return $this->hasOne(client::class);
+        }
 
-    public function orders()
-    {
-        return $this->hasMany(order::class);
-    }
+        public function orders()
+        {
+            return $this->hasMany(order::class);
+        }
+    /*-------------------- End Relations --------------------*/
 
-    // Rest omitted for brevity
+    
+    //* Rest omitted for brevity (Jwt)
+    
+        public function getJWTIdentifier()
+        {
+            return $this->getKey();
+        }
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+        public function getJWTCustomClaims()
+        {
+            return [];
+        }
 }

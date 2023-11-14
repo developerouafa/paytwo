@@ -66,12 +66,14 @@ class UserController extends Controller
         }
     }
 
+    //* Show One User
     public function show($id)
     {
         $user = User::find($id);
         return view('Dashboard/dashboard_user/users.show',compact('user'));
     }
 
+    //* Page Edit User
     public function edit($id)
     {
         $user = User::find($id);
@@ -80,6 +82,7 @@ class UserController extends Controller
         return view('Dashboard/dashboard_user/users.edit',compact('user','roles','userRole'));
     }
 
+    //* Update User
     public function update(Request $request, $id)
     {
         // Validation
@@ -150,7 +153,7 @@ class UserController extends Controller
         }catch(\Exception $execption){
             DB::rollBack();
             toastr()->error(__('Dashboard/messages.error'));
-            return redirect()->route('users.index');
+            return redirect()->route('users.update');
         }
     }
 
@@ -297,6 +300,7 @@ class UserController extends Controller
         }
     }
 
+    //* Active Login User
     public function editstatusactive($id)
     {
         try{
@@ -315,6 +319,7 @@ class UserController extends Controller
         }
     }
 
+    //* Déactive Login User 
     public function editstatusdéactive($id)
     {
         try{

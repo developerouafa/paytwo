@@ -1,22 +1,20 @@
 @extends('Dashboard/layouts.master')
 @section('title')
- {{__('Dashboard/users.modifyauser')}}
+    {{__('Dashboard/users.modifyauser')}}
 @endsection
 @section('css')
     <!-- Internal Nice-select css  -->
     <link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet" />
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    {{__('Dashboard/users.modifyauser')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/users.users')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/{{__('Dashboard/users.modifyauser')}}</span>
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
 
@@ -25,17 +23,17 @@
             <div class="col-lg-12 col-md-12">
 
                 @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <strong>{{__('Dashboard/users.err')}}</strong>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger">
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>{{__('Dashboard/users.err')}}</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
 
                 <div class="card">
@@ -51,11 +49,11 @@
                                 <div class="row mg-b-20">
                                     <div class="parsley-input col-md-6" id="fnWrapper">
                                         <label>{{__('Dashboard/users.name')}}  <span class="tx-danger">*</span></label>
-                                        <input value="{{$user->name}}" class="form-control" required name="name_{{app()->getLocale()}}" type="text"  autocomplete="off" >
+                                        <input value="{{$user->name}}" class="form-control" required name="name_{{app()->getLocale()}}" type="text" autocomplete="name_{{app()->getLocale()}}" >
                                     </div>
                                     <div class="parsley-input col-md-6" id="fnWrapper">
                                         <label>{{__('Dashboard/users.phone')}}  <span class="tx-danger">*</span></label>
-                                        <input value="{{$user->phone}}" class="form-control" required name="phone" type="text"  autocomplete="off" >
+                                        <input value="{{$user->phone}}" class="form-control" required name="phone" type="text" autocomplete="phone" >
                                     </div>
                                 </div>
                             </div>

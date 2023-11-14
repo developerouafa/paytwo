@@ -100,7 +100,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     Route::delete('/destroy', 'destroy')->name('Sections.destroy');
                     Route::get('editstatusdéactivesec/{id}', 'editstatusdéactive')->name('editstatusdéactivesec');
                     Route::get('editstatusactivesec/{id}', 'editstatusactive')->name('editstatusactivesec');
-                    Route::get('/deleteall', 'deleteall')->name('Sections.deleteall');
+                    Route::get('/deleteallSections', 'deleteallsoftdelete')->name('Sections.deleteallSections');
                     Route::get('/deleteall_softdelete', 'deleteallsoftdelete')->name('Sections.deleteallsoftdelete');
                     Route::get('restoresc/{id}', 'restore')->name('restoresc');
                     Route::get('restoreallsections', 'restoreallsections')->name('Sections.restoreallsections');

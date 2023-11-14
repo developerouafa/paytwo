@@ -20,6 +20,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted users',
             'Create User',
             'Show users',
+            'Show users softdelete',
             'Edit User',
             'Delete User',
             'Delete All Users softdelete',
@@ -37,6 +38,8 @@ class PermissionTableSeeder extends Seeder
             'Modify roles',
             'Delete role',
 
+
+            'Delete All Section softdelete',
 
             'sidebar Section & Children',
             'sidebar section',
@@ -111,6 +114,7 @@ class PermissionTableSeeder extends Seeder
             'Delete All Section',
             'Delete Group Section',
             'Show Section',
+            'Show Section softdelete',
             'Edit Section',
             'Delete Section',
             'Create Children Section',

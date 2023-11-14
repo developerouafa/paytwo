@@ -9,15 +9,14 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.deletedsections')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.deletedsections')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
 @if ($errors->any())
@@ -36,8 +35,8 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Section')
-                                <a class="btn btn-danger" href="{{route('Sections.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @can('Delete All Section softdelete')
+                                <a class="btn btn-danger" href="{{route('Sections.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Section softdelete')
@@ -53,7 +52,7 @@
                             @endcan
                         </div>
                     </div>
-                    @can('Show Section')
+                    @can('Show Section softdelete')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap">

@@ -27,7 +27,7 @@ Route::group(
     ], function () {
 
     //################################ dashboard patient ########################################
-    Route::get('/dashboard/client', function () {
+    Route::get('/dashboard/clients', function () {
         return view('Dashboard.dashboard_client.dashboard');
     })->name('dashboard.client');
     //################################ end dashboard patient #####################################

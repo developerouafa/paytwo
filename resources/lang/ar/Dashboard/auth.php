@@ -15,7 +15,7 @@ return [
 
     'failed' => 'يوجد خطا في البريد الالكتروني او كلمة المرور',
     'failedphone' => 'يوجد خطا في الرقم الهاتفي',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'password' => 'كلمة المرور المقدمة غير صحيحة.',
+    'throttle' => 'عدد كبير جدًا من محاولات تسجيل الدخول. يرجى المحاولة مرة أخرى خلال: ثواني ثواني.',
 
 ];

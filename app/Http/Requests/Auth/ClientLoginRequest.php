@@ -46,7 +46,8 @@ class ClientLoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'phone' => trans('Dashboard/auth.failed'),
+                'phone' => trans('Dashboard/auth.failedphone'),
+                'password' => trans('Dashboard/auth.password'),
             ]);
         }
 

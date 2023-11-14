@@ -74,10 +74,10 @@
                                                     <form method="POST" action="{{ route('login') }}">
                                                         @csrf
                                                         <div class="form-group">
-                                                            <label>{{trans('Dashboard/login_trans.Email')}}</label> <input  class="form-control" placeholder="Enter your email" type="email" name="email" :value="old('email')" required autofocus>
+                                                            <label>{{trans('Dashboard/login_trans.Email')}}</label> <input  class="form-control" placeholder="{{__('Dashboard/users.email')}}" type="email" name="email" :value="old('email')" required autofocus>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="Enter your password"   type="password" name="password" required autocomplete="current-password" >
+                                                            <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="{{__('Dashboard/users.password')}}" type="password" name="password" required autocomplete="current-password" >
                                                         </div>
                                                         <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login_trans.SignIn')}}</button>
                                                     </form>
@@ -89,10 +89,10 @@
                                                     <form method="POST" action="{{ route('login.client') }}">
                                                         @csrf
                                                         <div class="form-group">
-                                                            <label>{{trans('Dashboard/login_trans.phone')}}</label> <input  class="form-control" type="number" name="phone" :value="old('phone')" required autofocus>
+                                                            <label>{{trans('Dashboard/login_trans.phone')}}</label> <input placeholder="{{__('Dashboard/users.phone')}}" class="form-control" type="number" name="phone" :value="old('phone')" required autofocus>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="Enter your password"   type="password" name="password" required autocomplete="current-password" >
+                                                            <label>{{trans('Dashboard/login_trans.Password')}}</label> <input class="form-control" placeholder="{{__('Dashboard/users.password')}}" type="password" name="password" required autocomplete="current-password" >
                                                         </div>
                                                         <button type="submit" class="btn btn-main-primary btn-block">{{trans('Dashboard/login_trans.SignIn')}}</button>
                                                     </form>

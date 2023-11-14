@@ -32,14 +32,15 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/clear', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call(' view:clear');
-    Artisan::call('route:clear');
-    return"Cleared!";
-});
+    // Clear Code
+    Route::get('/clear', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+        return redirect()->back();
+    });
 
 //* To access these pages, you must log in first
     Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
@@ -48,7 +49,7 @@ Route::get('/clear', function() {
             return view('Dashboard/index');
         });
 
-        Route::get('/dashboard', function () {
+        Route::get('/dashboard/users', function () {
             return view('Dashboard/index');
         })->name('dashboard');
 

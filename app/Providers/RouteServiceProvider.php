@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME = '/dashboard/user';
-    public const Client = '/dashboard/client';
+    public const HOME = '/dashboard/users';
+    public const Client = '/dashboard/clients';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

@@ -5,25 +5,26 @@
 @section('css')
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.card')}} </span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.card')}} </span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
 
     <!-- row -->
-        <!-- row opened -->
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                            @can('Delete All Bank Card softdelete')
+                                <a class="btn btn-danger" href="{{route('paymentgateway.deleteallpg')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
                             @can('Delete Group Bank Card')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -69,16 +70,12 @@
                                                 @can('Delete Bank Card')
                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->paymentgateway->id}}"><i class="las la-trash"></i></a>
                                                 @endcan
-
-                                                @can('Print Bank Card')
-                                                    <a href="{{route('Receipt.show',$fund_account->paymentgateway->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
-                                                @endcan
                                             </td>
                                         </tr>
-                                        @include('Dashboard.dashboard_user.Receipt.delete')
+                                        @include('Dashboard.dashboard_user.paymentgateway.delete')
 
                                         @can('Delete Group Bank Card')
-                                            @include('Dashboard.dashboard_user.Receipt.delete_select')
+                                            @include('Dashboard.dashboard_user.paymentgateway.delete_select')
                                         @endcan
 
                                     @endforeach
@@ -87,19 +84,11 @@
                             </div>
                         </div><!-- bd -->
                     @endcan
-
                 </div><!-- bd -->
             </div>
-            <!--/div-->
-
-        <!-- /row -->
-
-    </div>
+        </div>
     <!-- row closed -->
 
-			<!-- Container closed -->
-
-		<!-- main-content closed -->
 @endsection
 @section('js')
 

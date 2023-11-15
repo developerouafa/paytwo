@@ -139,6 +139,8 @@ class PermissionTableSeeder extends Seeder
             'Delete Receipt',       
             'Print Receipt',
             //! Catch Payment
+            'sidebar Payment',
+            'sidebar Deleted Payment',
             'Create Catch Payment',
             'Delete All Catch Payment',
             'Delete All Catch Payment softdelete',
@@ -168,7 +170,20 @@ class PermissionTableSeeder extends Seeder
             'Delete Bank Tranktransfer',
             'Print Bank Tranktransfer',
             //! Bank Card
-
+            'sidebar Bank Card',
+            'sidebar Deleted Bank Card',
+            'Delete All Bank Card',
+            'Delete All Bank Card softdelete',
+            'Delete Group Bank Card',
+            'Delete Group Bank Card softdelete',
+            'Restore All Bank Card',
+            'Restore Group Bank Card',
+            'Restore One Bank Card',
+            'Delete Bank Card softdelete',
+            'Show Bank Card',
+            'Show Bank Card softdelete',
+            'Delete Bank Card',
+            'Print Bank Card',
 
 
 
@@ -179,20 +194,10 @@ class PermissionTableSeeder extends Seeder
             'sidebar Details Singleservice',
             'sidebar groupservice',
             'sidebar Details groupservice',
-
-
-
-            'sidebar Payment',
-            'sidebar Deleted Payment',
-
-            'sidebar Bank Card',
-            'sidebar Deleted Bank Card',
             'sidebar Deleted Singleservice',
             'sidebar Deleted groupservice',
             'sidebar Details GroupServices',
             'sidebar Deleted GroupServices',
-
-
 
 
             'Delete Group SingleInvoice',
@@ -214,36 +219,8 @@ class PermissionTableSeeder extends Seeder
             'Delete Group GroupInvoice',
             'Delete Group Invoices softdelete',
 
-
             'Sent Invoices Group SingleInvoice',
 
-
-
-
-
-
-
-
-
-
-            'Delete All Bank Card',
-            'Delete Group Bank Card',
-
-
-            'Delete Group Bank Card softdelete',
-            'Restore All Bank Card',
-            'Restore Group Bank Card',
-            'Restore One Bank Card',
-            'Delete Bank Card softdelete',
-
-
-
-
-
-
-            'Show Bank Card',
-            'Delete Bank Card',
-            'Print Bank Card',
             'Create Group Invoices',
             'Show Group Invoices',
             'Edit Group Invoices',

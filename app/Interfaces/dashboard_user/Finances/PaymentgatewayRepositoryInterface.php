@@ -21,6 +21,9 @@ interface PaymentgatewayRepositoryInterface
     //* delete All Bankcard
     public function deleteall();
 
+    //* delete all softdelete Bankcard
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

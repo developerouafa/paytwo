@@ -33,7 +33,7 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
 
     public function destroy($request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
@@ -47,7 +47,7 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
                 return redirect()->route('paymentgateway.index');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
@@ -62,7 +62,7 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
                 return redirect()->route('paymentgateway.softdelete');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -80,7 +80,7 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
                 return redirect()->route('paymentgateway.softdelete');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -99,8 +99,14 @@ class PaymentGatewayRepository implements PaymentgatewayRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('paymentgateways')->delete();
+        DB::table('paymentgateways')->whereNull('deleted_at')->delete();
         return redirect()->route('paymentgateway.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('paymentgateways')->whereNotNull('deleted_at')->delete();
+        return redirect()->route('paymentgateway.softdelete');
     }
 
     public function restore($id)

@@ -39,6 +39,11 @@ class PaymentgatewayController extends Controller
         return $this->Bankcard->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->Bankcard->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->Bankcard->restore($id);

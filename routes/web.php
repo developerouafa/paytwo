@@ -268,8 +268,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         //############################# BankCard route ##########################################
 
             Route::resource('paymentgateway', PaymentgatewayController::class);
+            Route::delete('/destroy', [PaymentgatewayController::class, 'destroy'])->name('paymentgateway.destroypg');
             Route::get('/Deleted_Paymentpg', [PaymentgatewayController::class, 'softdelete'])->name('paymentgateway.softdelete');
             Route::get('/deleteallpg', [PaymentgatewayController::class, 'deleteall'])->name('paymentgateway.deleteallpg');
+            Route::get('/deleteallsoftdelete', [PaymentgatewayController::class, 'deleteallsoftdelete'])->name('paymentgateway.deleteallsoftdelete');
             Route::get('restorepg/{id}', [PaymentgatewayController::class, 'restore'])->name('restorepg');
             Route::get('restoreallPaymentgateway', [PaymentgatewayController::class, 'restoreallPaymentgateway'])->name('paymentgateway.restoreallPaymentgateway');
             Route::post('restoreallselectPaymentgateway', [PaymentgatewayController::class, 'restoreallselectPaymentgateway'])->name('paymentgateway.restoreallselectPaymentgateway');

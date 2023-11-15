@@ -1,6 +1,6 @@
 @extends('Dashboard/layouts.master')
 @section('title')
-    {{__('Dashboard/products.delete_products')}}
+    {{__('Dashboard/main-sidebar_trans.deletedproducts')}}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -12,7 +12,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-children mb-0 my-auto">{{__('Dashboard/products.delete_products')}}</h4>
+                <h4 class="content-children mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.deletedproducts')}}</h4>
             </div>
         </div>
     </div>

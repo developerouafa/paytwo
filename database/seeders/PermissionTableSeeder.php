@@ -92,6 +92,12 @@ class PermissionTableSeeder extends Seeder
             'Delete Product',
             'promotion Product',
             'stock Product',
+            'Show Promotions',
+            'Update Promotion',
+            'Delete Promotion',
+            'Delete All Promotions',
+            'Delete Group Promotions',
+
 
             'sidebar clients',
             'sidebar Deleted clients',
@@ -119,8 +125,6 @@ class PermissionTableSeeder extends Seeder
 
 
 
-            'Delete All Promotions',
-            'Delete Group Promotions',
             'Delete Group SingleInvoice',
             'Delete All SingleInvoice',
             'Delete Group GroupInvoice softdelete',
@@ -142,9 +146,6 @@ class PermissionTableSeeder extends Seeder
 
 
             'Sent Invoices Group SingleInvoice',
-            'Show Promotions',
-            'Update Promotion',
-            'Delete Promotion',
 
 
             'Create Client',

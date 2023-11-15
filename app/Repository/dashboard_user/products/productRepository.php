@@ -2,6 +2,7 @@
 namespace App\Repository\dashboard_user\Products;
 
 use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
+use App\Models\mainimageproduct;
 use App\Models\product;
 use App\Models\Section;
 use App\Models\stockproduct;

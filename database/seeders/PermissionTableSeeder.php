@@ -74,6 +74,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted products',
             'Show main&multip images products',
             'Edit main image Product',
+            'Delete main image Product',
             'Edit multip image Product',
             'Delete multip image Product',
             'Delete all image Product',
@@ -112,6 +113,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Clients softdelete',
             'Delete All Clients',
             'Delete All Clients softdelete',
+            //!
 
 
             'sidebar Group Services',
@@ -121,6 +123,8 @@ class PermissionTableSeeder extends Seeder
             'sidebar Details Singleservice',
             'sidebar groupservice',
             'sidebar Details groupservice',
+
+
             'sidebar receipt & Payment',
             'sidebar receipt',
             'sidebar Deleted receipt',

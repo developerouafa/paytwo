@@ -30,28 +30,24 @@ class CreateGroupProducts extends Component
 
     public function render()
     {
-
         $total = 0;
         foreach ($this->GroupsItems as $groupItem) {
             if ($groupItem['is_saved'] && $groupItem['price'] && $groupItem['quantity']) {
                 $total += $groupItem['price'] * $groupItem['quantity'];
             }
         }
-
         return view('livewire.GroupProducts.create-group-products', [
             'groups'=>groupprodcut::latest()->get(),
             'subtotal' => $Total_after_discount = $total - ((is_numeric($this->discount_value) ? $this->discount_value : 0)),
             'total' => $Total_after_discount * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100)
         ]);
-
     }
-
 
     public function addService()
     {
         foreach ($this->GroupsItems as $key => $groupItem) {
             if (!$groupItem['is_saved']) {
-                $this->addError('GroupsItems.' . $key, 'يجب حفظ هذا الخدمة قبل إنشاء خدمة جديدة.');
+                $this->addError('GroupsItems.' . $key, __('Dashboard/products.savenewservice'));
                 return;
             }
         }
@@ -75,7 +71,6 @@ class CreateGroupProducts extends Component
                 return;
             }
         }
-
         $this->GroupsItems[$index]['is_saved'] = false;
     }
 
@@ -96,7 +91,6 @@ class CreateGroupProducts extends Component
 
     public function saveGroup()
     {
-
         // update
         if($this->updateMode){
             $Groups = groupprodcut::find($this->groupprodcut_id);
@@ -127,14 +121,10 @@ class CreateGroupProducts extends Component
             foreach ($this->GroupsItems as $GroupsItem) {
                 $Groups->product_group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
             }
-
             $this->ServiceSaved = false;
             $this->ServiceUpdated = true;
-
         }
-
         else{
-
             // insert
             $Groups = new groupprodcut();
             $total = 0;

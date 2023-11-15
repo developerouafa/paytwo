@@ -66,4 +66,5 @@ return [
     'children_products' => 'Show_Products_Children_Section',
     'nopromotion' => 'There are no discounts',
     'noimage' => 'There are no Images',
+    'savenewservice' => 'You must save this service before creating a new service.',
 ];

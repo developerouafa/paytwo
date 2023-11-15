@@ -65,4 +65,5 @@ return [
     'children_products' => 'كشف منتوجات طفل القسم',
     'nopromotion' => 'لا توجد تخفيضات',
     'noimage' => 'لا توجد صور',
+    'savenewservice' => 'يجب حفظ هذا الخدمة قبل إنشاء خدمة جديدة.',
 ];

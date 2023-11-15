@@ -5,15 +5,13 @@
 @section('css')
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.receipt')}} </span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.receipt')}} </span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
 
@@ -24,8 +22,8 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Bank Tranktransfer')
-                                <a class="btn btn-danger" href="{{route('Receipt.deleteallbt')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @can('Delete All Bank Tranktransfer softdelete')
+                                <a class="btn btn-danger" href="{{route('Banktransfer.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Bank Tranktransfer softdelete')
@@ -41,7 +39,7 @@
                             @endcan
                         </div>
                     </div>
-                    @can('Show Bank Tranktransfer')
+                    @can('Show Bank Tranktransfer softdelete')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap">
@@ -111,8 +109,10 @@
                 </div><!-- bd -->
             </div>
             <!--/div-->
+        </div>
+    <!-- row closed -->
 
-        <!-- delete -->
+    <!-- delete -->
         <div class="modal" id="modaldemo9">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
@@ -137,14 +137,8 @@
                 </div>
             </div>
         </div>
-        <!-- /row -->
+    <!-- /row -->
 
-    </div>
-    <!-- row closed -->
-
-			<!-- Container closed -->
-
-		<!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

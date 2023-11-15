@@ -152,6 +152,24 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Catch Payment',
             'Restore One Catch Payment',
             'Delete Catch Payment softdelete',
+            //! Bank Tranktransfer
+            'sidebar Bank Tranktransfer',
+            'sidebar Deleted Bank Tranktransfer',
+            'Delete All Bank Tranktransfer',
+            'Delete All Bank Tranktransfer softdelete',
+            'Delete Group Bank Tranktransfer',
+            'Delete Group Bank Tranktransfer softdelete',
+            'Restore All Bank Tranktransfer',
+            'Restore Group Bank Tranktransfer',
+            'Restore One Bank Tranktransfer',
+            'Delete Bank Tranktransfer softdelete',
+            'Show Bank Tranktransfer',
+            'Show Bank Tranktransfer softdelete',
+            'Delete Bank Tranktransfer',
+            'Print Bank Tranktransfer',
+            //! Bank Card
+
+
 
 
             'sidebar Group Services',
@@ -166,8 +184,7 @@ class PermissionTableSeeder extends Seeder
 
             'sidebar Payment',
             'sidebar Deleted Payment',
-            'sidebar Bank Tranktransfer',
-            'sidebar Deleted Bank Tranktransfer',
+
             'sidebar Bank Card',
             'sidebar Deleted Bank Card',
             'sidebar Deleted Singleservice',
@@ -207,9 +224,9 @@ class PermissionTableSeeder extends Seeder
 
 
 
-            'Delete All Bank Tranktransfer',
+
+
             'Delete All Bank Card',
-            'Delete Group Bank Tranktransfer',
             'Delete Group Bank Card',
 
 
@@ -221,20 +238,11 @@ class PermissionTableSeeder extends Seeder
 
 
 
-            'Delete Group Bank Tranktransfer softdelete',
-            'Restore All Bank Tranktransfer',
-            'Restore Group Bank Tranktransfer',
-            'Restore One Bank Tranktransfer',
-            'Delete Bank Tranktransfer softdelete',
 
-            
-            'Show Bank Tranktransfer',
+
+
             'Show Bank Card',
-
-            'Delete Bank Tranktransfer',
             'Delete Bank Card',
-            
-            'Print Bank Tranktransfer',
             'Print Bank Card',
             'Create Group Invoices',
             'Show Group Invoices',

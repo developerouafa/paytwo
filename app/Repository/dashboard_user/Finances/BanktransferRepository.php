@@ -99,8 +99,14 @@ class BanktransferRepository implements BanktransferRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('banktransfer')->delete();
+        DB::table('banktransfer')->whereNull('deleted_at')->delete();
         return redirect()->route('Banktransfer.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('banktransfer')->whereNotNull('deleted_at')->delete();
+        return redirect()->route('Banktransfer.softdelete');
     }
 
     public function restore($id)

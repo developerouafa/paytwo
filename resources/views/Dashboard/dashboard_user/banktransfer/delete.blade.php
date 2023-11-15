@@ -19,7 +19,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/receipt_trans.Close')}}</button>
-                <button type="submit" class="btn btn-danger">{{trans('Dashboard/receipt_trans.submit')}}</button>
+                <button type="submit" class="btn btn-danger">{{trans('Dashboard/messages.deletee')}}</button>
             </div>
             </form>
         </div>

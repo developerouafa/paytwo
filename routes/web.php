@@ -227,6 +227,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::resource('Receipt', ReceiptAccountController::class);
             Route::get('/createrc/{id}', [ReceiptAccountController::class, 'create'])->name('Receipt.createrc');
             Route::post('/storerc', [ReceiptAccountController::class, 'store'])->name('Receipt.storerc');
+            Route::delete('/destroy', [ReceiptAccountController::class, 'destroy'])->name('Receipt.destroy');
             Route::get('/Deleted_Receipt', [ReceiptAccountController::class, 'softdelete'])->name('Receipt.softdelete');
             Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
             Route::get('/deleteallsoftdelete', [ReceiptAccountController::class, 'deleteallsoftdelete'])->name('Receipt.deleteallsoftdelete');
@@ -241,6 +242,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::resource('Payment', PaymentaccountController::class);
             Route::get('/createpy/{id}', [PaymentaccountController::class, 'create'])->name('Payment.createpy');
             Route::post('/storepy', [PaymentaccountController::class, 'store'])->name('Payment.storepy');
+            Route::delete('/destroy', [PaymentaccountController::class, 'destroy'])->name('Payment.destroy');
             Route::get('/Deleted_Payment', [PaymentaccountController::class, 'softdelete'])->name('Payment.softdelete');
             Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
             Route::get('/deleteallsoftdelete', [PaymentaccountController::class, 'deleteallsoftdelete'])->name('Payment.deleteallsoftdelete');
@@ -253,8 +255,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         //############################# BankTransfer route ##########################################
 
             Route::resource('Banktransfer', BanktransferController::class);
+            Route::delete('/destroy', [BanktransferController::class, 'destroy'])->name('Banktransfer.destroy');
             Route::get('/Deleted_Paymentbt', [BanktransferController::class, 'softdelete'])->name('Banktransfer.softdelete');
             Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
+            Route::get('/deleteallsoftdelete', [BanktransferController::class, 'deleteallsoftdelete'])->name('Banktransfer.deleteallsoftdelete');
             Route::get('restorebt/{id}', [BanktransferController::class, 'restore'])->name('restorebt');
             Route::get('restoreallBanktransfer', [BanktransferController::class, 'restoreallBanktransfer'])->name('Banktransfer.restoreallBanktransfer');
             Route::post('restoreallselectBanktransfer', [BanktransferController::class, 'restoreallselectBanktransfer'])->name('Banktransfer.restoreallselectBanktransfer');

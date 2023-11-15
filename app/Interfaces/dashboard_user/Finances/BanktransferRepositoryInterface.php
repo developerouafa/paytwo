@@ -21,6 +21,9 @@ interface BanktransferRepositoryInterface
     //* delete All Banktransfer
     public function deleteall();
 
+    //* delete all softdelete Banktransfer
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

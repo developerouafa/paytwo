@@ -7,14 +7,6 @@
     <link href="{{URL::asset('Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <!--Internal   Notify -->
     <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
-
-    <link href="{{URL::asset('dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!--Internal  Datetimepicker-slider css -->
-    <link href="{{URL::asset('dashboard/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('dashboard/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
-    <!-- Internal Spectrum-colorpicker css -->
-    <link href="{{URL::asset('dashboard/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 @endsection
 @section('page-header')
 	<!-- breadcrumb -->
@@ -28,86 +20,86 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
-        <!-- row -->
-            <!-- row opened -->
-            <div class="row row-sm">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                                @can('Delete Group Catch Payment')
-                                    <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                                @endcan
-                            </div>
+    <!-- row -->
+        <div class="row row-sm">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            @can('Delete All Catch Payment')
+                                <a class="btn btn-danger" href="{{route('Payment.deleteallpy')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
+                            @can('Delete Group Catch Payment')
+                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                            @endcan
                         </div>
-                        @can('Show Catch Payment')
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            @can('Delete Group Catch Payment')
-                                                <th> {{__('Dashboard/messages.DeleteGroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
-                                            <th> {{__('Dashboard/services.invoicenumber')}} </th>
-                                            <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
-                                            <th> {{__('Dashboard/payment_trans.price')}} </th>
-                                            <th> {{__('Dashboard/payment_trans.descr')}} </th>
-                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                            <th> {{__('Dashboard/payment_trans.Processes')}} </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($fund_accounts as $fund_account)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    @can('Delete Group Catch Payment')
-                                                        <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$fund_account->paymentaccount->id}}" class="delete_select">
-                                                        </td>
-                                                    @endcan
-                                                    <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
-                                                    <td><a href="{{route('Clients.showinvoice',$fund_account->paymentaccount->clients->id)}}">{{$fund_account->paymentaccount->clients->name}}</a> </td>
-                                                    <td>{{ number_format($fund_account->paymentaccount->amount, 2) }}</td>
-                                                    <td>{{ \Str::limit($fund_account->paymentaccount->description, 50) }}</td>
-                                                    <td><a href="#">{{$fund_account->paymentaccount->user->name}}</a> </td>
-                                                    <td> {{ $fund_account->paymentaccount->created_at->diffForHumans() }} </td>
-                                                    <td> {{ $fund_account->paymentaccount->updated_at->diffForHumans() }} </td>
+                    </div>
+                    @can('Show Catch Payment')
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        @can('Delete Group Catch Payment')
+                                            <th> {{__('Dashboard/messages.DeleteGroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                        @endcan
+                                        <th> {{__('Dashboard/services.invoicenumber')}} </th>
+                                        <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
+                                        <th> {{__('Dashboard/payment_trans.price')}} </th>
+                                        <th> {{__('Dashboard/payment_trans.descr')}} </th>
+                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                        <th> {{__('Dashboard/payment_trans.Processes')}} </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($fund_accounts as $fund_account)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                @can('Delete Group Catch Payment')
                                                     <td>
-                                                        @can('Edit Catch Payment')
-                                                            <a href="{{route('Payment.edit',$fund_account->paymentaccount->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                                        @endcan
-
-                                                        @can('Delete Catch Payment')
-                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->paymentaccount->id}}"><i class="las la-trash"></i></a>
-                                                        @endcan
-
-                                                        @can('Print Catch Payment')
-                                                            <a href="{{route('Payment.show',$fund_account->paymentaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
-                                                        @endcan
+                                                        <input type="checkbox" name="delete_select" value="{{$fund_account->paymentaccount->id}}" class="delete_select">
                                                     </td>
-                                                </tr>
-                                                    @include('Dashboard.dashboard_user.Payment.delete')
-                                                    @can('Delete Group Catch Payment')
-                                                        @include('Dashboard.dashboard_user.Payment.delete_select')
+                                                @endcan
+                                                <td><a href="{{route('Clients.clientinvoice',$fund_account->invoice->id)}}">{{$fund_account->invoice->invoice_number}}</a> </td>
+                                                <td><a href="{{route('Clients.showinvoice',$fund_account->paymentaccount->clients->id)}}">{{$fund_account->paymentaccount->clients->name}}</a> </td>
+                                                <td>{{ number_format($fund_account->paymentaccount->amount, 2) }}</td>
+                                                <td>{{ \Str::limit($fund_account->paymentaccount->description, 50) }}</td>
+                                                <td><a href="#">{{$fund_account->paymentaccount->user->name}}</a> </td>
+                                                <td> {{ $fund_account->paymentaccount->created_at->diffForHumans() }} </td>
+                                                <td> {{ $fund_account->paymentaccount->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Edit Catch Payment')
+                                                        <a href="{{route('Payment.edit',$fund_account->paymentaccount->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                                     @endcan
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div><!-- bd -->
-                        @endcan
-                    </div><!-- bd -->
-                </div>
-                <!--/div-->
 
-            <!-- /row -->
+                                                    @can('Delete Catch Payment')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$fund_account->paymentaccount->id}}"><i class="las la-trash"></i></a>
+                                                    @endcan
+
+                                                    @can('Print Catch Payment')
+                                                        <a href="{{route('Payment.show',$fund_account->paymentaccount->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                                @include('Dashboard.dashboard_user.Payment.delete')
+                                                @can('Delete Group Catch Payment')
+                                                    @include('Dashboard.dashboard_user.Payment.delete_select')
+                                                @endcan
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- bd -->
+                    @endcan
+                </div><!-- bd -->
+            </div>
+            <!--/div-->
         </div>
-        <!-- row closed -->
-
+    <!-- row closed -->
 @endsection
 @section('js')
     <script>

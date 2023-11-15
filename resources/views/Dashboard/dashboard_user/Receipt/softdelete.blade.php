@@ -25,7 +25,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All Receipt')
-                                <a class="btn btn-danger" href="{{route('Receipt.deleteallrc')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('Receipt.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Receipt softdelete')

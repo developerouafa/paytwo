@@ -33,6 +33,9 @@ interface PaymentRepositoryInterface
     //* delete All Payment
     public function deleteall();
 
+    //* delete all softdelete Payment
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

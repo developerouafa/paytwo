@@ -243,10 +243,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::post('/storepy', [PaymentaccountController::class, 'store'])->name('Payment.storepy');
             Route::get('/Deleted_Payment', [PaymentaccountController::class, 'softdelete'])->name('Payment.softdelete');
             Route::get('/deleteallpy', [PaymentaccountController::class, 'deleteall'])->name('Payment.deleteallpy');
+            Route::get('/deleteallsoftdelete', [PaymentaccountController::class, 'deleteallsoftdelete'])->name('Payment.deleteallsoftdelete');
             Route::get('restorepy/{id}', [PaymentaccountController::class, 'restore'])->name('restorepy');
             Route::get('restoreallPaymentaccount', [PaymentaccountController::class, 'restoreallPaymentaccount'])->name('Payment.restoreallPaymentaccount');
             Route::post('restoreallselectPaymentaccount', [PaymentaccountController::class, 'restoreallselectPaymentaccount'])->name('Payment.restoreallselectPaymentaccount');
-
 
         //############################# end Payment route ######################################
 

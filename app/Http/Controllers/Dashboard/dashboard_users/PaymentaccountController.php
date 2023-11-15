@@ -60,6 +60,11 @@ class PaymentaccountController extends Controller
         return $this->Payment->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->Payment->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->Payment->restore($id);

@@ -138,6 +138,20 @@ class PermissionTableSeeder extends Seeder
             'Edit Receipt',
             'Delete Receipt',       
             'Print Receipt',
+            //! Catch Payment
+            'Create Catch Payment',
+            'Delete All Catch Payment',
+            'Delete All Catch Payment softdelete',
+            'Delete Group Catch Payment',
+            'Show Catch Payment',
+            'Edit Catch Payment',
+            'Print Catch Payment',
+            'Delete Catch Payment',
+            'Delete Group Catch Payment softdelete',
+            'Restore All Catch Payment',
+            'Restore Group Catch Payment',
+            'Restore One Catch Payment',
+            'Delete Catch Payment softdelete',
 
 
             'sidebar Group Services',
@@ -189,13 +203,6 @@ class PermissionTableSeeder extends Seeder
 
 
 
-            'Create Catch Payment',
-            'Delete All Catch Payment',
-            'Delete Group Catch Payment',
-            'Show Catch Payment',
-            'Edit Catch Payment',
-            'Print Catch Payment',
-            'Delete Catch Payment',
 
 
 
@@ -212,11 +219,7 @@ class PermissionTableSeeder extends Seeder
             'Restore One Bank Card',
             'Delete Bank Card softdelete',
 
-            'Delete Group Catch Payment softdelete',
-            'Restore All Catch Payment',
-            'Restore Group Catch Payment',
-            'Restore One Catch Payment',
-            'Delete Catch Payment softdelete',
+
 
             'Delete Group Bank Tranktransfer softdelete',
             'Restore All Bank Tranktransfer',

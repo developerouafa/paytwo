@@ -357,7 +357,7 @@ class ClientRepository implements ClientRepositoryInterface
     public function deleteallsoftdelete()
     {
         DB::table('clients')->whereNotNull('deleted_at')->delete();
-        return redirect()->route('Clients.index');
+        return redirect()->route('Clients.softdelete');
     }
 
     public function restore($id)

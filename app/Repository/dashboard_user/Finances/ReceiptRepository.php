@@ -231,7 +231,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
     public function deleteallsoftdelete()
     {
         DB::table('receipt_accounts')->whereNotNull('deleted_at')->delete();
-        return redirect()->route('Receipt.index');
+        return redirect()->route('Receipt.softdelete');
     }
 
     public function restore($id)

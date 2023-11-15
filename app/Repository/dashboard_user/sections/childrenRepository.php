@@ -189,7 +189,7 @@ class childrenRepository implements childrenRepositoryInterface
     public function deleteallsoftdelete()
     {
         DB::table('sections')->whereNotNull('deleted_at')->child()->delete();
-        return redirect()->route('Children.index');
+        return redirect()->route('Children.softdelete');
     }
 
     public function restore($id)

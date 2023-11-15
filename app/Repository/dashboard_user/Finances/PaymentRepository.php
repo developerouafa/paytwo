@@ -230,8 +230,14 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('paymentaccounts')->delete();
+        DB::table('paymentaccounts')->whereNull('deleted_at')->delete();
         return redirect()->route('Payment.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('paymentaccounts')->whereNotNull('deleted_at')->delete();
+        return redirect()->route('Payment.softdelete');
     }
 
     public function restore($id)

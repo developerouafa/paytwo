@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/receipt_trans.receipt')}}
+    {{__('Dashboard/services.deletebanktransfer')}}
 @stop
 @section('css')
 @endsection
@@ -8,7 +8,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.receipt')}} </span>
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.deletebanktransfer')}} </span>
             </div>
         </div>
     </div>
@@ -120,7 +121,7 @@
                         <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <form action="{{route('Banktransfer.destroy')}}" method="post">
+                    <form action="{{route('Banktransfer.destroybt')}}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                         <div class="modal-body">

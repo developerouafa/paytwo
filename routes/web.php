@@ -255,7 +255,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         //############################# BankTransfer route ##########################################
 
             Route::resource('Banktransfer', BanktransferController::class);
-            Route::delete('/destroy', [BanktransferController::class, 'destroy'])->name('Banktransfer.destroy');
+            Route::delete('/destroy', [BanktransferController::class, 'destroy'])->name('Banktransfer.destroybt');
             Route::get('/Deleted_Paymentbt', [BanktransferController::class, 'softdelete'])->name('Banktransfer.softdelete');
             Route::get('/deleteallbt', [BanktransferController::class, 'deleteall'])->name('Banktransfer.deleteallbt');
             Route::get('/deleteallsoftdelete', [BanktransferController::class, 'deleteallsoftdelete'])->name('Banktransfer.deleteallsoftdelete');

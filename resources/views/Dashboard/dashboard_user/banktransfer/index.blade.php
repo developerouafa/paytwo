@@ -8,7 +8,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.Banktransfer')}} </span>
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.Banktransfer')}} </span>
             </div>
         </div>
     </div>
@@ -73,16 +74,15 @@
                                                 @endcan
 
                                                 @can('Print Bank Tranktransfer')
-                                                    <a href="{{route('Receipt.show',$fund_account->banktransfer->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
+                                                    <a href="{{route('Banktransfer.show',$fund_account->banktransfer->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></a>
                                                 @endcan
                                             </td>
                                         </tr>
-                                        @include('Dashboard.dashboard_user.Receipt.delete')
+                                        @include('Dashboard.dashboard_user.banktransfer.delete')
 
                                         @can('Delete Group Bank Tranktransfer')
-                                            @include('Dashboard.dashboard_user.Receipt.delete_select')
+                                            @include('Dashboard.dashboard_user.banktransfer.delete_select')
                                         @endcan
-
                                     @endforeach
                                     </tbody>
                                 </table>

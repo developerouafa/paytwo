@@ -31,12 +31,14 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Users',
             'Restore All Users',
             'Delete One User softdelete',
+
             //! Permissions
             'sidebar permissions',
             'Create role',
             'Show roles',
             'Modify roles',
             'Delete role',
+
             //! Sections
             'sidebar Section & Children',
             'sidebar section',
@@ -54,6 +56,7 @@ class PermissionTableSeeder extends Seeder
             'Show Section softdelete',
             'Edit Section',
             'Delete Section',
+
             //! Children
             'sidebar children',
             'sidebar Deleted childrens',
@@ -70,6 +73,7 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Children',
             'Restore One Children',
             'Delete Children softdelete',
+
             //! Product
             'sidebar products',
             'sidebar Deleted products',
@@ -85,6 +89,9 @@ class PermissionTableSeeder extends Seeder
             'Delete All Product softdelete',
             'Restore All Product',
             'Restore One Product',
+            'Restore Group Product',
+            'Delete Group Product',
+            'Delete Group Product softdelete',
             'Delete Product softdelete',
             'Show Product',
             'Edit Product',
@@ -96,6 +103,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Promotion',
             'Delete All Promotions',
             'Delete Group Promotions',
+
             //! Clients
             'sidebar clients',
             'sidebar Deleted clients',
@@ -112,15 +120,20 @@ class PermissionTableSeeder extends Seeder
             'Delete Clients softdelete',
             'Delete All Clients',
             'Delete All Clients softdelete',
-            //! Single Services
-
-
 
             //! Group Services
-            'Restore Group Product',
-            'Delete Group Product',
-            'Delete Group Product softdelete',
-
+            'sidebar Group Services',
+            'Delete All GroupServices',
+            'Delete All GroupServices softdelete',
+            'Show Group Services',
+            'Show Group Services softdelete',
+            'Edit Group Services',
+            'Delete Group Services',
+            'Delete Group GroupServices softdelete',
+            'Restore All GroupServices',
+            'Restore Group GroupServices',
+            'Delete GroupServices One softdelete',
+            'Restore One GroupServices',
 
             //! Receipt
             'sidebar receipt & Payment',
@@ -138,6 +151,7 @@ class PermissionTableSeeder extends Seeder
             'Edit Receipt',
             'Delete Receipt',       
             'Print Receipt',
+
             //! Catch Payment
             'sidebar Payment',
             'sidebar Deleted Payment',
@@ -154,6 +168,7 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Catch Payment',
             'Restore One Catch Payment',
             'Delete Catch Payment softdelete',
+            
             //! Bank Tranktransfer
             'sidebar Bank Tranktransfer',
             'sidebar Deleted Bank Tranktransfer',
@@ -169,6 +184,7 @@ class PermissionTableSeeder extends Seeder
             'Show Bank Tranktransfer softdelete',
             'Delete Bank Tranktransfer',
             'Print Bank Tranktransfer',
+
             //! Bank Card
             'sidebar Bank Card',
             'sidebar Deleted Bank Card',
@@ -185,41 +201,38 @@ class PermissionTableSeeder extends Seeder
             'Delete Bank Card',
             'Print Bank Card',
 
-
-
-            'sidebar Group Services',
+            //! Single Invoices
             'sidebar Invoices Singleservice & groupservice',
             'sidebar Details => Invoices Singleservice & groupservice',
             'sidebar Singleservice',
             'sidebar Details Singleservice',
+            'sidebar Deleted Singleservice',
+            'Delete Group SingleInvoice',
+            'Delete All SingleInvoice',
+            'Delete Group SingleInvoice softdelete',
+            'Sent Invoices Group SingleInvoice',
+            'Restore All SingleInvoice',
+            'Restore Group SingleInvoice',
+            'Restore One SingleInvoice',
+
+
+
             'sidebar groupservice',
             'sidebar Details groupservice',
-            'sidebar Deleted Singleservice',
             'sidebar Deleted groupservice',
             'sidebar Details GroupServices',
             'sidebar Deleted GroupServices',
 
-
-            'Delete Group SingleInvoice',
-            'Delete All SingleInvoice',
             'Delete Group GroupInvoice softdelete',
             'Delete Group GroupServices',
-            'Delete All GroupServices',
-            'Delete All GroupServices softdelete',
-            'Delete Group GroupServices softdelete',
-            'Restore All GroupServices',
-            'Restore Group GroupServices',
-            'Delete Group Services softdelete',
-            'Restore One GroupServices',
+
             'Show Single Invoices softdelete',
             'Show Group Invoices softdelete',
-            'Delete Group SingleInvoice softdelete',
             'Delete Single Invoices softdelete',
             'Delete All GroupInvoice',
             'Delete Group GroupInvoice',
             'Delete Group Invoices softdelete',
 
-            'Sent Invoices Group SingleInvoice',
 
             'Create Group Invoices',
             'Show Group Invoices',
@@ -231,17 +244,11 @@ class PermissionTableSeeder extends Seeder
             'Edit Single Invoices',
             'Delete Single Invoices',
             'Print Single Invoices',
-            'Show Group Services',
-            'Show Group Services softdelete',
-            'Edit Group Services',
-            'Delete Group Services',
             'View Invoices Client',
             'Restore All GroupInvoice',
             'Restore Group GroupInvoice',
             'Restore One GroupInvoice',
-            'Restore All SingleInvoice',
-            'Restore Group SingleInvoice',
-            'Restore One SingleInvoice'
+
         ];
 
         foreach ($permissions as $permission) {

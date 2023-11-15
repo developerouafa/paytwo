@@ -107,7 +107,7 @@
                                                         @can('Restore One GroupServices')
                                                             <a href="{{route('GroupServices.restore', $group->id)}}">{{__('Dashboard/messages.restore')}}</a>
                                                         @endcan
-                                                        @can('Delete Group Services softdelete')
+                                                        @can('Delete GroupServices One softdelete')
                                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                                 data-id="{{ $group->id }}" data-name="{{ $group->invoice_number }}"
                                                                 data-toggle="modal" href="#modaldemo9" title="Delete">

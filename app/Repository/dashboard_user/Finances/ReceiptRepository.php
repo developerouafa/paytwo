@@ -224,7 +224,13 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('receipt_accounts')->delete();
+        DB::table('receipt_accounts')->whereNull('deleted_at')->delete();
+        return redirect()->route('Receipt.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('receipt_accounts')->whereNotNull('deleted_at')->delete();
         return redirect()->route('Receipt.index');
     }
 

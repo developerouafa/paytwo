@@ -111,6 +111,8 @@
                 </div><!-- bd -->
             </div>
             <!--/div-->
+        </div>
+    <!-- row closed -->
 
         <!-- delete -->
         <div class="modal" id="modaldemo9">
@@ -139,12 +141,7 @@
         </div>
         <!-- /row -->
 
-    </div>
-    <!-- row closed -->
 
-			<!-- Container closed -->
-
-		<!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

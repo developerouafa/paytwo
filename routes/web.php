@@ -229,6 +229,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::post('/storerc', [ReceiptAccountController::class, 'store'])->name('Receipt.storerc');
             Route::get('/Deleted_Receipt', [ReceiptAccountController::class, 'softdelete'])->name('Receipt.softdelete');
             Route::get('/deleteallrc', [ReceiptAccountController::class, 'deleteall'])->name('Receipt.deleteallrc');
+            Route::get('/deleteallsoftdelete', [ReceiptAccountController::class, 'deleteallsoftdelete'])->name('Receipt.deleteallsoftdelete');
             Route::get('restorerc/{id}', [ReceiptAccountController::class, 'restore'])->name('restorerc');
             Route::get('restoreallReceiptAccount', [ReceiptAccountController::class, 'restoreallReceiptAccount'])->name('Receipt.restoreallReceiptAccount');
             Route::post('restoreallselectReceiptAccount', [ReceiptAccountController::class, 'restoreallselectReceiptAccount'])->name('Receipt.restoreallselectReceiptAccount');

@@ -61,6 +61,11 @@ class ReceiptAccountController extends Controller
         return $this->Receipt->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->Receipt->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->Receipt->restore($id);

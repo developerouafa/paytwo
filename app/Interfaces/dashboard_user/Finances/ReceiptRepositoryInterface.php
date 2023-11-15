@@ -33,6 +33,9 @@ interface ReceiptRepositoryInterface
     //* delete All Receipt
     public function deleteall();
 
+    //* delete All Softdelete All Receipt
+    public function deleteallsoftdelete();
+
     //* Restore
     public function restore($id);
 

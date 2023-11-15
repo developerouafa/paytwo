@@ -60,6 +60,7 @@ class PermissionTableSeeder extends Seeder
             'Create Children Section',
             'Delete Group Children Section',
             'Show Children Section',
+            'Show Children Section softdelete',
             'Edit Children Section',
             'Delete Children Section',
             'Delete All Children',
@@ -121,7 +122,24 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Product softdelete',
 
 
-            
+            //! Receipt
+            'sidebar receipt & Payment',
+            'sidebar receipt',
+            'sidebar Deleted receipt',
+            'Delete Group Receipt softdelete',
+            'Restore All Receipt',
+            'Restore Group Receipt',
+            'Restore One Receipt',
+            'Delete Receipt softdelete',
+            'Create Receipt',
+            'Delete All Receipt',
+            'Delete Group Receipt',
+            'Show Receipt',
+            'Edit Receipt',
+            'Delete Receipt',       
+            'Print Receipt',
+
+
             'sidebar Group Services',
             'sidebar Invoices Singleservice & groupservice',
             'sidebar Details => Invoices Singleservice & groupservice',
@@ -131,9 +149,7 @@ class PermissionTableSeeder extends Seeder
             'sidebar Details groupservice',
 
 
-            'sidebar receipt & Payment',
-            'sidebar receipt',
-            'sidebar Deleted receipt',
+
             'sidebar Payment',
             'sidebar Deleted Payment',
             'sidebar Bank Tranktransfer',
@@ -183,19 +199,11 @@ class PermissionTableSeeder extends Seeder
 
 
 
-            'Create Receipt',
-            'Delete All Receipt',
+
             'Delete All Bank Tranktransfer',
             'Delete All Bank Card',
-            'Delete Group Receipt',
             'Delete Group Bank Tranktransfer',
             'Delete Group Bank Card',
-
-            'Delete Group Receipt softdelete',
-            'Restore All Receipt',
-            'Restore Group Receipt',
-            'Restore One Receipt',
-            'Delete Receipt softdelete',
 
 
             'Delete Group Bank Card softdelete',
@@ -216,14 +224,13 @@ class PermissionTableSeeder extends Seeder
             'Restore One Bank Tranktransfer',
             'Delete Bank Tranktransfer softdelete',
 
-            'Show Receipt',
+            
             'Show Bank Tranktransfer',
             'Show Bank Card',
-            'Edit Receipt',
-            'Delete Receipt',
+
             'Delete Bank Tranktransfer',
             'Delete Bank Card',
-            'Print Receipt',
+            
             'Print Bank Tranktransfer',
             'Print Bank Card',
             'Create Group Invoices',

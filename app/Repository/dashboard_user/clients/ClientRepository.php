@@ -30,11 +30,6 @@ class ClientRepository implements ClientRepositoryInterface
         return view('Dashboard/dashboard_user/clients.softdelete',compact('clients'));
     }
 
-    public function create()
-    {
-      return view('Dashboard/dashboard_user/clients.create');
-    }
-
     public function createclient(){
         return view('Dashboard/dashboard_user/clients.newaccountclient');
     }
@@ -69,10 +64,10 @@ class ClientRepository implements ClientRepositoryInterface
                 $client_id = Client::latest()->first()->id;
 
                 //* Notification Email
-                $mailclient = Client::findorFail($client_id);
-                $nameclient = $mailclient->name;
-                $url = url('en/login');
-                Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
+                // $mailclient = Client::findorFail($client_id);
+                // $nameclient = $mailclient->name;
+                // $url = url('en/login');
+                // Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -355,7 +350,13 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function deleteall()
     {
-        DB::table('clients')->delete();
+        DB::table('clients')->whereNull('deleted_at')->delete();
+        return redirect()->route('Clients.index');
+    }
+
+    public function deleteallsoftdelete()
+    {
+        DB::table('clients')->whereNotNull('deleted_at')->delete();
         return redirect()->route('Clients.index');
     }
 

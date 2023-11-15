@@ -38,6 +38,7 @@ return [
     'passwordsame' => 'رجاء تاكيد كلمة السر',
     'rolesnamerequired' => 'اسم الأدوار مطلوب',
     'phonerequired' => 'رقم الهاتفي مطلوب',
+    'phoneisunique' => 'رقم الهاتف موجود',
     'clienType' => 'نوع العميل',
     'individual' => 'فرد',
     'company' => 'شركة',
@@ -55,5 +56,5 @@ return [
     'requiredcity' => 'المدينة مطلوبة',
     'requiredpostalcode' => 'الرمز البريدي مطلوب',
     'pyupdatent' => 'إشعار بتحديث طريقة الدفع',
-    'billpaid' => 'لقد تم دفع الفاتورة'
+    'billpaid' => 'لقد تم دفع الفاتورة',
 ];

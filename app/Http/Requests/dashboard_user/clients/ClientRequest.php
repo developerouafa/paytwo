@@ -35,7 +35,7 @@ class ClientRequest extends FormRequest
         return [
             'name.required' => __('Dashboard/clients_trans.nameisrequired'),
             'phone.required' =>__('Dashboard/clients_trans.phoneisrequired'),
-            'phone.unique' =>__('Dashboard/clients_trans.phoneisunique'),
+            'phone.unique' =>__('Dashboard/users.phoneisunique'),
             'password.required' =>__('Dashboard/users.passwordrequired'),
             'password.same' =>__('Dashboard/users.passwordsame'),
             'email.required' =>__('Dashboard/users.emailrequired'),

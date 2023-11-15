@@ -97,10 +97,23 @@ class PermissionTableSeeder extends Seeder
             'Delete Promotion',
             'Delete All Promotions',
             'Delete Group Promotions',
-
-
+            //! Clients
             'sidebar clients',
             'sidebar Deleted clients',
+            'Create Client',
+            'Delete Group Client',
+            'Show Client',
+            'Edit Client',
+            'Delete Client',
+            'Delete Group Clients softdelete',
+            'Restore All Clients',
+            'Restore Group Clients',
+            'Restore One Clients',
+            'Delete Clients softdelete',
+            'Delete All Clients',
+            'Delete All Clients softdelete',
+
+
             'sidebar Group Services',
             'sidebar Invoices Singleservice & groupservice',
             'sidebar Details => Invoices Singleservice & groupservice',
@@ -148,12 +161,7 @@ class PermissionTableSeeder extends Seeder
             'Sent Invoices Group SingleInvoice',
 
 
-            'Create Client',
-            'Delete All Client',
-            'Delete Group Client',
-            'Show Client',
-            'Edit Client',
-            'Delete Client',
+
 
             'Create Catch Payment',
             'Delete All Catch Payment',
@@ -163,11 +171,7 @@ class PermissionTableSeeder extends Seeder
             'Print Catch Payment',
             'Delete Catch Payment',
 
-            'Delete Group Clients softdelete',
-            'Restore All Clients',
-            'Restore Group Clients',
-            'Restore One Clients',
-            'Delete Clients softdelete',
+
 
             'Create Receipt',
             'Delete All Receipt',

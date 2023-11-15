@@ -10,9 +10,6 @@ interface ClientRepositoryInterface
     //* get All Softdelete
     public function softdelete();
 
-    //* get All Clients
-    public function create();
-
     //* Create Client Account
     public function createclient();
 
@@ -42,6 +39,9 @@ interface ClientRepositoryInterface
 
     //* delete All Client
     public function deleteall();
+
+    //* deleteallsoftdelete All Client
+    public function deleteallsoftdelete();
 
     //* Restore
     public function restore($id);

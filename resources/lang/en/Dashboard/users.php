@@ -38,6 +38,7 @@ return [
     'passwordsame' => 'Confirm Password',
     'rolesnamerequired' => 'Roles name Is Required',
     'phonerequired' => 'Phone Is Required',
+    'phoneisunique' => 'Phone Is Unique',
     'clienType' => 'Client Type',
     'individual' => 'Individual',
     'company' => 'Company',

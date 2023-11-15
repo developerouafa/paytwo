@@ -36,8 +36,8 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Delete All Clients')
-                                <a class="btn btn-danger" href="{{route('Clients.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @can('Delete All Clients softdelete')
+                                <a class="btn btn-danger" href="{{route('Clients.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Clients softdelete')
@@ -51,7 +51,6 @@
                             @can('Restore Group Clients')
                                 <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
                             @endcan
-
                         </div>
                     </div>
                     @can('Show Client')
@@ -122,6 +121,7 @@
                 </div><!-- bd -->
             </div>
             <!--/div-->
+        </div>
 
             <!-- delete -->
             <div class="modal" id="modaldemo9">
@@ -148,14 +148,8 @@
                     </div>
                 </div>
             </div>
+
         <!-- /row -->
-
-    </div>
-    <!-- row closed -->
-
-    <!-- Container closed -->
-
-<!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

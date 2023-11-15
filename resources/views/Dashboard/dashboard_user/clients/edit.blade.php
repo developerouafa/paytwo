@@ -1,6 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="edit{{ $client->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="edit{{ $client->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -29,7 +28,7 @@
                     {!! Form::text('email', $client->email, array('class' => 'form-control','required')) !!}
                 </div>
 
-                <div class="modal-body"></div>
+                <div class="modal-body">
                     <label>{{__('Dashboard/users.password')}} <span class="tx-danger">*</span></label>
                     {!! Form::password('password', array('class' => 'form-control')) !!}
                 </div>
@@ -38,8 +37,6 @@
                     <label>{{__('Dashboard/users.currentpassword')}} <span class="tx-danger">*</span></label>
                     {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
                 </div>
-
-
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/clients_trans.Close')}}</button>

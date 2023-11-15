@@ -9,15 +9,13 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.clients')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.clients')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
     @if ($errors->any())
@@ -29,19 +27,18 @@
             </ul>
         </div>
     @endif
-    <!-- row -->
         <!-- row opened -->
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            @can('Create Client')
-                                <a class="btn btn-primary" href="{{route('Clients.createclient')}}">{{__('Dashboard/clients_trans.add_clients')}}</a>
+                            @can('Delete All Clients')
+                                <a class="btn btn-danger" href="{{route('Clients.deleteallclients')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
-                            @can('Delete All Client')
-                                <a class="btn btn-danger" href="{{route('Clients.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @can('Create Client')
+                                <a class="btn btn-primary" href="{{route('Clients.createclient')}}">{{__('Dashboard/clients_trans.add_clients')}}</a>
                             @endcan
 
                             @can('Delete Group Client')
@@ -130,16 +127,8 @@
 
                 </div><!-- bd -->
             </div>
-            <!--/div-->
-
-        <!-- /row -->
-
-    </div>
+        </div>
     <!-- row closed -->
-
-    <!-- Container closed -->
-
-<!-- main-content closed -->
 @endsection
 @section('js')
     <script>

@@ -93,7 +93,12 @@ class GroupProductRepository implements GroupProductRepositoryInterface
     }
 
     public function deleteall(){
-        DB::table('groupprodcuts')->delete();
+        DB::table('groupprodcuts')->whereNull('deleted_at')->delete();
+        return redirect()->route('GroupServices.index');
+    }
+
+    public function deleteallsoftdelete(){
+        DB::table('groupprodcuts')->whereNotNull('deleted_at')->delete();
         return redirect()->route('GroupServices.index');
     }
 

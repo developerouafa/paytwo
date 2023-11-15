@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -20,7 +19,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -35,12 +33,15 @@
 
 	<!-- row -->
     <div class="row">
-
         <!-- Index -->
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                            @can('Delete All GroupServices')
+                                <a class="btn btn-danger" href="{{route('GroupServices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
                             @can('Delete Group GroupServices')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -128,13 +129,8 @@
                     </div>
                 </div>
             </div>
-
     </div>
-				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+	<!-- row closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

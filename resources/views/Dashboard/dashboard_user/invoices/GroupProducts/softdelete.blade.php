@@ -34,131 +34,126 @@
     @endif
 
 	<!-- row -->
-    <div class="row">
+        <div class="row">
 
-        <!-- Index -->
-            <div class="col-xl-12">
-                <div class="card mg-b-20">
-                    <div class="card-header pb-0">
-                        <div class="d-flex justify-content-between">
-                            @can('Delete All GroupServices softdelete')
-                                <a class="btn btn-danger" href="{{route('GroupServices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
-                            @endcan
+            <!-- Index -->
+                <div class="col-xl-12">
+                    <div class="card mg-b-20">
+                        <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                                @can('Delete All GroupServices softdelete')
+                                    <a class="btn btn-danger" href="{{route('GroupServices.deleteall')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                @endcan
 
-                            @can('Delete Group GroupServices softdelete')
-                                <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
-                            @endcan
+                                @can('Delete Group GroupServices softdelete')
+                                    <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
+                                @endcan
 
-                            @can('Restore All GroupServices')
-                                <a class="btn btn-info" href="{{route('GroupServices.restoreallGroupServices')}}">{{__('Dashboard/messages.restoreall')}}</a>
-                            @endcan
+                                @can('Restore All GroupServices')
+                                    <a class="btn btn-info" href="{{route('GroupServices.restoreallGroupServices')}}">{{__('Dashboard/messages.restoreall')}}</a>
+                                @endcan
 
-                            @can('Restore Group GroupServices')
-                                <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
-                            @endcan
+                                @can('Restore Group GroupServices')
+                                    <button type="button" class="btn btn-info" id="btn_restore_all">{{__('Dashboard/messages.RestoreGroup')}}</button>
+                                @endcan
 
+                            </div>
                         </div>
-                    </div>
-                    @can('Show Group Services')
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            @can('Delete Group GroupServices softdelete')
-                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
-                                            @can('Restore Group GroupServices')
-                                                <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
-                                            @endcan
-                                            <th> {{__('Dashboard/services.nameservice')}} </th>
-                                            <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
-                                            <th>{{__('Dashboard/services.description')}}</th>
-                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                            <th>{{__('Dashboard/services.Processes')}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($groupservices as $group)
+                        @can('Show Group Services softdelete')
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                        <thead>
                                             <tr>
-                                                <td>{{ $loop->iteration}}</td>
+                                                <th>#</th>
                                                 @can('Delete Group GroupServices softdelete')
-                                                    <td>
-                                                        <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
-                                                    </td>
+                                                    <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                                 @endcan
                                                 @can('Restore Group GroupServices')
-                                                    <td>
-                                                        <input type="checkbox" name="restore" value="{{$group->id}}" class="delete_select">
-                                                    </td>
+                                                    <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                                 @endcan
-                                                <td>
-                                                    <a href="{{route('GroupServices.show', $group->id)}}">{{ $group->name }}</a>
-                                                </td>
-                                                <td>{{ number_format($group->Total_with_tax, 2) }}</td>
-                                                <td>{{ \Str::limit($group->notes, 50) }}</td>
-                                                <td>{{$group->user->name}}</td>
-                                                <td> {{ $group->created_at->diffForHumans() }} </td>
-                                                <td> {{ $group->updated_at->diffForHumans() }} </td>
-                                                <td>
-                                                    @can('Restore One GroupServices')
-                                                        <a href="{{route('GroupServices.restore', $group->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                    @endcan
-                                                    @can('Delete Group Services softdelete')
-                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $group->id }}" data-name="{{ $group->invoice_number }}"
-                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
-                                                            <i class="las la-trash"></i>
-                                                        </a>
-                                                    @endcan
-                                                </td>
+                                                <th> {{__('Dashboard/services.nameservice')}} </th>
+                                                <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
+                                                <th>{{__('Dashboard/services.description')}}</th>
+                                                <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                                <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                                <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                                <th>{{__('Dashboard/services.Processes')}}</th>
                                             </tr>
-                                        @endforeach
-                                        @can('Delete Group GroupServices softdelete')
-                                            @include('Dashboard.dashboard_user.invoices.GroupProducts.delete_selectsoftdelete')
-                                        @endcan
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($groupservices as $group)
+                                                <tr>
+                                                    <td>{{ $loop->iteration}}</td>
+                                                    @can('Delete Group GroupServices softdelete')
+                                                        <td>
+                                                            <input type="checkbox" name="delete_select" value="{{$group->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
+                                                    @can('Restore Group GroupServices')
+                                                        <td>
+                                                            <input type="checkbox" name="restore" value="{{$group->id}}" class="delete_select">
+                                                        </td>
+                                                    @endcan
+                                                    <td>
+                                                        <a href="{{route('GroupServices.show', $group->id)}}">{{ $group->name }}</a>
+                                                    </td>
+                                                    <td>{{ number_format($group->Total_with_tax, 2) }}</td>
+                                                    <td>{{ \Str::limit($group->notes, 50) }}</td>
+                                                    <td>{{$group->user->name}}</td>
+                                                    <td> {{ $group->created_at->diffForHumans() }} </td>
+                                                    <td> {{ $group->updated_at->diffForHumans() }} </td>
+                                                    <td>
+                                                        @can('Restore One GroupServices')
+                                                            <a href="{{route('GroupServices.restore', $group->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                        @endcan
+                                                        @can('Delete Group Services softdelete')
+                                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                                data-id="{{ $group->id }}" data-name="{{ $group->invoice_number }}"
+                                                                data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                                <i class="las la-trash"></i>
+                                                            </a>
+                                                        @endcan
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    @endcan
-                </div>
-            </div>
-
-        <!-- delete -->
-            <div class="modal" id="modaldemo9">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                                type="button"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <form action="{{route('GroupServices.destroy')}}" method="post">
-                            {{ method_field('delete') }}
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
-                                <input type="hidden" name="id" id="id">
-                                <input type="hidden" value="3" name="page_id">
-                                <input class="form-control" name="name" id="name" type="text" readonly>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
-                                <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
-                            </div>
-                        </form>
+                        @endcan
+                        @can('Delete Group GroupServices softdelete')
+                            @include('Dashboard.dashboard_user.invoices.GroupProducts.delete_selectsoftdelete')
+                        @endcan
                     </div>
                 </div>
-            </div>
 
-    </div>
-				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+            <!-- delete -->
+                <div class="modal" id="modaldemo9">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content modal-content-demo">
+                            <div class="modal-header">
+                                <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                                    type="button"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <form action="{{route('GroupServices.destroy')}}" method="post">
+                                {{ method_field('delete') }}
+                                {{ csrf_field() }}
+                                <div class="modal-body">
+                                    <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
+                                    <input type="hidden" name="id" id="id">
+                                    <input type="hidden" value="3" name="page_id">
+                                    <input class="form-control" name="name" id="name" type="text" readonly>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                                    <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+	<!-- row closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

@@ -39,6 +39,11 @@ class GroupproductController extends Controller
         return $this->groupproducts->deleteall();
     }
 
+    public function deleteallsoftdelete()
+    {
+        return $this->groupproducts->deleteallsoftdelete();
+    }
+
     public function restore($id)
     {
         return $this->groupproducts->restore($id);

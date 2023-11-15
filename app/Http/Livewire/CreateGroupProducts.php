@@ -204,7 +204,7 @@ class CreateGroupProducts extends Component
 
     public function deleteall()
     {
-        DB::table('groupprodcuts')->delete();
+        DB::table('groupprodcuts')->whereNull('deleted_at')->delete();
         return redirect()->to('/Add_GroupProducts');
     }
 }

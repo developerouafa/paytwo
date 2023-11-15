@@ -29,6 +29,7 @@
             </ul>
         </div>
     @endif
+
     <!-- row -->
         <!-- row opened -->
         <div class="row row-sm">
@@ -53,7 +54,7 @@
                             @endcan
                         </div>
                     </div>
-                    @can('Show Client')
+                    @can('Show Client softdelete')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table text-md-nowrap" id="example2">
@@ -123,33 +124,33 @@
             <!--/div-->
         </div>
 
-            <!-- delete -->
-            <div class="modal" id="modaldemo9">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content modal-content-demo">
-                        <div class="modal-header">
-                            <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
-                                type="button"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <form action="{{route('Clients.destroy')}}" method="post">
-                            {{ method_field('delete') }}
-                            {{ csrf_field() }}
-                            <div class="modal-body">
-                                <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
-                                <input type="hidden" name="id" id="id">
-                                <input type="hidden" value="3" name="page_id">
-                                <input class="form-control" name="name" id="name" type="text" readonly>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
-                                <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
-                            </div>
-                        </form>
+        <!-- delete -->
+        <div class="modal" id="modaldemo9">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">{{__('Dashboard/products.delete')}}</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                            type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
+                    <form action="{{route('Clients.destroy')}}" method="post">
+                        {{ method_field('delete') }}
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                            <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
+                            <input type="hidden" name="id" id="id">
+                            <input type="hidden" value="3" name="page_id">
+                            <input class="form-control" name="name" id="name" type="text" readonly>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
+                            <button type="submit" class="btn btn-danger">{{__('Dashboard/products.delete')}}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
+    <!-- /row -->
 
-        <!-- /row -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

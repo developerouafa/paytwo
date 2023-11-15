@@ -82,10 +82,7 @@ class PermissionTableSeeder extends Seeder
             'Create Product',
             'Delete All Product',
             'Delete All Product softdelete',
-            'Delete Group Product',
-            'Delete Group Product softdelete',
             'Restore All Product',
-            'Restore Group Product',
             'Restore One Product',
             'Delete Product softdelete',
             'Show Product',
@@ -104,6 +101,7 @@ class PermissionTableSeeder extends Seeder
             'Create Client',
             'Delete Group Client',
             'Show Client',
+            'Show Client softdelete',
             'Edit Client',
             'Delete Client',
             'Delete Group Clients softdelete',
@@ -113,9 +111,17 @@ class PermissionTableSeeder extends Seeder
             'Delete Clients softdelete',
             'Delete All Clients',
             'Delete All Clients softdelete',
-            //!
+            //! Single Services
 
 
+
+            //! Group Services
+            'Restore Group Product',
+            'Delete Group Product',
+            'Delete Group Product softdelete',
+
+
+            
             'sidebar Group Services',
             'sidebar Invoices Singleservice & groupservice',
             'sidebar Details => Invoices Singleservice & groupservice',
@@ -145,8 +151,8 @@ class PermissionTableSeeder extends Seeder
             'Delete Group SingleInvoice',
             'Delete All SingleInvoice',
             'Delete Group GroupInvoice softdelete',
-            'Delete All GroupServices',
             'Delete Group GroupServices',
+            'Delete All GroupServices',
             'Delete All GroupServices softdelete',
             'Delete Group GroupServices softdelete',
             'Restore All GroupServices',
@@ -231,6 +237,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Single Invoices',
             'Print Single Invoices',
             'Show Group Services',
+            'Show Group Services softdelete',
             'Edit Group Services',
             'Delete Group Services',
             'View Invoices Client',

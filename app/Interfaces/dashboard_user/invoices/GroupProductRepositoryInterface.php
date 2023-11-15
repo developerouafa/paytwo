@@ -19,6 +19,9 @@ interface GroupProductRepositoryInterface
     //* delete All Group Product(services)
     public function deleteall();
 
+    //* deleteallsoftdelete Group Product(services)
+    public function deleteallsoftdelete();
+
     //* Restore Group Product(services)
     public function restore($id);
 

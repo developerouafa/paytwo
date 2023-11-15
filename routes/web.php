@@ -273,18 +273,19 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         //############################# GroupServices route ##########################################
 
-                Route::group(['prefix' => 'GroupServices'], function(){
-                    Route::controller(GroupproductController::class)->group(function() {
-                        Route::get('/index', 'index')->name('GroupServices.index');
-                        Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
-                        Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
-                        Route::delete('/destroyGroupServices', 'destroy')->name('GroupServices.destroy');
-                        Route::get('/deleteallGroupServices', 'deleteall')->name('GroupServices.deleteall');
-                        Route::get('restoreGroupServices/{id}', 'restore')->name('GroupServices.restore');
-                        Route::get('restoreallGroupServices', 'restoreallGroupServices')->name('GroupServices.restoreallGroupServices');
-                        Route::post('restoreallselectGroupServices', 'restoreallselectGroupServices')->name('GroupServices.restoreallselectGroupServices');
-                    });
+            Route::group(['prefix' => 'GroupServices'], function(){
+                Route::controller(GroupproductController::class)->group(function() {
+                    Route::get('/index', 'index')->name('GroupServices.index');
+                    Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
+                    Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
+                    Route::delete('/destroyGroupServices', 'destroy')->name('GroupServices.destroy');
+                    Route::get('/deleteallGroupServices', 'deleteall')->name('Children.deleteallGroupServices');
+                    Route::get('/deleteallsoftdelete', 'deleteallsoftdelete')->name('Children.deleteallsoftdelete');
+                    Route::get('restoreGroupServices/{id}', 'restore')->name('GroupServices.restore');
+                    Route::get('restoreallGroupServices', 'restoreallGroupServices')->name('GroupServices.restoreallGroupServices');
+                    Route::post('restoreallselectGroupServices', 'restoreallselectGroupServices')->name('GroupServices.restoreallselectGroupServices');
                 });
+            });
 
         //############################# end GroupServices route ######################################
 

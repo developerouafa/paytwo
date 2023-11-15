@@ -29,6 +29,7 @@ return [
     'active' => 'Active',
     'childrens' => 'Childrens  Sections',
     'addchildren' => 'Add Children In Section',
+    'Updatechildren' => 'Update Children In Section',
     'children' => 'Children Section',
     'section' => 'Section',
     'childrenen' => 'Children English',

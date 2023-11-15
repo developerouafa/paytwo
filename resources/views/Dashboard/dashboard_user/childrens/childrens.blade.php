@@ -167,7 +167,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-children" id="exampleModalLabel">{{__('Dashboard/products.update')}}</h5>
+                                <h5 class="modal-children" id="exampleModalLabel">{{__('Dashboard/sections_trans.Updatechildren')}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -182,7 +182,7 @@
                                         <input placeholder="{{__('Dashboard/sections_trans.children')}}" class="form-control" name="name_{{app()->getLocale()}}" id="children" type="text">
                                     </div>
                                     <div class="form-group">
-                                        <select name="section_id" class="form-control SlectBox" id="section_id">
+                                        <select name="section_id" class="form-control" style="width: 100%" id="section_id">
                                             <option value="" selected disabled>{{__('Dashboard/sections_trans.sections')}}</option>
                                                 @forelse ($sections as $section)
                                                     @if ($section->status == 0)

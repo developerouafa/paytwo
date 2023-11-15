@@ -11,7 +11,7 @@ $(function(e) {
 		}
 	});
 	table.buttons().container()
-	.appendTo( '#example_wrapper .col-lg-6:eq(0)' );
+	.appendTo( '#example_wrapper .col-md-6:eq(0)' );
 
 	$('#example1').DataTable({
 		language: {

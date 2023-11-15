@@ -69,7 +69,7 @@ class productRepository implements productRepositoryInterface
         catch(\Exception $exception){
             DB::rollBack();
             toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Products.index');
+            return redirect()->route('Products.createprod');
         }
     }
 

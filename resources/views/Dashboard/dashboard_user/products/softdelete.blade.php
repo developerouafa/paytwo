@@ -70,10 +70,6 @@
                                             <th>{{__('Dashboard/products.price')}}</th>
                                             <th>{{__('Dashboard/products.section')}}</th>
                                             <th>{{__('Dashboard/products.children')}}</th>
-                                            <th>{{__('Dashboard/products.images')}}</th>
-                                            @can('promotion Product')
-                                                <th>{{__('Dashboard/products.promotion')}}</th>
-                                            @endauth
                                             @can('stock Product')
                                                 <th>{{__('Dashboard/products.stock')}}</th>
                                             @endauth
@@ -105,35 +101,15 @@
                                                             <td> {{$x->price}}</td>
                                                             <td> {{$x->section->name}} </td>
                                                             <td> {{$x->subsections->name}} </td>
-                                                            <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                            <td>
-                                                                @can('promotion Product')
-                                                                    @forelse ($x->promotion as $promo)
-                                                                        @if ($promo->expired == 0)
-                                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                                {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                            </a>
-                                                                        @else
-                                                                            <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                                {{__('Dashboard/products.promotioniscancel')}}
-                                                                            </a>
-                                                                        @endif
-                                                                    @empty
-                                                                        <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                                        data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                                        href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                                    @endforelse ()
-                                                                @endcan
-                                                            </td>
                                                             <td>
                                                                 @can('stock Product')
                                                                     @foreach ($stockproduct as $ss)
                                                                         @if ($ss->product_id == $x->id)
                                                                             @if ($ss->stock == "0")
-                                                                                <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                                                                {{ __('Dashboard/products.existinstock') }}
                                                                             @endif
                                                                             @if ($ss->stock == "1")
-                                                                                <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                                                {{ __('Dashboard/products.noexistinstock') }}
                                                                             @endif
                                                                         @endif
                                                                     @endforeach
@@ -177,32 +153,14 @@
                                                         <td> {{$x->price}}</td>
                                                         <td> {{$x->section->name}} </td>
                                                         <td> {{__('Dashboard/sections_trans.nochildsection')}} </td>
-                                                        <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                        <td>
-                                                            @forelse ($x->promotion as $promo)
-                                                                @if ($promo->expired == 0)
-                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                        {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                    </a>
-                                                                @else
-                                                                    <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                        {{__('Dashboard/products.promotioniscancel')}}
-                                                                    </a>
-                                                                @endif
-                                                            @empty
-                                                                <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                                data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                                href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                            @endforelse ()
-                                                        </td>
                                                         <td>
                                                             @foreach ($stockproduct as $ss)
                                                                 @if ($ss->product_id == $x->id)
                                                                     @if ($ss->stock == "0")
-                                                                        <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                                                        {{ __('Dashboard/products.existinstock') }}
                                                                     @endif
                                                                     @if ($ss->stock == "1")
-                                                                        <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                                        {{ __('Dashboard/products.noexistinstock') }}
                                                                     @endif
                                                                 @endif
                                                             @endforeach
@@ -243,32 +201,14 @@
                                                     <td> {{$x->price}}</td>
                                                     <td> {{__('Dashboard/sections_trans.nosection')}} </td>
                                                     <td> {{__('Dashboard/sections_trans.nochildsection')}} </td>
-                                                    <td><a href="{{ url('Products/images/images') }}/{{ $x->id }}">{{__('Dashboard/products.viewimages')}}</a></td>
-                                                    <td>
-                                                        @forelse ($x->promotion as $promo)
-                                                            @if ($promo->expired == 0)
-                                                                <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                    {{__('Dashboard/products.thereisanpromotionfortheproduct')}}
-                                                                </a>
-                                                            @else
-                                                                <a href="{{ url('Products/promotions/promotions') }}/{{ $x->id }}">
-                                                                    {{__('Dashboard/products.promotioniscancel')}}
-                                                                </a>
-                                                            @endif
-                                                        @empty
-                                                            <a class="modal-effect btn btn-sm btn-secondary" data-effect="effect-scale"
-                                                            data-id="{{ $x->id }}" data-price="{{ $x->price }}" data-toggle="modal"
-                                                            href="#modaldemopromotion">{{__('Dashboard/products.addpromotion')}}</a>
-                                                        @endforelse ()
-                                                    </td>
                                                     <td>
                                                         @foreach ($stockproduct as $ss)
                                                             @if ($ss->product_id == $x->id)
                                                                 @if ($ss->stock == "0")
-                                                                    <a href="{{route('stock.editstocknoexist', $ss->id)}}" style="color: green;">{{ __('Dashboard/products.existinstock') }}</a>
+                                                                    {{ __('Dashboard/products.existinstock') }}
                                                                 @endif
                                                                 @if ($ss->stock == "1")
-                                                                    <a href="{{route('stock.editstockexist', $ss->id)}}" style="color: red;">{{ __('Dashboard/products.noexistinstock') }}</a>
+                                                                    {{ __('Dashboard/products.noexistinstock') }}
                                                                 @endif
                                                             @endif
                                                         @endforeach

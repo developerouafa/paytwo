@@ -29,6 +29,7 @@ return [
     'active' => 'تفعيل',
     'childrens' => 'أقسام الأطفال',
     'addchildren' => 'إضافة الأطفال في القسم',
+    'Updatechildren' => 'تعديل الأطفال في القسم',
     'children' => 'طفل القسم',
     'section' => 'القسم',
     'childrenen' => 'طفل القسم بالانجليزية',

@@ -19,7 +19,9 @@
             <th> {{__('Dashboard/users.createdbyuser')}} </th>
             <th>{{__('Dashboard/sections_trans.created_at')}}</th>
             <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-            <th> {{__('Dashboard/services.Processes')}} </th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -98,19 +100,20 @@
                     @can('Edit Single Invoices')
                         <button wire:click="edit({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                     @endcan
-
+                </td>
+                <td>
                     @can('Delete Single Invoices')
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_invoice" wire:click="delete({{ $single_invoice->id }})" >
                             <i class="fa fa-trash"></i>
                         </button>
                     @endcan
-
+                </td>
+                <td>
                     @can('Print Single Invoices')
                         <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
                     @endcan
                 </td>
             </tr>
-
         @endforeach
     </table>
 

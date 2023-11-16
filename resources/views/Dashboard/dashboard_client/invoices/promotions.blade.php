@@ -6,7 +6,6 @@
 
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -14,7 +13,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -29,7 +27,6 @@
 
         <!-- row -->
             <div class="row">
-            {{-- Index --}}
                 <div class="col-xl-12">
                     <div class="card mg-b-20">
                         <div class="card-body">
@@ -66,14 +63,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         <!-- row closed -->
 
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

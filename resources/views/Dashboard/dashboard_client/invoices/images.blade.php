@@ -9,15 +9,13 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/products.images')}}</h4>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/products.images')}}</h4>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
     @if ($errors->any())
@@ -31,9 +29,7 @@
     @endif
 
     <!-- row -->
-    <div class="row">
-
-        {{-- Index --}}
+        <div class="row">
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-body">
@@ -57,7 +53,7 @@
                                                     <br>
                                                 </td>
                                             @empty
-                                               <td> <b> {{__('Dashboard/products.noimage')}} </b> </td>
+                                                <td> <b> {{__('Dashboard/products.noimage')}} </b> </td>
                                             @endforelse
                                             @forelse ($multimg as $x)
                                                 <td>
@@ -74,13 +70,9 @@
                     </div>
                 </div>
             </div>
-
-    </div>
+        </div>
     <!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+
 @endsection
 @section('js')
     <!--Internal  Notify js -->

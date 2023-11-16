@@ -9,7 +9,6 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
@@ -17,7 +16,6 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -31,9 +29,7 @@
     @endif
 
 	<!-- row -->
-    <div class="row">
-
-        <!-- Index -->
+        <div class="row">
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-body">
@@ -192,13 +188,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+	<!-- row closed -->
 
-    </div>
-				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Notify js -->

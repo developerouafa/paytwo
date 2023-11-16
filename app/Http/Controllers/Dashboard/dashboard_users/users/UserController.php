@@ -343,9 +343,10 @@ class UserController extends Controller
     public function clienttouser($id)
     {
         $invoice = invoice::where('id', $id)->first();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type->App\Notifications\clienttouser')->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_user.Printinvoice.invoicePrint',compact('invoice'));
+        $receiptdocument = receiptdocument::where('invoice_id', $id)->where('client_id', $invoice->client_id)->with('Client')->with('Invoice')->first();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\clienttouser')->first();
+        DB::table('notifications')->where('id', $getID->id)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
     }
 
     public function clienttouserinvoice($id)

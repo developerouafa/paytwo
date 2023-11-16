@@ -180,7 +180,7 @@
                                                             </div>
                                                             <div class="col-md-9">
                                                                 <input type="address" name="address" class="form-control" value="{{Auth::user()->profileclient->adderss}}" autofocus autocomplete="address" >
-                                                                <x-input-error class="mt-2" style="color: red" :messages="$errors->get('address')" />
+                                                                <x-input-error class="mt-2" style="color: red" :messages="$errors->get('address')"  autocomplete="address"/>
                                                             </div>
                                                         </div>
                                                     </div>

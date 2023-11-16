@@ -79,7 +79,7 @@
                     <div class="list-group">
                         <div class="list-group-item border-top-0">
                             <h6 class="card-title">{{__('Dashboard/clients_trans.unpaidbill')}}</h6>
-                            <span><a href="{{route('Invoices.showinvoicemonetary',$invoice->id)}}">{{__('Dashboard/clients_trans.Modifydata')}}</a></span>
+                            <span><a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{__('Dashboard/clients_trans.Modifydata')}}</a></span>
                         </div>
                     </div>
                 </div>

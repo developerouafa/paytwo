@@ -9,16 +9,14 @@
     <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto"> {{__('Dashboard/services.invoices')}} </h4><span
-                    class="text-muted mt-1 tx-13 mr-2 mb-0">/      {{__('Dashboard/services.Singleservicebill')}} </span>
+                <h4 class="content-title mb-0 my-auto"> {{__('Dashboard/services.invoices')}} </h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/services.Singleservicebill')}} </span>
             </div>
         </div>
     </div>
-    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -33,12 +31,15 @@
 
 	<!-- row -->
     <div class="row">
-
         <!-- Index -->
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                            @can('Delete All SingleInvoice')
+                                <a class="btn btn-danger" href="{{route('SingleInvoices.deleteallsingleinvoice')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
                             @can('Delete Group SingleInvoice')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
@@ -207,13 +208,9 @@
                     </div>
                 </div>
             </div>
-
     </div>
-				<!-- row closed -->
-			</div>
-			<!-- Container closed -->
-		</div>
-		<!-- main-content closed -->
+	<!-- row closed -->
+
 @endsection
 @section('js')
     <!--Internal  Notify js -->

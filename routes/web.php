@@ -306,6 +306,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     Route::get('/Deleted_Singleinvoice', 'softdeletesingleinvoice')->name('SingleInvoices.softdeletesingleinvoice');
                     Route::delete('/destroysingleinvoice', 'destroy')->name('SingleInvoices.destroy');
                     Route::get('/deleteallsingleinvoice', 'deleteallsingleinvoices')->name('SingleInvoices.deleteallsingleinvoice');
+                    Route::get('/deleteallsoftdelete', 'deleteallsoftdelete')->name('SingleInvoices.deleteallsoftdelete');
                     Route::get('restoresingleinvoice/{id}', 'restoresingleinvoice')->name('SingleInvoices.restoresingleinvoice');
                     Route::get('restoreallsingleinvoice', 'restoreallsingleinvoices')->name('SingleInvoices.restoreallsingleinvoice');
                     Route::post('restoreallselectsingleinvoice', 'restoreallselectsingleinvoices')->name('SingleInvoices.restoreallselectsingleinvoice');

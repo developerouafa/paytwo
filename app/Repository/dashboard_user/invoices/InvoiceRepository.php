@@ -101,8 +101,13 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function deleteallsingleinvoices(){
-        DB::table('invoices')->where('invoice_classify',1)->delete();
+        DB::table('invoices')->whereNull('deleted_at')->where('invoice_classify',1)->delete();
         return redirect()->route('SingleInvoices.indexsingleinvoice');
+    }
+
+    public function deleteallsoftdelete(){
+        DB::table('invoices')->whereNotNull('deleted_at')->where('invoice_classify',1)->delete();
+        return redirect()->route('SingleInvoices.softdeletesingleinvoice');
     }
 
     public function invoicestatus($id)
@@ -201,7 +206,7 @@ class InvoiceRepository implements InvoicesRepositoryInterface
             // }
 
             DB::commit();
-            toastr()->success(trans('Dashboard/messages.edit'));
+            toastr()->success(trans('Dashboard/messages.beensent'));
             return redirect()->route('SingleInvoices.indexsingleinvoice');
         }catch(\Exception $execption){
             DB::rollBack();

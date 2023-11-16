@@ -555,7 +555,7 @@ class GroupInvoices extends Component
                     // $url = url('en/Invoices/print/'.$invoice_id);
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
+                    toastr()->success(trans('Dashboard/messages.beensent'));
                 }
 
                 // في حالة كانت الفاتورة نقدي
@@ -574,7 +574,7 @@ class GroupInvoices extends Component
                     // $url = url('en/Invoices/print/'.$invoice_id);
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
+                    toastr()->success(trans('Dashboard/messages.beensent'));
                 }
 
                 // في حالة كانت الفاتورة اجل
@@ -593,7 +593,7 @@ class GroupInvoices extends Component
                     // $url = url('en/Invoices/print/'.$invoice_id);
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
+                    toastr()->success(trans('Dashboard/messages.beensent'));
                 }
 
                 // في حالة كانت الفاتورة حوالة بنكية
@@ -612,7 +612,7 @@ class GroupInvoices extends Component
                     // $url = url('en/Invoices/print/'.$invoice_id);
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
+                    toastr()->success(trans('Dashboard/messages.beensent'));
                 }
 
                 // في حالة كانت الفاتورة بطاقة
@@ -631,7 +631,7 @@ class GroupInvoices extends Component
                     // $url = url('en/Invoices/print/'.$invoice_id);
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
-                    toastr()->success(trans('Dashboard/messages.add'));
+                    toastr()->success(trans('Dashboard/messages.beensent'));
                 }
             }
             catch (\Exception $e) {

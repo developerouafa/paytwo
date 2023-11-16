@@ -128,7 +128,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -224,7 +224,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-11" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-11" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -320,7 +320,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-12" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-12" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -416,7 +416,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-13" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-13" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -512,7 +512,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-14" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-14" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -608,7 +608,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-15" class="table table-striped mg-b-0 text-md-nowrap table-hover">
+                                    <table id="example-15" class="table table-striped mg-b-0 text-md-nowrap table-hover" data-page-length="50" style="text-align: center">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -692,10 +692,6 @@
         </div>
     </div>
 
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
 @endsection
 @section('js')
     <script>

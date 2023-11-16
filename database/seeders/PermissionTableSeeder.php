@@ -120,6 +120,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Clients softdelete',
             'Delete All Clients',
             'Delete All Clients softdelete',
+            'View Invoices Client',
 
             //! Group Services
             'sidebar Group Services',
@@ -149,7 +150,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Group Receipt',
             'Show Receipt',
             'Edit Receipt',
-            'Delete Receipt',       
+            'Delete Receipt',
             'Print Receipt',
 
             //! Catch Payment
@@ -168,7 +169,7 @@ class PermissionTableSeeder extends Seeder
             'Restore Group Catch Payment',
             'Restore One Catch Payment',
             'Delete Catch Payment softdelete',
-            
+
             //! Bank Tranktransfer
             'sidebar Bank Tranktransfer',
             'sidebar Deleted Bank Tranktransfer',
@@ -209,42 +210,37 @@ class PermissionTableSeeder extends Seeder
             'sidebar Deleted Singleservice',
             'Delete Group SingleInvoice',
             'Delete All SingleInvoice',
+            'Delete All SingleInvoice softdelete',
             'Delete Group SingleInvoice softdelete',
             'Sent Invoices Group SingleInvoice',
             'Restore All SingleInvoice',
             'Restore Group SingleInvoice',
             'Restore One SingleInvoice',
-
-
-
-            'sidebar groupservice',
-            'sidebar Details groupservice',
-            'sidebar Deleted groupservice',
-            'sidebar Details GroupServices',
-            'sidebar Deleted GroupServices',
-
-            'Delete Group GroupInvoice softdelete',
-            'Delete Group GroupServices',
-
             'Show Single Invoices softdelete',
-            'Show Group Invoices softdelete',
             'Delete Single Invoices softdelete',
-            'Delete All GroupInvoice',
-            'Delete Group GroupInvoice',
-            'Delete Group Invoices softdelete',
-
-
-            'Create Group Invoices',
-            'Show Group Invoices',
-            'Edit Group Invoices',
-            'Delete Group Invoices',
-            'Print Group Invoices',
             'Show Single Invoices',
             'Create Single Invoices',
             'Edit Single Invoices',
             'Delete Single Invoices',
             'Print Single Invoices',
-            'View Invoices Client',
+
+            //! Group Invoices
+            'sidebar groupservice',
+            'sidebar Details groupservice',
+            'sidebar Deleted groupservice',
+            'sidebar Details GroupServices',
+            'sidebar Deleted GroupServices',
+            'Show Group Invoices softdelete',
+            'Delete Group Invoices softdelete',
+            'Create Group Invoices',
+            'Show Group Invoices',
+            'Edit Group Invoices',
+            'Delete Group Invoices',
+            'Print Group Invoices',
+            'Delete Group GroupInvoice softdelete',
+            'Delete Group GroupServices',
+            'Delete All GroupInvoice',
+            'Delete Group GroupInvoice',
             'Restore All GroupInvoice',
             'Restore Group GroupInvoice',
             'Restore One GroupInvoice',

@@ -75,9 +75,14 @@ class InvoiceController extends Controller
         return $this->invoices->deleteallgroupInvoices();
     }
 
-    public function restoregroupInvoices($id)
+    public function deleteallsoftdeletegr()
     {
-        return $this->invoices->restoregroupInvoices($id);
+        return $this->invoices->deleteallsoftdeletegr();
+    }
+
+    public function restoregroupInvoice($id)
+    {
+        return $this->invoices->restoregroupInvoice($id);
     }
 
     public function restoreallgroupInvoices()

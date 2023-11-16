@@ -280,11 +280,16 @@ class InvoiceRepository implements InvoicesRepositoryInterface
     }
 
     public function deleteallgroupInvoices(){
-        DB::table('invoices')->where('invoice_classify',2)->delete();
+        DB::table('invoices')->whereNull('deleted_at')->where('invoice_classify',2)->delete();
         return redirect()->route('GroupInvoices.indexgroupInvoices');
     }
 
-    public function restoregroupInvoices($id){
+    public function deleteallsoftdeletegr(){
+        DB::table('invoices')->whereNotNull('deleted_at')->where('invoice_classify',2)->delete();
+        return redirect()->route('GroupInvoices.softdeletegroupInvoices');
+    }
+
+    public function restoregroupInvoice($id){
         try{
             DB::beginTransaction();
                 invoice::withTrashed()->where('id', $id)->restore();

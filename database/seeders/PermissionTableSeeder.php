@@ -240,6 +240,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Group GroupInvoice softdelete',
             'Delete Group GroupServices',
             'Delete All GroupInvoice',
+            'Delete All GroupInvoice softdelete',
             'Delete Group GroupInvoice',
             'Restore All GroupInvoice',
             'Restore Group GroupInvoice',

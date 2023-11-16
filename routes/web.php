@@ -324,6 +324,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     Route::get('/Deleted_ProductgroupInvoices', 'softdeletegroupInvoices')->name('GroupInvoices.softdeletegroupInvoices');
                     Route::delete('/destroygroupInvoices', 'destroy')->name('GroupInvoices.destroy');
                     Route::get('/deleteallgroupInvoices', 'deleteallgroupInvoices')->name('GroupInvoices.deleteallgroupInvoices');
+                    Route::get('/deleteallsoftdeletegr', 'deleteallsoftdeletegr')->name('GroupInvoices.deleteallsoftdeletegr');
                     Route::get('restoregroupInvoices/{id}', 'restoregroupInvoice')->name('GroupInvoices.restoregroupInvoices');
                     Route::get('restoreallgroupInvoices', 'restoreallgroupInvoices')->name('GroupInvoices.restoreallgroupInvoices');
                     Route::post('restoreallselectgroupInvoices', 'restoreallselectgroupInvoices')->name('GroupInvoices.restoreallselectgroupInvoices');

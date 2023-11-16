@@ -40,8 +40,11 @@ interface InvoicesRepositoryInterface
     //* delete All Invoice groupinvoice
     public function deleteallgroupInvoices();
 
+    //* delete all softdelete Invoice groupinvoice
+    public function deleteallsoftdeletegr();
+
     //* Restore groupinvoice
-    public function restoregroupInvoices($id);
+    public function restoregroupInvoice($id);
 
     //* Restore All groupinvoice
     public function restoreallgroupInvoices();

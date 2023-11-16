@@ -15,5 +15,6 @@ return [
     'deletee' => 'حذف',
     'restoreall' => 'استعادة الكل',
     'RestoreGroup' => 'استعادة بالمجموعة',
-    'DeleteGroup' => 'حذف بالمجموعة'
+    'DeleteGroup' => 'حذف بالمجموعة',
+    'beensent' => 'تم إرسالها',
 ];

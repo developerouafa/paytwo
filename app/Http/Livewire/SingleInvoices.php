@@ -520,90 +520,113 @@ class SingleInvoices extends Component
     {
         $single_invoice = invoice::findorfail($id);
 
-        // في حالة كانت الفاتورة لم يتم الاختيار بعد
-        if($single_invoice->type == 0){
-            $single_invoice->invoice_status = '2';
-            $single_invoice->save();
+        if($single_invoice->invoice_status != '2')
+        {
+            try {
+                DB::beginTransaction();
 
-            $client = Client::where('id', '=', $single_invoice->client_id)->get();
-            $user_create_id = $single_invoice->user_id;
-            $invoice_id = $single_invoice->id;
-            $message = __('Dashboard/main-header_trans.nicase');
-            Notification::send($client, new invoicent($user_create_id, $invoice_id, $message));
+                // في حالة كانت الفاتورة لم يتم الاختيار بعد
+                if($single_invoice->type == 0){
+                    $single_invoice->invoice_status = '2';
+                    $single_invoice->save();
 
-            // $mailclient = Client::findorFail($single_invoice->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/print/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $client = Client::where('id', '=', $single_invoice->client_id)->get();
+                    $user_create_id = $single_invoice->user_id;
+                    $invoice_id = $single_invoice->id;
+                    $message = __('Dashboard/main-header_trans.nicase');
+                    Notification::send($client, new invoicent($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($single_invoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                }
+
+                // في حالة كانت الفاتورة نقدي
+                if($single_invoice->type == 1){
+                    $single_invoice->invoice_status = '2';
+                    $single_invoice->save();
+
+                    $client = Client::where('id', '=', $single_invoice->client_id)->get();
+                    $user_create_id = $single_invoice->user_id;
+                    $invoice_id = $single_invoice->id;
+                    $message = __('Dashboard/main-header_trans.nicasemontary');
+                    Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($single_invoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                }
+
+                // في حالة كانت الفاتورة اجل
+                if($single_invoice->type == 2){
+                    $single_invoice->invoice_status = '2';
+                    $single_invoice->save();
+
+                    $client = Client::where('id', '=', $single_invoice->client_id)->get();
+                    $user_create_id = $single_invoice->user_id;
+                    $invoice_id = $single_invoice->id;
+                    $message = __('Dashboard/main-header_trans.nicasepostpaid');
+                    Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($single_invoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                }
+
+                // في حالة كانت الفاتورة حوالة بنكية
+                if($single_invoice->type == 3){
+                    $single_invoice->invoice_status = '2';
+                    $single_invoice->save();
+
+                    $client = Client::where('id', '=', $single_invoice->client_id)->get();
+                    $user_create_id = $single_invoice->user_id;
+                    $invoice_id = $single_invoice->id;
+                    $message = __('Dashboard/main-header_trans.nicasepymgtw');
+                    Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($single_invoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                }
+
+                // في حالة كانت الفاتورة بطاقة
+                if($single_invoice->type == 4){
+                    $single_invoice->invoice_status = '2';
+                    $single_invoice->save();
+
+                    $client = Client::where('id', '=', $single_invoice->client_id)->get();
+                    $user_create_id = $single_invoice->user_id;
+                    $invoice_id = $single_invoice->id;
+                    $message = __('Dashboard/main-header_trans.nicasebanktransfer');
+                    Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($single_invoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    DB::commit();
+                    toastr()->success(trans('Dashboard/messages.add'));
+                }
+            }
+            catch (\Exception $e) {
+                DB::rollback();
+                toastr()->error(trans('Dashboard/messages.error'));
+            }
         }
-
-        // في حالة كانت الفاتورة نقدي
-        if($single_invoice->type == 1){
-            $single_invoice->invoice_status = '2';
-            $single_invoice->save();
-
-            $client = Client::where('id', '=', $single_invoice->client_id)->get();
-            $user_create_id = $single_invoice->user_id;
-            $invoice_id = $single_invoice->id;
-            $message = __('Dashboard/main-header_trans.nicasemontary');
-            Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
-
-            // $mailclient = Client::findorFail($single_invoice->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/print/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-
-        // في حالة كانت الفاتورة اجل
-        if($single_invoice->type == 2){
-            $single_invoice->invoice_status = '2';
-            $single_invoice->save();
-
-            $client = Client::where('id', '=', $single_invoice->client_id)->get();
-            $user_create_id = $single_invoice->user_id;
-            $invoice_id = $single_invoice->id;
-            $message = __('Dashboard/main-header_trans.nicasepostpaid');
-            Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
-
-            // $mailclient = Client::findorFail($single_invoice->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/print/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-
-        // في حالة كانت الفاتورة حوالة بنكية
-        if($single_invoice->type == 3){
-            $single_invoice->invoice_status = '2';
-            $single_invoice->save();
-
-            $client = Client::where('id', '=', $single_invoice->client_id)->get();
-            $user_create_id = $single_invoice->user_id;
-            $invoice_id = $single_invoice->id;
-            $message = __('Dashboard/main-header_trans.nicasepymgtw');
-            Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
-
-            // $mailclient = Client::findorFail($single_invoice->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/print/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-
-        // في حالة كانت الفاتورة بطاقة
-        if($single_invoice->type == 4){
-            $single_invoice->invoice_status = '2';
-            $single_invoice->save();
-
-            $client = Client::where('id', '=', $single_invoice->client_id)->get();
-            $user_create_id = $single_invoice->user_id;
-            $invoice_id = $single_invoice->id;
-            $message = __('Dashboard/main-header_trans.nicasebanktransfer');
-            Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
-
-            // $mailclient = Client::findorFail($single_invoice->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/print/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-
+        else{
+            toastr()->error(trans('Dashboard/messages.beensent'));
         }
     }
 

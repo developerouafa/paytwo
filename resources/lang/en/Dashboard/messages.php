@@ -15,5 +15,6 @@ return [
     'deletee' => 'Delete',
     'restoreall' => 'Restore All',
     'RestoreGroup' => 'Restore Group',
-    'DeleteGroup' => 'Delete Group'
+    'DeleteGroup' => 'Delete Group',
+    'beensent' => 'Been sent',
 ];

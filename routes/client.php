@@ -27,9 +27,11 @@ Route::group(
     ], function () {
 
     //################################ dashboard patient ########################################
-    Route::get('/dashboard/clients', function () {
-        return view('Dashboard.dashboard_client.dashboard');
-    })->name('dashboard.client');
+
+        Route::get('/dashboard/clients', function () {
+            return view('Dashboard.dashboard_client.dashboard');
+        })->name('dashboard.client');
+
     //################################ end dashboard patient #####################################
 
     //############################# Start Partie Client route ##########################################
@@ -42,6 +44,7 @@ Route::group(
                 Route::delete('/profile', 'destroy')->name('profileclient.destroy');
             });
         });
+
     //############################# End Partie Client route ######################################
 
     //############################# Start Notification route ##########################################
@@ -49,9 +52,11 @@ Route::group(
         Route::controller(Notification::class)->group(function() {
             Route::get('/Read', 'markeAsRead')->name('Notification.Readclient');
         });
+
     //############################# End Notification route ##########################################
 
     //############################# Clients route ##########################################
+
         Route::prefix('Invoices')->group(function (){
             Route::controller(InvoiceController::class)->group(function() {
                 Route::get('/index', 'index')->name('Invoices.index');
@@ -98,6 +103,7 @@ Route::group(
                 Route::stripeWebhooks('webhook');
             });
         });
+
     //############################# end Clients route ######################################
 
 });

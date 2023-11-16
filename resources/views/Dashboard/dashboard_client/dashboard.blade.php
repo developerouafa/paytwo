@@ -122,6 +122,7 @@
                                     <th> {{__('Dashboard/services.print')}} </th>
                                     <th> {{__('Dashboard/services.invoicenumber')}} </th>
                                     <th> {{__('Dashboard/services.nameservice')}} </th>
+                                    <th> {{__('Dashboard/services.type')}} </th>
                                     <th> {{__('Dashboard/services.client')}} </th>
                                     <th> {{__('Dashboard/services.dateinvoice')}} </th>
                                     <th> {{__('Dashboard/services.priceservice')}} </th>
@@ -161,6 +162,19 @@
                                                 <a href="{{route('Invoices.showServices', $invoice->Group->id)}}">{{ $invoice->Group->name }}</a>
                                             </td>
                                         @endif
+                                        <td>
+                                            @if ($invoice->type == 1)
+                                                {{__('Dashboard/services.monetary')}}
+                                            @elseif ($invoice->type == 0)
+                                                {{__('Dashboard/services.noselectionyet')}}
+                                            @elseif ($invoice->type == 2)
+                                                {{__('Dashboard/services.Okay')}}
+                                            @elseif ($invoice->type == 3)
+                                                {{__('Dashboard/services.Banktransfer')}}
+                                            @elseif ($invoice->type == 4)
+                                                {{__('Dashboard/services.card')}}
+                                            @endif
+                                        </td>
                                         <td>{{ $invoice->Client->name }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
                                         <td>{{ number_format($invoice->price, 2) }}</td>

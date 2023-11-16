@@ -30,4 +30,5 @@ return [
     'deletedpayment' => 'deleted Payment',
     'Clientoperations' => 'Client Operations',
     'Listofinvoices' => 'List of Invoices',
+    'Notifications' => 'Notifications'
 ];

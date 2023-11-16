@@ -30,4 +30,5 @@ return [
     'deletedpayment' => 'الدفع المحذوف',
     'Clientoperations' => 'عميات العميل',
     'Listofinvoices' => 'قائمة الفواتير',
+    'Notifications' => 'الاشعارات'
 ];

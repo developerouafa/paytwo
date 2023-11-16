@@ -321,7 +321,7 @@ class UserController extends Controller
         }
     }
 
-    //* Déactive Login User 
+    //* Déactive Login User
     public function editstatusdéactive($id)
     {
         try{
@@ -526,7 +526,7 @@ class UserController extends Controller
     //* Delete All Users (Except the user who is logged in) & (Except for the Super Admin)
     public function deleteallusers(){
         DB::table('users')->whereNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
-        return redirect()->route('Users.softdeleteusers');
+        return redirect()->route('Users.index');
     }
 
     //* Delete All Users Sofdelete (Except the user who is logged in) & (Except for the Super Admin)

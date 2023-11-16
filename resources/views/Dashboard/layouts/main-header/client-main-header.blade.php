@@ -173,9 +173,9 @@
                                             @if ($notification->type == 'App\Notifications\invoicent')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-pink">
-                                                        <i class="la la-file-alt text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -187,9 +187,9 @@
                                             @if ($notification->type == 'App\Notifications\montaryinvoice')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-pink">
-                                                        <i class="la la-file-alt text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -201,9 +201,9 @@
                                             @if ($notification->type == 'App\Notifications\postpaidbillinvoice')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-success">
-                                                        <i class="la la-shopping-basket text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -215,9 +215,9 @@
                                             @if ($notification->type == 'App\Notifications\paymentgateways')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-purple">
-                                                        <i class="la la-gem text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -229,9 +229,9 @@
                                             @if ($notification->type == 'App\Notifications\banktransferntf')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicent',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-primary">
-                                                        <i class="la la-check-circle text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -243,9 +243,9 @@
                                             @if ($notification->type == 'App\Notifications\catchreceipt')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicereceiptnt',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-warning">
-                                                        <i class="la la-envelope-open text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>
@@ -257,9 +257,9 @@
                                             @if ($notification->type == 'App\Notifications\catchpayment')
                                                 <a class="d-flex p-3 border-bottom" href="{{route('Invoices.showinvoicereceiptPostpaidnt',$notification->data['invoice_id'])}}">
                                                     <div class="notifyimg bg-danger">
-                                                        <i class="la la-user-check text-white"></i>
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
                                                     </div>
-                                                    <div class="mr-3">
+                                                    <div class="mr-2 ml-2">
                                                         <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
                                                         <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
                                                     </div>

@@ -118,7 +118,10 @@
                         </div>
                         <hr class="mg-b-40">
                         @if ($invoice->invoice_type == 1)
-                            <a class="btn btn-purple float-left mt-3 mr-2" href="{{route('Invoices.showinvoice',$invoice->id)}}"><i class="mdi mdi-currency-usd ml-1"></i>{{__('Dashboard/clients_trans.Pay')}}</a>
+                            <a class="btn btn-purple float-left mt-3 mr-2" href="{{route('Invoices.showinvoice',$invoice->id)}}">
+                                <i class="mdi mdi-currency-usd ml-1"></i>
+                                {{__('Dashboard/clients_trans.Pay')}}
+                            </a>
                         @elseif ($invoice->invoice_type == 2)
                             <a class="btn btn-purple float-left mt-3 mr-2" href="">{{__('Dashboard/services.Paid')}}</a>
                         @elseif ($single_invoice->invoice_type == 3)

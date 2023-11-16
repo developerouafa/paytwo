@@ -36,7 +36,7 @@
                                 <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
                             @endif
                             <div class="billed-from">
-                                <h6> {{__('Dashboard/services.Singleservicebill')}} </h6>
+                                <h6> {{__('Dashboard/messages.BilledTo')}} </h6>
                                 <p> {{$invoice->user->name}} <br>
                                     {{__('Dashboard/users.phone')}}: {{$invoice->user->phone}} <br>
                                     {{__('Dashboard/users.email')}}: {{$invoice->user->email}} </p>
@@ -45,6 +45,7 @@
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.invoicenumber')}}</span> <span>{{$invoice->invoice_number}}</span></p>
                                 @if ($invoice->invoice_classify == '1')
                                     <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Service->name}}</span></p>
                                 @else
@@ -58,15 +59,16 @@
                             <table class="table table-invoice border text-md-nowrap mb-0">
                                 <thead>
                                 <tr>
-                                    <th class="wd-20p">#</th>
+                                    <th class="wd-40p"> {{__('Dashboard/services.invoicenumber')}} </th>
                                     <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
                                     <th class="tx-center"> {{__('Dashboard/services.priceservice')}} </th>
+                                    <th class="tx-right"> {{__('Dashboard/services.type')}} </th>
                                     <th class="tx-right"> {{__('Dashboard/services.Invoicetype')}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td class="tx-12">{{ $invoice->invoice_number }}</td>
                                     <td class="tx-12">
                                         @if ($invoice->invoice_classify == '1')
                                             {{ $invoice->Service->name }}
@@ -86,6 +88,15 @@
                                             {{__('Dashboard/services.Banktransfer')}}
                                         @elseif ($invoice->type == 4)
                                             {{__('Dashboard/services.card')}}
+                                        @endif
+                                    </td>
+                                    <td class="tx-right">
+                                        @if ($invoice->invoice_type == 1)
+                                            {{__('Dashboard/services.Draft')}}
+                                        @elseif ($invoice->invoice_type == 2)
+                                            {{__('Dashboard/services.Paid')}}
+                                        @elseif ($invoice->invoice_type == 3)
+                                            {{__('Dashboard/services.Canceled')}}
                                         @endif
                                     </td>
                                 </tr>
@@ -110,7 +121,6 @@
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse"> {{__('Dashboard/services.totalincludingtax')}} </td>
                                     <td class="tx-right" colspan="2">
                                         <h4 class="tx-primary tx-bold">{{number_format($invoice->total_with_tax, 2)}}</h4>
-
                                     </td>
                                 </tr>
                                 </tbody>

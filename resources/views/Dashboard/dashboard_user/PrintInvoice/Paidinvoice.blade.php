@@ -115,7 +115,6 @@
                                             {{ $invoice->Group->name }}
                                         @endif
                                     </td>
-
                                     <td class="tx-center">{{ $invoice->price }}</td>
                                     <td class="tx-right">
                                         @if ($invoice->type == 0)

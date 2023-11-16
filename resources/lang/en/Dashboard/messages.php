@@ -17,4 +17,5 @@ return [
     'RestoreGroup' => 'Restore Group',
     'DeleteGroup' => 'Delete Group',
     'beensent' => 'Been sent',
+    'BilledTo' => 'Billed To',
 ];

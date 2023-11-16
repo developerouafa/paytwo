@@ -110,7 +110,7 @@
                 </td>
                 <td>
                     @can('Print Single Invoices')
-                        <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm"><i class="fas fa-print"></i></button>
+                        <button  wire:click="print({{ $single_invoice->id }})" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i></button>
                     @endcan
                 </td>
             </tr>

@@ -501,6 +501,7 @@ class SingleInvoices extends Component
     {
         $single_invoice = invoice::findorfail($id);
         return Redirect::route('Print_single_invoices',[
+            'invoice_number' => $single_invoice->invoice_number,
             'invoice_date' => $single_invoice->invoice_date,
             'Clientname' => $single_invoice->Client->name,
             'Clientphone' => $single_invoice->Client->phone,

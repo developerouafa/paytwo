@@ -35,7 +35,7 @@
                             <div class="invoice-header">
                                 <h1 class="invoice-title">{{__('Dashboard/services.Servicebill')}}</h1>
                                 <div class="billed-from">
-                                    <h6>{{__('Dashboard/services.Servicebill')}}</h6>
+                                    <h6>{{__('Dashboard/messages.BilledTo')}}</h6>
                                     <p> {{ Request::get('nameUserCreateinvoice') }} <br>
                                         {{__('Dashboard/users.phone')}}: {{ Request::get('phoneUserCreateinvoice') }}<br>
                                         {{__('Dashboard/users.email')}}: {{ Request::get('emailUserCreateinvoice') }}</p>
@@ -45,6 +45,7 @@
 
                                 <div class="col-md">
                                     <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
+                                    <p class="invoice-info-row"><span>{{__('Dashboard/services.invoicenumber')}}</span> <span>{{ Request::get('invoice_number') }}</span></p>
                                     <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{ Request::get('Group_id') }}</span></p>
                                     <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{ Request::get('Clientname') }} - {{ Request::get('Clientphone') }}</span></p>
                                     <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span>{{ Request::get('invoice_date') }}</span></p>
@@ -54,26 +55,16 @@
                                 <table class="table table-invoice border text-md-nowrap mb-0">
                                     <thead>
                                     <tr>
-                                        <th class="wd-20p">#</th>
+                                        <th class="wd-40p"> {{__('Dashboard/services.invoicenumber')}} </th>
                                         <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
                                         <th class="tx-center"> {{__('Dashboard/services.priceservice')}} </th>
-                                        <th class="tx-right"> {{__('Dashboard/services.Invoicetype')}} </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>1</td>
+                                        <td class="tx-12">{{ Request::get('invoice_number') }}</td>
                                         <td class="tx-12">{{ Request::get('Group_id') }}</td>
                                         <td class="tx-center">{{ Request::get('price') }}</td>
-                                        <td class="tx-right">
-                                            @if (Request::get('type') == 1)
-                                                {{__('Dashboard/services.monetary')}}
-                                            @elseif (Request::get('type') == 2)
-                                                {{__('Dashboard/services.Okay')}}
-                                            @elseif (Request::get('type') == 3)
-                                                {{__('Dashboard/services.Banktransfer')}}
-                                            @endif
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="valign-middle" colspan="2" rowspan="4">
@@ -96,7 +87,6 @@
                                         <td class="tx-right tx-uppercase tx-bold tx-inverse"> {{__('Dashboard/services.totalincludingtax')}} </td>
                                         <td class="tx-right" colspan="2">
                                             <h4 class="tx-primary tx-bold">{{number_format(Request::get('total_with_tax'), 2)}}</h4>
-
                                         </td>
                                     </tr>
                                     </tbody>

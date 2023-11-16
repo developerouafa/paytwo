@@ -17,4 +17,5 @@ return [
     'RestoreGroup' => 'استعادة بالمجموعة',
     'DeleteGroup' => 'حذف بالمجموعة',
     'beensent' => 'تم إرسالها',
+    'BilledTo' => 'تم ارسال الفاتورة الى :',
 ];

@@ -514,7 +514,8 @@ class GroupInvoices extends Component
     public function print($id)
     {
         $group_invoice = invoice::findorfail($id);
-        return Redirect::route('group_Print_group_invoices',[
+        return Redirect::route('group_Print_single_invoices',[
+            'invoice_number' => $group_invoice->invoice_number,
             'invoice_date' => $group_invoice->invoice_date,
             'Clientname' => $group_invoice->Client->name,
             'Clientphone' => $group_invoice->Client->phone,

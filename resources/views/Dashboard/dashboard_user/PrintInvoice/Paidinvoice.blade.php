@@ -75,7 +75,7 @@
                         <div class="invoice-header">
                             <h1 class="invoice-title"> {{__('Dashboard/services.Singleservicebill')}} </h1>
                             <div class="billed-from">
-                                <h6> {{__('Dashboard/services.Singleservicebill')}} </h6>
+                                <h6> {{__('Dashboard/messages.BilledTo')}} </h6>
                                 <p> {{$invoice->user->name}} <br>
                                     {{__('Dashboard/users.phone')}}: {{$invoice->user->phone}} <br>
                                     {{__('Dashboard/users.email')}}: {{$invoice->user->email}} </p>
@@ -84,10 +84,11 @@
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{__('Dashboard/services.invoiceinformation')}}</label>
+                                <p class="invoice-info-row"><span>{{__('Dashboard/services.invoicenumber')}}</span> <span>{{$invoice->invoice_number}}</span></p>
                                 @if ($invoice->invoice_classify == '1')
                                     <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Service->name}}</span></p>
                                 @else
-                                    <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{$invoice->Client->name}} - {{$invoice->Client->phone}}</span></p>
+                                    <p class="invoice-info-row"><span>{{__('Dashboard/services.Servicebill')}}</span> <span>{{$invoice->Group->name}}</span></p>
                                 @endif
                                 <p class="invoice-info-row"><span>{{__('Dashboard/services.clientphone')}}</span> <span>{{$invoice->Client->name}} - {{$invoice->Client->phone}}</span></p>
                                 <p class="invoice-info-row"><span>{{__('Dashboard/services.dateinvoice')}}</span> <span> {{$invoice->invoice_date}} </span></p>
@@ -97,16 +98,17 @@
                             <table class="table table-invoice border text-md-nowrap mb-0">
                                 <thead>
                                 <tr>
-                                    <th class="wd-20p">#</th>
+                                    <th class="wd-40p"> {{__('Dashboard/services.invoicenumber')}} </th>
                                     <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
                                     <th class="tx-center"> {{__('Dashboard/services.priceservice')}} </th>
+                                    <th class="tx-right"> {{__('Dashboard/services.type')}} </th>
                                     <th class="tx-right"> {{__('Dashboard/services.Invoicetype')}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td class="tx-12">
+                                    <td class="wd-40p">{{$invoice->invoice_number}}</td>
+                                    <td class="wd-40p">
                                         @if ($invoice->invoice_classify == '1')
                                             {{ $invoice->Service->name }}
                                         @else
@@ -126,6 +128,15 @@
                                             {{__('Dashboard/services.Banktransfer')}}
                                         @elseif ($invoice->type == 4)
                                             {{__('Dashboard/services.card')}}
+                                        @endif
+                                    </td>
+                                    <td class="tx-right">
+                                        @if ($invoice->invoice_type == 1)
+                                            {{__('Dashboard/services.Draft')}}
+                                        @elseif ($invoice->invoice_type == 2)
+                                            {{__('Dashboard/services.Paid')}}
+                                        @elseif ($invoice->invoice_type == 3)
+                                            {{__('Dashboard/services.Canceled')}}
                                         @endif
                                     </td>
                                 </tr>
@@ -157,7 +168,9 @@
                             </table>
                         </div>
                         <hr class="mg-b-40">
-
+                        <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
+                            <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}
+                        </a>
                         @if ($receiptdocument)
                         <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="100%" height="1000px" />
                         @endif
@@ -168,10 +181,7 @@
         </div><!-- COL-END -->
     </div>
     <!-- row closed -->
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
+
 @endsection
 @section('js')
     <!--Internal  Chart.bundle js -->

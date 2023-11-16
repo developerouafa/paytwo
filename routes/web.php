@@ -286,7 +286,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     Route::get('/Show_Group_Services/{id}', 'show')->name('GroupServices.show');
                     Route::get('/Deleted_Group_Services', 'softdelete')->name('GroupServices.softdelete');
                     Route::delete('/destroyGroupServices', 'destroy')->name('GroupServices.destroy');
-                    Route::get('/deleteallGroupServices', 'deleteall')->name('Children.deleteallGroupServices');
+                    Route::get('/deleteallGroupServices', 'deleteall')->name('GroupServices.deleteall');
                     Route::get('/deleteallsoftdelete', 'deleteallsoftdelete')->name('Children.deleteallsoftdelete');
                     Route::get('restoreGroupServices/{id}', 'restore')->name('GroupServices.restore');
                     Route::get('restoreallGroupServices', 'restoreallGroupServices')->name('GroupServices.restoreallGroupServices');

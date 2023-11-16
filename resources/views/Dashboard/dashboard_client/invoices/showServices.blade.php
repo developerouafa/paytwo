@@ -35,42 +35,42 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card mg-b-20">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
-                                    <thead>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table key-buttons text-md-nowrap" data-page-length="50" style="text-align: center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th> {{__('Dashboard/products.product')}} </th>
+                                        <th> {{__('Dashboard/services.quantity')}} </th>
+                                        <th> {{__('Dashboard/services.nameservice')}} </th>
+                                        <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
+                                        <th>{{__('Dashboard/services.description')}}</th>
+                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($product_group as $group)
                                         <tr>
-                                            <th>#</th>
-                                            <th> {{__('Dashboard/products.product')}} </th>
-                                            <th> {{__('Dashboard/services.quantity')}} </th>
-                                            <th> {{__('Dashboard/services.nameservice')}} </th>
-                                            <th>{{__('Dashboard/services.totalofferincludingtax')}}</th>
-                                            <th>{{__('Dashboard/services.description')}}</th>
-                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <td>{{ $loop->iteration}}</td>
+                                            <td>
+                                                <a href="{{route('Invoices.showService', $group->product->id)}}">{{ $group->product->name }}</a>
+                                            </td>
+                                            <td>{{ $group->quantity }}</td>
+                                            <td>{{ $group->groupprodcut->name }}</td>
+                                            <td>{{ number_format($group->groupprodcut->Total_with_tax, 2) }}</td>
+                                            <td>{{ \Str::limit($group->groupprodcut->notes, 50) }}</td>
+                                            <td>{{$group->groupprodcut->user->name}}</td>
+                                            <td> {{ $group->groupprodcut->created_at->diffForHumans() }} </td>
+                                            <td> {{ $group->groupprodcut->updated_at->diffForHumans() }} </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($product_group as $group)
-                                            <tr>
-                                                <td>{{ $loop->iteration}}</td>
-                                                <td>
-                                                    <a href="{{route('Invoices.showService', $group->product->id)}}">{{ $group->product->name }}</a>
-                                                </td>
-                                                <td>{{ $group->quantity }}</td>
-                                                <td>{{ $group->groupprodcut->name }}</td>
-                                                <td>{{ number_format($group->groupprodcut->Total_with_tax, 2) }}</td>
-                                                <td>{{ \Str::limit($group->groupprodcut->notes, 50) }}</td>
-                                                <td>{{$group->groupprodcut->user->name}}</td>
-                                                <td> {{ $group->groupprodcut->created_at->diffForHumans() }} </td>
-                                                <td> {{ $group->groupprodcut->updated_at->diffForHumans() }} </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
                 </div>
             </div>
 

@@ -19,15 +19,13 @@
 
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/main-sidebar_trans.Listofinvoices')}} {{__('Dashboard/services.monetary')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.view_all')}}</span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
     @if ($errors->any())
@@ -74,7 +72,6 @@
                 </div>
             </div>
         </div>
-    <!-- /row -->
 
         <div class="row row-sm row-deck">
             <div class="col-md-12 col-lg-12 col-xl-12">
@@ -90,7 +87,6 @@
         </div>
 
         <div class="row row-sm">
-            <!-- Col -->
             <div class="col-lg-12">
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -483,13 +479,9 @@
                     </div>
                 </div>
             </div>
-            <!-- /Col -->
         </div>
     <!-- row closed -->
 
-			<!-- Container closed -->
-
-		<!-- main-content closed -->
 @endsection
 @section('js')
 

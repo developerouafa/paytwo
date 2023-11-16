@@ -146,15 +146,10 @@
         </div><!-- COL-END -->
     </div>
     <!-- row closed -->
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
 @endsection
 @section('js')
     <!--Internal  Chart.bundle js -->
     <script src="{{URL::asset('Admin/assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
-
 
     <script type="text/javascript">
         function printDiv() {

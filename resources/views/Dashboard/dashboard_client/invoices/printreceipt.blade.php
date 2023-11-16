@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">
-                            <table class="table table-invoice border text-md-nowrap mb-0"></table>
+                            <table class="table table-invoice border text-md-nowrap mb-0">
                                 <thead>
                                 <tr>
                                     <th class="wd-20p">#</th>

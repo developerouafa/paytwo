@@ -41,9 +41,9 @@
                         <div class="row mg-t-20">
                             <div class="col-md">
                                 <label class="tx-gray-600">{{__('Dashboard/receipt_trans.Bond information')}}</label>
+                                <p class="invoice-info-row "><span>{{__('Dashboard/services.invoicenumber')}}</span> <span>{{$invoice_number}}</span></p>
                                 <p class="invoice-info-row"><span> {{__('Dashboard/receipt_trans.Release Date')}}</span> <span>{{$payment_account->date}}</span></p>
                                 <p class="invoice-info-row "><span> {{__('Dashboard/receipt_trans.nameclient')}} </span> <span>{{$payment_account->clients->name}}</span></p>
-                                <p class="invoice-info-row "><span>{{__('Dashboard/services.invoicenumber')}}</span> <span>{{$invoice_number}}</span></p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">

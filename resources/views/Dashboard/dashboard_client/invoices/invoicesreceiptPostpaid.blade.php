@@ -54,7 +54,7 @@
                                     @foreach($fund_accounts as $invoice)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td><a href="{{route('Invoices.showinvoicePostpaid', $invoice->invoice_id)}}">{{$invoice->invoice->invoice_number}}</a> </td>
+                                            <td><a href="{{route('Invoices.showinvoice', $invoice->invoice_id)}}">{{$invoice->invoice->invoice_number}}</a> </td>
                                             <td>{{ $invoice->paymentaccount->amount }}</td>
                                             <td>{{ $invoice->paymentaccount->description }}</td>
                                             <td>{{ $invoice->paymentaccount->date }}</td>

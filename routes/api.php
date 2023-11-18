@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
     });
 
     // Clients
-    Route::group(['middlware' => ['api'], 'namespace' => 'api'], function () {
+    Route::group(['middlware' => ['api', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'namespace' => 'api'], function () {
         Route::group(['prefix' => 'jwtclients'], function(){
             Route::post('login', [AuthClientController::class, 'login'])->name('login');
             Route::post('logout', [AuthClientController::class, 'logout'])->middleware('jwtclientstoken:jwtclients');

@@ -26,13 +26,13 @@ Route::group(
         'middleware' => [ 'auth:client', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'ClientStatus']
     ], function () {
 
-    //################################ dashboard patient ########################################
+    //################################ dashboard Client ########################################
 
         Route::get('/dashboard/clients', function () {
             return view('Dashboard.dashboard_client.dashboard');
         })->name('dashboard.client');
 
-    //################################ end dashboard patient #####################################
+    //################################ end dashboard Client #####################################
 
     //############################# Start Partie Client route ##########################################
 

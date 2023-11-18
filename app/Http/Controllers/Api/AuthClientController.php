@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Traits\GeneralTraitt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,10 @@ class AuthClientController extends Controller
             $admin = Auth::guard('jwtclients')->user();
             $admin->api_token = $token;
 
+            $client = Client::findorFail($admin->id);
+            $client->update([
+                'ClientStatus' => 1,
+            ]);
         // return token
             return $this->returnData('admin', $admin);
     }

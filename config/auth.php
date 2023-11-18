@@ -48,6 +48,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'usersapi',
         ],
+        'jwtclients' => [
+            'driver' => 'jwt',
+            'provider' => 'jwtclients',
+        ],
     ],
 
     /*
@@ -80,6 +84,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
             'table' => 'users',
+        ],
+        'jwtclients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Client::class,
+            'table' => 'clients',
         ],
     ],
 

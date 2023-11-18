@@ -6,6 +6,7 @@ use App\Models\mainimageproduct;
 use App\Models\multipimage;
 use App\Models\product;
 use App\Traits\UploadImageTraitt;
+use Illuminate\Queue\Events\Looping;
 use Illuminate\Support\Facades\DB;
 
 class multipimageRepository implements multipeRepositoryInterface
@@ -103,6 +104,15 @@ class multipimageRepository implements multipeRepositoryInterface
     //* function delete All Image
     public function deleteall()
     {
+        $multipimage = multipimage::get();
+        foreach($multipimage as $img){
+            if(!empty($img->multipimage)){
+                $image = $img->multipimage;
+                if(!$image) abort(404);
+                unlink(public_path('storage/'.$image));
+            }
+        }
+
         DB::table('multipimages')->delete();
         return redirect()->back();
     }

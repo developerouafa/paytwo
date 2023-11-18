@@ -88,12 +88,12 @@
                                                             <td> {{$x->id}} </td>
                                                             @can('Delete Group Product softdelete')
                                                                 <td>
-                                                                    <input type="checkbox" name="delete_select" value="{{$group_invoice->id}}" class="delete_select">
+                                                                    <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                                 </td>
                                                             @endcan
                                                             @can('Restore Group Product')
                                                                 <td>
-                                                                    <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
+                                                                    <input type="checkbox" name="restore" value="{{$x->id}}" class="delete_select">
                                                                 </td>
                                                             @endcan
                                                             <td> {{$x->name}} </td>
@@ -140,12 +140,12 @@
                                                         <td> {{$x->id}} </td>
                                                         @can('Delete Group Product softdelete')
                                                             <td>
-                                                                <input type="checkbox" name="delete_select" value="{{$group_invoice->id}}" class="delete_select">
+                                                                <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                             </td>
                                                         @endcan
                                                         @can('Restore Group Product')
                                                             <td>
-                                                                <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
+                                                                <input type="checkbox" name="restore" value="{{$x->id}}" class="delete_select">
                                                             </td>
                                                         @endcan
                                                         <td> {{$x->name}} </td>
@@ -188,12 +188,12 @@
                                                     <td> {{$x->id}} </td>
                                                     @can('Delete Group Product softdelete')
                                                         <td>
-                                                            <input type="checkbox" name="delete_select" value="{{$group_invoice->id}}" class="delete_select">
+                                                            <input type="checkbox" name="delete_select" value="{{$x->id}}" class="delete_select">
                                                         </td>
                                                     @endcan
                                                     @can('Restore Group Product')
                                                         <td>
-                                                            <input type="checkbox" name="restore" value="{{$group_invoice->id}}" class="delete_select">
+                                                            <input type="checkbox" name="restore" value="{{$x->id}}" class="delete_select">
                                                         </td>
                                                     @endcan
                                                     <td> {{$x->name}} </td>
@@ -330,5 +330,16 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        $('#modaldemo9').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+        })
     </script>
 @endsection

@@ -3,6 +3,7 @@ namespace App\Repository\dashboard_user\Products;
 
 use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
 use App\Models\mainimageproduct;
+use App\Models\multipimage;
 use App\Models\product;
 use App\Models\Section;
 use App\Models\stockproduct;
@@ -170,6 +171,21 @@ class productRepository implements productRepositoryInterface
         // Delete One SoftDelete
         if($request->page_id==3){
             try{
+                // Delete Image
+                $img = mainimageproduct::where('product_id', $request->id)->first();
+                    $img->delete();
+                    $image = $img->mainimage;
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+
+                $multipimage = multipimage::where('product_id', $request->id)->get();
+                foreach($multipimage as $img){
+                    if(!empty($img->multipimage)){
+                        $image = $img->multipimage;
+                        if(!$image) abort(404);
+                        unlink(public_path('storage/'.$image));
+                    }
+                }
                 DB::beginTransaction();
                     product::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
@@ -186,8 +202,24 @@ class productRepository implements productRepositoryInterface
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
+
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
+                    $img = mainimageproduct::where('product_id', $dl)->first();
+                    $img->delete();
+                    $image = $img->mainimage;
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+
+                    $multipimage = multipimage::where('product_id', $dl)->get();
+                    foreach($multipimage as $img){
+                        if(!empty($img->multipimage)){
+                            $image = $img->multipimage;
+                            if(!$image) abort(404);
+                            unlink(public_path('storage/'.$image));
+                        }
+                    }
+
                     product::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
@@ -225,6 +257,24 @@ class productRepository implements productRepositoryInterface
 
     public function deleteallsoftdelete()
     {
+        $mainimageproduct = mainimageproduct::get();
+        foreach($mainimageproduct as $img){
+            if(!empty($img->multipimage)){
+                $image = $img->multipimage;
+                if(!$image) abort(404);
+                unlink(public_path('storage/'.$image));
+            }
+        }
+
+        $multipimage = multipimage::get();
+        foreach($multipimage as $img){
+            if(!empty($img->multipimage)){
+                $image = $img->multipimage;
+                if(!$image) abort(404);
+                unlink(public_path('storage/'.$image));
+            }
+        }
+
         DB::table('products')->whereNotNull('deleted_at')->delete();
         return redirect()->route('Products.softdelete');
     }

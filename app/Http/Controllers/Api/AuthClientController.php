@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AuthClientController extends Controller
 {
@@ -45,7 +46,7 @@ class AuthClientController extends Controller
             $admin->api_token = $token;
 
         // return token
-            return $this->returnData('admin', $admin);
+            return $this->returnData('admin', $admin, 'localization', LaravelLocalization::setLocale());
     }
 
     public function logout(Request $request)

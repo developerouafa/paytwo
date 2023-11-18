@@ -422,7 +422,8 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
                 $completepyinvoice = invoice::findorFail($order->invoice->id);
                 $completepyinvoice->update([
-                    'invoice_status' => '3'
+                    'invoice_status' => '3',
+                    'invoice_type' => '1',
                 ]);
 
                 // store paymentgateway_accounts

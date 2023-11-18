@@ -438,7 +438,7 @@ class UserController extends Controller
                     // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                 }
                 $confirmpyinvoice->update([
-                    'invoice_status' => '3',
+                    'invoice_status' => '4',
                     'invoice_type' => '2',
                 ]);
 

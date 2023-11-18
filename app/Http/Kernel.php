@@ -87,6 +87,7 @@ class Kernel extends HttpKernel
 
         // Token
         'jwtclientstoken' => \App\Http\Middleware\AssingGuard::class,
+        'getjwtclientstoken' => \App\Http\Middleware\GetassingGuard::class,
 
     ];
 

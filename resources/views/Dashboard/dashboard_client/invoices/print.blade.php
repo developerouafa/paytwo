@@ -59,8 +59,13 @@
                                 <tr>
                                     <th class="wd-40p"> {{__('Dashboard/services.invoicenumber')}} </th>
                                     <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
-                                    <th class="tx-center"> {{__('Dashboard/services.priceservice')}} </th>
-                                    <th class="tx-right"> {{__('Dashboard/services.type')}} </th>
+                                    @if ($invoice->invoice_type == 2)
+                                        <th class="wd-40p" style="color: red">{{__('Dashboard/services.Paid')}}</th>
+                                    @elseif ($single_invoice->invoice_type == 3)
+                                        <th class="wd-40p" style="color: red">{{__('Dashboard/services.Canceled')}}</th>
+                                    @endif
+                                    <th class="wd-40p"> {{__('Dashboard/services.priceservice')}} </th>
+                                    <th class="tx-center"> {{__('Dashboard/services.type')}} </th>
                                     <th class="tx-right"> {{__('Dashboard/services.Invoicetype')}} </th>
                                 </tr>
                                 </thead>
@@ -74,8 +79,22 @@
                                             {{ $invoice->Group->name }}
                                         @endif
                                     </td>
-                                    <td class="tx-center">{{ $invoice->price }}</td>
-                                    <td class="tx-right">
+                                    <td class="tx-12">
+                                        @if ($fund_accountrcaccount)
+                                            {{$fund_accountrcaccount->receiptaccount->descriptiontoclient }}
+                                        @endif
+                                        @if ($fund_accountpyaccount)
+                                            {{$fund_accountpyaccount->paymentaccount->descriptiontoclient }}
+                                        @endif
+                                        @if ($fund_accountbanktransfer)
+                                            {{$fund_accountbanktransfer->banktransfer->descriptiontoclient }}
+                                        @endif
+                                        @if ($fund_accountpaymentgateway)
+                                            {{$fund_accountpaymentgateway->paymentgateway->descriptiontoclient }}
+                                        @endif
+                                    </td>
+                                    <td class="tx-12">{{ $invoice->price }}</td>
+                                    <td class="tx-center">
                                         @if ($invoice->type == 0)
                                             {{__('Dashboard/sections_trans.nosectionyet')}}
                                         @elseif ($invoice->type == 1)

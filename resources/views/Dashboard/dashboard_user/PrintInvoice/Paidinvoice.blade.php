@@ -170,8 +170,11 @@
                             <a href="#" class="btn btn-danger float-left mt-3 mr-2" id="print_Button" onclick="printDiv()">
                                 <i class="mdi mdi-printer ml-1"></i>{{__('Dashboard/services.print')}}
                             </a>
+
+                            <br>
+
                             @if ($receiptdocument)
-                            <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="100%" height="1000px" />
+                                <embed src="{{asset('storage/'.$receiptdocument->invoice)}}" width="100%" height="1000px" />
                             @endif
 
                         </div>

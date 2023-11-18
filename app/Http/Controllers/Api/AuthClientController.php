@@ -18,7 +18,7 @@ class AuthClientController extends Controller
         try{
                 $rules = [
                     // "email" => "required|exists:admin_users,email",
-                    "email" => "required",
+                    "phone" => "required",
                     "password" => "required"
                 ];
 
@@ -33,7 +33,7 @@ class AuthClientController extends Controller
         }
 
         // login
-            $credentials = $request->only(['email', 'password']);
+            $credentials = $request->only(['phone', 'password']);
 
             $token = Auth::guard('jwtclients')->attempt($credentials);
 

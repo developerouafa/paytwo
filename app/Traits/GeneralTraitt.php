@@ -58,6 +58,9 @@ trait GeneralTraitt
             else if ($input == "mobile")
                 return 'E003';
 
+            else if ($input == "phone")
+                return 'E0057';
+
             else if ($input == "id_number")
                 return 'E004';
 

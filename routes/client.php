@@ -73,6 +73,7 @@ Route::group(
 
                 Route::get('/showinvoice/{id}', 'showinvoice')->name('Invoices.showinvoice');
                 Route::get('/showinvoicent/{id}', 'showinvoicent')->name('Invoices.showinvoicent');
+                Route::get('/confirmpyinvoice/{id}', 'confirmpyinvoice')->name('Invoices.confirmpyinvoice');
 
                 Route::get('/Show_Service/{id}', 'showService')->name('Invoices.showService');
                 Route::get('/Show_Group_Services/{id}', 'showServices')->name('Invoices.showServices');

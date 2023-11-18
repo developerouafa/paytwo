@@ -74,6 +74,10 @@ class InvoiceController extends Controller
         return  $this->invoices->showinvoicent($id);
     }
 
+    public function confirmpyinvoice($id){
+        return  $this->invoices->confirmpyinvoice($id);
+    }
+
     public function receipt($id){
         return  $this->invoices->receipt($id);
     }

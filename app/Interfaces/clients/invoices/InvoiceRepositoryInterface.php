@@ -43,6 +43,9 @@ interface InvoiceRepositoryInterface
     //* Show Invoices notification
     public function showinvoicent($id);
 
+    //* Show Invoice Confirm
+    public function confirmpyinvoice($id);
+
     //* Receipt Invoices notifications
     public function showinvoicereceiptnt($id);
 

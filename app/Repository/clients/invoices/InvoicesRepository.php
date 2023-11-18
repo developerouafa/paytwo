@@ -298,6 +298,11 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         }
     }
 
+    public function confirmpyinvoice($id)
+    {
+
+    }
+
     public function showinvoice($id)
     {
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();

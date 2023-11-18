@@ -268,6 +268,20 @@
                                                     </div>
                                                 </a>
                                             @endif
+                                            @if ($notification->type == 'App\Notifications\confirmpyinvoice')
+                                                <a class="d-flex p-3 border-bottom" href="{{route('Invoices.confirmpyinvoice',$notification->data['invoice_id'])}}">
+                                                    <div class="notifyimg bg-danger">
+                                                        <i class="mdi mdi-currency-usd ml-1"></i>
+                                                    </div>
+                                                    <div class="mr-2 ml-2">
+                                                        <h5 class="notification-label mb-1">{{$notification->data['message']}}</h5>
+                                                        <div class="notification-subtext">{{$notification->created_at->diffForHumans()}}</div>
+                                                    </div>
+                                                    <div class="mr-auto">
+                                                        <i class="las la-angle-left text-left text-muted"></i>
+                                                    </div>
+                                                </a>
+                                            @endif
                                         @empty
                                             {{__('Dashboard/main-header_trans.thereareno')}}
                                         @endforelse

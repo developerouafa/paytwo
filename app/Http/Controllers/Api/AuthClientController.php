@@ -46,7 +46,7 @@ class AuthClientController extends Controller
             $admin->api_token = $token;
 
         // return token
-            return $this->returnData('admin', $admin, 'localization', LaravelLocalization::setLocale());
+            return $this->returnData('admin', $admin);
     }
 
     public function logout(Request $request)

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthClientController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -34,11 +35,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 Route::post('login', [AuthClientController::class, 'login'])->name('login');
                 Route::post('logout', [AuthClientController::class, 'logout'])->middleware('jwtclientstoken:jwtclients');
             });
-        });
 
-        Route::group(['prefix' => 'admin', 'middleware' => ['getjwtclientstoken:jwtclients']], function(){
-            Route::post('profile', function(){
-                // return 'Only authenticated admi can reach me';
-                return Auth::user(); //return authenticated user data
+            Route::group(['prefix' => 'jwtclients', 'middleware' => ['getjwtclientstoken:jwtclients']], function(){
+                Route::post('profile', function(){
+                    // return 'Only authenticated admi can reach me';
+                    return Auth::user(); //return authenticated user data
+                });
             });
         });

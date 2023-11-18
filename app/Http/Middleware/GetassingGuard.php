@@ -28,7 +28,6 @@ class GetassingGuard
             } catch (JWTException $e) {
                 return  $this -> returnError('', 'token_invalid'.$e->getMessage());
             }
-
         }
          return $next($request);
     }

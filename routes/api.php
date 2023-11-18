@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
         return $request->user();
     });
 
-    // Route::group(['middlware' => ['api'], 'namespace' => 'api'], function(){
-
     Route::group(['middlware' => ['api'], 'namespace' => 'api'], function () {
         Route::group(['prefix' => 'admin'], function(){
             Route::post('login', [AuthController::class, 'login'])->name('login');

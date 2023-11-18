@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Client extends Authenticatable
+class Client extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes, Notifiable, Billable;
 
@@ -70,4 +71,16 @@ class Client extends Authenticatable
         'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //* Rest omitted for brevity (Jwt)
+
+        public function getJWTIdentifier()
+        {
+            return $this->getKey();
+        }
+
+        public function getJWTCustomClaims()
+        {
+            return [];
+        }
 }

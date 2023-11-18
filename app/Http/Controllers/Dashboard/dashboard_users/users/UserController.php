@@ -17,6 +17,7 @@ use App\Models\receiptdocument;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\banktransferntf;
+use App\Notifications\confirmpyinvoice;
 use App\Notifications\montaryinvoice;
 use App\Notifications\paymentgateways;
 use App\Notifications\postpaidbillinvoice;
@@ -360,82 +361,95 @@ class UserController extends Controller
 
     public function confirmpayment(Request $request){
         $confirmpyinvoice = invoice::findorFail($request->invoice_id);
-        if($confirmpyinvoice->type == 1){
-            $fund_account = fund_account::whereNotNull('receipt_id')->where('invoice_id', $confirmpyinvoice->id)->first();
-            $receipt = receipt_account::findorfail($fund_account->receipt_id);
-            $receipt->update([
-                'descriptiontoclient' => $request->descriptiontoclient
-            ]);
 
-            $client = Client::findorFail($confirmpyinvoice->client_id);
-            $user_create_id = $confirmpyinvoice->user_id;
-            $invoice_id = $confirmpyinvoice->id;
-            $message = __('Dashboard/main-header_trans.confirmpyinvoice');
-            Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
+        try{
+            DB::beginTransaction();
 
-            $mailclient = Client::findorFail($confirmpyinvoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                if($confirmpyinvoice->type == 1){
+                    $fund_account = fund_account::whereNotNull('receipt_id')->where('invoice_id', $confirmpyinvoice->id)->first();
+                    $receipt = receipt_account::findorfail($fund_account->receipt_id);
+                    $receipt->update([
+                        'descriptiontoclient' => $request->descriptiontoclient
+                    ]);
+
+                    $client = Client::findorFail($confirmpyinvoice->client_id);
+                    $user_create_id = $confirmpyinvoice->user_id;
+                    $invoice_id = $confirmpyinvoice->id;
+                    $message = __('Dashboard/main-header_trans.confirmpyinvoice');
+                    Notification::send($client, new confirmpyinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($confirmpyinvoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                }
+                if($confirmpyinvoice->type == 2){
+                    $fund_account = fund_account::whereNotNull('Payment_id')->where('invoice_id', $confirmpyinvoice->id)->first();
+                    $postpaid = paymentaccount::findorfail($fund_account->Payment_id);
+                    $postpaid->update([
+                        'descriptiontoclient' => $request->descriptiontoclient
+                    ]);
+
+                    $client = Client::findorFail($confirmpyinvoice->client_id);
+                    $user_create_id = $confirmpyinvoice->user_id;
+                    $invoice_id = $confirmpyinvoice->id;
+                    $message = __('Dashboard/main-header_trans.confirmpyinvoice');
+                    Notification::send($client, new confirmpyinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($confirmpyinvoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                }
+                if($confirmpyinvoice->type == 3){
+                    $fund_account = fund_account::whereNotNull('bank_id')->where('invoice_id', $confirmpyinvoice->id)->first();
+                    $postpaid = banktransfer::findorfail($fund_account->bank_id);
+                    $postpaid->update([
+                        'descriptiontoclient' => $request->descriptiontoclient
+                    ]);
+
+                    $client = Client::findorFail($confirmpyinvoice->client_id);
+                    $user_create_id = $confirmpyinvoice->user_id;
+                    $invoice_id = $confirmpyinvoice->id;
+                    $message = __('Dashboard/main-header_trans.confirmpyinvoice');
+                    Notification::send($client, new confirmpyinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($confirmpyinvoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                }
+                if($confirmpyinvoice->type == 4){
+                    $fund_account = fund_account::whereNotNull('Gateway_id')->where('invoice_id', $confirmpyinvoice->id)->first();
+                    $postpaid = paymentgateway::findorfail($fund_account->Gateway_id);
+                    $postpaid->update([
+                        'descriptiontoclient' => $request->descriptiontoclient
+                    ]);
+
+                    $client = Client::findorFail($confirmpyinvoice->client_id);
+                    $user_create_id = $confirmpyinvoice->user_id;
+                    $invoice_id = $confirmpyinvoice->id;
+                    $message = __('Dashboard/main-header_trans.confirmpyinvoice');
+                    Notification::send($client, new confirmpyinvoice($user_create_id, $invoice_id, $message));
+
+                    // $mailclient = Client::findorFail($confirmpyinvoice->client_id);
+                    // $nameclient = $mailclient->name;
+                    // $url = url('en/Invoices/print/'.$invoice_id);
+                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                }
+                $confirmpyinvoice->update([
+                    'invoice_status' => '3',
+                    'invoice_type' => '2',
+                ]);
+
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.add'));
+            return redirect()->back();
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('message.error'));
+            return redirect()->back();
         }
-        if($confirmpyinvoice->type == 2){
-            $fund_account = fund_account::whereNotNull('Payment_id')->where('invoice_id', $confirmpyinvoice->id)->first();
-            $postpaid = paymentaccount::findorfail($fund_account->Payment_id);
-            $postpaid->update([
-                'descriptiontoclient' => $request->descriptiontoclient
-            ]);
-
-            $client = Client::findorFail($confirmpyinvoice->client_id);
-            $user_create_id = $confirmpyinvoice->user_id;
-            $invoice_id = $confirmpyinvoice->id;
-            $message = __('Dashboard/main-header_trans.confirmpyinvoice');
-            Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
-
-            $mailclient = Client::findorFail($confirmpyinvoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-        if($confirmpyinvoice->type == 3){
-            $fund_account = fund_account::whereNotNull('bank_id')->where('invoice_id', $confirmpyinvoice->id)->first();
-            $postpaid = banktransfer::findorfail($fund_account->bank_id);
-            $postpaid->update([
-                'descriptiontoclient' => $request->descriptiontoclient
-            ]);
-
-            $client = Client::findorFail($confirmpyinvoice->client_id);
-            $user_create_id = $confirmpyinvoice->user_id;
-            $invoice_id = $confirmpyinvoice->id;
-            $message = __('Dashboard/main-header_trans.confirmpyinvoice');
-            Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
-
-            $mailclient = Client::findorFail($confirmpyinvoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-        if($confirmpyinvoice->type == 4){
-            $fund_account = fund_account::whereNotNull('Gateway_id')->where('invoice_id', $confirmpyinvoice->id)->first();
-            $postpaid = paymentgateway::findorfail($fund_account->Gateway_id);
-            $postpaid->update([
-                'descriptiontoclient' => $request->descriptiontoclient
-            ]);
-
-            $client = Client::findorFail($confirmpyinvoice->client_id);
-            $user_create_id = $confirmpyinvoice->user_id;
-            $invoice_id = $confirmpyinvoice->id;
-            $message = __('Dashboard/main-header_trans.confirmpyinvoice');
-            Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
-
-            $mailclient = Client::findorFail($confirmpyinvoice->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/print/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
-        }
-        $confirmpyinvoice->update([
-            'invoice_status' => '3',
-            'invoice_type' => '2',
-        ]);
     }
 
     public function refusedpayment(Request $request){

@@ -44,10 +44,6 @@ class AuthClientController extends Controller
             $admin = Auth::guard('jwtclients')->user();
             $admin->api_token = $token;
 
-            $client = Client::findorFail($admin->id);
-            $client->update([
-                'ClientStatus' => 1,
-            ]);
         // return token
             return $this->returnData('admin', $admin);
     }

@@ -300,7 +300,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function confirmpyinvoice($id)
     {
-
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\confirmpyinvoice')->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
     }
 
     public function showinvoice($id)

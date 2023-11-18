@@ -31,7 +31,7 @@
                     <div class="card overflow-hidden sales-card bg-primary-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">اجمالي المدفوعات </h6>
+                                <h6 class="mb-3 tx-12 text-white"> {{__('Dashboard/clients_trans.totalpayments')}} </h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
@@ -51,7 +51,7 @@
                     <div class="card overflow-hidden sales-card bg-danger-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 ">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">عدد الفواتير  المرسلة</h6>
+                                <h6 class="mb-3 tx-12 text-white"> {{__('Dashboard/clients_trans.numberinvoicessent')}} </h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
@@ -71,7 +71,7 @@
                     <div class="card overflow-hidden sales-card bg-success-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 ">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">عدد الفواتير المكتملة</h6>
+                                <h6 class="mb-3 tx-12 text-white"> {{__('Dashboard/clients_trans.numbercompletedinvoices')}} </h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
@@ -90,7 +90,7 @@
                     <div class="card overflow-hidden sales-card bg-warning-gradient">
                         <div class="pl-3 pt-3 pr-3 pb-2 ">
                             <div class="">
-                                <h6 class="mb-3 tx-12 text-white">عدد فواتير المراجعات</h6>
+                                <h6 class="mb-3 tx-12 text-white"> {{__('Dashboard/clients_trans.numberunderreview')}} </h6>
                             </div>
                             <div class="pb-0 mt-0">
                                 <div class="d-flex">
@@ -138,75 +138,75 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse(\App\Models\Invoice::latest()->take(5)->where('client_id',auth()->user()->id)->get() as $invoice )
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>
-                                            <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
-                                                <i class="fas fa-print"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            @if ($invoice->invoice_type == 1)
-                                                <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
-                                            @else
-                                                {{$invoice->invoice_number}}
-                                            @endif
-                                        </td>
-                                        @if ($invoice->invoice_classify == 1)
+                                    @forelse(\App\Models\Invoice::latest()->take(5)->where('client_id',auth()->user()->id)->get() as $invoice )
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
                                             <td>
-                                                <a href="{{route('Invoices.showService', $invoice->Service->id)}}">{{ $invoice->Service->name }}</a>
+                                                <a href="{{route('Invoices.print', $invoice->id)}}" class="btn btn-primary btn-sm" target="_blank">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
                                             </td>
-                                        @elseif ($invoice->invoice_classify == 2)
                                             <td>
-                                                <a href="{{route('Invoices.showServices', $invoice->Group->id)}}">{{ $invoice->Group->name }}</a>
+                                                @if ($invoice->invoice_type == 1)
+                                                    <a href="{{route('Invoices.showinvoice',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                                @else
+                                                    {{$invoice->invoice_number}}
+                                                @endif
                                             </td>
-                                        @endif
-                                        <td>
-                                            @if ($invoice->type == 1)
-                                                {{__('Dashboard/services.monetary')}}
-                                            @elseif ($invoice->type == 0)
-                                                {{__('Dashboard/services.noselectionyet')}}
-                                            @elseif ($invoice->type == 2)
-                                                {{__('Dashboard/services.Okay')}}
-                                            @elseif ($invoice->type == 3)
-                                                {{__('Dashboard/services.Banktransfer')}}
-                                            @elseif ($invoice->type == 4)
-                                                {{__('Dashboard/services.card')}}
+                                            @if ($invoice->invoice_classify == 1)
+                                                <td>
+                                                    <a href="{{route('Invoices.showService', $invoice->Service->id)}}">{{ $invoice->Service->name }}</a>
+                                                </td>
+                                            @elseif ($invoice->invoice_classify == 2)
+                                                <td>
+                                                    <a href="{{route('Invoices.showServices', $invoice->Group->id)}}">{{ $invoice->Group->name }}</a>
+                                                </td>
                                             @endif
-                                        </td>
-                                        <td>{{ $invoice->Client->name }}</td>
-                                        <td>{{ $invoice->invoice_date }}</td>
-                                        <td>{{ number_format($invoice->price, 2) }}</td>
-                                        <td>{{ number_format($invoice->discount_value, 2) }}</td>
-                                        <td>{{ $invoice->tax_rate }}%</td>
-                                        <td>{{ number_format($invoice->tax_value, 2) }}</td>
-                                        <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
-                                        <td>
-                                            @if ($invoice->invoice_status == 1)
-                                                {{__('Dashboard/services.Sent')}}
-                                            @elseif ($invoice->invoice_status == 2)
-                                                {{__('Dashboard/services.Under review')}}
-                                            @elseif ($invoice->invoice_status == 3)
-                                                {{__('Dashboard/services.Complete')}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($invoice->invoice_type == 1)
-                                                {{__('Dashboard/services.Draft')}}
-                                            @elseif ($invoice->invoice_type == 2)
-                                                {{__('Dashboard/services.Paid')}}
-                                            @elseif ($invoice->invoice_type == 3)
-                                                {{__('Dashboard/services.Canceled')}}
-                                            @endif
-                                        </td>
-                                        <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
-                                        <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
-                                        <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
-                                    </tr>
-                                @empty
-                                    {{__('Dashboard/messages.database')}}
-                                @endforelse
+                                            <td>
+                                                @if ($invoice->type == 1)
+                                                    {{__('Dashboard/services.monetary')}}
+                                                @elseif ($invoice->type == 0)
+                                                    {{__('Dashboard/services.noselectionyet')}}
+                                                @elseif ($invoice->type == 2)
+                                                    {{__('Dashboard/services.Okay')}}
+                                                @elseif ($invoice->type == 3)
+                                                    {{__('Dashboard/services.Banktransfer')}}
+                                                @elseif ($invoice->type == 4)
+                                                    {{__('Dashboard/services.card')}}
+                                                @endif
+                                            </td>
+                                            <td>{{ $invoice->Client->name }}</td>
+                                            <td>{{ $invoice->invoice_date }}</td>
+                                            <td>{{ number_format($invoice->price, 2) }}</td>
+                                            <td>{{ number_format($invoice->discount_value, 2) }}</td>
+                                            <td>{{ $invoice->tax_rate }}%</td>
+                                            <td>{{ number_format($invoice->tax_value, 2) }}</td>
+                                            <td>{{ number_format($invoice->total_with_tax, 2) }}</td>
+                                            <td>
+                                                @if ($invoice->invoice_status == 1)
+                                                    {{__('Dashboard/services.Sent')}}
+                                                @elseif ($invoice->invoice_status == 2)
+                                                    {{__('Dashboard/services.Under review')}}
+                                                @elseif ($invoice->invoice_status == 3)
+                                                    {{__('Dashboard/services.Complete')}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($invoice->invoice_type == 1)
+                                                    {{__('Dashboard/services.Draft')}}
+                                                @elseif ($invoice->invoice_type == 2)
+                                                    {{__('Dashboard/services.Paid')}}
+                                                @elseif ($invoice->invoice_type == 3)
+                                                    {{__('Dashboard/services.Canceled')}}
+                                                @endif
+                                            </td>
+                                            <td class="tx-medium tx-danger">{{$invoice->user->name}}</td>
+                                            <td class="tx-medium tx-inverse"> {{ $invoice->created_at->diffForHumans() }} </td>
+                                            <td class="tx-medium tx-inverse"> {{ $invoice->updated_at->diffForHumans() }} </td>
+                                        </tr>
+                                    @empty
+                                        {{__('Dashboard/messages.database')}}
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

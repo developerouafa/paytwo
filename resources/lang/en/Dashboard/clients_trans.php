@@ -58,5 +58,9 @@ return [
     "cashpyinvoice" => "Cash Payment Invoice",
     "cashpyinvoicepaid" => "Postpaid bill",
     "banktransferpy" => "Bank transfer payment invoice",
-    "bankcardpy" => "Bank card payment bill"
+    "bankcardpy" => "Bank card payment bill",
+    "totalpayments" => "Total payments",
+    "numberinvoicessent" => "Number of invoices sent",
+    "numbercompletedinvoices" => "Number of completed invoices",
+    "numberunderreview" => "Number of invoices under review",
 ];

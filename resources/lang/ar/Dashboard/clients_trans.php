@@ -58,5 +58,9 @@ return [
     "cashpyinvoice" => "فاتورة دفع نقدي",
     "cashpyinvoicepaid" => "فاتورة دفع آجل",
     "banktransferpy" => "فاتورة دفع حوالة البنكية",
-    "bankcardpy" => "فاتورة دفع بطاقة البنكية"
+    "bankcardpy" => "فاتورة دفع بطاقة البنكية",
+    "totalpayments" => "اجمالي المدفوعات",
+    "numberinvoicessent" => "عدد الفواتير  المرسلة",
+    "numbercompletedinvoices" => "عدد الفواتير المكتملة",
+    "numberunderreview" => "عدد فواتير تحت المراجعات",
 ];

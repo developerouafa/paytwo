@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthClientController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\InvoicesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::group(['prefix' => 'jwtclients', 'middleware' => ['getjwtclientstoken:jwtclients']], function(){
                 Route::post('profile', function(){
                     return Auth::user(); //return authenticated client data
+                });
+                Route::prefix('Invoices')->group(function (){
+                    Route::controller(InvoicesController::class)->group(function() {
+                        Route::get('/index', 'index')->name('Index');
+                    });
                 });
             });
         });

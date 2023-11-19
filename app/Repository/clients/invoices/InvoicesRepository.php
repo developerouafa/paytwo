@@ -74,44 +74,17 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
     }
 
+    public function print($id){
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+    }
+
     public function showinvoice($id)
     {
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
     }
 
-    public function print($id){
-        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
-    }
-
-    public function showService($id){
-        $product = product::findOrFail($id);
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
-        $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
-    }
-
-    public function promotion($id)
-    {
-        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
-        $product = product::where('id', $id)->first();
-        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
-    }
-
-    public function image($id)
-    {
-        $Product = product::where('id',$id)->firstOrFail();
-        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
-        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
-        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
-    }
-
-    public function showServices($id){
-        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
-        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
-    }
 
     public function Complete($request){
         try{
@@ -123,7 +96,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                     $client->update([
                         'name' =>  $request->name,
                         'email' => $request->email,
-                        'phone' => '0582201021'
+                        'phone' => $client->phone
                     ]);
                     if($request->clienType == '1'){
                         if($request->nothavetax == '0'){
@@ -189,6 +162,34 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->first();
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.continue', ['invoice' => $invoice, 'fund_accountreceipt' => $fund_accountreceipt, 'fund_accountpostpaid' => $fund_accountpostpaid]);
+    }
+
+    public function showService($id){
+        $product = product::findOrFail($id);
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
+    }
+
+    public function promotion($id)
+    {
+        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
+        $product = product::where('id', $id)->first();
+        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
+    }
+
+    public function image($id)
+    {
+        $Product = product::where('id',$id)->firstOrFail();
+        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
+        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
+        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
+    }
+
+    public function showServices($id){
+        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
+        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
     }
 
     public function modifypymethod($request){

@@ -18,18 +18,17 @@ class AuthClientController extends Controller
     public function login(Request $request){
         // validation
         try{
-                $rules = [
-                    // "email" => "required|exists:admin_users,email",
-                    "phone" => "required",
-                    "password" => "required"
-                ];
+            $rules = [
+                "phone" => "required",
+                "password" => "required"
+            ];
 
-                $validator = Validator::make($request->all(), $rules);
+            $validator = Validator::make($request->all(), $rules);
 
-                if ($validator->fails()) {
-                    $code = $this->returnCodeAccordingToInput($validator);
-                    return $this->returnValidationError($code, $validator);
-                }
+            if ($validator->fails()) {
+                $code = $this->returnCodeAccordingToInput($validator);
+                return $this->returnValidationError($code, $validator);
+            }
         }catch(\Exception $ex){
             return $this->returnError($ex->getCode(), $ex->getMessage());
         }

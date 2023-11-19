@@ -70,14 +70,15 @@ Route::group(
                 Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
                 Route::get('/showinvoicereceiptPostpaid/{id}', 'showinvoicereceiptPostpaid')->name('Invoices.showinvoicereceiptPostpaid');
 
+                Route::get('/showinvoice/{id}', 'showinvoice')->name('Invoices.showinvoice');
+                Route::get('/showinvoicent/{id}', 'showinvoicent')->name('Invoices.showinvoicent');
+
                 Route::patch('/Complete', 'Complete')->name('Invoice.Complete');
                 Route::get('/Continue/{id}', 'Continue')->name('Invoice.Continue');
                 Route::patch('/Confirmpayment', 'Confirmpayment')->name('Invoice.Confirmpayment');
                 Route::get('/Completepayment/{id}', 'Completepayment')->name('Invoice.Completepayment');
                 Route::get('/Errorinpayment/{id}', 'Errorinpayment')->name('Invoice.Errorinpayment');
 
-                Route::get('/showinvoice/{id}', 'showinvoice')->name('Invoices.showinvoice');
-                Route::get('/showinvoicent/{id}', 'showinvoicent')->name('Invoices.showinvoicent');
                 Route::get('/confirmpyinvoice/{id}', 'confirmpyinvoice')->name('Invoices.confirmpyinvoice');
 
                 Route::get('/Show_Service/{id}', 'showService')->name('Invoices.showService');

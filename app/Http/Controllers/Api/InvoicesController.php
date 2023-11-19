@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\banktransfer;
 use App\Models\Client;
+use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
 use App\Models\profileclient;
+use App\Models\receiptdocument;
+use App\Models\User;
+use App\Notifications\clienttouserinvoice;
 use App\Traits\GeneralTraitt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
@@ -134,7 +140,7 @@ class InvoicesController extends Controller
                 // return $this->returnSuccessMessage('Logged out successfully');
         }catch(\Exception $execption){
             DB::rollBack();
-            return  $this -> returnError('','some thing went wrongs');
+            return  $this -> returnError('',trans('Dashboard/messages.error'));
         }
     }
 
@@ -144,5 +150,95 @@ class InvoicesController extends Controller
         $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->first();
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
         return $this->returnTreeData('invoice' , $invoice, 'fund_accountreceipt' , $fund_accountreceipt, 'fund_accountpostpaid' , $fund_accountpostpaid);
+    }
+
+
+    public function Confirmpayment(Request $request)
+    {
+        $completepyinvoice = invoice::findorFail($request -> header('invoice_id'));
+            try{
+                if($request -> header('invoice')){
+                    DB::beginTransaction();
+
+                    $image = $this->uploaddocument($request, 'invoice');
+                        receiptdocument::create([
+                            'invoice_id' => $request -> header('invoice_id'),
+                            'invoice' => $image,
+                            'client_id' => auth()->user()->id,
+                        ]);
+
+                        $completepyinvoice->update([
+                            'invoice_status' => '3'
+                        ]);
+
+                        if($completepyinvoice->type == 3){
+                            // store banktransfer_accounts
+                            $banktransfers = new banktransfer();
+                            $banktransfers->date =date('y-m-d');
+                            $banktransfers->client_id = $completepyinvoice->client_id;
+                            $banktransfers->amount = $completepyinvoice->total_with_tax;
+                            $banktransfers->user_id = $completepyinvoice->user_id;
+                            $banktransfers->save();
+
+                            // store fund_accounts
+                            $fund_accounts = new fund_account();
+                            $fund_accounts->date =date('y-m-d');
+                            $fund_accounts->bank_id = $banktransfers->id;
+                            $fund_accounts->invoice_id = $completepyinvoice->id;
+                            $fund_accounts->Debit = $completepyinvoice->total_with_tax;
+                            $fund_accounts->user_id = $completepyinvoice->user_id;
+                            $fund_accounts->credit = 0.00;
+                            $fund_accounts->save();
+
+                            // store client_accounts
+                            $client_accounts = new client_account();
+                            $client_accounts->date =date('y-m-d');
+                            $client_accounts->client_id = $completepyinvoice->client_id;
+                            $client_accounts->bank_id = $banktransfers->id;
+                            $client_accounts->invoice_id = $completepyinvoice->id;
+                            $client_accounts->user_id = $completepyinvoice->user_id;
+                            $client_accounts->Debit = 0.00;
+                            $client_accounts->credit =$completepyinvoice->Debit;
+                            $client_accounts->save();
+                        }
+
+                        //* Payment Completed notification Database & email
+                            $user = User::where('id', '=', $completepyinvoice->user_id)->first();
+                            $invoice_id = $request -> header('invoice_id');
+                            $message = __('Dashboard/users.billpaid');
+                            Notification::send($user, new clienttouserinvoice($invoice_id, $message));
+
+                            // $mailuser = User::findorFail($completepyinvoice->user_id);
+                            // $nameuser = $mailuser->name;
+                            // $url = url('en/showpinvoicent/'.$invoice_id);
+                            // Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+
+                        DB::commit();
+                        return  $this -> returnError('',trans('Dashboard/messages.add'));
+                        return redirect()->route('Completepayment', $request -> header('invoice_id'));
+                }
+                // No Add photo
+                else{
+                    return  $this -> returnError('',trans('Dashboard/messages.imagerequired'));
+                    return redirect()->route('Errorinpayment', $request -> header('invoice_id'));
+                }
+            }
+            catch(\Exception $exception){
+                DB::rollBack();
+                return  $this -> returnError('',trans('Dashboard/messages.error'));
+                return redirect()->route('Errorinpayment', $request -> header('invoice_id'));
+            }
+    }
+
+    public function Completepayment($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return $this->returnData('invoice', $invoice);
+    }
+
+    public function Errorinpayment($id)
+    {
+        $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return $this->returnData('invoice', $invoice);
     }
 }

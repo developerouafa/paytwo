@@ -14,9 +14,17 @@ class InvoicesController extends Controller
 {
     use GeneralTraitt;
 
-    public function InvoicesSentNomethodtopay(){
+    public function InvoicesSent(){
         $invoices = invoice::latest()->where('type', '0')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
-        return $this->returnData('invoices', $invoices);
+        $invoicesmonetary = invoice::latest()->where('type', '1')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
+        $fund_accountreceipt = fund_account::whereNotNull('receipt_id')->with('invoice')->with('receiptaccount')->first();
+        $invoicespostpaid = invoice::latest()->where('type', '2')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
+        $fund_accountpostpaid = fund_account::whereNotNull('Payment_id')->with('invoice')->with('paymentaccount')->first();
+        $invoicesbanktransfer = invoice::latest()->where('type', '3')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
+        $invoicescard = invoice::latest()->where('type', '4')->whereNot('invoice_status', '1')->where('client_id', Auth::user()->id)->get();
+
+        return $this->returnMultipData('invoices', $invoices, 'invoicesmonetary', $invoicesmonetary, 'fund_accountreceipt', $fund_accountreceipt, 'invoicespostpaid', $invoicespostpaid, 'fund_accountpostpaid', $fund_accountpostpaid, 'invoicesbanktransfer', $invoicesbanktransfer, 'invoicescard', $invoicescard);
+
     }
 
 }

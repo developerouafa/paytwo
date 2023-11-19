@@ -44,7 +44,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     return Auth::user(); //return authenticated client data
                 });
 
-                Route::post('InvoicesSentNomethodtopay', [InvoicesController::class, 'InvoicesSentNomethodtopay'])->name('InvoicesSentNomethodtopay');
+                Route::post('InvoicesSent', [InvoicesController::class, 'InvoicesSent'])->name('InvoicesSent');
 
             });
 

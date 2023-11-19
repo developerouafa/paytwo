@@ -34,6 +34,21 @@ trait GeneralTraitt
         ]);
     }
 
+    public function returnMultipData($keyone, $valueone, $keytwo, $valuetwo, $keytree, $valuetree, $keyfoor, $valuefoor, $keyfive, $valuefive, $keyy, $valuey, $keye, $valuee, $msg = ""){
+        return response()->json([
+            'status' => true,
+            'errNum' => "$000",
+            'msg' => $msg,
+            $keyone => $valueone,
+            $keytwo => $valuetwo,
+            $keytree => $valuetree,
+            $keyfoor => $valuefoor,
+            $keyfive => $valuefive,
+            $keyy => $valuey,
+            $keye => $valuee,
+        ]);
+    }
+
         //////////////////
         public function returnValidationError($code = "E001", $validator)
         {

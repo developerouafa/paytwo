@@ -54,6 +54,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 Route::get('/Confirmpayment', [InvoicesController::class, 'Confirmpayment'])->name('Confirmpayment');
                 Route::get('/Completepayment/{id}', [InvoicesController::class, 'Completepayment'])->name('Completepayment');
                 Route::get('/Errorinpayment/{id}', [InvoicesController::class, 'Errorinpayment'])->name('Errorinpayment');
+
+                // Card
+                Route::post('/confirm', [InvoicesController::class, 'confirm'])->name('confirm');
+                Route::get('/checkout', [InvoicesController::class, 'checkout'])->name('checkout');
+                Route::post('/pay', [InvoicesController::class, 'pay'])->name('pay');
+                Route::view('success', 'success')->name('success');
             });
 
         });

@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
+use App\Models\order;
+use App\Models\paymentgateway;
 use App\Models\profileclient;
 use App\Models\receiptdocument;
 use App\Models\User;
@@ -240,5 +242,96 @@ class InvoicesController extends Controller
     {
         $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return $this->returnData('invoice', $invoice);
+    }
+
+    // Card
+    public function confirm(Request $request)
+    {
+        $invoice = invoice::findOrFail($request-> header('invoice_id'));
+
+        $client = Client::findOrFail(Auth::user()->id);
+        $client->orders()->create([
+            'invoice_id' => $invoice->id,
+            'nameincard' => 'nameincard',
+            'price' => $invoice->total_with_tax
+        ]);
+        return redirect()->route('checkout');
+    }
+
+    public function checkout()
+    {
+        $order = order::with('invoice')
+        ->where('client_id', auth()->id())
+        ->whereNull('paid_at')
+        ->latest()
+        ->firstOrFail();
+
+        $paymentIntent = auth()->user()->createSetupIntent();
+
+        return view('Dashboard.dashboard_client/invoices/checkout', compact('order', 'paymentIntent'));
+    }
+
+    public function pay(Request $request)
+    {
+        $order = order::where('client_id', auth()->id())->findOrFail($request -> header('order_id'));
+        DB::table('orders')->where('id', $request -> header('order_id'))->update(['nameincard'=>$request-> header('nameincard')]);
+        $client = auth()->user();
+        $paymentMethod = $request-> header('payment_method');
+        try {
+            $client->createOrGetStripeCustomer();
+            $client->updateDefaultPaymentMethod($paymentMethod);
+            $client->invoiceFor($order->invoice->invoice_number, $order->price);
+
+                $completepyinvoice = invoice::findorFail($order->invoice->id);
+                $completepyinvoice->update([
+                    'invoice_status' => '3',
+                    'invoice_type' => '1',
+                ]);
+
+                // store paymentgateway_accounts
+                $paymentgateways = new paymentgateway();
+                $paymentgateways->date =date('y-m-d');
+                $paymentgateways->client_id = $order->invoice->client_id;
+                $paymentgateways->amount = $order->invoice->total_with_tax;
+                $paymentgateways->user_id = $order->invoice->user_id;
+                $paymentgateways->save();
+
+                // store fund_accounts
+                $fund_accounts = new fund_account();
+                $fund_accounts->date =date('y-m-d');
+                $fund_accounts->Gateway_id = $paymentgateways->id;
+                $fund_accounts->invoice_id = $order->invoice->id;
+                $fund_accounts->Debit = $order->invoice->total_with_tax;
+                $fund_accounts->user_id = $order->invoice->user_id;
+                $fund_accounts->credit = 0.00;
+                $fund_accounts->save();
+
+                // store client_accounts
+                $client_accounts = new client_account();
+                $client_accounts->date =date('y-m-d');
+                $client_accounts->client_id = $order->invoice->client_id;
+                $client_accounts->Gateway_id = $paymentgateways->id;
+                $client_accounts->invoice_id = $order->invoice->id;
+                $client_accounts->user_id = $order->invoice->user_id;
+                $client_accounts->Debit = 0.00;
+                $client_accounts->credit = $order->invoice->Debit;
+                $client_accounts->save();
+
+            //* Payment Completed notification Database & email
+                $user = User::where('id', '=', $order->invoice->user_id)->first();
+                $invoice_id = $order->invoice->id;
+                $message = __('Dashboard/users.billpaid');
+                Notification::send($user, new clienttouserinvoice($invoice_id, $message));
+
+                // $mailuser = User::findorFail($order->invoice->user_id);
+                // $nameuser = $mailuser->name;
+                // $url = url('en/showpinvoicent/'.$invoice_id);
+                // Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+
+        } catch (\Exception $ex) {
+            return back()->with('error', $ex->getMessage());
+        }
+        return redirect()->route('Completepayment', $order->invoice->id);
+
     }
 }

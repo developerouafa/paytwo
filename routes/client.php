@@ -79,6 +79,11 @@ Route::group(
                 Route::get('/Completepayment/{id}', 'Completepayment')->name('Invoice.Completepayment');
                 Route::get('/Errorinpayment/{id}', 'Errorinpayment')->name('Invoice.Errorinpayment');
 
+                Route::post('/confirm', 'confirm')->name('Invoices.confirm');
+                Route::get('/checkout', 'checkout')->name('Invoices.checkout');
+                Route::post('/pay', 'pay')->name('Invoices.pay');
+                Route::view('success', 'success')->name('Invoices.success');
+
                 Route::get('/confirmpyinvoice/{id}', 'confirmpyinvoice')->name('Invoices.confirmpyinvoice');
 
                 Route::get('/Show_Service/{id}', 'showService')->name('Invoices.showService');
@@ -96,11 +101,6 @@ Route::group(
 
                 Route::get('printreceipt/{id}', 'printreceipt')->name('Invoices.printreceipt');
                 Route::get('printpostpaid/{id}', 'printpostpaid')->name('Invoices.printpostpaid');
-
-                Route::post('/confirm', 'confirm')->name('Invoices.confirm');
-                Route::get('/checkout', 'checkout')->name('Invoices.checkout');
-                Route::post('/pay', 'pay')->name('Invoices.pay');
-                Route::view('success', 'success')->name('Invoices.success');
 
                 Route::stripeWebhooks('webhook');
             });

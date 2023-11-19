@@ -65,6 +65,11 @@ Route::group(
                 Route::get('/indexcard', 'indexcard')->name('Invoices.indexcard');
                 Route::get('/indexbanktransfer', 'indexbanktransfer')->name('Invoices.indexbanktransfer');
 
+                Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
+                Route::get('/showinvoicereceipt/{id}', 'showinvoicereceipt')->name('Invoices.showinvoicereceipt');
+                Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
+                Route::get('/showinvoicereceiptPostpaid/{id}', 'showinvoicereceiptPostpaid')->name('Invoices.showinvoicereceiptPostpaid');
+
                 Route::patch('/Complete', 'Complete')->name('Invoice.Complete');
                 Route::get('/Continue/{id}', 'Continue')->name('Invoice.Continue');
                 Route::patch('/Confirmpayment', 'Confirmpayment')->name('Invoice.Confirmpayment');
@@ -80,11 +85,6 @@ Route::group(
 
                 Route::get('/promotions/{id}', 'promotion')->name('promotion.promotion');
                 Route::get('/images/{id}', 'image')->name('image.image');
-
-                Route::get('/showinvoicereceiptnt/{id}', 'showinvoicereceiptnt')->name('Invoices.showinvoicereceiptnt');
-                Route::get('/showinvoicereceipt/{id}', 'showinvoicereceipt')->name('Invoices.showinvoicereceipt');
-                Route::get('/showinvoicereceiptPostpaidnt/{id}', 'showinvoicereceiptPostpaidnt')->name('Invoices.showinvoicereceiptPostpaidnt');
-                Route::get('/showinvoicereceiptPostpaid/{id}', 'showinvoicereceiptPostpaid')->name('Invoices.showinvoicereceiptPostpaid');
 
                 Route::get('receipt/{id}', 'receipt')->name('Invoices.receipt');
                 Route::get('receiptpostpaid/{id}', 'receiptpostpaid')->name('Invoices.receiptpostpaid');

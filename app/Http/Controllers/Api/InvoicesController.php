@@ -27,4 +27,13 @@ class InvoicesController extends Controller
 
     }
 
+    public function showinvoicereceipt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        return $this->returnData('fund_accounts', $fund_accounts);
+    }
+
+    public function showinvoicereceiptPostpaid($id){
+        $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
+        return $this->returnData('fund_accounts', $fund_accounts);
+    }
 }

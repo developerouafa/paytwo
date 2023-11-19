@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\AuthClientController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InvoicesController;
+use App\Models\fund_account;
+use App\Models\invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,10 +43,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 Route::post('profile', function(){
                     return Auth::user(); //return authenticated client data
                 });
-                Route::prefix('Invoices')->group(function (){
-                    Route::controller(InvoicesController::class)->group(function() {
-                        Route::get('/index', 'index')->name('Index');
-                    });
-                });
+
+                Route::post('InvoicesSentNomethodtopay', [InvoicesController::class, 'InvoicesSentNomethodtopay'])->name('InvoicesSentNomethodtopay');
+
             });
+
         });

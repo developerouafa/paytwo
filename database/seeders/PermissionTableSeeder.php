@@ -14,6 +14,9 @@ class PermissionTableSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            //! Dashboard Users
+
+
             //! Users
             'sidebar users & permissions',
             'sidebar users',

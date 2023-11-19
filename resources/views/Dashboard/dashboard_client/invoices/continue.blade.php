@@ -289,7 +289,7 @@
                                                     </form>
                                                 @else
                                                     <b style="color: #03A8E6"> - {{__('Dashboard/clients_trans.receiptnotsent')}} - {{__('Dashboard/clients_trans.willviantfmail')}}
-                                                    {{-- => {{__('Dashboard/clients_trans.ifyoupaper')}}</b>
+                                                    => {{__('Dashboard/clients_trans.ifyoupaper')}}</b>
                                                     <br>
                                                     <br>
                                                     <form method="post" action="{{ route('Invoice.Confirmpayment') }}" class="mt-6 space-y-6" autocomplete="off" enctype="multipart/form-data">
@@ -316,7 +316,7 @@
                                                                 <button type="submit" class="btn btn-primary waves-effect waves-light">{{__('Dashboard/clients_trans.cnpay')}}</button>
                                                             </div>
                                                         </div>
-                                                    </form> --}}
+                                                    </form>
                                                 @endif
                                             @endif
 

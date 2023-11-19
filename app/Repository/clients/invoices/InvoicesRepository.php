@@ -164,63 +164,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.continue', ['invoice' => $invoice, 'fund_accountreceipt' => $fund_accountreceipt, 'fund_accountpostpaid' => $fund_accountpostpaid]);
     }
 
-    public function showService($id){
-        $product = product::findOrFail($id);
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
-        $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
-    }
-
-    public function promotion($id)
-    {
-        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
-        $product = product::where('id', $id)->first();
-        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
-    }
-
-    public function image($id)
-    {
-        $Product = product::where('id',$id)->firstOrFail();
-        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
-        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
-        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
-    }
-
-    public function showServices($id){
-        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
-        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
-    }
-
-    public function modifypymethod($request){
-        try{
-            $modifypymethodinvoice = invoice::findorFail($request->invoice_id);
-            DB::beginTransaction();
-                $modifypymethodinvoice->update([
-                    'type' => $request->type,
-                ]);
-
-                //* Payment method update notification Database & email
-                    $user = User::where('id', '=', $modifypymethodinvoice->user_id)->first();
-                    $invoice_id = $request->invoice_id;
-                    $message = __('Dashboard/users.pyupdatent');
-                    Notification::send($user, new clienttouser($invoice_id, $message));
-
-                    // $mailuser = User::findorFail($modifypymethodinvoice->user_id);
-                    // $nameuser = $mailuser->name;
-                    // $url = url('en/showpinvoicent/'.$invoice_id);
-                    // Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
-
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.edit'));
-            return redirect()->back();
-        }catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('messages.error'));
-            return redirect()->back();
-        }
-    }
-
     public function Confirmpayment($request)
     {
         $completepyinvoice = invoice::findorFail($request->invoice_id);
@@ -308,6 +251,63 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     {
         $invoice = invoice::latest()->where('id', $id)->where('client_id', Auth::user()->id)->first();
         return view('Dashboard.dashboard_client.invoices.errorinpayment', ['invoice' => $invoice]);
+    }
+
+    public function showService($id){
+        $product = product::findOrFail($id);
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
+    }
+
+    public function promotion($id)
+    {
+        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
+        $product = product::where('id', $id)->first();
+        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
+    }
+
+    public function image($id)
+    {
+        $Product = product::where('id',$id)->firstOrFail();
+        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
+        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
+        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
+    }
+
+    public function showServices($id){
+        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
+        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
+    }
+
+    public function modifypymethod($request){
+        try{
+            $modifypymethodinvoice = invoice::findorFail($request->invoice_id);
+            DB::beginTransaction();
+                $modifypymethodinvoice->update([
+                    'type' => $request->type,
+                ]);
+
+                //* Payment method update notification Database & email
+                    $user = User::where('id', '=', $modifypymethodinvoice->user_id)->first();
+                    $invoice_id = $request->invoice_id;
+                    $message = __('Dashboard/users.pyupdatent');
+                    Notification::send($user, new clienttouser($invoice_id, $message));
+
+                    // $mailuser = User::findorFail($modifypymethodinvoice->user_id);
+                    // $nameuser = $mailuser->name;
+                    // $url = url('en/showpinvoicent/'.$invoice_id);
+                    // Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
+
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->back();
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('messages.error'));
+            return redirect()->back();
+        }
     }
 
     public function receipt($id){

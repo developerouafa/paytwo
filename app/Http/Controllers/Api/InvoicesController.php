@@ -36,4 +36,10 @@ class InvoicesController extends Controller
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         return $this->returnData('fund_accounts', $fund_accounts);
     }
+
+    public function showinvoice($id)
+    {
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return $this->returnData('invoice', $invoice);
+    }
 }

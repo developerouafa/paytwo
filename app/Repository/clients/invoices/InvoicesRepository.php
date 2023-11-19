@@ -62,6 +62,57 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.invoicebanktransfer', ['invoices' => $invoices]);
     }
 
+    public function showinvoicereceiptnt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\catchreceipt')->pluck('id');
+        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
+        return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
+    }
+
+    public function showinvoicereceipt($id){
+        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
+        return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
+    }
+
+    public function showinvoice($id)
+    {
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
+    }
+
+    public function print($id){
+        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+    }
+
+    public function showService($id){
+        $product = product::findOrFail($id);
+        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $stockproduct = stockproduct::selectstock()->get();
+        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
+    }
+
+    public function promotion($id)
+    {
+        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
+        $product = product::where('id', $id)->first();
+        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
+    }
+
+    public function image($id)
+    {
+        $Product = product::where('id',$id)->firstOrFail();
+        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
+        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
+        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
+    }
+
+    public function showServices($id){
+        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
+        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
+    }
+
     public function Complete($request){
         try{
             $id = $request->profileclientid;
@@ -311,29 +362,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
     }
 
-    public function showinvoice($id)
-    {
-        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
-    }
-
-    public function print($id){
-        $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
-    }
-
-    public function showinvoicereceiptnt($id){
-        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
-        $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\catchreceipt')->pluck('id');
-        DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
-    }
-
-    public function showinvoicereceipt($id){
-        $fund_accounts = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->get();
-        return view('Dashboard.dashboard_client.invoices.invoicesreceipt', compact('fund_accounts'));
-    }
-
     public function showinvoicereceiptPostpaidnt($id){
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\catchpayment')->pluck('id');
@@ -344,34 +372,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function showinvoicereceiptPostpaid($id){
         $fund_accounts = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->get();
         return view('Dashboard.dashboard_client.invoices.invoicesreceiptPostpaid', compact('fund_accounts'));
-    }
-
-    public function showService($id){
-        $product = product::findOrFail($id);
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
-        $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
-    }
-
-    public function promotion($id)
-    {
-        $promotion = promotion::latest()->where('product_id', $id)->withPromotion()->get();
-        $product = product::where('id', $id)->first();
-        return view('Dashboard/dashboard_client/invoices.promotions', compact('promotion', 'product'));
-    }
-
-    public function image($id)
-    {
-        $Product = product::where('id',$id)->firstOrFail();
-        $mainimage  = mainimageproduct::selectmainimage()->where('product_id',$id)->get();
-        $multimg  = multipimage::selectmultipimage()->where('product_id',$id)->get();
-        return view('Dashboard/dashboard_client/invoices.images',compact('Product', 'mainimage','multimg'));
-    }
-
-    public function showServices($id){
-        $product_group = pivot_product_group::where('groupprodcut_id', $id)->with('product')->with('groupprodcut')->get();
-        return view('Dashboard/dashboard_client/invoices.showServices',compact('product_group'));
     }
 
     public function printreceipt($id){

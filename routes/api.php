@@ -47,6 +47,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 Route::get('InvoicesSent', [InvoicesController::class, 'InvoicesSent'])->name('InvoicesSent');
                 Route::get('showinvoicereceipt/{id}', [InvoicesController::class, 'showinvoicereceipt'])->name('showinvoicereceipt');
                 Route::get('showinvoicereceiptPostpaid/{id}', [InvoicesController::class, 'showinvoicereceiptPostpaid'])->name('showinvoicereceiptPostpaid');
+                Route::get('showinvoice/{id}', [InvoicesController::class, 'showinvoice'])->name('showinvoice');
 
             });
 

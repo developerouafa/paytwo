@@ -84,7 +84,6 @@
                                                             @empty
                                                                 ({{ number_format($service->price, 2) }})
                                                             @endforelse ()
-                                                            {{-- ({{ number_format($service->price, 2) }}) --}}
                                                         </option>
                                                     @endforeach
                                                 </select>

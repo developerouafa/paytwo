@@ -38,8 +38,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
             Route::group(['prefix' => 'jwtclients', 'middleware' => ['getjwtclientstoken:jwtclients']], function(){
                 Route::post('profile', function(){
-                    // return 'Only authenticated admi can reach me';
-                    return Auth::user(); //return authenticated user data
+                    return Auth::user(); //return authenticated client data
                 });
             });
         });

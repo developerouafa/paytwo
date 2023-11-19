@@ -2,6 +2,7 @@
 
 return [
     'users' => "Users",
+    'Usercontrolpanel'=>'User control panel',
     'deletedusers' => "Deleted Users",
     'addauser' => "Add User",
     'name' => "Name",

@@ -2,6 +2,7 @@
 
 return [
     'users' => "المستخدمين",
+    'Usercontrolpanel'=>'لوحة تحكم المستخدم',
     'deletedusers' => "المستخدمون المحذوفون",
     'addauser' => "اضافة مستخدم",
     'name' => "الاسم",

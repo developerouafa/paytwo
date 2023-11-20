@@ -63,6 +63,8 @@ return [
     'TOTALEARNINGS' => 'الارباح الكلية',
     'numbertotalpayment' => 'عدد المدفوعات الكلية',
     'completedpaidinvoices' => 'الفواتير المدفوعة المكتملة',
-    'numberinvoices' => 'مجموع الفواتير المدفوعة المكتملة'
+    'numberinvoices' => 'مجموع الفواتير المدفوعة المكتملة',
+    'Canceledpaidinvoices' => 'الفواتير الملغاة',
+    'numberofcanceldinvoices' => 'عدد الفواتير الملغاة'
 ];
 

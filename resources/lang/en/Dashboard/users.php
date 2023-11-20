@@ -63,5 +63,7 @@ return [
     'TOTALEARNINGS' => 'TOTAL EARNINGS',
     'numbertotalpayment' => 'Number of total Payments',
     'completedpaidinvoices' => 'Completed paid invoices',
-    'numberinvoices' => 'Total paid invoices completed'
+    'numberinvoices' => 'Total paid invoices completed',
+    'Canceledpaidinvoices' => 'Canceled paid invoices',
+    'numberofcanceldinvoices' => 'Number of canceled invoices',
 ];

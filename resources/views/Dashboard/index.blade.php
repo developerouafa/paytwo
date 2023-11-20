@@ -53,7 +53,9 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">{{App\Models\client_account::whereDate('created_at', now())->sum('credit')}}</h4>
+                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                        {{ number_format(App\Models\client_account::whereDate('created_at', now())->sum('credit')) }}
+                                    </h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">

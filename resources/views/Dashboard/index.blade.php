@@ -17,7 +17,7 @@
                 <p class="mg-b-0">{{__('Dashboard/clients_trans.Salesmonitoringdashb')}}</p>
             </div>
         </div>
-        @can('Header Page Dashboard')
+        {{-- @can('Header Page Dashboard') --}}
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
                 <div>
@@ -37,7 +37,7 @@
                     <h5>{{ invoice::where('type', 2)->count()}}</h5>
                 </div>
             </div>
-        @endcan
+        {{-- @endcan --}}
 
     </div>
 @endsection
@@ -53,7 +53,7 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">$5,74.12</h4>
+                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">{{App\Models\client_account::whereDate('created_at', now())->sum('credit')}}</h4>
                                     <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">

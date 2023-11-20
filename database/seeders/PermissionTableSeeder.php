@@ -15,7 +15,7 @@ class PermissionTableSeeder extends Seeder
     {
         $permissions = [
             //! Dashboard Users
-
+            'Header Page Dashboard',
 
             //! Users
             'sidebar users & permissions',

@@ -12,29 +12,33 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{__('Dashboard/users.Usercontrolpanel')}} <b style="color: blue">{{auth()->user()->name}}</b></h2>
+                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{__('Dashboard/users.Usercontrolpanel')}}
+                    <b style="color: blue">{{auth()->user()->name}}</b></h2>
                 <p class="mg-b-0">{{__('Dashboard/clients_trans.Salesmonitoringdashb')}}</p>
             </div>
         </div>
-        <div class="main-dashboard-header-right">
-            <?php use App\Models\invoice; ?>
-            <div>
-                <label class="tx-13">{{__('Dashboard/services.Banktransfer')}}</label>
-                <h5>{{ invoice::where('type', 3)->count()}}</h5>
+        @can('Header Page Dashboard')
+            <div class="main-dashboard-header-right">
+                <?php use App\Models\invoice; ?>
+                <div>
+                    <label class="tx-13">{{__('Dashboard/services.Banktransfer')}}</label>
+                    <h5>{{ invoice::where('type', 3)->count()}}</h5>
+                </div>
+                <div>
+                    <label class="tx-13">{{__('Dashboard/services.card')}}</label>
+                    <h5>{{ invoice::where('type', 4)->count()}}</h5>
+                </div>
+                <div>
+                    <label class="tx-13">{{__('Dashboard/services.monetary')}}</label>
+                    <h5>{{ invoice::where('type', 1)->count()}}</h5>
+                </div>
+                <div>
+                    <label class="tx-13">{{__('Dashboard/payment_trans.Catch payment')}}</label>
+                    <h5>{{ invoice::where('type', 2)->count()}}</h5>
+                </div>
             </div>
-            <div>
-                <label class="tx-13">{{__('Dashboard/services.card')}}</label>
-                <h5>{{ invoice::where('type', 4)->count()}}</h5>
-            </div>
-            <div>
-                <label class="tx-13">{{__('Dashboard/services.monetary')}}</label>
-                <h5>{{ invoice::where('type', 1)->count()}}</h5>
-            </div>
-            <div>
-                <label class="tx-13">{{__('Dashboard/payment_trans.Catch payment')}}</label>
-                <h5>{{ invoice::where('type', 2)->count()}}</h5>
-            </div>
-        </div>
+        @endcan
+
     </div>
 @endsection
 @section('content')

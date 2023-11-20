@@ -57,5 +57,6 @@ return [
     'requiredcity' => 'City required',
     'requiredpostalcode' => 'Postal Code required',
     'pyupdatent' => 'Payment method update Notification',
-    'billpaid' => 'The bill has been paid'
+    'billpaid' => 'The bill has been paid',
+    'TotalPaymentToday' => 'Total Payment Today'
 ];

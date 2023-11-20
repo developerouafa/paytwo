@@ -48,7 +48,7 @@
                 <div class="card overflow-hidden sales-card bg-primary-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">TODAY ORDERS</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Dashboard/users.TotalPaymentToday')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">

@@ -58,4 +58,6 @@ return [
     'requiredpostalcode' => 'الرمز البريدي مطلوب',
     'pyupdatent' => 'إشعار بتحديث طريقة الدفع',
     'billpaid' => 'لقد تم دفع الفاتورة',
+    'TotalPaymentToday' => 'إجمالي الدفع اليوم'
 ];
+

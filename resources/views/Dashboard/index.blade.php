@@ -44,7 +44,7 @@
 @section('content')
     <!-- row -->
         <div class="row row-sm">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12"></div>
                 <div class="card overflow-hidden sales-card bg-primary-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2">
                         <div class="">
@@ -132,18 +132,29 @@
                 <div class="card overflow-hidden sales-card bg-warning-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">PRODUCT SOLD</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Dashboard/users.Canceledpaidinvoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">$4,820.50</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                        {{ invoice::where('invoice_status', 4)->where('invoice_type', 3)->count() }}
+                                    </h4>
+                                    <p class="mb-0 tx-12 text-white op-7">{{__('Dashboard/users.numberofcanceldinvoices')}}</p>
                                 </div>
-                                <span class="float-right my-auto mr-auto">
-                                    <i class="fas fa-arrow-circle-down text-white"></i>
-                                    <span class="text-white op-7"> -152.3</span>
-                                </span>
+                                <span class="text-white op-7">
+                                    @php
+                                        $invoices = invoice::get();
+                                        $count_all= $invoices->count();
+                                        $count_invoices = invoice::where('invoice_status', 4)->where('invoice_type', 3)->count();
+                                        if($count_invoices == 0){
+                                            echo $count_invoices = 0;
+                                        }
+                                        else{
+                                            echo $count_invoices = $count_invoices / $count_all *100 ;
+                                        }
+                                    @endphp
+                                %</span>
                             </div>
                         </div>
                     </div>

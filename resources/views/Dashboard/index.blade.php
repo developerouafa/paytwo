@@ -96,7 +96,7 @@
                 <div class="card overflow-hidden sales-card bg-danger-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">TODAY EARNINGS</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Dashboard/users.completedpaidinvoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
@@ -104,11 +104,23 @@
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">
                                         {{ invoice::where('invoice_status', 4)->where('invoice_type', 2)->count() }}
                                     </h4>
-                                    <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+                                    <p class="mb-0 tx-12 text-white op-7">{{__('Dashboard/users.numberinvoices')}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
-                                    <i class="fas fa-arrow-circle-down text-white"></i>
-                                    <span class="text-white op-7"> -23.09%</span>
+                                    <i class="fas fa-arrow-circle-up text-white"></i>
+                                    <span class="text-white op-7">
+                                        @php
+                                            $invoices = invoice::get();
+                                            $count_all= $invoices->count();
+                                            $count_invoices = invoice::where('invoice_status', 4)->where('invoice_type', 2)->count();
+                                            if($count_invoices == 0){
+                                                echo $count_invoices = 0;
+                                            }
+                                            else{
+                                                echo $count_invoices = $count_invoices / $count_all *100 ;
+                                            }
+                                        @endphp
+                                    %</span>
                                 </span>
                             </div>
                         </div>

@@ -62,4 +62,6 @@ return [
     'numberpaymenttoday' => 'Number of payments today',
     'TOTALEARNINGS' => 'TOTAL EARNINGS',
     'numbertotalpayment' => 'Number of total Payments',
+    'completedpaidinvoices' => 'Completed paid invoices',
+    'numberinvoices' => 'Total paid invoices completed'
 ];

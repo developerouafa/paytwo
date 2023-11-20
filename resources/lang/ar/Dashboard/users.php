@@ -62,5 +62,7 @@ return [
     'numberpaymenttoday' => 'عدد المدفوعات اليوم',
     'TOTALEARNINGS' => 'الارباح الكلية',
     'numbertotalpayment' => 'عدد المدفوعات الكلية',
+    'completedpaidinvoices' => 'الفواتير المدفوعة المكتملة',
+    'numberinvoices' => 'مجموع الفواتير المدفوعة المكتملة'
 ];
 

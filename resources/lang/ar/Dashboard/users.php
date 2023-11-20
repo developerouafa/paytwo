@@ -59,6 +59,7 @@ return [
     'pyupdatent' => 'إشعار بتحديث طريقة الدفع',
     'billpaid' => 'لقد تم دفع الفاتورة',
     'TotalPaymentToday' => 'إجمالي الدفع اليوم',
-    'numberpaymenttoday' => 'عدد المدفوعات اليوم'
+    'numberpaymenttoday' => 'عدد المدفوعات اليوم',
+    'TOTALEARNINGS' => 'الارباح الكلية'
 ];
 

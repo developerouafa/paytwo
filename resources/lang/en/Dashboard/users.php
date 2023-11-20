@@ -59,5 +59,6 @@ return [
     'pyupdatent' => 'Payment method update Notification',
     'billpaid' => 'The bill has been paid',
     'TotalPaymentToday' => 'Total Payment Today',
-    'numberpaymenttoday' => 'Number of payments today'
+    'numberpaymenttoday' => 'Number of payments today',
+    'TOTALEARNINGS' => 'TOTAL EARNINGS'
 ];

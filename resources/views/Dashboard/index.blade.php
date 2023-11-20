@@ -94,7 +94,7 @@
                 <div class="card overflow-hidden sales-card bg-success-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">TOTAL EARNINGS</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Dashboard/users.TOTALEARNINGS')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">

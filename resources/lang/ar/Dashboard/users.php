@@ -60,6 +60,7 @@ return [
     'billpaid' => 'لقد تم دفع الفاتورة',
     'TotalPaymentToday' => 'إجمالي الدفع اليوم',
     'numberpaymenttoday' => 'عدد المدفوعات اليوم',
-    'TOTALEARNINGS' => 'الارباح الكلية'
+    'TOTALEARNINGS' => 'الارباح الكلية',
+    'numbertotalpayment' => 'عدد المدفوعات الكلية',
 ];
 

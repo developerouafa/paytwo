@@ -60,5 +60,6 @@ return [
     'billpaid' => 'The bill has been paid',
     'TotalPaymentToday' => 'Total Payment Today',
     'numberpaymenttoday' => 'Number of payments today',
-    'TOTALEARNINGS' => 'TOTAL EARNINGS'
+    'TOTALEARNINGS' => 'TOTAL EARNINGS',
+    'numbertotalpayment' => 'Number of total Payments',
 ];

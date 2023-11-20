@@ -99,12 +99,14 @@
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
-                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+                                    <h4 class="tx-20 font-weight-bold mb-1 text-white">
+                                        {{ number_format(App\Models\client_account::sum('credit')) }}
+                                    </h4>
+                                    <p class="mb-0 tx-12 text-white op-7">{{__('Dashboard/users.numbertotalpayment')}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
                                     <i class="fas fa-arrow-circle-up text-white"></i>
-                                    <span class="text-white op-7"> 52.09%</span>
+                                    <span class="text-white op-7"> +{{ App\Models\client_account::count() }}</span>
                                 </span>
                             </div>
                         </div>

@@ -85,5 +85,6 @@ return [
     'profitSingleservicebill' => 'Earnings from invoices single services',
     'profitServicepackageinvoice' => 'Earnings from invoices bundled services',
     'totalClientactive' => 'Total Client Actives',
+    'activeuserlogin' => 'Active client to login',
     '' => '',
 ];

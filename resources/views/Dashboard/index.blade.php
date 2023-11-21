@@ -483,6 +483,14 @@
                                     @endphp
                                 %</h4>
                             </div>
+                            <div class="col-md-6 mt-4 mt-md-0" style="color:rgb(11, 50, 122)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.activeclientlogin')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+
+                                %</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -80,11 +80,12 @@ return [
     'newbankpamentbills' => 'فواتير جديدة بالدفع البنكي',
     'newsingleservicebill' => 'فاتورة الخدمة الواحدة الجديدة',
     'newServicepackageinvoice' => 'فواتير الخدمات المجمعة الجديدة',
-    'activeuserlogin' => 'مستخدم نشط لتسجيل الدخول',
+    'activeuserlogin' => 'المستخدمين نشطين لتسجيل الدخول',
     'totalUseractive' => 'إجمالي المستخدمين النشطاء',
     'profitSingleservicebill' => 'ارباح فواتير الخدمة المفردة',
     'profitServicepackageinvoice' => 'ارباح فواتير الخدمات المجمعة',
     'totalClientactive' => 'إجمالي العملاء النشطاء',
+    'activeuserlogin' => 'العملاء نشطين لتسجيل الدخول',
     '' => '',
 ];
 

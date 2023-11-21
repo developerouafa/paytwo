@@ -80,4 +80,9 @@ return [
     'newbankpamentbills' => 'New Bank payment bills',
     'newsingleservicebill' => 'New Single Service bill',
     'newServicepackageinvoice' => 'Invoices for new bundled services',
+    'activeuserlogin' => 'Active user to login',
+    'totalUseractive' => 'Total User Active',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

@@ -20,6 +20,7 @@
         {{-- @can('Header Page Dashboard') --}}
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
+                <?php use App\Models\User; ?>
                 <div>
                     <label class="tx-13">{{__('Dashboard/services.Banktransfer')}}</label>
                     <h5>{{ invoice::where('type', 3)->count()}}</h5>
@@ -165,22 +166,6 @@
     <!-- row closed -->
 
     <!-- row opened -->
-        {{-- <div class="row row-sm">
-            <div>
-                <div class="card">
-                    <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title mb-0">{{__('message.orders')}}</h4>
-                            <i class="mdi mdi-dots-horizontal text-gray"></i>
-                        </div>
-                        <p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
-                    </div>
-                    <div class="card-body" style="width:100%;">
-                        {!! $chartjs->render() !!}
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="row row-sm">
             <div class="col-md-12 col-lg-12 col-xl-7">
                 <div class="card">
@@ -373,21 +358,39 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center pb-2">
-                                    <p class="mb-0">Total Sales</p>
+                                    <p class="mb-0">{{__('Dashboard/users.totalUseractive')}}</p>
                                 </div>
-                                <h4 class="font-weight-bold mb-2">$7,590</h4>
-                                <div class="progress progress-style progress-sm">
-                                    <div class="progress-bar bg-primary-gradient wd-80p" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
-                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        $userslogin = User::get();
+                                        $count_alllogin = $userslogin->count();
+                                        $count_userslogin = User::where('UserStatus', 1)->count();
+                                        if($count_userslogin == 0){
+                                            echo $count_userslg = 0;
+                                        }
+                                        else{
+                                            echo $count_userslg = number_format($count_userslogin / $count_alllogin *100);
+                                        }
+                                    @endphp
+                                %</h4>
                             </div>
                             <div class="col-md-6 mt-4 mt-md-0">
                                 <div class="d-flex align-items-center pb-2">
-                                    <p class="mb-0">Active Users</p>
+                                    <p class="mb-0">{{__('Dashboard/users.activeuserlogin')}}</p>
                                 </div>
-                                <h4 class="font-weight-bold mb-2">$5,460</h4>
-                                <div class="progress progress-style progress-sm">
-                                    <div class="progress-bar bg-danger-gradient wd-75" role="progressbar"  aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
-                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        $users = User::get();
+                                        $count_all = $users->count();
+                                        $count_users = User::where('Status', 1)->count();
+                                        if($count_users == 0){
+                                            echo $count_userss = 0;
+                                        }
+                                        else{
+                                            echo $count_userss = number_format($count_users / $count_all *100) ;
+                                        }
+                                    @endphp
+                                %</h4>
                             </div>
                         </div>
                     </div>

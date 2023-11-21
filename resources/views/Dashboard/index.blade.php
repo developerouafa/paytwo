@@ -503,13 +503,13 @@
                             </div>
                             <div class="col-md-12" style="color:rgb(0, 120, 124)">
                                 <div class="d-flex align-items-center pb-2">
-                                    <p class="mb-0">{{__('Dashboard/users.invoicesfromcashpayment')}}</p>
+                                    <p class="mb-0">{{__('Dashboard/users.totalclients')}}</p>
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-
+                                        echo Client::count();
                                     @endphp
-                                $</h4>
+                                </h4>
                             </div>
                         </div>
                     </div>

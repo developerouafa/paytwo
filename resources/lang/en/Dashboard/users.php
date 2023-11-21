@@ -78,6 +78,6 @@ return [
     'newinvoicesfromcashpayment' => 'New Invoices from cash payment',
     'bankpaymentbills' => 'Bank payment bills',
     'newbankpamentbills' => 'New Bank payment bills',
-    '' => '',
+    'newsingleservicebill' => 'New Single Service bill',
     '' => '',
 ];

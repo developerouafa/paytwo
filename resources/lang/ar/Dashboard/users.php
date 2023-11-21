@@ -78,6 +78,7 @@ return [
     'newinvoicesfromcashpayment' => 'فواتير جديدة بالدفع النقدي',
     'bankpaymentbills' => 'فواتير دفع البنكي',
     'newbankpamentbills' => 'فواتير جديدة بالدفع البنكي',
+    'newsingleservicebill' => 'فاتورة الخدمة الواحدة الجديدة',
     '' => '',
     '' => '',
 ];

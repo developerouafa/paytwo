@@ -342,17 +342,20 @@
                             </li>
                             <li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.invoicesfromcashpayment')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('invoice_classify', 1)->count()) }}
+                                    {{ number_format(App\Models\invoice::where('type', 1)->count()) +  number_format(App\Models\invoice::where('type', 2)->count())}}
                                     {{__('Dashboard/users.newinvoicesfromcashpayment')}}</p>
                             </li>
                             <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.bankpaymentbills')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('invoice_classify', 2)->count()) }}
+                                    {{ number_format(App\Models\invoice::where('type', 3)->count()) + number_format(App\Models\invoice::where('type', 4)->count())}}
                                     {{__('Dashboard/users.newbankpamentbills')}}
                                 </p>
                             </li>
-                            <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Visits</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
-                                <p class="mb-0 text-muted tx-12">15% increased</p>
+                            <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/services.Singleservicebill')}}</span>
+                                <p class="mb-0 text-muted tx-12">
+                                    {{ number_format(App\Models\invoice::where('invoice_classify', 1)->count())}}
+                                    {{__('Dashboard/users.newsingleservicebill')}}
+                                </p>
                             </li>
                             <li class="mt-0 mb-0"> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Reviews</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
                                 <p class="mb-0 text-muted tx-12">1.5k reviews</p>

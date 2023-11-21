@@ -368,31 +368,6 @@
                 </div>
             </div>
             <div class="col-xl-4 col-md-12 col-lg-6">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <h3 class="card-title mb-2">Recent Orders</h3>
-                        <p class="tx-12 mb-0 text-muted">An order is an investor's instructions to a broker or brokerage firm to purchase or sell</p>
-                    </div>
-                    <div class="card-body sales-info ot-0 pt-0 pb-0">
-                        <div id="chart" class="ht-150"></div>
-                        <div class="row sales-infomation pb-0 mb-0 mx-auto wd-100p">
-                            <div class="col-md-6 col">
-                                <p class="mb-0 d-flex"><span class="legend bg-primary brround"></span>Delivered</p>
-                                <h3 class="mb-1">5238</h3>
-                                <div class="d-flex">
-                                    <p class="text-muted ">Last 6 months</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col">
-                                <p class="mb-0 d-flex"><span class="legend bg-info brround"></span>Cancelled</p>
-                                    <h3 class="mb-1">3467</h3>
-                                <div class="d-flex">
-                                    <p class="text-muted">Last 6 months</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card ">
                     <div class="card-body">
                         <div class="row">

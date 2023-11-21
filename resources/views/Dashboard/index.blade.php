@@ -21,6 +21,7 @@
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
                 <?php use App\Models\User; ?>
+                <?php use App\Models\Client; ?>
                 <?php use App\Models\client_account; ?>
                 <div>
                     <label class="tx-13">{{__('Dashboard/services.Banktransfer')}}</label>
@@ -473,7 +474,7 @@
                                     @php
                                         $clientslogin = Client::get();
                                         $count_alllogin = $clientslogin->count();
-                                        $count_clientslogin = Client::where('UserStatus', 1)->count();
+                                        $count_clientslogin = Client::where('ClientStatus', 1)->count();
                                         if($count_clientslogin == 0){
                                             echo 0;
                                         }
@@ -507,7 +508,8 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        echo Client::count();
+                                        $totalclients = Client::count();
+                                        echo $totalclients;
                                     @endphp
                                 </h4>
                             </div>

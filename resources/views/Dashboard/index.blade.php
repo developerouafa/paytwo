@@ -429,6 +429,24 @@
                                     @endphp
                                 $</h4>
                             </div>
+                            <div class="col-md-12" style="color:rgb(0, 120, 124)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.invoicesfromcashpayment')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        $sum = 0;
+                                        $invoices = invoice::where('type', 1)->andwhere('type', 2)->get();
+                                        foreach($invoices as $invoice){
+                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clients_account as $client_account){
+                                                $sum += $client_account->credit;
+                                            }
+                                        }
+                                        echo $sum;
+                                    @endphp
+                                $</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

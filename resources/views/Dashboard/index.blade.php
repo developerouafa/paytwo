@@ -488,7 +488,17 @@
                                     <p class="mb-0">{{__('Dashboard/users.activeclientlogin')}}</p>
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
-
+                                    @php
+                                        $clients = Client::get();
+                                        $count_all = $clients->count();
+                                        $count_clients = Client::where('Status', 1)->count();
+                                        if($count_clients == 0){
+                                            echo 0;
+                                        }
+                                        else{
+                                            echo number_format($count_clients / $count_all *100) ;
+                                        }
+                                    @endphp
                                 %</h4>
                             </div>
                         </div>

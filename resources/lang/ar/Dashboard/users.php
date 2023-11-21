@@ -76,6 +76,8 @@ return [
     'Newprofit' => 'ربح جديد',
     'invoicesfromcashpayment' => 'فواتير دفع نقدي',
     'newinvoicesfromcashpayment' => 'فواتير جديدة بالدفع النقدي',
+    'bankpaymentbills' => 'فواتير دفع البنكي',
+    'newbankpamentbills' => 'فواتير جديدة بالدفع البنكي',
     '' => '',
     '' => '',
 ];

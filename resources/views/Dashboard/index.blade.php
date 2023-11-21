@@ -21,6 +21,7 @@
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
                 <?php use App\Models\User; ?>
+                <?php use App\Models\client_account; ?>
                 <div>
                     <label class="tx-13">{{__('Dashboard/services.Banktransfer')}}</label>
                     <h5>{{ invoice::where('type', 3)->count()}}</h5>
@@ -55,13 +56,13 @@
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                        {{ number_format(App\Models\client_account::whereDate('created_at', now())->sum('credit')) }}
+                                        {{ number_format(client_account::whereDate('created_at', now())->sum('credit')) }}
                                     </h4>
                                     <p class="mb-0 tx-12 text-white op-7">{{__('Dashboard/users.numberpaymenttoday')}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
                                     <i class="fas fa-arrow-circle-up text-white"></i>
-                                    <span class="text-white op-7"> +{{ App\Models\client_account::whereDate('created_at', now())->count() }}</span>
+                                    <span class="text-white op-7"> +{{client_account::whereDate('created_at', now())->count() }}</span>
                                 </span>
                             </div>
                         </div>
@@ -79,13 +80,13 @@
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                        {{ number_format(App\Models\client_account::sum('credit')) }}
+                                        {{ number_format(client_account::sum('credit')) }}
                                     </h4>
                                     <p class="mb-0 tx-12 text-white op-7">{{__('Dashboard/users.numbertotalpayment')}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
                                     <i class="fas fa-arrow-circle-up text-white"></i>
-                                    <span class="text-white op-7"> +{{ App\Models\client_account::count() }}</span>
+                                    <span class="text-white op-7"> +{{ client_account::count() }}</span>
                                 </span>
                             </div>
                         </div>
@@ -317,12 +318,12 @@
                             </li>
                             <li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.TotalSales')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\client_account::count()) }}
+                                    {{ number_format(client_account::count()) }}
                                     {{__('Dashboard/users.NewSales')}}</p>
                             </li>
                             <li class="mt-0"> <i class="ti-wallet bg-warning-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.TotalProfit')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\client_account::sum('credit')) }}
+                                    {{ number_format(client_account::sum('credit')) }}
                                     {{__('Dashboard/users.Newprofit')}}</p>
                             </li>
                             <li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.invoicesfromcashpayment')}}</span>
@@ -366,10 +367,10 @@
                                         $count_alllogin = $userslogin->count();
                                         $count_userslogin = User::where('UserStatus', 1)->count();
                                         if($count_userslogin == 0){
-                                            echo $count_userslg = 0;
+                                            echo 0;
                                         }
                                         else{
-                                            echo $count_userslg = number_format($count_userslogin / $count_alllogin *100);
+                                            echo number_format($count_userslogin / $count_alllogin *100);
                                         }
                                     @endphp
                                 %</h4>
@@ -384,49 +385,58 @@
                                         $count_all = $users->count();
                                         $count_users = User::where('Status', 1)->count();
                                         if($count_users == 0){
-                                            echo $count_userss = 0;
+                                            echo 0;
                                         }
                                         else{
-                                            echo $count_userss = number_format($count_users / $count_all *100) ;
+                                            echo number_format($count_users / $count_all *100) ;
                                         }
                                     @endphp
                                 %</h4>
                             </div>
-                            <div class="col-md-6" style="color: crimson">
+                            <div class="col-md-12" style="color:cadetblue">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.profitSingleservicebill')}}</p>
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
-                                    {{-- @php
-                                        $userslogin = User::get();
-                                        $count_alllogin = $userslogin->count();
-                                        $count_userslogin = User::where('UserStatus', 1)->count();
-                                        if($count_userslogin == 0){
-                                            echo $count_userslg = 0;
+                                    @php
+                                        $sum = 0;
+                                        $invoices = invoice::where('invoice_classify', 1)->get();
+                                        foreach($invoices as $invoice){
+                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clients_account as $client_account){
+                                                $sum += $client_account->credit;
+                                            }
                                         }
-                                        else{
-                                            echo $count_userslg = number_format($count_userslogin / $count_alllogin *100);
+                                        echo $sum;
+                                    @endphp
+                                $</h4>
+                                {{-- <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        $sum = 0;
+                                        $clients_account = client_account::with('invoiceclassify')->get();
+                                        foreach($clients_account as $client_account){
+                                            $sum += $client_account->Debit;
                                         }
-                                    @endphp --}}
-                                %</h4>
+                                        echo $sum;
+                                    @endphp
+                                $</h4> --}}
                             </div>
-                            <div class="col-md-6 mt-4 mt-md-0" style="color:rgb(187, 0, 37)">
+                            <div class="col-md-12" style="color:cornflowerblue">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.profitServicepackageinvoice')}}</p>
                                 </div>
-                                <h4 class="font-weight-bold mb-2">
+                                {{-- <h4 class="font-weight-bold mb-2">
                                     @php
-                                        // $users = User::get();
-                                        // $count_all = $users->count();
-                                        // $count_users = User::where('Status', 1)->count();
-                                        // if($count_users == 0){
-                                        //     echo $count_userss = 0;
-                                        // }
-                                        // else{
-                                        //     echo $count_userss = number_format($count_users / $count_all *100) ;
-                                        // }
+                                        $sum = 0;
+                                        $clients_account = client_account::with('invoice')->get();
+                                        foreach($clients_account as $client_account){
+                                            if($client_account->invoice->invoice_classify = 2){
+                                                $sum += $client_account->Debit;
+                                            }
+                                        }
+                                        echo $sum;
                                     @endphp
-                                %</h4>
+                                $</h4> --}}
                             </div>
                         </div>
                     </div>

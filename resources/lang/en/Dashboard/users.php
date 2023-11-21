@@ -74,5 +74,8 @@ return [
     'NewSales' => 'New Sales',
     'TotalProfit' => 'Total Profit',
     'Newprofit' => 'New profit',
+    'invoicesfromcashpayment' => 'Invoices from cash payment',
+    'newinvoicesfromcashpayment' => 'New Invoices from cash payment',
+    '' => '',
     '' => '',
 ];

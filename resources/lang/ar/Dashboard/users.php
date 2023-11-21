@@ -74,6 +74,9 @@ return [
     'NewSales' => 'مبيعات جديدة',
     'TotalProfit' => 'اجمالي الربح',
     'Newprofit' => 'ربح جديد',
+    'invoicesfromcashpayment' => 'فواتير دفع نقدي',
+    'newinvoicesfromcashpayment' => 'فواتير جديدة بالدفع النقدي',
+    '' => '',
     '' => '',
 ];
 

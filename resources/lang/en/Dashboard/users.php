@@ -82,7 +82,8 @@ return [
     'newServicepackageinvoice' => 'Invoices for new bundled services',
     'activeuserlogin' => 'Active user to login',
     'totalUseractive' => 'Total User Active',
-    '' => '',
+    'profitSingleservicebill' => 'Earnings from invoices with single services',
+    'profitServicepackageinvoice' => 'Earnings from invoices with bundled services',
     '' => '',
     '' => '',
 ];

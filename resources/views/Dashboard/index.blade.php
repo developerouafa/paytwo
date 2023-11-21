@@ -356,7 +356,7 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="color: rgb(153, 10, 10)">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.totalUseractive')}}</p>
                                 </div>
@@ -374,7 +374,7 @@
                                     @endphp
                                 %</h4>
                             </div>
-                            <div class="col-md-6 mt-4 mt-md-0">
+                            <div class="col-md-6 mt-4 mt-md-0" style="color:brown">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.activeuserlogin')}}</p>
                                 </div>
@@ -389,6 +389,42 @@
                                         else{
                                             echo $count_userss = number_format($count_users / $count_all *100) ;
                                         }
+                                    @endphp
+                                %</h4>
+                            </div>
+                            <div class="col-md-6" style="color: crimson">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.profitSingleservicebill')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    {{-- @php
+                                        $userslogin = User::get();
+                                        $count_alllogin = $userslogin->count();
+                                        $count_userslogin = User::where('UserStatus', 1)->count();
+                                        if($count_userslogin == 0){
+                                            echo $count_userslg = 0;
+                                        }
+                                        else{
+                                            echo $count_userslg = number_format($count_userslogin / $count_alllogin *100);
+                                        }
+                                    @endphp --}}
+                                %</h4>
+                            </div>
+                            <div class="col-md-6 mt-4 mt-md-0" style="color:rgb(187, 0, 37)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.profitServicepackageinvoice')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        // $users = User::get();
+                                        // $count_all = $users->count();
+                                        // $count_users = User::where('Status', 1)->count();
+                                        // if($count_users == 0){
+                                        //     echo $count_userss = 0;
+                                        // }
+                                        // else{
+                                        //     echo $count_userss = number_format($count_users / $count_all *100) ;
+                                        // }
                                     @endphp
                                 %</h4>
                             </div>

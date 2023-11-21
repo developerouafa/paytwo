@@ -437,14 +437,22 @@
                                 <h4 class="font-weight-bold mb-2">
                                     @php
                                         $sum3 = 0;
-                                        $invoices = invoice::where('type', 1)->where('type', 2)->get();
+                                        $sum3s = 0;
+                                        $invoices = invoice::where('type', 1)->get();
                                         foreach($invoices as $invoice){
                                             $clients_account = client_account::where('invoice_id', $invoice->id)->get();
                                             foreach($clients_account as $client_account){
                                                 $sum3 += $client_account->credit;
                                             }
                                         }
-                                        echo $sum3;
+                                        $invoicess = invoice::where('type', 2)->get();
+                                        foreach($invoicess as $invoice){
+                                            $clientss_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clientss_account as $client_account){
+                                                $sum3s += $client_account->credit;
+                                            }
+                                        }
+                                        echo $sum3 + $sum3s;
                                     @endphp
                                 $</h4>
                             </div>
@@ -455,14 +463,22 @@
                                 <h4 class="font-weight-bold mb-2">
                                     @php
                                         $sum4 = 0;
-                                        $invoices = invoice::where('type', 3)->where('type', 4)->get();
+                                        $sum4g = 0;
+                                        $invoices = invoice::where('type', 3)->get();
                                         foreach($invoices as $invoice){
                                             $clients_account = client_account::where('invoice_id', $invoice->id)->get();
                                             foreach($clients_account as $client_account){
                                                 $sum4 += $client_account->credit;
                                             }
                                         }
-                                        echo $sum4;
+                                        $invoicesg = invoice::where('type', 4)->get();
+                                        foreach($invoicesg as $invoice){
+                                            $clientsg_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clientsg_account as $client_account){
+                                                $sum4 += $client_account->credit;
+                                            }
+                                        }
+                                        echo $sum4 + $sum4g;
                                     @endphp
                                 $</h4>
                             </div>
@@ -572,7 +588,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{-- {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->count(),}}  --}}
+                                    {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->get()}}
                                     <td>05 Dec 2019</td>
                                     <td class="tx-right tx-medium tx-inverse">34</td>
                                     <td class="tx-right tx-medium tx-inverse">$658.20</td>

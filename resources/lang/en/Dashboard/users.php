@@ -79,5 +79,5 @@ return [
     'bankpaymentbills' => 'Bank payment bills',
     'newbankpamentbills' => 'New Bank payment bills',
     'newsingleservicebill' => 'New Single Service bill',
-    '' => '',
+    'newServicepackageinvoice' => 'Invoices for new bundled services',
 ];

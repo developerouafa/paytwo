@@ -79,7 +79,7 @@ return [
     'bankpaymentbills' => 'فواتير دفع البنكي',
     'newbankpamentbills' => 'فواتير جديدة بالدفع البنكي',
     'newsingleservicebill' => 'فاتورة الخدمة الواحدة الجديدة',
-    '' => '',
+    'newServicepackageinvoice' => 'فواتير الخدمات المجمعة الجديدة',
     '' => '',
 ];
 

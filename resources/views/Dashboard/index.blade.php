@@ -471,15 +471,15 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        // $userslogin = User::get();
-                                        // $count_alllogin = $userslogin->count();
-                                        // $count_userslogin = User::where('UserStatus', 1)->count();
-                                        // if($count_userslogin == 0){
-                                        //     echo 0;
-                                        // }
-                                        // else{
-                                        //     echo number_format($count_userslogin / $count_alllogin *100);
-                                        // }
+                                        $clientslogin = Client::get();
+                                        $count_alllogin = $clientslogin->count();
+                                        $count_clientslogin = Client::where('UserStatus', 1)->count();
+                                        if($count_clientslogin == 0){
+                                            echo 0;
+                                        }
+                                        else{
+                                            echo number_format($count_clientslogin / $count_alllogin *100);
+                                        }
                                     @endphp
                                 %</h4>
                             </div>

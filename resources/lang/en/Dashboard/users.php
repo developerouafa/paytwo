@@ -72,7 +72,7 @@ return [
     'NewProducts' => 'New Products',
     'TotalSales' => 'Total Sales',
     'NewSales' => 'New Sales',
-    '' => '',
-    '' => '',
+    'TotalProfit' => 'Total Profit',
+    'Newprofit' => 'New profit',
     '' => '',
 ];

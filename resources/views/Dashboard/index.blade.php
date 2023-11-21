@@ -335,11 +335,13 @@
                                     {{ number_format(App\Models\client_account::count()) }}
                                     {{__('Dashboard/users.NewSales')}}</p>
                             </li>
+                            <li class="mt-0"> <i class="ti-wallet bg-warning-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.TotalProfit')}}</span>
+                                <p class="mb-0 text-muted tx-12">
+                                    {{ number_format(App\Models\client_account::sum('credit')) }}
+                                    {{__('Dashboard/users.Newprofit')}}</p>
+                            </li>
                             <li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Toatal Revenue</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
                                 <p class="mb-0 text-muted tx-12">23.5K New Revenue</p>
-                            </li>
-                            <li class="mt-0"> <i class="ti-wallet bg-warning-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Toatal Profit</span> <a href="#" class="float-left tx-11 text-muted">1 hour ago</a>
-                                <p class="mb-0 text-muted tx-12">3k New profit</p>
                             </li>
                             <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Customer Visits</span> <a href="#" class="float-left tx-11 text-muted">1 day ago</a>
                                 <p class="mb-0 text-muted tx-12">15% increased</p>

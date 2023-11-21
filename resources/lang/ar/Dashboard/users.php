@@ -81,10 +81,10 @@ return [
     'newsingleservicebill' => 'فاتورة الخدمة الواحدة الجديدة',
     'newServicepackageinvoice' => 'فواتير الخدمات المجمعة الجديدة',
     'activeuserlogin' => 'مستخدم نشط لتسجيل الدخول',
-    'totalUseractive' => 'إجمالي المستخدم النشط',
+    'totalUseractive' => 'إجمالي المستخدمين النشطاء',
     'profitSingleservicebill' => 'ارباح فواتير الخدمة المفردة',
     'profitServicepackageinvoice' => 'ارباح فواتير الخدمات المجمعة',
-    '' => '',
+    'totalClientactive' => 'إجمالي العملاء النشطاء',
     '' => '',
 ];
 

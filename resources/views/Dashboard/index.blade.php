@@ -435,15 +435,15 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        $sum3 = 0;
-                                        $invoices = invoice::where('type', 1)->andwhere('type', 2)->get();
-                                        foreach($invoices as $invoice){
-                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
-                                            foreach($clients_account as $client_account){
-                                                $sum3 += $client_account->credit;
-                                            }
-                                        }
-                                        echo $sum3;
+                                        // $sum3 = 0;
+                                        // $invoices = invoice::where('type', 1)->andwhere('type', 2)->get();
+                                        // foreach($invoices as $invoice){
+                                        //     $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                        //     foreach($clients_account as $client_account){
+                                        //         $sum3 += $client_account->credit;
+                                        //     }
+                                        // }
+                                        // echo $sum3;
                                     @endphp
                                 $</h4>
                             </div>
@@ -453,17 +453,35 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        $sum4 = 0;
-                                        $invoices = invoice::where('type', 3)->andwhere('type', 4)->get();
-                                        foreach($invoices as $invoice){
-                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
-                                            foreach($clients_account as $client_account){
-                                                $sum4 += $client_account->credit;
-                                            }
-                                        }
-                                        echo $sum4;
+                                        // $sum4 = 0;
+                                        // $invoices = invoice::where('type', 3)->andwhere('type', 4)->get();
+                                        // foreach($invoices as $invoice){
+                                        //     $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                        //     foreach($clients_account as $client_account){
+                                        //         $sum4 += $client_account->credit;
+                                        //     }
+                                        // }
+                                        // echo $sum4;
                                     @endphp
                                 $</h4>
+                            </div>
+                            <div class="col-md-6" style="color: rgb(0, 120, 124)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.totalClientactive')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        // $userslogin = User::get();
+                                        // $count_alllogin = $userslogin->count();
+                                        // $count_userslogin = User::where('UserStatus', 1)->count();
+                                        // if($count_userslogin == 0){
+                                        //     echo 0;
+                                        // }
+                                        // else{
+                                        //     echo number_format($count_userslogin / $count_alllogin *100);
+                                        // }
+                                    @endphp
+                                %</h4>
                             </div>
                         </div>
                     </div>

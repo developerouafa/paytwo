@@ -86,5 +86,5 @@ return [
     'profitServicepackageinvoice' => 'Earnings from invoices bundled services',
     'totalClientactive' => 'Total Client Actives',
     'activeuserlogin' => 'Active client to login',
-    '' => '',
+    'totalclients' => 'Total CLients',
 ];

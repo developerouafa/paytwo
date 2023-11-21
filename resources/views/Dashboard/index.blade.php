@@ -501,6 +501,16 @@
                                     @endphp
                                 %</h4>
                             </div>
+                            <div class="col-md-12" style="color:rgb(0, 120, 124)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.invoicesfromcashpayment')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+
+                                    @endphp
+                                $</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

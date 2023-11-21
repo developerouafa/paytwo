@@ -330,8 +330,10 @@
                                     {{__('Dashboard/users.NewProducts')}}
                                 </p>
                             </li>
-                            <li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Total Sales</span> <a href="#" class="float-left tx-11 text-muted">35 mins ago</a>
-                                <p class="mb-0 text-muted tx-12">1k New Sales</p>
+                            <li class="mt-0"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.TotalSales')}}</span>
+                                <p class="mb-0 text-muted tx-12">
+                                    {{ number_format(App\Models\client_account::count()) }}
+                                    {{__('Dashboard/users.NewSales')}}</p>
                             </li>
                             <li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">Toatal Revenue</span> <a href="#" class="float-left tx-11 text-muted">50 mins ago</a>
                                 <p class="mb-0 text-muted tx-12">23.5K New Revenue</p>

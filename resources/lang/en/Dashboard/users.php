@@ -69,5 +69,10 @@ return [
     'SalesActivity' => 'Sales Activity',
     'descriptionActivity' => 'Sales activities are the tactics that salespeople use to achieve their goals and objective',
     'totalproducts' => 'Total Products',
-    'NewProducts' => 'New Products'
+    'NewProducts' => 'New Products',
+    'TotalSales' => 'Total Sales',
+    'NewSales' => 'New Sales',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

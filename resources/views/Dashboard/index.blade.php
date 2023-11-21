@@ -393,7 +393,7 @@
                                     @endphp
                                 %</h4>
                             </div>
-                            <div class="col-md-12" style="color:cadetblue">
+                            <div class="col-md-12" style="color:rgb(0, 120, 124)">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.profitSingleservicebill')}}</p>
                                 </div>
@@ -410,33 +410,24 @@
                                         echo $sum;
                                     @endphp
                                 $</h4>
-                                {{-- <h4 class="font-weight-bold mb-2">
-                                    @php
-                                        $sum = 0;
-                                        $clients_account = client_account::with('invoiceclassify')->get();
-                                        foreach($clients_account as $client_account){
-                                            $sum += $client_account->Debit;
-                                        }
-                                        echo $sum;
-                                    @endphp
-                                $</h4> --}}
                             </div>
-                            <div class="col-md-12" style="color:cornflowerblue">
+                            <div class="col-md-12" style="color:rgb(11, 50, 122)">
                                 <div class="d-flex align-items-center pb-2">
                                     <p class="mb-0">{{__('Dashboard/users.profitServicepackageinvoice')}}</p>
                                 </div>
-                                {{-- <h4 class="font-weight-bold mb-2">
+                                <h4 class="font-weight-bold mb-2">
                                     @php
                                         $sum = 0;
-                                        $clients_account = client_account::with('invoice')->get();
-                                        foreach($clients_account as $client_account){
-                                            if($client_account->invoice->invoice_classify = 2){
-                                                $sum += $client_account->Debit;
+                                        $invoices = invoice::where('invoice_classify', 2)->get();
+                                        foreach($invoices as $invoice){
+                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clients_account as $client_account){
+                                                $sum += $client_account->credit;
                                             }
                                         }
                                         echo $sum;
                                     @endphp
-                                $</h4> --}}
+                                $</h4>
                             </div>
                         </div>
                     </div>

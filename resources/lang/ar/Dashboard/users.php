@@ -85,7 +85,7 @@ return [
     'profitSingleservicebill' => 'ارباح فواتير الخدمة المفردة',
     'profitServicepackageinvoice' => 'ارباح فواتير الخدمات المجمعة',
     'totalClientactive' => 'إجمالي العملاء النشطاء',
-    'activeuserlogin' => 'العملاء نشطين لتسجيل الدخول',
+    'activeclientlogin' => 'العملاء نشطين لتسجيل الدخول',
     'totalclients' => 'مجموع العملاء',
 ];
 

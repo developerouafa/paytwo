@@ -345,13 +345,13 @@
                                     {{ number_format(App\Models\invoice::where('type', 1)->count()) +  number_format(App\Models\invoice::where('type', 2)->count())}}
                                     {{__('Dashboard/users.newinvoicesfromcashpayment')}}</p>
                             </li>
-                            <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.bankpaymentbills')}}</span>
+                            <li class="mt-0"> <i class="si si-layers bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.bankpaymentbills')}}</span>
                                 <p class="mb-0 text-muted tx-12">
                                     {{ number_format(App\Models\invoice::where('type', 3)->count()) + number_format(App\Models\invoice::where('type', 4)->count())}}
                                     {{__('Dashboard/users.newbankpamentbills')}}
                                 </p>
                             </li>
-                            <li class="mt-0"> <i class="si si-eye bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/services.Singleservicebill')}}</span>
+                            <li class="mt-0"> <i class="la la-sticky-note bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/services.Singleservicebill')}}</span>
                                 <p class="mb-0 text-muted tx-12">
                                     {{ number_format(App\Models\invoice::where('invoice_classify', 1)->count())}}
                                     {{__('Dashboard/users.newsingleservicebill')}}

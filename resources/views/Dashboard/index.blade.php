@@ -399,15 +399,15 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        $sum = 0;
+                                        $sum1 = 0;
                                         $invoices = invoice::where('invoice_classify', 1)->get();
                                         foreach($invoices as $invoice){
                                             $clients_account = client_account::where('invoice_id', $invoice->id)->get();
                                             foreach($clients_account as $client_account){
-                                                $sum += $client_account->credit;
+                                                $sum1 += $client_account->credit;
                                             }
                                         }
-                                        echo $sum;
+                                        echo $sum1;
                                     @endphp
                                 $</h4>
                             </div>
@@ -417,15 +417,15 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        $sum = 0;
+                                        $sum2 = 0;
                                         $invoices = invoice::where('invoice_classify', 2)->get();
                                         foreach($invoices as $invoice){
                                             $clients_account = client_account::where('invoice_id', $invoice->id)->get();
                                             foreach($clients_account as $client_account){
-                                                $sum += $client_account->credit;
+                                                $sum2 += $client_account->credit;
                                             }
                                         }
-                                        echo $sum;
+                                        echo $sum2;
                                     @endphp
                                 $</h4>
                             </div>
@@ -435,15 +435,33 @@
                                 </div>
                                 <h4 class="font-weight-bold mb-2">
                                     @php
-                                        $sum = 0;
+                                        $sum3 = 0;
                                         $invoices = invoice::where('type', 1)->andwhere('type', 2)->get();
                                         foreach($invoices as $invoice){
                                             $clients_account = client_account::where('invoice_id', $invoice->id)->get();
                                             foreach($clients_account as $client_account){
-                                                $sum += $client_account->credit;
+                                                $sum3 += $client_account->credit;
                                             }
                                         }
-                                        echo $sum;
+                                        echo $sum3;
+                                    @endphp
+                                $</h4>
+                            </div>
+                            <div class="col-md-12" style="color:rgb(11, 50, 122)">
+                                <div class="d-flex align-items-center pb-2">
+                                    <p class="mb-0">{{__('Dashboard/users.bankpaymentbills')}}</p>
+                                </div>
+                                <h4 class="font-weight-bold mb-2">
+                                    @php
+                                        $sum4 = 0;
+                                        $invoices = invoice::where('type', 3)->andwhere('type', 4)->get();
+                                        foreach($invoices as $invoice){
+                                            $clients_account = client_account::where('invoice_id', $invoice->id)->get();
+                                            foreach($clients_account as $client_account){
+                                                $sum4 += $client_account->credit;
+                                            }
+                                        }
+                                        echo $sum4;
                                     @endphp
                                 $</h4>
                             </div>

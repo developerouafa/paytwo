@@ -68,5 +68,8 @@ return [
     'numberofcanceldinvoices' => 'عدد الفواتير الملغاة',
     'SalesActivity' => 'نشاط المبيعات',
     'descriptionActivity' => 'أنشطة المبيعات هي التكتيكات التي يستخدمها مندوبو المبيعات لتحقيق أهدافهم وغاياتهم',
+    'totalproducts' => 'إجمالي المنتجات',
+    'NewProducts' => 'منتجات جديدة'
+
 ];
 

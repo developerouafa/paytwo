@@ -66,4 +66,6 @@ return [
     'numberinvoices' => 'Total paid invoices completed',
     'Canceledpaidinvoices' => 'Canceled paid invoices',
     'numberofcanceldinvoices' => 'Number of canceled invoices',
+    'SalesActivity' => 'Sales Activity',
+    'descriptionActivity' => 'Sales activities are the tactics that salespeople use to achieve their goals and objective',
 ];

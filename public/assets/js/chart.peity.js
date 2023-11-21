@@ -44,6 +44,6 @@ $(function(){
             .change()
     }, 2500)
 
-	
+
   // Bar chart is already initialized found in bracket.js
 });

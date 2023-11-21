@@ -1,6 +1,6 @@
 $(function() {
 	'use strict'
-	
+
 	/***************** LINE CHARTS *****************/
 	$('#sparkline1').sparkline('html', {
 		width: 200,

@@ -314,7 +314,7 @@ $(function() {
 		resize: true,
 		labelColor:"#8c9fc3"
 	});
-	
+
 	new Morris.Donut({
 		element: 'morrisDonut2',
 		data: [{
@@ -333,6 +333,6 @@ $(function() {
 		colors: ['#6d6ef3', '#285cf7', '#f7557a', '#74DE00'],
 		resize: true,
 		labelColor:"#8c9fc3"
-		
+
 	});
 });

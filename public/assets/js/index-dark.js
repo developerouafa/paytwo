@@ -22,7 +22,7 @@ $(function() {
 		}
 		}
 	};
-	
+
 	/* Dashboard content */
 	$('#compositeline').sparkline('html', {
 		lineColor: 'rgba(255, 255, 255, 0.6)',
@@ -85,8 +85,8 @@ $(function() {
 		disableTooltips: true
 	});
 	/* Dashboard content closed*/
-	
-	
+
+
 	/* Apexcharts (#bar) */
 	var optionsBar = {
 	  chart: {
@@ -133,8 +133,8 @@ $(function() {
 			  colors: ['transparent'],
 			},
 		  },
-		  
-		  
+
+
 	  }],
 	   series: [{
 		  name: 'Impressions',
@@ -173,10 +173,10 @@ $(function() {
 	  }
 	}
 	new ApexCharts(document.querySelector('#bar'), optionsBar).render();
-	
+
 	/* Apexcharts (#bar) closed */
-	
-	
+
+
 	/*--- Apex (#chart) ---*/
 	var options = {
 		series: [17],
@@ -193,10 +193,10 @@ $(function() {
 		size: 120,
 		 imageWidth: 50,
               imageHeight: 50,
-			  
-		 track: {	
-		 strokeWidth: "80%",	
-		 background: '#141b2d',	
+
+		 track: {
+		 strokeWidth: "80%",
+		 background: '#141b2d',
 		},
 		 dropShadow: {
                 enabled: false,
@@ -212,8 +212,8 @@ $(function() {
 			color: '#fff',
 			offsetY: 30,
 		  },
-		  hollow: {	
-			 size: "60%"	
+		  hollow: {
+			 size: "60%"
 			},
 		  value: {
 			offsetY: -10,
@@ -243,7 +243,7 @@ $(function() {
 	stroke: {
 	  dashArray: 4
 	},
-   series: [83],	
+   series: [83],
 		labels: [""],
 		color:'#fff',
 	};
@@ -251,9 +251,9 @@ $(function() {
 	var chart = new ApexCharts(document.querySelector("#chart"), options);
 	chart.render();
 	/*--- Apex (#chart)closed ---*/
-	
-	
-	
+
+
+
 	/*--- Apex (#spark1) ---*/
 	var spark1 = {
     chart: {
@@ -307,7 +307,7 @@ $(function() {
 	  }
 	}
 	/*--- Apex (#spark1) closed ---*/
-	
+
 	/*--- Apex (#spark2) ---*/
 	var spark2 = {
 	  chart: {
@@ -360,7 +360,7 @@ $(function() {
 	  }
 	}
 	/*--- Apex (#spark2) closed ---*/
-	
+
 	/*--- Apex (#spark3) ---*/
 	var spark3 = {
 	  chart: {
@@ -418,7 +418,7 @@ $(function() {
 	  }
 	}
 	/*--- Apex (#spark3) closed ---*/
-	
+
 	/*--- Apex (#spark4) ---*/
 
 	var spark4 = {
@@ -477,7 +477,7 @@ $(function() {
 	  }
 	}
 	/*--- Apex (#spark4) closed ---*/
-	
+
 	/*--- Apex (#spark5) ---*/
 	var spark5 = {
 	  chart: {
@@ -541,10 +541,10 @@ $(function() {
 	new ApexCharts(document.querySelector("#spark3"), spark3).render();
 	new ApexCharts(document.querySelector("#spark4"), spark4).render();
 	new ApexCharts(document.querySelector("#spark5"), spark5).render();
-	
+
 	/*--- Apex (#spark5) closed ---*/
-	
-	
+
+
 	/*--- Map ---*/
 	$('#vmap2').vectorMap({
 		map: 'usa_en',
@@ -567,5 +567,5 @@ $(function() {
 		hoverOpacity: .85
 	});
 	/*--- Map closed ---*/
-	
+
 });

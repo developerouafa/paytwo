@@ -165,6 +165,22 @@
     <!-- row closed -->
 
     <!-- row opened -->
+        {{-- <div class="row row-sm">
+            <div>
+                <div class="card">
+                    <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title mb-0">{{__('message.orders')}}</h4>
+                            <i class="mdi mdi-dots-horizontal text-gray"></i>
+                        </div>
+                        <p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
+                    </div>
+                    <div class="card-body" style="width:100%;">
+                        {!! $chartjs->render() !!}
+                    </div>
+                </div>
+            </div>
+        </div> --}}
         <div class="row row-sm">
             <div class="col-md-12 col-lg-12 col-xl-7">
                 <div class="card">
@@ -303,8 +319,8 @@
             <div class="col-xl-4 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header pb-1">
-                        <h3 class="card-title mb-2">Sales Activity</h3>
-                        <p class="tx-12 mb-0 text-muted">Sales activities are the tactics that salespeople use to achieve their goals and objective</p>
+                        <h3 class="card-title mb-2">{{__('Dashboard/users.SalesActivity')}}</h3>
+                        <p class="tx-12 mb-0 text-muted">{{__('Dashboard/users.descriptionActivity')}}</p>
                     </div>
                     <div class="product-timeline card-body pt-2 mt-1">
                         <ul class="timeline-1 mb-0">

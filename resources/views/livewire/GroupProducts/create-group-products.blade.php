@@ -75,15 +75,15 @@
                                                     @foreach ($allProducts as $service)
                                                         <option value="{{ $service->id }}">
                                                             {{ $service->name }}
-                                                            @forelse ($service->promotion as $promo)
+                                                            {{-- @forelse ($service->promotion as $promo)
                                                                 @if ($promo->expired == 0)
                                                                     ({{ number_format($promo->price, 2) }})
                                                                 @else
                                                                     ({{ number_format($service->price, 2) }})
                                                                 @endif
-                                                            @empty
+                                                            @empty --}}
                                                                 ({{ number_format($service->price, 2) }})
-                                                            @endforelse ()
+                                                            {{-- @endforelse () --}}
                                                         </option>
                                                     @endforeach
                                                 </select>

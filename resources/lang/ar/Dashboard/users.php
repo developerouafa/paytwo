@@ -65,6 +65,8 @@ return [
     'completedpaidinvoices' => 'الفواتير المدفوعة المكتملة',
     'numberinvoices' => 'مجموع الفواتير المدفوعة المكتملة',
     'Canceledpaidinvoices' => 'الفواتير الملغاة',
-    'numberofcanceldinvoices' => 'عدد الفواتير الملغاة'
+    'numberofcanceldinvoices' => 'عدد الفواتير الملغاة',
+    'SalesActivity' => 'نشاط المبيعات',
+    'descriptionActivity' => 'أنشطة المبيعات هي التكتيكات التي يستخدمها مندوبو المبيعات لتحقيق أهدافهم وغاياتهم',
 ];
 

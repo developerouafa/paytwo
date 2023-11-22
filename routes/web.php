@@ -106,7 +106,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ->name('chartBar1')
                 ->type('bar')
                 ->size(['width' => 1000, 'height' => 400])
-                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
                 ->datasets([
                     [
                         "label" => "A",
@@ -153,7 +153,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ->name('chartBar2')
                 ->type('bar')
                 ->size(['width' => 1000, 'height' => 400])
-                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
                 ->datasets([
                     [
                         "label" => "A",

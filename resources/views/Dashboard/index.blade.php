@@ -20,6 +20,7 @@
         {{-- @can('Header Page Dashboard') --}}
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
+                <?php use App\Models\product; ?>
                 <?php use App\Models\User; ?>
                 <?php use App\Models\Client; ?>
                 <?php use App\Models\client_account; ?>
@@ -172,38 +173,7 @@
 
     <!-- row -->
         <div class="row row-sm">
-            <div class="col-sm-12 col-md-6">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="main-content-label mg-b-5">
-                            Line Chart
-                        </div>
-                        <p class="mg-b-20">Basic Charts Of Valex template.</p>
-                        <div class="chartjs-wrapper-demo">
-                            {!! $linechart->render() !!}
-                        </div>
-                    </div>
-                </div>
-            </div><!-- col-6 -->
-            <div class="col-sm-12 col-md-6">
-                {{-- <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="main-content-label mg-b-5">
-                            Area Chart
-                        </div>
-                        <p class="mg-b-20">Basic Charts Of Valex template.</p>
-                        <div class="chartjs-wrapper-demo">
-                            {!! $areachart->render() !!}
-                        </div>
-                    </div>
-                </div> --}}
-            </div><!-- col-6 -->
-        </div>
-    <!-- /row -->
-
-    <!-- row -->
-        <div class="row row-sm">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
                 <div class="card overflow-hidden">
                     <div class="card-body">
                         <div class="main-content-label tx-12 mg-b-15">
@@ -211,6 +181,18 @@
                         </div>
                         <div class="ht-200 ht-lg-250">
                             {!! $chartBar1->render() !!}
+                        </div>
+                    </div>
+                </div>
+            </div><!-- col-6 -->
+            <div class="col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="main-content-label tx-12 mg-b-15">
+                            {{__('Dashboard/users.numberofsinggroupserv')}}
+                        </div>
+                        <div class="ht-200 ht-lg-250">
+                            {!! $linechart->render() !!}
                         </div>
                     </div>
                 </div>
@@ -322,7 +304,7 @@
                         <ul class="timeline-1 mb-0">
                             <li class="mt-0"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.totalproducts')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\product::count()) }}
+                                    {{ number_format(product::count()) }}
                                     {{__('Dashboard/users.NewProducts')}}
                                 </p>
                             </li>
@@ -338,24 +320,24 @@
                             </li>
                             <li class="mt-0"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.invoicesfromcashpayment')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('type', 1)->count()) +  number_format(App\Models\invoice::where('type', 2)->count())}}
+                                    {{ number_format(invoice::where('type', 1)->count()) +  number_format(invoice::where('type', 2)->count())}}
                                     {{__('Dashboard/users.newinvoicesfromcashpayment')}}</p>
                             </li>
                             <li class="mt-0"> <i class="si si-layers bg-purple-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/users.bankpaymentbills')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('type', 3)->count()) + number_format(App\Models\invoice::where('type', 4)->count())}}
+                                    {{ number_format(invoice::where('type', 3)->count()) + number_format(invoice::where('type', 4)->count())}}
                                     {{__('Dashboard/users.newbankpamentbills')}}
                                 </p>
                             </li>
                             <li class="mt-0"> <i class="la la-sticky-note bg-danger-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/services.Singleservicebill')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('invoice_classify', 1)->count())}}
+                                    {{ number_format(invoice::where('invoice_classify', 1)->count())}}
                                     {{__('Dashboard/users.newsingleservicebill')}}
                                 </p>
                             </li>
                             <li class="mt-0 mb-0"> <i class="icon-note icons bg-primary-gradient text-white product-icon"></i> <span class="font-weight-semibold mb-4 tx-14 ">{{__('Dashboard/services.Servicepackageinvoice')}}</span>
                                 <p class="mb-0 text-muted tx-12">
-                                    {{ number_format(App\Models\invoice::where('invoice_classify', 2)->count())}}
+                                    {{ number_format(invoice::where('invoice_classify', 2)->count())}}
                                     {{__('Dashboard/users.newServicepackageinvoice')}}
                                 </p>
                             </li>
@@ -629,4 +611,5 @@
     <!--Internal  index js -->
     <script src="{{URL::asset('assets/js/index.js')}}"></script>
     <script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
+
 @endsection

@@ -217,66 +217,66 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 $sum211 = 0;
                 $sum212 = 0;
 
-                $invoices1 = invoice::where('type', 2)->get();
-                foreach($invoices1 as $invoice){
-                    $clients_account1 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account1 as $client_account){
+                $invoices21 = invoice::where('type', 2)->get();
+                foreach($invoices21 as $invoice){
+                    $clients_account21 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account21 as $client_account){
                         $sum21 += $client_account->credit;
                     }
                 }
-                $invoices2 = invoice::where('type', 2)->get();
-                foreach($invoices2 as $invoice){
-                    $clients_account2 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account2 as $client_account){
+                $invoices22 = invoice::where('type', 2)->get();
+                foreach($invoices22 as $invoice){
+                    $clients_account22 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account22 as $client_account){
                         $sum22 += $client_account->credit;
                     }
                 }
-                $invoices3 = invoice::where('type', 2)->get();
-                foreach($invoices3 as $invoice){
-                    $clients_account3 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '3')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account3 as $client_account){
+                $invoices23 = invoice::where('type', 2)->get();
+                foreach($invoices23 as $invoice){
+                    $clients_account23 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '3')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account23 as $client_account){
                         $sum23 += $client_account->credit;
                     }
                 }
-                $invoices4 = invoice::where('type', 2)->get();
-                foreach($invoices4 as $invoice){
-                    $clients_account4 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account4 as $client_account){
+                $invoices24 = invoice::where('type', 2)->get();
+                foreach($invoices24 as $invoice){
+                    $clients_account24 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account24 as $client_account){
                         $sum24 += $client_account->credit;
                     }
                 }
-                $invoices5 = invoice::where('type', 2)->get();
-                foreach($invoices5 as $invoice){
-                    $clients_account5 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '5')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account5 as $client_account){
+                $invoices25 = invoice::where('type', 2)->get();
+                foreach($invoices25 as $invoice){
+                    $clients_account25 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '5')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account25 as $client_account){
                         $sum25 += $client_account->credit;
                     }
                 }
-                $invoices6 = invoice::where('type', 2)->get();
-                foreach($invoices6 as $invoice){
-                    $clients_account6 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '6')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account6 as $client_account){
+                $invoices26 = invoice::where('type', 2)->get();
+                foreach($invoices26 as $invoice){
+                    $clients_account26 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '6')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account26 as $client_account){
                         $sum26 += $client_account->credit;
                     }
                 }
-                $invoices7 = invoice::where('type', 2)->get();
-                foreach($invoices7 as $invoice){
-                    $clients_account7 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account7 as $client_account){
+                $invoices27 = invoice::where('type', 2)->get();
+                foreach($invoices27 as $invoice){
+                    $clients_account27 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account27 as $client_account){
                         $sum27 += $client_account->credit;
                     }
                 }
-                $invoices8 = invoice::where('type', 2)->get();
-                foreach($invoices8 as $invoice){
-                    $clients_account8 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account8 as $client_account){
+                $invoices28 = invoice::where('type', 2)->get();
+                foreach($invoices28 as $invoice){
+                    $clients_account28 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account28 as $client_account){
                         $sum28 += $client_account->credit;
                     }
                 }
-                $invoices9 = invoice::where('type', 2)->get();
-                foreach($invoices9 as $invoice){
-                    $clients_account9 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->where('invoice_id', $invoice->id)->get();
-                    foreach($clients_account9 as $client_account){
+                $invoices29 = invoice::where('type', 2)->get();
+                foreach($invoices29 as $invoice){
+                    $clients_account29 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account29 as $client_account){
                         $sum29 += $client_account->credit;
                     }
                 }
@@ -326,7 +326,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 }
                 $invoices32 = invoice::where('type', 3)->get();
                 foreach($invoices32 as $invoice){
-                    $clients_account2 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->where('invoice_id', $invoice->id)->get();
+                    $clients_account32 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->where('invoice_id', $invoice->id)->get();
                     foreach($clients_account32 as $client_account){
                         $sum32 += $client_account->credit;
                     }

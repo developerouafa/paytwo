@@ -80,7 +80,20 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                         'borderColor' => "#007bff",
                         "borderWidth" => "1",
                         "fill"=> false,
-                        'data' => [10, 20, 25, 55, 50, 45, 35, 30, 45, 35, 55, 40],
+                        'data' => [
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '3')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '5')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '6')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '11')->where('invoice_classify', 2)->count(),
+                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '12')->where('invoice_classify', 2)->count(),
+                        ],
                     ]
                 ])
                 ->options([

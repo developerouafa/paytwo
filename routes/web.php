@@ -18,6 +18,7 @@ use App\Http\Controllers\Dashboard\dashboard_users\users\ImageuserController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\PromotionController;
 use App\Http\Controllers\Dashboard\dashboard_users\Products\StockproductController;
 use App\Http\Controllers\PaymentgatewayController;
+use App\Models\client_account;
 use App\Models\invoice;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -111,7 +112,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     [
                         "label" => "A",
                         'backgroundColor' => "#285cf7",
-                        'data' => [12, 39, 20, 10, 25, 18],
+                        'data' => [client_account::max('credit')],
                     ]
                 ])
                 ->options([
@@ -122,7 +123,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                             'ticks' => [
                                 'beginAtZero' => true,
                                 'fontSize' => 10,
-                                'max' => 80,
                                 'fontColor' => "rgb(171, 167, 167,0.9)",
                             ],
                             'gridLines' => [

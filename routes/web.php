@@ -122,6 +122,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                             client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->sum('credit'),
                             client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->sum('credit'),
                             client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->sum('credit'),
+                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->sum('credit'),
+                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '11')->sum('credit'),
 
                         ],
                     ]

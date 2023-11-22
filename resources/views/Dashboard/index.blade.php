@@ -45,6 +45,7 @@
     </div>
 @endsection
 @section('content')
+
     <!-- row -->
         <div class="row row-sm">
             <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -167,6 +168,74 @@
         </div>
     <!-- row closed -->
 
+        <!-- row -->
+        <div class="row row-sm">
+            <div class="col-sm-12 col-md-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="main-content-label mg-b-5">
+                            Line Chart
+                        </div>
+                        <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                        <div class="chartjs-wrapper-demo">
+                            {!! $linechart->render() !!}
+                        </div>
+                    </div>
+                </div>
+            </div><!-- col-6 -->
+            <div class="col-sm-12 col-md-6">
+                {{-- <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="main-content-label mg-b-5">
+                            Area Chart
+                        </div>
+                        <p class="mg-b-20">Basic Charts Of Valex template.</p>
+                        <div class="chartjs-wrapper-demo">
+                            {!! $areachart->render() !!}
+                        </div>
+                    </div>
+                </div> --}}
+            </div><!-- col-6 -->
+        </div>
+    <!-- /row -->
+
+    <!-- row -->
+        <div class="row row-sm">
+            <div class="col-md-12">
+                <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="row row-sm">
+                            <div class="col-sm-12 col-md-6 col-xl-4">
+                                <div class="main-content-label tx-12 mg-b-15">
+                                    Solid Color
+                                </div>
+                                <div class="ht-200 ht-lg-250">
+                                    {!! $chartBar1->render() !!}
+                                </div>
+                            </div><!-- col-6 -->
+                            <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-md-t-0">
+                                <div class="main-content-label tx-12 mg-b-15">
+                                    With Transparency
+                                </div>
+                                <div class="ht-200 ht-lg-250">
+                                    {!! $chartBar2->render() !!}
+                                </div>
+                            </div><!-- col-6 -->
+                            <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-xl-t-0">
+                                <div class="main-content-label tx-12 mg-b-15">
+                                    Using Gradient Color
+                                </div>
+                                <div class="ht-200 ht-lg-250">
+                                    {!! $chartBar3->render() !!}
+                                </div>
+                            </div><!-- col-6 -->
+                        </div>
+                    </div><!-- col-12 -->
+                </div><!-- col-12 -->
+            </div><!-- col-12 -->
+        </div>
+    <!-- /row -->
+
     <!-- row opened -->
         <div class="row row-sm">
             <div class="col-md-12 col-lg-12 col-xl-7">
@@ -198,13 +267,7 @@
                 </div>
             </div>
             <div class="col-lg-12 col-xl-5">
-                <div class="card card-dashboard-map-one">
-                    <label class="main-content-label">Sales Revenue by Customers in USA</label>
-                    <span class="d-block mg-b-20 text-muted tx-12">Sales Performance of all states in the United States</span>
-                    <div class="">
-                        <div class="vmap-wrapper ht-180" id="vmap2"></div>
-                    </div>
-                </div>
+
             </div>
         </div>
     <!-- row closed -->

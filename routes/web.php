@@ -47,7 +47,202 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
 
         Route::get('/', function () {
-            return view('Dashboard/index');
+            //* Start line chart
+                $linechart = app()->chartjs
+                ->name('linechart')
+                ->type('line')
+                ->size(['width' => 1000, 'height' => 400])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+                ->datasets([
+                    [
+                        "label" => "A",
+                        'borderColor' => "#f7557a",
+                        "borderWidth" => "1",
+                        "fill"=> false,
+                        'data' => [12, 15, 18, 40, 35, 38, 32, 20, 25, 15, 25, 30],
+                    ],
+                    [
+                        "label" => "B",
+                        'borderColor' => "#007bff",
+                        "borderWidth" => "1",
+                        "fill"=> false,
+                        'data' => [10, 20, 25, 55, 50, 45, 35, 30, 45, 35, 55, 40],
+                    ]
+                ])
+                ->options([
+                    'maintainAspectRatio' => false,
+                    'scales' => [
+                        'yAxes' => [[
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 10,
+                                'max' => 80,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]],
+                        'xAxes' => [[
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 11,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]]
+                    ]
+                ]);
+            //* End line chart
+
+            //* Start chartBar1
+                $chartBar1 = app()->chartjs
+                ->name('chartBar1')
+                ->type('bar')
+                ->size(['width' => 1000, 'height' => 400])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+                ->datasets([
+                    [
+                        "label" => "A",
+                        'backgroundColor' => "#285cf7",
+                        'data' => [12, 39, 20, 10, 25, 18],
+                    ]
+                ])
+                ->options([
+                    'maintainAspectRatio' => false,
+                    'responsive' => true,
+                    'scales' => [
+                        'yAxes' => [[
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 10,
+                                'max' => 80,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]],
+                        'xAxes' => [[
+					        'barPercentage' => 0.6,
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 11,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]]
+                    ]
+                ]);
+            //* End chartBar1
+
+            //* Start chartBar2
+                $chartBar2 = app()->chartjs
+                ->name('chartBar2')
+                ->type('bar')
+                ->size(['width' => 1000, 'height' => 400])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+                ->datasets([
+                    [
+                        "label" => "A",
+                        'backgroundColor' => "rgba(0,123,255,.5)",
+                        'data' => [12, 39, 20, 10, 25, 18],
+                    ]
+                ])
+                ->options([
+                    'maintainAspectRatio' => false,
+                    'responsive' => true,
+                    'scales' => [
+                        'yAxes' => [[
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 10,
+                                'max' => 80,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]],
+                        'xAxes' => [[
+                            'barPercentage' => 0.6,
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 11,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]]
+                    ]
+                ]);
+            //* End chartBar2
+
+            //* Start chartBar3
+                $chartBar3 = app()->chartjs
+                ->name('chartBar3')
+                ->type('bar')
+                ->size(['width' => 1000, 'height' => 400])
+                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+                ->datasets([
+                    [
+                        "label" => "A",
+                        'backgroundColor' => '#f7557a',
+                        'data' => [12, 39, 20, 10, 25, 18],
+                    ]
+                ])
+                ->options([
+                    'maintainAspectRatio' => false,
+                    'responsive' => true,
+                    'scales' => [
+                        'yAxes' => [[
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 10,
+                                'max' => 80,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]],
+                        'xAxes' => [[
+                            'barPercentage' => 0.6,
+                            'ticks' => [
+                                'beginAtZero' => true,
+                                'fontSize' => 11,
+                                'fontColor' => "rgb(171, 167, 167,0.9)",
+                            ],
+                            'gridLines' => [
+                                'display' => true,
+                                'color' => 'rgba(171, 167, 167,0.2)',
+                                'drawBorder' => false
+                            ],
+                        ]]
+                    ]
+                ]);
+            //* End chartBar3
+
+            return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1, 'chartBar2' => $chartBar2, 'chartBar3' => $chartBar3]);
         })->name('dashboard');
 
         //############################# Start Partie User|permissions|Roles route ##########################################

@@ -73,13 +73,6 @@ $(function() {
 		   show: false,
 		},
 		fontFamily: 'Nunito, sans-serif',
-		// dropShadow: {
-		//   enabled: true,
-		//   top: 1,
-		//   left: 1,
-		//   blur: 2,
-		//   opacity: 0.2,
-		// }
 	  },
 	 colors: ["#036fe7", '#f93a5a', '#f7a556'],
 	 plotOptions: {
@@ -110,8 +103,6 @@ $(function() {
 			  colors: ['transparent'],
 			},
 		  },
-
-
 	  }],
 	   series: [{
 		  name: 'Impressions',
@@ -137,10 +128,6 @@ $(function() {
 		// offsetY: -36
 
 	  },
-	  // title: {
-	  //   text: 'Financial Information',
-	  //   align: 'left',
-	  // },
 	  tooltip: {
 		  y: {
 			  formatter: function (val) {

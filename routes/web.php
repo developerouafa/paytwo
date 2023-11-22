@@ -114,6 +114,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                         'backgroundColor' => "#285cf7",
                         'data' => [
                             client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->sum('credit'),
+                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->sum('credit'),
 
                         ],
                     ]

@@ -129,6 +129,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ])
                 ->options([
                     'maintainAspectRatio' => false,
+                    'legend' => [
+                        'display' => false,
+                        'labels' => [
+                            'display' => false
+                        ]
+                    ],
                     'responsive' => true,
                     'scales' => [
                         'yAxes' => [[

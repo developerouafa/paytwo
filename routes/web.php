@@ -50,44 +50,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             return view('Dashboard/index');
         });
 
-        Route::get('/dashboard/users', function () {
-            //* Start Statistical
-                $chartjs = app()->chartjs
-                ->name('barChartTest')
-                ->type('bar')
-                ->size(['width' => 500, 'height' => 400])
-                ->labels(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
-                ->datasets([
-                    [
-                        "label" => "Orders",
-                        'backgroundColor' => "rgba(38, 185, 154, 0.31)",
-                        'borderColor' => "rgba(38, 185, 154, 0.7)",
-                        "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
-                        "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
-                        "pointHoverBackgroundColor" => "#fff",
-                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
-                        'data' => [
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '3')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '5')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '6')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '11')->count(),
-                            invoice::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '12')->count()
-                        ]
-                    ]
-                ])
-                ->options([]);
-
-            //* End Statistical
-            return view('Dashboard/index', ['chartjs' => $chartjs]);
-        })->name('dashboard');
-
         //############################# Start Partie User|permissions|Roles route ##########################################
             Route::resource('users', UserController::class);
             Route::resource('roles', RolesController::class);

@@ -559,7 +559,7 @@
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$
+                                    <td class="tx-right tx-medium tx-danger">$
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->sum('credit')}}
                                     </td>
                                 </tr>
@@ -568,7 +568,7 @@
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->orWhereMonth('created_at', '=', '5')->orWhereMonth('created_at', '=', '6')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$
+                                    <td class="tx-right tx-medium tx-danger">$
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->orWhereMonth('created_at', '=', '5')->orWhereMonth('created_at', '=', '6')->sum('credit')}}
                                     </td>
                                 </tr>
@@ -577,7 +577,7 @@
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->orWhereMonth('created_at', '=', '8')->orWhereMonth('created_at', '=', '9')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$
+                                    <td class="tx-right tx-medium tx-danger">$
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->orWhereMonth('created_at', '=', '8')->orWhereMonth('created_at', '=', '9')->sum('credit')}}
                                     </td>
                                 </tr>
@@ -586,7 +586,7 @@
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->orWhereMonth('created_at', '=', '11')->orWhereMonth('created_at', '=', '12')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$
+                                    <td class="tx-right tx-medium tx-danger">$
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->orWhereMonth('created_at', '=', '11')->orWhereMonth('created_at', '=', '12')->sum('credit')}}
                                     </td>
                                 </tr>

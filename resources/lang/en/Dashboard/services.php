@@ -10,7 +10,7 @@ return [
     'services' => 'Services',
     'group_services' => 'Group Services',
     'Singleservicebill' => 'Single service bill',
-    'Servicepackageinvoice' => 'Service package invoice',
+    'Servicepackageinvoice' => 'Group Service bill',
     'invoices' => 'Invoices',
     'allinvoices' => 'All Invoices',
     'addotherinvoice' => 'Add New Invoice',

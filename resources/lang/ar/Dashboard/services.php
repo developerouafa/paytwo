@@ -10,7 +10,7 @@ return [
     'services' => 'خدمات',
     'group_services' => 'مجموعة خدمات',
     'Singleservicebill' => 'فاتورة خدمة واحدة',
-    'Servicepackageinvoice' => 'فاتورة مجموعة خدمات',
+    'Servicepackageinvoice' => 'فاتورة خدمات المجمعة',
     'invoices' => 'الفواتير',
     'allinvoices' => 'جميع الفواتير',
     'addotherinvoice' => 'اضافة فاتورة جديدة',

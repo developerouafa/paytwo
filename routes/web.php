@@ -56,7 +56,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
                 ->datasets([
                     [
-                        "label" => "A",
+                        "label" => __('Dashboard/services.Singleservicebill'),
                         'borderColor' => "#f7557a",
                         "borderWidth" => "1",
                         "fill"=> false,
@@ -76,7 +76,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                         ],
                     ],
                     [
-                        "label" => "B",
+                        "label" => __('Dashboard/services.Servicepackageinvoice'),
                         'borderColor' => "#007bff",
                         "borderWidth" => "1",
                         "fill"=> false,
@@ -103,7 +103,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                             'ticks' => [
                                 'beginAtZero' => true,
                                 'fontSize' => 10,
-                                'max' => 80,
                                 'fontColor' => "rgb(171, 167, 167,0.9)",
                             ],
                             'gridLines' => [

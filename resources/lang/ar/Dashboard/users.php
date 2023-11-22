@@ -88,9 +88,12 @@ return [
     'activeclientlogin' => 'العملاء نشطين لتسجيل الدخول',
     'totalclients' => 'مجموع العملاء',
     'yourearningyear' => 'أرباحك لهذا العام',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'date' => 'تاريخ',
+    'salescount' => 'عدد المبيعات',
+    'EARNINGS' => 'الارباح',
+    'firstmonthsyear' => 'ثلاثة اشهر الاولى من السنة',
+    'secondthreemonthsyear' => 'ثلاثة اشهر الثانية من السنة',
+    'monthsthirdyear' => 'ثلاثة اشهر الثالثة من السنة',
+    'lastthreemonths' => 'ثلاثة اشهر الاخير من السنة',
 ];
 

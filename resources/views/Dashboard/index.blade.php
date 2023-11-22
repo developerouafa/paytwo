@@ -548,43 +548,32 @@
                         <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                             <thead>
                                 <tr>
-                                    <th class="wd-lg-25p">Date</th>
-                                    <th class="wd-lg-25p tx-right">Sales Count</th>
-                                    <th class="wd-lg-25p tx-right">Earnings</th>
-                                    <th class="wd-lg-25p tx-right">Tax Witheld</th>
+                                    <th class="wd-lg-25p">{{__('Dashboard/users.date')}}</th>
+                                    <th class="wd-lg-25p tx-right">{{__('Dashboard/users.salescount')}}</th>
+                                    <th class="wd-lg-25p tx-right">{{__('Dashboard/users.EARNINGS')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     {{-- {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->get()}} --}}
-                                    <td>05 Dec 2019</td>
+                                    <td>{{__('Dashboard/users.firstmonthsyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">34</td>
                                     <td class="tx-right tx-medium tx-inverse">$658.20</td>
-                                    <td class="tx-right tx-medium tx-danger">-$45.10</td>
                                 </tr>
                                 <tr>
-                                    <td>06 Dec 2019</td>
+                                    <td>{{__('Dashboard/users.secondthreemonthsyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">26</td>
                                     <td class="tx-right tx-medium tx-inverse">$453.25</td>
-                                    <td class="tx-right tx-medium tx-danger">-$15.02</td>
                                 </tr>
                                 <tr>
-                                    <td>07 Dec 2019</td>
+                                    <td>{{__('Dashboard/users.monthsthirdyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">34</td>
                                     <td class="tx-right tx-medium tx-inverse">$653.12</td>
-                                    <td class="tx-right tx-medium tx-danger">-$13.45</td>
                                 </tr>
                                 <tr>
-                                    <td>08 Dec 2019</td>
+                                    <td>{{__('Dashboard/users.lastthreemonths')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">45</td>
                                     <td class="tx-right tx-medium tx-inverse">$546.47</td>
-                                    <td class="tx-right tx-medium tx-danger">-$24.22</td>
-                                </tr>
-                                <tr>
-                                    <td>09 Dec 2019</td>
-                                    <td class="tx-right tx-medium tx-inverse">31</td>
-                                    <td class="tx-right tx-medium tx-inverse">$425.72</td>
-                                    <td class="tx-right tx-medium tx-danger">-$25.01</td>
                                 </tr>
                             </tbody>
                         </table>

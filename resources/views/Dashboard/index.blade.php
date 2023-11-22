@@ -170,7 +170,7 @@
         </div>
     <!-- row closed -->
 
-        <!-- row -->
+    <!-- row -->
         <div class="row row-sm">
             <div class="col-sm-12 col-md-6">
                 <div class="card overflow-hidden">
@@ -203,76 +203,32 @@
 
     <!-- row -->
         <div class="row row-sm">
-            <div class="col-md-12">
+            <div class="col-lg-6">
                 <div class="card overflow-hidden">
                     <div class="card-body">
-                        <div class="row row-sm">
-                            <div class="col-sm-12 col-md-6 col-xl-4">
-                                <div class="main-content-label tx-12 mg-b-15">
-                                    Solid Color
-                                </div>
-                                <div class="ht-200 ht-lg-250">
-                                    {!! $chartBar1->render() !!}
-                                </div>
-                            </div><!-- col-6 -->
-                            <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-md-t-0">
-                                <div class="main-content-label tx-12 mg-b-15">
-                                    With Transparency
-                                </div>
-                                <div class="ht-200 ht-lg-250">
-                                    {!! $chartBar2->render() !!}
-                                </div>
-                            </div><!-- col-6 -->
-                            <div class="col-sm-12 col-md-6 col-xl-4 mg-t-20 mg-xl-t-0">
-                                <div class="main-content-label tx-12 mg-b-15">
-                                    Using Gradient Color
-                                </div>
-                                <div class="ht-200 ht-lg-250">
-                                    {!! $chartBar3->render() !!}
-                                </div>
-                            </div><!-- col-6 -->
+                        <div class="main-content-label tx-12 mg-b-15">
+                            Solid Color
                         </div>
-                    </div><!-- col-12 -->
-                </div><!-- col-12 -->
-            </div><!-- col-12 -->
-        </div>
-    <!-- /row -->
-
-    <!-- row opened -->
-        <div class="row row-sm">
-            <div class="col-md-12 col-lg-12 col-xl-7">
-                <div class="card">
-                    <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title mb-0">Order status</h4>
-                            <i class="mdi mdi-dots-horizontal text-gray"></i>
+                        <div class="ht-200 ht-lg-250">
+                            {!! $chartBar1->render() !!}
                         </div>
-                        <p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="total-revenue">
-                            <div>
-                            <h4>120,750</h4>
-                            <label><span class="bg-primary"></span>success</label>
-                            </div>
-                            <div>
-                            <h4>56,108</h4>
-                            <label><span class="bg-danger"></span>Pending</label>
-                            </div>
-                            <div>
-                            <h4>32,895</h4>
-                            <label><span class="bg-warning"></span>Failed</label>
-                            </div>
-                        </div>
-                        <div id="bar" class="sales-bar mt-4"></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-12 col-xl-5">
-
-            </div>
+            </div><!-- col-6 -->
+            <div class="col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body">
+                        <div class="main-content-label tx-12 mg-b-15">
+                            With Transparency
+                        </div>
+                        <div class="ht-200 ht-lg-250">
+                            {!! $chartBar2->render() !!}
+                        </div>
+                    </div>
+                </div>
+            </div><!-- col-6 -->
         </div>
-    <!-- row closed -->
+    <!-- /row -->
 
     <!-- row opened -->
         <div class="row row-sm">

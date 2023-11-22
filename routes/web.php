@@ -157,7 +157,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ->datasets([
                     [
                         "label" => "A",
-                        'backgroundColor' => "rgba(0,123,255,.5)",
+                        'backgroundColor' => "#f7557a",
                         'data' => [12, 39, 20, 10, 25, 18],
                     ]
                 ])
@@ -195,54 +195,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ]);
             //* End chartBar2
 
-            //* Start chartBar3
-                $chartBar3 = app()->chartjs
-                ->name('chartBar3')
-                ->type('bar')
-                ->size(['width' => 1000, 'height' => 400])
-                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
-                ->datasets([
-                    [
-                        "label" => "A",
-                        'backgroundColor' => '#f7557a',
-                        'data' => [12, 39, 20, 10, 25, 18],
-                    ]
-                ])
-                ->options([
-                    'maintainAspectRatio' => false,
-                    'responsive' => true,
-                    'scales' => [
-                        'yAxes' => [[
-                            'ticks' => [
-                                'beginAtZero' => true,
-                                'fontSize' => 10,
-                                'max' => 80,
-                                'fontColor' => "rgb(171, 167, 167,0.9)",
-                            ],
-                            'gridLines' => [
-                                'display' => true,
-                                'color' => 'rgba(171, 167, 167,0.2)',
-                                'drawBorder' => false
-                            ],
-                        ]],
-                        'xAxes' => [[
-                            'barPercentage' => 0.6,
-                            'ticks' => [
-                                'beginAtZero' => true,
-                                'fontSize' => 11,
-                                'fontColor' => "rgb(171, 167, 167,0.9)",
-                            ],
-                            'gridLines' => [
-                                'display' => true,
-                                'color' => 'rgba(171, 167, 167,0.2)',
-                                'drawBorder' => false
-                            ],
-                        ]]
-                    ]
-                ]);
-            //* End chartBar3
-
-            return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1, 'chartBar2' => $chartBar2, 'chartBar3' => $chartBar3]);
+            return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1, 'chartBar2' => $chartBar2]);
         })->name('dashboard');
 
         //############################# Start Partie User|permissions|Roles route ##########################################

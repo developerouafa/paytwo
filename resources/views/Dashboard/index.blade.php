@@ -219,7 +219,7 @@
                 <div class="card overflow-hidden">
                     <div class="card-body">
                         <div class="main-content-label tx-12 mg-b-15">
-                            With Transparency
+                            {{__('Dashboard/users.monthlyprofitsyearpay')}}
                         </div>
                         <div class="ht-200 ht-lg-250">
                             {!! $chartBar2->render() !!}

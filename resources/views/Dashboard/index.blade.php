@@ -541,10 +541,9 @@
             <div class="col-lg-12">
                 <div class="card card-table-two">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-1">Your Most Recent Earnings</h4>
+                        <h4 class="card-title mb-1">{{__('Dashboard/users.yourearningyear')}}</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
-                    <span class="tx-12 tx-muted mb-3 ">This is your most recent earnings for today's date.</span>
                     <div class="table-responsive country-table">
                         <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                             <thead>

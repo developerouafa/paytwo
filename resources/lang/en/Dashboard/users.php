@@ -87,4 +87,9 @@ return [
     'totalClientactive' => 'Total Client Actives',
     'activeclientlogin' => 'Active client to login',
     'totalclients' => 'Total CLients',
+    'yourearningyear' => 'YOUR EARNINGS TO THIS YEAR',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

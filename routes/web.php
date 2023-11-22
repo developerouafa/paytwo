@@ -48,7 +48,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         Route::get('/', function () {
             return view('Dashboard/index');
-        });
+        })->name('dashboard');
 
         //############################# Start Partie User|permissions|Roles route ##########################################
             Route::resource('users', UserController::class);

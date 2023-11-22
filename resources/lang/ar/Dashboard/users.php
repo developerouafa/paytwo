@@ -87,5 +87,10 @@ return [
     'totalClientactive' => 'إجمالي العملاء النشطاء',
     'activeclientlogin' => 'العملاء نشطين لتسجيل الدخول',
     'totalclients' => 'مجموع العملاء',
+    'yourearningyear' => 'أرباحك لهذا العام',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
 ];
 

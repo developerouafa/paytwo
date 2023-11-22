@@ -121,7 +121,8 @@
                                                 echo $count_invoices = 0;
                                             }
                                             else{
-                                                echo $count_invoices = $count_invoices / $count_all *100 ;
+                                                $count_invoices = number_format($count_invoices / $count_all *100) ;
+                                                echo $count_invoices;
                                             }
                                         @endphp
                                     %</span>
@@ -155,7 +156,8 @@
                                             echo $count_invoices = 0;
                                         }
                                         else{
-                                            echo $count_invoices = $count_invoices / $count_all *100 ;
+                                            $count_invoices = number_format($count_invoices / $count_all *100) ;
+                                            echo $count_invoices;
                                         }
                                     @endphp
                                 %</span>

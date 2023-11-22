@@ -203,7 +203,7 @@
 
     <!-- row -->
         <div class="row row-sm">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card overflow-hidden">
                     <div class="card-body">
                         <div class="main-content-label tx-12 mg-b-15">
@@ -211,18 +211,6 @@
                         </div>
                         <div class="ht-200 ht-lg-250">
                             {!! $chartBar1->render() !!}
-                        </div>
-                    </div>
-                </div>
-            </div><!-- col-6 -->
-            <div class="col-lg-6">
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="main-content-label tx-12 mg-b-15">
-                            {{__('Dashboard/users.monthlyprofitsyearpay')}}
-                        </div>
-                        <div class="ht-200 ht-lg-250">
-                            {!! $chartBar2->render() !!}
                         </div>
                     </div>
                 </div>

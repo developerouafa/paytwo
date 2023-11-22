@@ -103,29 +103,37 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             //* End line chart
 
             //* Start chartBar1
+            $sum11 = 0;
+            $sum12 = 0;
+            $sum13 = 0;
+            $sum14 = 0;
+            $sum15 = 0;
+            $sum16 = 0;
+            $sum17 = 0;
+            $sum18 = 0;
+            $sum19 = 0;
+            $sum110 = 0;
+            $sum111 = 0;
+            $sum112 = 0;
+                $invoices1 = invoice::where('type', 1)->get();
+                foreach($invoices1 as $invoice){
+                    $clients_account1 = client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->where('invoice_id', $invoice->id)->get();
+                    foreach($clients_account1 as $client_account){
+                        $sum11 += $client_account->credit;
+                    }
+                }
+
                 $chartBar1 = app()->chartjs
                 ->name('chartBar1')
                 ->type('bar')
                 ->size(['width' => 1000, 'height' => 400])
                 ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
                 ->datasets([
-                    [
-                        'backgroundColor' => "#285cf7",
-                        'data' => [
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '2')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '3')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '5')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '6')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '8')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '9')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '11')->sum('credit'),
-                            client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '12')->sum('credit'),
-                        ],
-                    ]
+                    'backgroundColor' => "#285cf7",
+                    'data' => [
+                        $sum11,
+
+                    ],
                 ])
                 ->options([
                     'maintainAspectRatio' => false,
@@ -166,54 +174,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ]);
             //* End chartBar1
 
-            //* Start chartBar2
-                $chartBar2 = app()->chartjs
-                ->name('chartBar2')
-                ->type('bar')
-                ->size(['width' => 1000, 'height' => 400])
-                ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-                ->datasets([
-                    [
-                        "label" => "A",
-                        'backgroundColor' => "#f7557a",
-                        'data' => [12, 39, 20, 10, 25, 18],
-                    ]
-                ])
-                ->options([
-                    'maintainAspectRatio' => false,
-                    'responsive' => true,
-                    'scales' => [
-                        'yAxes' => [[
-                            'ticks' => [
-                                'beginAtZero' => true,
-                                'fontSize' => 10,
-                                'max' => 80,
-                                'fontColor' => "rgb(171, 167, 167,0.9)",
-                            ],
-                            'gridLines' => [
-                                'display' => true,
-                                'color' => 'rgba(171, 167, 167,0.2)',
-                                'drawBorder' => false
-                            ],
-                        ]],
-                        'xAxes' => [[
-                            'barPercentage' => 0.6,
-                            'ticks' => [
-                                'beginAtZero' => true,
-                                'fontSize' => 11,
-                                'fontColor' => "rgb(171, 167, 167,0.9)",
-                            ],
-                            'gridLines' => [
-                                'display' => true,
-                                'color' => 'rgba(171, 167, 167,0.2)',
-                                'drawBorder' => false
-                            ],
-                        ]]
-                    ]
-                ]);
-            //* End chartBar2
-
-            return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1, 'chartBar2' => $chartBar2]);
+            return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1]);
         })->name('dashboard');
 
         //############################# Start Partie User|permissions|Roles route ##########################################

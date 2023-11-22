@@ -95,4 +95,10 @@ return [
     'secondthreemonthsyear' => 'The second three months of the year',
     'monthsthirdyear' => 'Three months, the third of the year',
     'lastthreemonths' => 'The last three months of the year',
+    'monthlyprofitsyear' => 'Monthly profits for this year',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
 ];

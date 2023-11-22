@@ -110,7 +110,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                 ->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
                 ->datasets([
                     [
-                        "label" => "A",
                         'backgroundColor' => "#285cf7",
                         'data' => [
                             client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->sum('credit'),

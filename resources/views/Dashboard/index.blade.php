@@ -555,33 +555,40 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{-- {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->get()}} --}}
                                     <td>{{__('Dashboard/users.firstmonthsyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$658.20</td>
+                                    <td class="tx-right tx-medium tx-inverse">$
+                                        {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '1')->orWhereMonth('created_at', '=', '2')->orWhereMonth('created_at', '=', '3')->sum('credit')}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>{{__('Dashboard/users.secondthreemonthsyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->orWhereMonth('created_at', '=', '5')->orWhereMonth('created_at', '=', '6')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$453.25</td>
+                                    <td class="tx-right tx-medium tx-inverse">$
+                                        {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '4')->orWhereMonth('created_at', '=', '5')->orWhereMonth('created_at', '=', '6')->sum('credit')}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>{{__('Dashboard/users.monthsthirdyear')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->orWhereMonth('created_at', '=', '8')->orWhereMonth('created_at', '=', '9')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$653.12</td>
+                                    <td class="tx-right tx-medium tx-inverse">$
+                                        {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '7')->orWhereMonth('created_at', '=', '8')->orWhereMonth('created_at', '=', '9')->sum('credit')}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>{{__('Dashboard/users.lastthreemonths')}}</td>
                                     <td class="tx-right tx-medium tx-inverse">
                                         {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->orWhereMonth('created_at', '=', '11')->orWhereMonth('created_at', '=', '12')->count()}}
                                     </td>
-                                    <td class="tx-right tx-medium tx-inverse">$546.47</td>
+                                    <td class="tx-right tx-medium tx-inverse">$
+                                        {{client_account::whereYear('created_at', now()->format('Y'))->whereMonth('created_at', '=', '10')->orWhereMonth('created_at', '=', '11')->orWhereMonth('created_at', '=', '12')->sum('credit')}}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

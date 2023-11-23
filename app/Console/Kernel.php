@@ -18,8 +18,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('product:expired')->everyMinute();
-        $schedule->command('delete:expired')->everyMinute();
+        $schedule->command('product:expired')->everyFourHours();
+        $schedule->command('delete:expired')->everyFourHours();
     }
 
     /**

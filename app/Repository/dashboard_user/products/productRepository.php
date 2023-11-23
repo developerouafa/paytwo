@@ -19,7 +19,7 @@ class productRepository implements productRepositoryInterface
         $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_user/Products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
+        return view('Dashboard/dashboard_user/products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function show($id)
@@ -37,13 +37,13 @@ class productRepository implements productRepositoryInterface
         $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_user/Products.softdelete',compact('products', 'childrens', 'sections', 'stockproduct'));
+        return view('Dashboard/dashboard_user/products.softdelete',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function create(){
         $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = Section::latest()->selectsections()->withsections()->parent()->get();
-        return view('Dashboard/dashboard_user/Products.productscreate',compact('childrens', 'sections'));
+        return view('Dashboard/dashboard_user/products.productscreate',compact('childrens', 'sections'));
     }
 
     public function store($request)

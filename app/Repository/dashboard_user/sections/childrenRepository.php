@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository\dashboard_user\sections;
 
-use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
+use App\Interfaces\dashboard_user\sections\childrenRepositoryInterface;
 use App\Models\product;
 use App\Models\Section;
 use Illuminate\Support\Facades\App;

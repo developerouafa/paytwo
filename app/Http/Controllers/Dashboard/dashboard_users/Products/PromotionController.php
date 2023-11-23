@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Products\StorePromotionRequest;
-use App\Interfaces\dashboard_user\Products\promotionRepositoryInterface;
+use App\Interfaces\dashboard_user\products\promotionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PromotionController extends Controller

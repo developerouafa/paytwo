@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\dashboard_users\invoices;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\dashboard_user\Invoices\InvoicesRepositoryInterface;
+use App\Interfaces\dashboard_user\invoices\InvoicesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller

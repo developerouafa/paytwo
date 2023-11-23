@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Products\StoreProductRequest;
-use App\Http\Requests\dashboard_user\Products\UpdateProductRequest;
-use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
+use App\Interfaces\dashboard_user\products\productRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller

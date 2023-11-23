@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Sections\StoreSectionRequest;
-use App\Interfaces\dashboard_user\Sections\SectionRepositoryInterface;
+use App\Interfaces\dashboard_user\sections\SectionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller

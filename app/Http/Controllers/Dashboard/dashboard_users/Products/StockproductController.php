@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\dashboard_users\Products;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\dashboard_user\Products\stockRepositoryInterface;
+use App\Interfaces\dashboard_user\products\stockRepositoryInterface;
 
 class StockproductController extends Controller
 {

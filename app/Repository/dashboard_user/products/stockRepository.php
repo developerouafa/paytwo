@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\dashboard_user\Products;
+namespace App\Repository\dashboard_user\products;
 
-use App\Interfaces\dashboard_user\Products\stockRepositoryInterface;
+use App\Interfaces\dashboard_user\products\stockRepositoryInterface;
 use App\Models\stockproduct;
 use Illuminate\Support\Facades\DB;
 

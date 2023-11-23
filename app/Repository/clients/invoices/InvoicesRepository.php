@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\Clients\Invoices;
+namespace App\Repository\clients\invoices;
 
-use App\Interfaces\Clients\Invoices\InvoiceRepositoryInterface;
+use App\Interfaces\clients\invoices\InvoiceRepositoryInterface;
 use App\Mail\clienttouserinvoiceMailMarkdown;
 use App\Mail\clienttouserMailMarkdown;
 use App\Models\banktransfer;

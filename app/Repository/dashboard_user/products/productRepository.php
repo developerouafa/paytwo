@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\dashboard_user\Products;
+namespace App\Repository\dashboard_user\products;
 
-use App\Interfaces\dashboard_user\Products\productRepositoryInterface;
+use App\Interfaces\dashboard_user\products\productRepositoryInterface;
 use App\Models\mainimageproduct;
 use App\Models\multipimage;
 use App\Models\product;

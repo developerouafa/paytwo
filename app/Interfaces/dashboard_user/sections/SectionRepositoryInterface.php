@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces\dashboard_user\Sections;
+namespace App\Interfaces\dashboard_user\sections;
 
 
 interface SectionRepositoryInterface

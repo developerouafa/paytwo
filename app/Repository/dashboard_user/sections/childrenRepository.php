@@ -1,5 +1,5 @@
 <?php
-namespace App\Repository\dashboard_user\Sections;
+namespace App\Repository\dashboard_user\sections;
 
 use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
 use App\Models\product;

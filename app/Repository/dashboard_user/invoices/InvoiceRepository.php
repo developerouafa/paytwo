@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\dashboard_user\Invoices;
+namespace App\Repository\dashboard_user\invoices;
 
-use App\Interfaces\dashboard_user\Invoices\InvoicesRepositoryInterface;
+use App\Interfaces\dashboard_user\invoices\InvoicesRepositoryInterface;
 use App\Mail\mailclient;
 use App\Models\Client;
 use App\Models\fund_account;

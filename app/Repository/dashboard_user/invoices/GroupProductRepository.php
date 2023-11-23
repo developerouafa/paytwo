@@ -1,10 +1,8 @@
 <?php
-namespace App\Repository\dashboard_user\Invoices;
+namespace App\Repository\dashboard_user\invoices;
 
-use App\Interfaces\dashboard_user\Invoices\GroupProductRepositoryInterface;
-use App\Models\fund_account;
+use App\Interfaces\dashboard_user\invoices\GroupProductRepositoryInterface;
 use App\Models\groupprodcut;
-use App\Models\invoice;
 use App\Models\pivot_product_group;
 use Illuminate\Support\Facades\DB;
 

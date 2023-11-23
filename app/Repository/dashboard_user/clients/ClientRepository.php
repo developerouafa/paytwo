@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\dashboard_user\Clients;
+namespace App\Repository\dashboard_user\clients;
 
-use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
+use App\Interfaces\dashboard_user\clients\ClientRepositoryInterface;
 use App\Mail\newaccountclient;
 use App\Models\Client;
 use App\Models\invoice;

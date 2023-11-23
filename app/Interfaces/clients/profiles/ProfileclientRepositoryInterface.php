@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces\Clients\Profiles;
+namespace App\Interfaces\clients\profiles;
 
 
 interface ProfileclientRepositoryInterface

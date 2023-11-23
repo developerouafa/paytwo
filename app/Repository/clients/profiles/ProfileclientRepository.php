@@ -1,8 +1,8 @@
 <?php
-namespace App\Repository\Clients\Profiles;
+namespace App\Repository\clients\profiles;
 
-use App\Http\Requests\Clients\Profiles\ProfileclientRequest;
-use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface;
+use App\Http\Requests\clients\profiles\ProfileclientRequest;
+use App\Interfaces\clients\profiles\ProfileclientRepositoryInterface;
 use App\Models\Client;
 use App\Models\profileclient;
 use Illuminate\Support\Facades\App;

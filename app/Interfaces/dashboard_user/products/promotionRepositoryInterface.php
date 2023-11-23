@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces\dashboard_user\Products;
+namespace App\Interfaces\dashboard_user\products;
 
 
 interface promotionRepositoryInterface

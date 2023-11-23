@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces\Clients\Invoices;
+namespace App\Interfaces\clients\invoices;
 
 
 interface InvoiceRepositoryInterface

@@ -1,5 +1,5 @@
 <?php
-namespace App\Interfaces\dashboard_user\Clients;
+namespace App\Interfaces\dashboard_user\clients;
 
 
 interface ClientRepositoryInterface

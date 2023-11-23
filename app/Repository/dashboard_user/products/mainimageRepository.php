@@ -1,7 +1,7 @@
 <?php
-namespace App\Repository\dashboard_user\Products;
+namespace App\Repository\dashboard_user\products;
 
-use App\Interfaces\dashboard_user\Products\mainRepositoryInterface;
+use App\Interfaces\dashboard_user\products\mainRepositoryInterface;
 use App\Models\mainimageproduct;
 use App\Traits\UploadImageTraitt;
 use Illuminate\Support\Facades\DB;

@@ -3,7 +3,7 @@ namespace App\Repository\dashboard_user\sections;
 
 use App\Interfaces\dashboard_user\sections\childrenRepositoryInterface;
 use App\Models\product;
-use App\Models\Section;
+use App\Models\section;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
@@ -11,15 +11,15 @@ class childrenRepository implements childrenRepositoryInterface
 {
     public function index()
     {
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::selectsections()->Withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::selectsections()->Withsections()->parent()->get();
         return view('Dashboard/dashboard_user.childrens.childrens', compact('childrens', 'sections'));
     }
 
     public function softdelete()
     {
-        $childrens = Section::onlyTrashed()->latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::selectsections()->Withsections()->parent()->get();
+        $childrens = section::onlyTrashed()->latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::selectsections()->Withsections()->parent()->get();
         return view('Dashboard/dashboard_user.childrens.softdelete',compact('childrens', 'sections'));
     }
 
@@ -27,7 +27,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         try{
             DB::beginTransaction();
-            Section::create([
+            section::create([
                 'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
                 'parent_id' => $request->section_id,
                 'user_id' => auth()->user()->id,
@@ -47,7 +47,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         try{
             $children = $request->id;
-            $child = Section::findOrFail($children);
+            $child = section::findOrFail($children);
                 DB::beginTransaction();
                 if(App::isLocale('en')){
                     $child->update([
@@ -73,7 +73,7 @@ class childrenRepository implements childrenRepositoryInterface
 
     public function showchildren($id)
     {
-        $section = Section::findOrFail($id);
+        $section = section::findOrFail($id);
         $products = product::where('parent_id', $id)->get();
         return view('Dashboard/dashboard_user/childrens.showproduct',compact('section', 'products'));
     }
@@ -81,7 +81,7 @@ class childrenRepository implements childrenRepositoryInterface
     public function editstatusdéactive($id)
     {
         try{
-            $Section = Section::findorFail($id);
+            $Section = section::findorFail($id);
             DB::beginTransaction();
             $Section->update([
                 'status' => 1,
@@ -99,7 +99,7 @@ class childrenRepository implements childrenRepositoryInterface
     public function editstatusactive($id)
     {
         try{
-            $Section = Section::findorFail($id);
+            $Section = section::findorFail($id);
             DB::beginTransaction();
             $Section->update([
                 'status' => 0,
@@ -120,7 +120,7 @@ class childrenRepository implements childrenRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                    Section::findorFail($request->id)->delete();
+                    section::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Children_index');
@@ -134,7 +134,7 @@ class childrenRepository implements childrenRepositoryInterface
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
-                    Section::onlyTrashed()->find($request->id)->forcedelete();
+                    section::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Children.softdelete');
@@ -151,7 +151,7 @@ class childrenRepository implements childrenRepositoryInterface
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
-                    Section::where('id', $dl)->withTrashed()->forceDelete();
+                    section::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
@@ -168,7 +168,7 @@ class childrenRepository implements childrenRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                    Section::destroy($delete_select_id);
+                    section::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Children_index');
@@ -196,7 +196,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Section::withTrashed()->where('id', $id)->restore();
+                section::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Children.softdelete');
@@ -211,7 +211,7 @@ class childrenRepository implements childrenRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Section::withTrashed()->restore();
+                section::withTrashed()->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Children.softdelete');
@@ -228,7 +228,7 @@ class childrenRepository implements childrenRepositoryInterface
             $restore_select_id = explode(",", $request->restore_select_id);
             DB::beginTransaction();
                 foreach($restore_select_id as $rs){
-                    Section::withTrashed()->where('id', $rs)->restore();
+                    section::withTrashed()->where('id', $rs)->restore();
                 }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

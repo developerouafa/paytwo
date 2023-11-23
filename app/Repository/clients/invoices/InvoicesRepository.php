@@ -20,7 +20,7 @@ use App\Models\profileclient;
 use App\Models\promotion;
 use App\Models\receipt_account;
 use App\Models\receiptdocument;
-use App\Models\Section;
+use App\Models\section;
 use App\Models\stockproduct;
 use App\Models\User;
 use App\Notifications\clienttouser;
@@ -255,8 +255,8 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function showService($id){
         $product = product::findOrFail($id);
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
         return view('Dashboard/dashboard_client/invoices.showService',compact('product', 'childrens', 'sections', 'stockproduct'));
     }

@@ -5,7 +5,7 @@ use App\Interfaces\dashboard_user\products\productRepositoryInterface;
 use App\Models\mainimageproduct;
 use App\Models\multipimage;
 use App\Models\product;
-use App\Models\Section;
+use App\Models\section;
 use App\Models\stockproduct;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +16,8 @@ class productRepository implements productRepositoryInterface
     public function index()
     {
         $products = product::latest()->productselect()->productwith()->get();
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
         return view('Dashboard/dashboard_user/products.products',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
@@ -25,8 +25,8 @@ class productRepository implements productRepositoryInterface
     public function show($id)
     {
         $product = product::findOrFail($id);
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
         return view('Dashboard/dashboard_user/Products.Show',compact('product', 'childrens', 'sections', 'stockproduct'));
     }
@@ -34,15 +34,15 @@ class productRepository implements productRepositoryInterface
     public function softdelete()
     {
         $products = product::onlyTrashed()->latest()->productselect()->productwith()->get();
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
         return view('Dashboard/dashboard_user/products.softdelete',compact('products', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function create(){
-        $childrens = Section::latest()->selectchildrens()->withchildrens()->child()->get();
-        $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+        $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
+        $sections = section::latest()->selectsections()->withsections()->parent()->get();
         return view('Dashboard/dashboard_user/products.productscreate',compact('childrens', 'sections'));
     }
 

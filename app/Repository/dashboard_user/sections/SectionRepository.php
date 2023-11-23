@@ -3,7 +3,7 @@ namespace App\Repository\dashboard_user\sections;
 
 use App\Interfaces\dashboard_user\sections\SectionRepositoryInterface;
 use App\Models\product;
-use App\Models\Section;
+use App\Models\section;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
@@ -11,13 +11,13 @@ class SectionRepository implements SectionRepositoryInterface
 {
     public function index()
     {
-      $sections = Section::latest()->selectsections()->withsections()->parent()->get();
+      $sections = section::latest()->selectsections()->withsections()->parent()->get();
       return view('Dashboard/dashboard_user.Sections.index',compact('sections'));
     }
 
     public function softdelete()
     {
-      $sections = Section::onlyTrashed()->latest()->selectsections()->withsections()->parent()->get();
+      $sections = section::onlyTrashed()->latest()->selectsections()->withsections()->parent()->get();
       return view('Dashboard/dashboard_user.Sections.softdelete',compact('sections'));
     }
 
@@ -25,7 +25,7 @@ class SectionRepository implements SectionRepositoryInterface
     {
         try{
             DB::beginTransaction();
-            Section::create([
+            section::create([
                 'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
                 'user_id' => auth()->user()->id,
             ]);
@@ -44,7 +44,7 @@ class SectionRepository implements SectionRepositoryInterface
     {
         try{
             DB::beginTransaction();
-            $section = Section::findOrFail($request->id);
+            $section = section::findOrFail($request->id);
             if(App::isLocale('en')){
                 $section->update([
                     'name' => $request->name_en
@@ -72,7 +72,7 @@ class SectionRepository implements SectionRepositoryInterface
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
-                    Section::findorFail($request->id)->delete();
+                section::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Sections.index');
@@ -86,7 +86,7 @@ class SectionRepository implements SectionRepositoryInterface
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
-                    Section::onlyTrashed()->find($request->id)->forcedelete();
+                section::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Sections.softdelete');
@@ -103,7 +103,7 @@ class SectionRepository implements SectionRepositoryInterface
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
-                    Section::where('id', $dl)->withTrashed()->forceDelete();
+                    section::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
@@ -120,7 +120,7 @@ class SectionRepository implements SectionRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                    Section::destroy($delete_select_id);
+                section::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Sections.index');
@@ -134,7 +134,7 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function showsection($id)
     {
-        $section = Section::findOrFail($id);
+        $section = section::findOrFail($id);
         $products = product::where('section_id', $id)->get();
         return view('Dashboard/dashboard_user/Sections.showproduct',compact('section', 'products'));
     }
@@ -142,7 +142,7 @@ class SectionRepository implements SectionRepositoryInterface
     public function editstatusdéactive($id)
     {
         try{
-            $Section = Section::findorFail($id);
+            $Section = section::findorFail($id);
             DB::beginTransaction();
             $Section->update([
                 'status' => 1,
@@ -160,7 +160,7 @@ class SectionRepository implements SectionRepositoryInterface
     public function editstatusactive($id)
     {
         try{
-            $Section = Section::findorFail($id);
+            $Section = section::findorFail($id);
             DB::beginTransaction();
             $Section->update([
                 'status' => 0,
@@ -191,7 +191,7 @@ class SectionRepository implements SectionRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Section::withTrashed()->where('id', $id)->restore();
+            section::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Sections.softdelete');
@@ -206,7 +206,7 @@ class SectionRepository implements SectionRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Section::withTrashed()->restore();
+            section::withTrashed()->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Sections.softdelete');
@@ -223,7 +223,7 @@ class SectionRepository implements SectionRepositoryInterface
             $restore_select_id = explode(",", $request->restore_select_id);
             DB::beginTransaction();
                 foreach($restore_select_id as $rs){
-                    Section::withTrashed()->where('id', $rs)->restore();
+                    section::withTrashed()->where('id', $rs)->restore();
                 }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

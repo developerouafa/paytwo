@@ -34,7 +34,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-    // Clear Code
+    //! Clear Cache  //! Clear Config //! Cache Config //! Clear Route
     Route::get('/clear', function() {
         Artisan::call('cache:clear');
         Artisan::call('config:clear');

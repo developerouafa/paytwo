@@ -72,7 +72,7 @@ class Kernel extends HttpKernel
         'ClientStatus' => \App\Http\Middleware\ClientStatus::class,
 
         // Security
-        'xss' => \App\Http\Middleware\xss::class,
+        'xss' => \App\Http\Middleware\Xss::class,
 
         // Roles Spatie
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,

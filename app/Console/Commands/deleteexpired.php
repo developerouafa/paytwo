@@ -12,6 +12,7 @@ use App\Models\product;
 use App\Models\promotion;
 use App\Models\receipt_account;
 use App\Models\section;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class deleteexpired extends Command
@@ -39,6 +40,7 @@ class deleteexpired extends Command
         product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         promotion::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         Client::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        User::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         paymentaccount::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         paymentgateway::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();

@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\banktransfer;
 use App\Models\Client;
 use App\Models\groupprodcut;
 use App\Models\invoice;
 use App\Models\paymentaccount;
+use App\Models\paymentgateway;
 use App\Models\product;
 use App\Models\promotion;
 use App\Models\receipt_account;
@@ -39,6 +41,8 @@ class deleteexpired extends Command
         Client::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         paymentaccount::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        paymentgateway::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        banktransfer::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         invoice::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         groupprodcut::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
     }

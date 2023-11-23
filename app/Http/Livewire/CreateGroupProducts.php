@@ -111,7 +111,7 @@ class CreateGroupProducts extends Component
             $Groups->tax_rate = $this->taxes;
             // الاجمالي + الضريبة
             $Groups->total_with_tax = $Groups->total_after_discount * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100);
-            // $Groups->save();
+
             // حفظ الترجمة
             $Groups->name= ['en' => $this->name_group_en, 'ar' => $this->name_group_ar];
             $Groups->notes= ['en' => $this->notes_en, 'ar' => $this->notes_ar];
@@ -146,13 +146,11 @@ class CreateGroupProducts extends Component
             $Groups->tax_rate = $this->taxes;
             // الاجمالي + الضريبة
             $Groups->Total_with_tax = $Groups->Total_after_discount * (1 + (is_numeric($this->taxes) ? $this->taxes : 0) / 100);
-            // $Groups->save();
 
             // حفظ الترجمة
             $Groups->name= ['en' => $this->name_group_en, 'ar' => $this->name_group_ar];
             $Groups->notes= ['en' => $this->notes_en, 'ar' => $this->notes_ar];
             $Groups->user_id = auth()->user()->id;
-
             $Groups->save();
 
             // حفظ العلاقة

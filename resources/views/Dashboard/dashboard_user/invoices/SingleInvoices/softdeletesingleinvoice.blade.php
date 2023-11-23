@@ -175,10 +175,10 @@
                         </div>
                     @endcan
                     @can('Delete Group SingleInvoice softdelete')
-                        @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoicesoftdelete')
+                        @include('Dashboard.dashboard_user.invoices.SingleInvoices.delete_selectsingleinvoicesoftdelete')
                     @endcan
                     @can('Restore Group SingleInvoice')
-                        @include('Dashboard.dashboard_user.invoices.Singleinvoices.restoreall')
+                        @include('Dashboard.dashboard_user.invoices.SingleInvoices.restoreall')
                     @endcan
                 </div>
             </div>

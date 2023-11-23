@@ -171,7 +171,7 @@
                                                 </tr>
                                             @endforeach
                                             @can('Delete Group GroupInvoice')
-                                                @include('Dashboard.dashboard_user.invoices.Singleinvoices.delete_selectsingleinvoice')
+                                                @include('Dashboard.dashboard_user.invoices.GroupInvoices.delete_selectgroupinvoice')
                                             @endcan
                                         </tbody>
                                     </table>

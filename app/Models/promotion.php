@@ -10,8 +10,6 @@ class promotion extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'start_time',
         'end_time',

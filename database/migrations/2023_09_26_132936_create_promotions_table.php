@@ -19,7 +19,6 @@ return new class extends Migration
             $table->tinyInteger('expired')->default(0);
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Dashboard\Clients\profiles;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Clients\Profiles\ProfileclientRequest;
-use App\Interfaces\Clients\Profiles\ProfileclientRepositoryInterface;
+use App\Http\Requests\Clients\profiles\ProfileclientRequest;
+use App\Interfaces\Clients\profiles\ProfileclientRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProfileclientController extends Controller

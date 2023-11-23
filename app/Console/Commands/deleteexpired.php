@@ -38,7 +38,6 @@ class deleteexpired extends Command
     {
         section::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        promotion::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         Client::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         User::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
         receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();

@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\Clients;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\clients\ClientRequest;
-use App\Interfaces\dashboard_user\Clients\ClientRepositoryInterface;
+use App\Interfaces\dashboard_user\clients\ClientRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-
     private $Clients;
 
     public function __construct(ClientRepositoryInterface $Clients)

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Dashboard\dashboard_users\childrens;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\dashboard_user\Sections\StorechildrenRequest;
-use App\Http\Requests\dashboard_user\Sections\UpdatechildrenRequest;
-use App\Interfaces\dashboard_user\Sections\childrenRepositoryInterface;
+use App\Http\Requests\dashboard_user\sections\StorechildrenRequest;
+use App\Interfaces\dashboard_user\sections\childrenRepositoryInterface;
 use Illuminate\Http\Request;
 
 class childrenController extends Controller

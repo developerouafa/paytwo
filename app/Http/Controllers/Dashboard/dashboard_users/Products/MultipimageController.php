@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\dashboard_users\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\dashboard_user\Products\validationimageProductRequest;
-use App\Interfaces\dashboard_user\Products\multipeRepositoryInterface;
+use App\Interfaces\dashboard_user\products\multipeRepositoryInterface;
 use Illuminate\Http\Request;
 
 class MultipimageController extends Controller

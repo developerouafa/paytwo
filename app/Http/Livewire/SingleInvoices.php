@@ -114,10 +114,10 @@ class SingleInvoices extends Component
                         $message = __('Dashboard/main-header_trans.nicaseup');
                         Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
 
-                        // $mailclient = Client::findorFail($this->client_id);
-                        // $nameclient = $mailclient->name;
-                        // $url = url('en/Invoices/print/'.$invoice_id);
-                        // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                        $mailclient = Client::findorFail($this->client_id);
+                        $nameclient = $mailclient->name;
+                        $url = url('en/Invoices/print/'.$invoice_id);
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
                 }
@@ -198,10 +198,10 @@ class SingleInvoices extends Component
                         $message = __('Dashboard/main-header_trans.nicasemontaryup');
                         Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
 
-                        // $mailclient = Client::findorFail($this->client_id);
-                        // $nameclient = $mailclient->name;
-                        // $url = url('en/Invoices/print/'.$invoice_id);
-                        // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                        $mailclient = Client::findorFail($this->client_id);
+                        $nameclient = $mailclient->name;
+                        $url = url('en/Invoices/print/'.$invoice_id);
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
                 }
@@ -282,10 +282,10 @@ class SingleInvoices extends Component
                         $message = __('Dashboard/main-header_trans.nicasepostpaidup');
                         Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
 
-                        // $mailclient = Client::findorFail($this->client_id);
-                        // $nameclient = $mailclient->name;
-                        // $url = url('en/Invoices/print/'.$invoice_id);
-                        // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                        $mailclient = Client::findorFail($this->client_id);
+                        $nameclient = $mailclient->name;
+                        $url = url('en/Invoices/print/'.$invoice_id);
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
                 }
@@ -366,10 +366,10 @@ class SingleInvoices extends Component
                         $message = __('Dashboard/main-header_trans.nicasebanktransferup');
                         Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
 
-                        // $mailclient = Client::findorFail($this->client_id);
-                        // $nameclient = $mailclient->name;
-                        // $url = url('en/Invoices/print/'.$invoice_id);
-                        // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                        $mailclient = Client::findorFail($this->client_id);
+                        $nameclient = $mailclient->name;
+                        $url = url('en/Invoices/print/'.$invoice_id);
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
 
                 }
@@ -449,10 +449,10 @@ class SingleInvoices extends Component
                         $message = __('Dashboard/main-header_trans.nicasepymgtwup');
                         Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
 
-                        // $mailclient = Client::findorFail($this->client_id);
-                        // $nameclient = $mailclient->name;
-                        // $url = url('en/Invoices/print/'.$invoice_id);
-                        // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                        $mailclient = Client::findorFail($this->client_id);
+                        $nameclient = $mailclient->name;
+                        $url = url('en/Invoices/print/'.$invoice_id);
+                        Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     }
                 }
                 // في حالة الاضافة
@@ -537,10 +537,10 @@ class SingleInvoices extends Component
                     $message = __('Dashboard/main-header_trans.nicase');
                     Notification::send($client, new invoicent($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($single_invoice->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/print/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($single_invoice->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/print/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.beensent'));
                 }
@@ -556,10 +556,10 @@ class SingleInvoices extends Component
                     $message = __('Dashboard/main-header_trans.nicasemontary');
                     Notification::send($client, new montaryinvoice($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($single_invoice->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/print/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($single_invoice->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/print/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.beensent'));
                 }
@@ -575,10 +575,10 @@ class SingleInvoices extends Component
                     $message = __('Dashboard/main-header_trans.nicasepostpaid');
                     Notification::send($client, new postpaidbillinvoice($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($single_invoice->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/print/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($single_invoice->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/print/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.beensent'));
                 }
@@ -594,10 +594,10 @@ class SingleInvoices extends Component
                     $message = __('Dashboard/main-header_trans.nicasepymgtw');
                     Notification::send($client, new banktransferntf($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($single_invoice->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/print/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($single_invoice->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/print/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.beensent'));
                 }
@@ -613,10 +613,10 @@ class SingleInvoices extends Component
                     $message = __('Dashboard/main-header_trans.nicasebanktransfer');
                     Notification::send($client, new paymentgateways($user_create_id, $invoice_id, $message));
 
-                    // $mailclient = Client::findorFail($single_invoice->client_id);
-                    // $nameclient = $mailclient->name;
-                    // $url = url('en/Invoices/print/'.$invoice_id);
-                    // Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
+                    $mailclient = Client::findorFail($single_invoice->client_id);
+                    $nameclient = $mailclient->name;
+                    $url = url('en/Invoices/print/'.$invoice_id);
+                    Mail::to($mailclient->email)->send(new mailclient($message, $nameclient, $url));
                     DB::commit();
                     toastr()->success(trans('Dashboard/messages.beensent'));
                 }

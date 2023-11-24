@@ -9,7 +9,7 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
-use App\Models\Paymentaccount;
+use App\Models\paymentaccount;
 use App\Notifications\catchpayment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -26,7 +26,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function softdelete()
     {
-        $payments =  PaymentAccount::onlyTrashed()->latest()->get();
+        $payments =  paymentaccount::onlyTrashed()->latest()->get();
         return view('Dashboard.dashboard_user.Payment.softdelete',compact('payments'));
     }
 
@@ -40,7 +40,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function show($id)
     {
-        $payment_account = PaymentAccount::findorfail($id);
+        $payment_account = paymentaccount::findorfail($id);
         $fund_account = fund_account::where('Payment_id', $id)->with('invoice')->first();
         $invoice_number = $fund_account->invoice->invoice_number;
         return view('Dashboard.dashboard_user.Payment.print',compact('payment_account', 'invoice_number'));
@@ -52,7 +52,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             DB::beginTransaction();
 
             // store Payment_accounts
-            $payment_accounts = new Paymentaccount();
+            $payment_accounts = new paymentaccount();
             $payment_accounts->date =date('y-m-d');
             $payment_accounts->client_id = $request->client_id;
             $payment_accounts->amount = $request->credit;
@@ -105,7 +105,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function edit($id)
     {
-        $payment_accounts = Paymentaccount::findorfail($id);
+        $payment_accounts = paymentaccount::findorfail($id);
         $Clients = Client::all();
         return view('Dashboard.dashboard_user.Payment.edit',compact('payment_accounts','Clients'));
     }
@@ -116,7 +116,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             DB::beginTransaction();
 
             // update Payment_accounts
-            $payment_accounts = Paymentaccount::findorfail($request->id);
+            $payment_accounts = paymentaccount::findorfail($request->id);
             $payment_accounts->date =date('y-m-d');
             $payment_accounts->client_id = $request->client_id;
             $payment_accounts->amount = $request->credit;
@@ -168,7 +168,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         if($request->page_id==1){
             try {
                 DB::beginTransaction();
-                    Paymentaccount::findorFail($request->id)->delete();
+                    paymentaccount::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.index');
@@ -182,7 +182,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
-                Paymentaccount::onlyTrashed()->find($request->id)->forcedelete();
+                paymentaccount::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.softdelete');
@@ -199,7 +199,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
-                    Paymentaccount::where('id', $dl)->withTrashed()->forceDelete();
+                    paymentaccount::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
@@ -216,7 +216,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                Paymentaccount::destroy($delete_select_id);
+                paymentaccount::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.index');
@@ -244,7 +244,7 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Paymentaccount::withTrashed()->where('id', $id)->restore();
+                paymentaccount::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.softdelete');
@@ -259,7 +259,7 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                Paymentaccount::withTrashed()->restore();
+                paymentaccount::withTrashed()->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.softdelete');
@@ -276,7 +276,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $restore_select_id = explode(",", $request->restore_select_id);
             DB::beginTransaction();
                 foreach($restore_select_id as $rs){
-                    Paymentaccount::withTrashed()->where('id', $rs)->restore();
+                    paymentaccount::withTrashed()->where('id', $rs)->restore();
                 }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

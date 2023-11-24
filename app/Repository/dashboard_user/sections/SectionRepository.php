@@ -68,7 +68,7 @@ class SectionRepository implements SectionRepositoryInterface
 
     public function destroy($request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
@@ -82,7 +82,7 @@ class SectionRepository implements SectionRepositoryInterface
                 return redirect()->route('Sections.index');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
@@ -97,7 +97,7 @@ class SectionRepository implements SectionRepositoryInterface
                 return redirect()->route('Sections.softdelete');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -115,7 +115,7 @@ class SectionRepository implements SectionRepositoryInterface
                 return redirect()->route('Sections.softdelete');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);

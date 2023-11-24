@@ -93,7 +93,7 @@
                                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$section->id}}"><i class="las la-pen"></i></a>
                                                     @endcan
 
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-name="{{ $section->name }}" data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$section->id}}"><i class="las la-trash"></i></a>
                                                 </td>
                                             </tr>
 

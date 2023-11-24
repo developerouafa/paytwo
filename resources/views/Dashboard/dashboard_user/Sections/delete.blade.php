@@ -15,7 +15,6 @@
             <div class="modal-body">
                 <input type="hidden" name="id" value="{{ $section->id }}">
                 <input type="hidden" value="1" name="page_id">
-                <input class="form-control" id="name" type="text" readonly>
                 <h5>{{trans('Dashboard/sections_trans.Warning')}}</h5>
             </div>
             <div class="modal-footer">

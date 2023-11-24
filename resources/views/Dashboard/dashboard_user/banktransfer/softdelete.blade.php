@@ -89,7 +89,7 @@
                                                 @can('Delete Bank Tranktransfer softdelete')
                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                         data-id="{{ $banktransfer->id }}" data-name="{{ $banktransfer->amount }}"
-                                                        data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                        data-toggle="modal" href="#modaldemo8" title="Delete">
                                                         <i class="las la-trash"></i>
                                                     </a>
                                                 @endcan
@@ -109,12 +109,11 @@
                     @endcan
                 </div><!-- bd -->
             </div>
-            <!--/div-->
         </div>
     <!-- row closed -->
 
     <!-- delete -->
-        <div class="modal" id="modaldemo9">
+        <div class="modal" id="modaldemo8">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
@@ -138,11 +137,21 @@
                 </div>
             </div>
         </div>
-    <!-- /row -->
 
 @endsection
 @section('js')
     <!--Internal  Notify js -->
     <script src="{{URL::asset('dashboard/plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('/plugins/notify/js/notifit-custom.js')}}"></script>
+
+    <script>
+        $('#modaldemo8').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+        })
+    </script>
 @endsection

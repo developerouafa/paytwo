@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Clients;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Clients\profiles\CompletedRequest;
-use App\Interfaces\Clients\invoices\InvoiceRepositoryInterface;
+use App\Interfaces\clients\invoices\InvoiceRepositoryInterface;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller

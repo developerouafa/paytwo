@@ -42,6 +42,11 @@
                 <div class="card mg-b-20">
                     <div class="card-body">
                         <div class="main-content-label mg-b-5">
+                            <div class="pull-right">
+                                <a class="btn btn-primary btn-sm" href="{{ route('roles.index') }}">{{__('Dashboard/permissions.back')}}</a>
+                            </div>
+                        </div>
+                        <div class="main-content-label mg-b-5">
                             <div class="col-xs-7 col-sm-7 col-md-7">
                                 <div class="form-group">
                                     <p>{{__('Dashboard/permissions.authorityname')}}</p>

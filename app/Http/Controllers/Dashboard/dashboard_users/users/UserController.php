@@ -549,6 +549,13 @@ class UserController extends Controller
     //* Delete All Users Sofdelete (Except the user who is logged in) & (Except for the Super Admin)
     public function deletealluserssoftdelete(){
         DB::table('users')->whereNotNull('deleted_at')->whereNot('id', '1')->whereNot('id', auth()->user()->id)->delete();
+        $img = imageuser::get();
+        if($img){
+            $img->delete();
+            $image = $img->mainimage;
+            if(!$image) abort(404);
+            unlink(public_path('storage/'.$image));
+        }
         return redirect()->route('Users.softdeleteusers');
     }
 }

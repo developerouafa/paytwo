@@ -103,7 +103,8 @@
                                                     @can('Delete Clients softdelete')
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                             data-id="{{ $client->id }}"
-                                                            data-toggle="modal" href="#modaldemo9{{$client->id}}" title="Delete">
+                                                            data-name="{{ $client->name }}"
+                                                            data-toggle="modal" href="#modaldemo8" title="Delete">
                                                             <i class="las la-trash"></i>
                                                         </a>
                                                     @endcan
@@ -127,7 +128,7 @@
         </div>
 
         <!-- delete -->
-        <div class="modal" id="modaldemo9">
+        <div class="modal" id="modaldemo8">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
@@ -139,8 +140,9 @@
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
-                            <input type="text" name="id" id="id">
+                            <input type="hidden" name="id" id="id">
                             <input type="hidden" value="3" name="page_id">
+                            <input class="form-control" name="name" id="name" type="text" readonly>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>
@@ -210,5 +212,16 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        $('#modaldemo8').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+        })
     </script>
 @endsection

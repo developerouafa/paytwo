@@ -36,8 +36,8 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function store($request)
     {
-        try{
-            DB::beginTransaction();
+        // try{
+        //     DB::beginTransaction();
             $client = Client::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
@@ -45,39 +45,39 @@ class ClientRepository implements ClientRepositoryInterface
                 'user_id' => auth()->user()->id,
                 'password' => Hash::make($request->password)
             ]);
-                $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
-                $client = new \Vonage\Client($basic);
+                // $basic  = new \Vonage\Client\Credentials\Basic("886051ab", "uQ1pGoon8OSzTCyd");
+                // $client = new \Vonage\Client($basic);
                 $messagenewaccount = __('Dashboard/clients_trans.mssgntfnewaccount').'...'.
                                     __('Dashboard/users.phone'). ': ' .$request->phone. ': '.
                                     __('Dashboard/auth.password').': ' . $request->password;
 
-                $response = $client->sms()->send(
-                    new \Vonage\SMS\Message\SMS($request->pays.$request->phone, 'TikTik', $messagenewaccount)
-                );
-                $message = $response->current();
-                if ($message->getStatus() == 0) {
-                    echo "The message was sent successfully\n";
-                } else {
-                    echo "The message failed with status: " . $message->getStatus() . "\n";
-                }
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS($request->pays.$request->phone, 'TikTik', $messagenewaccount)
+                // );
+                // $message = $response->current();
+                // if ($message->getStatus() == 0) {
+                //     // echo "The message was sent successfully\n";
+                // } else {
+                //     // echo "The message failed with status: " . $message->getStatus() . "\n";
+                // }
 
                 $client_id = Client::latest()->first()->id;
 
                 //* Notification Email
-                // $mailclient = Client::findorFail($client_id);
-                // $nameclient = $mailclient->name;
-                // $url = url('en/login');
-                // Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
+                $mailclient = Client::findorFail($client_id);
+                $nameclient = $mailclient->name;
+                $url = url('en/login');
+                Mail::to($mailclient->email)->send(new newaccountclient($messagenewaccount, $nameclient, $url));
 
-            DB::commit();
-            toastr()->success(trans('Dashboard/messages.add'));
-            return redirect()->route('Clients.index');
-        }
-        catch(\Exception $exception){
-            DB::rollBack();
-            toastr()->error(trans('Dashboard/messages.error'));
-            return redirect()->route('Clients.index');
-        }
+        //     DB::commit();
+        //     toastr()->success(trans('Dashboard/messages.add'));
+        //     return redirect()->route('Clients.index');
+        // }
+        // catch(\Exception $exception){
+        //     DB::rollBack();
+        //     toastr()->error(trans('Dashboard/messages.error'));
+        //     return redirect()->route('Clients.index');
+        // }
     }
 
     public function update($request)

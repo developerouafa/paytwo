@@ -327,7 +327,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                     Route::get('/createclient', 'createclient')->name('Clients.createclient');
                     Route::get('/Show_Invoice_Client/{id}', 'showinvoice')->name('Clients.showinvoice');
                     Route::get('/clientinvoice/{id}', 'clientinvoice')->name('Clients.clientinvoice');
-                    Route::get('/Deleted_Product', 'softdelete')->name('Clients.softdelete');
+                    Route::get('/Deleted_Client', 'softdelete')->name('Clients.softdelete');
                     Route::delete('/destroy_invoices_client', 'destroy_invoices_client')->name('Clients.destroy_invoices_client');
                     Route::delete('/destroy', 'destroy')->name('Clients.destroy');
                     Route::get('editstatusdéactivecl/{id}', 'editstatusdéactive')->name('editstatusdéactivecl');

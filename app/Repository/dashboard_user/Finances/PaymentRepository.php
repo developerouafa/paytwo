@@ -87,10 +87,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             $message = __('Dashboard/main-header_trans.nicasepayment');
             Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
 
-            // $mailclient = Client::findorFail($request->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
+            $mailclient = Client::findorFail($request->client_id);
+            $nameclient = $mailclient->name;
+            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
+            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -146,10 +146,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             $message = __('Dashboard/main-header_trans.nicasepaymentup');
             Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
 
-            // $mailclient = Client::findorFail($request->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
+            $mailclient = Client::findorFail($request->client_id);
+            $nameclient = $mailclient->name;
+            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
+            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

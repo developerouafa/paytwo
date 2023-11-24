@@ -153,7 +153,7 @@ class productRepository implements productRepositoryInterface
 
     public function destroy($request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
@@ -168,24 +168,28 @@ class productRepository implements productRepositoryInterface
                 return redirect()->route('Products.index');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
-                // Delete Image
+                //! Delete Image
                 $img = mainimageproduct::where('product_id', $request->id)->first();
-                    $img->delete();
-                    $image = $img->mainimage;
-                    if(!$image) abort(404);
-                    unlink(public_path('storage/'.$image));
-
-                $multipimage = multipimage::where('product_id', $request->id)->get();
-                foreach($multipimage as $img){
-                    if(!empty($img->multipimage)){
-                        $image = $img->multipimage;
+                    if($img){
+                        $img->delete();
+                        $image = $img->mainimage;
                         if(!$image) abort(404);
                         unlink(public_path('storage/'.$image));
                     }
-                }
+
+                $multipimages = multipimage::where('product_id', $request->id)->get();
+                    if($multipimages){
+                        foreach($multipimages as $img){
+                            if(!empty($img->multipimage)){
+                                $image = $img->multipimage;
+                                if(!$image) abort(404);
+                                unlink(public_path('storage/'.$image));
+                            }
+                        }
+                    }
                 DB::beginTransaction();
                     product::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
@@ -198,7 +202,7 @@ class productRepository implements productRepositoryInterface
                 return redirect()->route('Products.softdelete');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -206,17 +210,21 @@ class productRepository implements productRepositoryInterface
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
                     $img = mainimageproduct::where('product_id', $dl)->first();
-                    $img->delete();
-                    $image = $img->mainimage;
-                    if(!$image) abort(404);
-                    unlink(public_path('storage/'.$image));
+                    if($img){
+                        $img->delete();
+                        $image = $img->mainimage;
+                        if(!$image) abort(404);
+                        unlink(public_path('storage/'.$image));
+                    }
 
-                    $multipimage = multipimage::where('product_id', $dl)->get();
-                    foreach($multipimage as $img){
-                        if(!empty($img->multipimage)){
-                            $image = $img->multipimage;
-                            if(!$image) abort(404);
-                            unlink(public_path('storage/'.$image));
+                    $multipimages = multipimage::where('product_id', $dl)->get();
+                    if($multipimages){
+                        foreach($multipimages as $img){
+                            if(!empty($img->multipimage)){
+                                $image = $img->multipimage;
+                                if(!$image) abort(404);
+                                unlink(public_path('storage/'.$image));
+                            }
                         }
                     }
 
@@ -232,7 +240,7 @@ class productRepository implements productRepositoryInterface
                 return redirect()->route('Products.softdelete');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -258,20 +266,24 @@ class productRepository implements productRepositoryInterface
     public function deleteallsoftdelete()
     {
         $mainimageproduct = mainimageproduct::get();
-        foreach($mainimageproduct as $img){
-            if(!empty($img->multipimage)){
-                $image = $img->multipimage;
-                if(!$image) abort(404);
-                unlink(public_path('storage/'.$image));
+        if($mainimageproduct){
+            foreach($mainimageproduct as $img){
+                if(!empty($img->multipimage)){
+                    $image = $img->multipimage;
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
             }
         }
 
         $multipimage = multipimage::get();
-        foreach($multipimage as $img){
-            if(!empty($img->multipimage)){
-                $image = $img->multipimage;
-                if(!$image) abort(404);
-                unlink(public_path('storage/'.$image));
+        if($mainimageproduct){
+            foreach($multipimage as $img){
+                if(!empty($img->multipimage)){
+                    $image = $img->multipimage;
+                    if(!$image) abort(404);
+                    unlink(public_path('storage/'.$image));
+                }
             }
         }
 

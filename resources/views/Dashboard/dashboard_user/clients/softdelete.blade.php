@@ -68,6 +68,7 @@
                                                 <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.name')}}</th>
+                                            <th class="wd-15p border-bottom-0">{{__('Dashboard/users.email')}}</th>
                                             <th class="wd-15p border-bottom-0">{{__('Dashboard/clients_trans.phone')}}</th>
                                             <th class="wd-20p border-bottom-0">{{__('Dashboard/users.createdbyuser')}}</th>
                                             <th class="wd-20p border-bottom-0">{{__('Dashboard/sections_trans.created_at')}}</th>
@@ -90,6 +91,7 @@
                                                     </td>
                                                 @endcan
                                                 <td>{{$client->name}}</td>
+                                                <td>{{$client->email}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td><a href="#">{{$client->user->name}}</a> </td>
                                                 <td> {{ $client->created_at->diffForHumans() }} </td>

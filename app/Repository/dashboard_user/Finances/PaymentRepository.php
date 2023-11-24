@@ -52,34 +52,34 @@ class PaymentRepository implements PaymentRepositoryInterface
             DB::beginTransaction();
 
             // store Payment_accounts
-            $payment_accounts = new PaymentAccount();
-            $payment_accounts->date =date('y-m-d');
-            $payment_accounts->client_id = $request->client_id;
-            $payment_accounts->amount = $request->credit;
-            $payment_accounts->description = $request->description;
-            $payment_accounts->user_id = auth()->user()->id;
-            $payment_accounts->save();
+            $payment_accounts = PaymentAccount::create([
+                'date' => date('y-m-d'),
+                'client_id' => $request->client_id,
+                'amount' => $request->credit,
+                'description' => $request->description,
+                'user_id' => auth()->user()->id
+            ]);
 
             // store fund_accounts
-            $fund_accounts = new fund_account();
-            $fund_accounts->date =date('y-m-d');
-            $fund_accounts->Payment_id = $payment_accounts->id;
-            $fund_accounts->invoice_id = $request->invoice_id;
-            $fund_accounts->credit = $request->credit;
-            $fund_accounts->user_id = auth()->user()->id;
-            $fund_accounts->Debit = 0.00;
-            $fund_accounts->save();
+            fund_account::create([
+                'date' => date('y-m-d'),
+                'Payment_id' => $payment_accounts->id,
+                'invoice_id' => $request->invoice_id,
+                'credit' => $request->credit,
+                'user_id' => auth()->user()->id,
+                'Debit' => 0.00
+            ]);
 
             // store client_accounts
-            $client_accounts = new client_account();
-            $client_accounts->date =date('y-m-d');
-            $client_accounts->client_id = $request->client_id;
-            $client_accounts->Payment_id = $payment_accounts->id;
-            $client_accounts->invoice_id = $request->invoice_id;
-            $client_accounts->Debit = $request->credit;
-            $client_accounts->user_id = auth()->user()->id;
-            $client_accounts->credit = 0.00;
-            $client_accounts->save();
+            client_account::create([
+                'date' => date('y-m-d'),
+                'client_id' => $request->client_id,
+                'Payment_id' => $payment_accounts->id,
+                'invoice_id' => $request->invoice_id,
+                'Debit' => $request->credit,
+                'user_id' => auth()->user()->id,
+                'credit' => 0.00
+            ]);
 
             $client = Client::where('id', '=', $request->client_id)->get();
             $user_create_id = auth()->user()->id;
@@ -87,10 +87,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             $message = __('Dashboard/main-header_trans.nicasepayment');
             Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
 
-            // $mailclient = Client::findorFail($request->client_id);
-            // $nameclient = $mailclient->name;
-            // $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
-            // Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
+            $mailclient = Client::findorFail($request->client_id);
+            $nameclient = $mailclient->name;
+            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
+            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));

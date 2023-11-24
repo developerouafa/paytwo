@@ -23,8 +23,8 @@ class UserSeeder extends Seeder
         $user = User::create([
             'name' => ['en' => 'ouafa', 'ar' => 'وفاء'],
             'phone' => '0582201021',
-            'email' => 'ouafa@gmail.com',
-            'password' => Hash::make('123456'),
+            'email' => 'SuperADMIN_TIK2023@gmail.com',
+            'password' => Hash::make('202324tik@zAWy'),
             'roles_name' => ["owner"],
             'Status' => '1'
         ]);
@@ -32,9 +32,9 @@ class UserSeeder extends Seeder
         $user_id = User::latest()->first()->id;
         Client::create([
             'name' => 'client',
-            'phone' => '0582201021',
-            'email' => 'ouafa@gmail.com',
-            'password' => Hash::make('123456'),
+            'phone' => '0682201021',
+            'email' => 'Clienttest@gmail.com',
+            'password' => Hash::make('123456tik@&TpNg'),
             'user_id' => $user_id,
             'Status' => '1'
         ]);

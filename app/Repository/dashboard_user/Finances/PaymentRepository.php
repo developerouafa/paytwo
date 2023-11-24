@@ -164,7 +164,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function destroy($request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try {
                 DB::beginTransaction();
@@ -178,7 +178,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 return redirect()->route('Payment.destroy');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
@@ -193,7 +193,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 return redirect()->route('Payment.softdelete');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -211,7 +211,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 return redirect()->route('Payment.softdelete');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);

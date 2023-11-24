@@ -23,7 +23,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All Bank Card softdelete')
-                                <a class="btn btn-danger" href="{{route('paymentgateway.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('paymentgateway.deleteallsoftdeletepg')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Bank Card softdelete')
@@ -109,7 +109,7 @@
                 </div><!-- bd -->
             </div>
         </div>
-    <!-- row closed -->      
+    <!-- row closed -->
 
         <!-- delete -->
             <div class="modal" id="modaldemo9">

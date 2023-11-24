@@ -24,7 +24,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All Bank Tranktransfer softdelete')
-                                <a class="btn btn-danger" href="{{route('Banktransfer.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('Banktransfer.deleteallsoftdeletebt')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Bank Tranktransfer softdelete')

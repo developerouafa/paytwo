@@ -95,7 +95,6 @@
                     @endcan
                 </div><!-- bd -->
             </div>
-            <!--/div-->
         </div>
     <!-- row closed -->
 @endsection

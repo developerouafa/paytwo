@@ -26,7 +26,7 @@
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
                             @can('Delete All Catch Payment softdelete')
-                                <a class="btn btn-danger" href="{{route('Payment.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('Payment.deleteallsoftdeletepy')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Catch Payment softdelete')
@@ -111,7 +111,6 @@
                     @endcan
                 </div><!-- bd -->
             </div>
-            <!--/div-->
         </div>
         <!-- row closed -->
 

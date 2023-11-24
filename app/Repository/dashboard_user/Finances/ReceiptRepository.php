@@ -158,7 +158,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
 
     public function destroy($request)
     {
-        // Delete One Request
+        //! Delete One Request
         if($request->page_id==1){
             try{
                 DB::beginTransaction();
@@ -172,7 +172,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 return redirect()->route('Receipt.index');
             }
         }
-        // Delete One SoftDelete
+        //! Delete One SoftDelete
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
@@ -187,7 +187,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 return redirect()->route('Receipt.softdelete');
             }
         }
-        // Delete Group SoftDelete
+        //! Delete Group SoftDelete
         if($request->page_id==2){
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
@@ -205,7 +205,7 @@ class ReceiptRepository implements ReceiptRepositoryInterface
                 return redirect()->route('Receipt.softdelete');
             }
         }
-        // Delete Group Request
+        //! Delete Group Request
         else{
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);

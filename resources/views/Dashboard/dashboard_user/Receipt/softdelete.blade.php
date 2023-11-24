@@ -3,6 +3,10 @@
     {{__('Dashboard/receipt_trans.receipt')}}
 @stop
 @section('css')
+    <!-- Internal Data table css -->
+    <link href="{{URL::asset('Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -18,14 +22,13 @@
 @section('content')
 
     <!-- row -->
-        <!-- row opened -->
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between"></div>
                             @can('Delete All Receipt softdelete')
-                                <a class="btn btn-danger" href="{{route('Receipt.deleteallsoftdelete')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                                <a class="btn btn-danger" href="{{route('Receipt.deleteallsoftdeleterc')}}">{{__('Dashboard/messages.Deleteall')}}</a>
                             @endcan
 
                             @can('Delete Group Receipt softdelete')
@@ -110,11 +113,10 @@
                     @endcan
                 </div><!-- bd -->
             </div>
-            <!--/div-->
         </div>
     <!-- row closed -->
 
-        <!-- delete -->
+    <!-- delete -->
         <div class="modal" id="modaldemo8">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
@@ -139,8 +141,6 @@
                 </div>
             </div>
         </div>
-        <!-- /row -->
-
 
 @endsection
 @section('js')

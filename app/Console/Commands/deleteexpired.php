@@ -36,15 +36,15 @@ class deleteexpired extends Command
      */
     public function handle()
     {
-        section::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        product::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        Client::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        User::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        paymentaccount::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        paymentgateway::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        banktransfer::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        invoice::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
-        groupprodcut::where('deleted_at', '<=', now()->subDays( 30 ))->forcedelete();
+        section::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        product::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        Client::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        User::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        receipt_account::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        paymentaccount::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        paymentgateway::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        banktransfer::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        invoice::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
+        groupprodcut::where('deleted_at', '<=', now()->subDays( 30 ))->delete();
     }
 }

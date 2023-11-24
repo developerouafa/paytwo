@@ -359,6 +359,7 @@ class UserController extends Controller
         return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
     }
 
+    //* Confirm Payment
     public function confirmpayment(Request $request){
         $confirmpyinvoice = invoice::findorFail($request->invoice_id);
 
@@ -452,6 +453,7 @@ class UserController extends Controller
         }
     }
 
+    //! Refused Payment
     public function refusedpayment(Request $request){
         $confirmpyinvoice = invoice::findorFail($request->invoice_id);
         if($confirmpyinvoice->type == 1){

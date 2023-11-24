@@ -9,7 +9,7 @@ use App\Models\Client;
 use App\Models\client_account;
 use App\Models\fund_account;
 use App\Models\invoice;
-use App\Models\PaymentAccount;
+use App\Models\Paymentaccount;
 use App\Notifications\catchpayment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -52,34 +52,34 @@ class PaymentRepository implements PaymentRepositoryInterface
             DB::beginTransaction();
 
             // store Payment_accounts
-            $payment_accounts = PaymentAccount::create([
-                'date' => date('y-m-d'),
-                'client_id' => $request->client_id,
-                'amount' => $request->credit,
-                'description' => $request->description,
-                'user_id' => auth()->user()->id
-            ]);
+            $payment_accounts = new Paymentaccount();
+            $payment_accounts->date =date('y-m-d');
+            $payment_accounts->client_id = $request->client_id;
+            $payment_accounts->amount = $request->credit;
+            $payment_accounts->description = $request->description;
+            $payment_accounts->user_id = auth()->user()->id;
+            $payment_accounts->save();
 
             // store fund_accounts
-            fund_account::create([
-                'date' => date('y-m-d'),
-                'Payment_id' => $payment_accounts->id,
-                'invoice_id' => $request->invoice_id,
-                'credit' => $request->credit,
-                'user_id' => auth()->user()->id,
-                'Debit' => 0.00
-            ]);
+            $fund_accounts = new fund_account();
+            $fund_accounts->date =date('y-m-d');
+            $fund_accounts->Payment_id = $payment_accounts->id;
+            $fund_accounts->invoice_id = $request->invoice_id;
+            $fund_accounts->credit = $request->credit;
+            $fund_accounts->user_id = auth()->user()->id;
+            $fund_accounts->Debit = 0.00;
+            $fund_accounts->save();
 
             // store client_accounts
-            client_account::create([
-                'date' => date('y-m-d'),
-                'client_id' => $request->client_id,
-                'Payment_id' => $payment_accounts->id,
-                'invoice_id' => $request->invoice_id,
-                'Debit' => $request->credit,
-                'user_id' => auth()->user()->id,
-                'credit' => 0.00
-            ]);
+            $client_accounts = new client_account();
+            $client_accounts->date =date('y-m-d');
+            $client_accounts->client_id = $request->client_id;
+            $client_accounts->Payment_id = $payment_accounts->id;
+            $client_accounts->invoice_id = $request->invoice_id;
+            $client_accounts->Debit = $request->credit;
+            $client_accounts->user_id = auth()->user()->id;
+            $client_accounts->credit = 0.00;
+            $client_accounts->save();
 
             $client = Client::where('id', '=', $request->client_id)->get();
             $user_create_id = auth()->user()->id;
@@ -87,10 +87,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             $message = __('Dashboard/main-header_trans.nicasepayment');
             Notification::send($client, new catchpayment($user_create_id, $invoice_id, $message));
 
-            $mailclient = Client::findorFail($request->client_id);
-            $nameclient = $mailclient->name;
-            $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
-            Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
+            // $mailclient = Client::findorFail($request->client_id);
+            // $nameclient = $mailclient->name;
+            // $url = url('en/Invoices/receiptpostpaid/'.$invoice_id);
+            // Mail::to($mailclient->email)->send(new CatchpaymentMailMarkdown($message, $nameclient, $url));
 
             DB::commit();
             toastr()->success(trans('Dashboard/messages.add'));
@@ -105,7 +105,7 @@ class PaymentRepository implements PaymentRepositoryInterface
 
     public function edit($id)
     {
-        $payment_accounts = PaymentAccount::findorfail($id);
+        $payment_accounts = Paymentaccount::findorfail($id);
         $Clients = Client::all();
         return view('Dashboard.dashboard_user.Payment.edit',compact('payment_accounts','Clients'));
     }
@@ -116,7 +116,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             DB::beginTransaction();
 
             // update Payment_accounts
-            $payment_accounts = PaymentAccount::findorfail($request->id);
+            $payment_accounts = Paymentaccount::findorfail($request->id);
             $payment_accounts->date =date('y-m-d');
             $payment_accounts->client_id = $request->client_id;
             $payment_accounts->amount = $request->credit;
@@ -168,7 +168,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         if($request->page_id==1){
             try {
                 DB::beginTransaction();
-                    PaymentAccount::findorFail($request->id)->delete();
+                    Paymentaccount::findorFail($request->id)->delete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.index');
@@ -182,7 +182,7 @@ class PaymentRepository implements PaymentRepositoryInterface
         if($request->page_id==3){
             try{
                 DB::beginTransaction();
-                PaymentAccount::onlyTrashed()->find($request->id)->forcedelete();
+                Paymentaccount::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.softdelete');
@@ -199,7 +199,7 @@ class PaymentRepository implements PaymentRepositoryInterface
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
                 foreach($delete_select_id as $dl){
-                    PaymentAccount::where('id', $dl)->withTrashed()->forceDelete();
+                    Paymentaccount::where('id', $dl)->withTrashed()->forceDelete();
                 }
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
@@ -216,7 +216,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             try{
                 $delete_select_id = explode(",", $request->delete_select_id);
                 DB::beginTransaction();
-                PaymentAccount::destroy($delete_select_id);
+                Paymentaccount::destroy($delete_select_id);
                 DB::commit();
                 toastr()->success(trans('Dashboard/messages.delete'));
                 return redirect()->route('Payment.index');
@@ -244,7 +244,7 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                PaymentAccount::withTrashed()->where('id', $id)->restore();
+                Paymentaccount::withTrashed()->where('id', $id)->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.softdelete');
@@ -259,7 +259,7 @@ class PaymentRepository implements PaymentRepositoryInterface
     {
         try{
             DB::beginTransaction();
-                PaymentAccount::withTrashed()->restore();
+                Paymentaccount::withTrashed()->restore();
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));
             return redirect()->route('Payment.softdelete');
@@ -276,7 +276,7 @@ class PaymentRepository implements PaymentRepositoryInterface
             $restore_select_id = explode(",", $request->restore_select_id);
             DB::beginTransaction();
                 foreach($restore_select_id as $rs){
-                    PaymentAccount::withTrashed()->where('id', $rs)->restore();
+                    Paymentaccount::withTrashed()->where('id', $rs)->restore();
                 }
             DB::commit();
             toastr()->success(trans('Dashboard/messages.edit'));

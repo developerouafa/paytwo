@@ -102,8 +102,8 @@
                                                     @endcan
                                                     @can('Delete Clients softdelete')
                                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                            data-id="{{ $client->id }}" data-name="{{ $client->name }}"
-                                                            data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                            data-id="{{ $client->id }}"
+                                                            data-toggle="modal" href="#modaldemo9{{$client->id}}" title="Delete">
                                                             <i class="las la-trash"></i>
                                                         </a>
                                                     @endcan
@@ -139,9 +139,8 @@
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <p>{{__('Dashboard/products.aresuredeleting')}}</p><br>
-                            <input type="hidden" name="id" id="id">
+                            <input type="text" name="id" id="id">
                             <input type="hidden" value="3" name="page_id">
-                            <input class="form-control" name="name" id="name" type="text" readonly>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/products.Close')}}</button>

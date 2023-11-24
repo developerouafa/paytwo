@@ -114,7 +114,7 @@
                                             @can('Delete One User softdelete')
                                                 <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                     data-id="{{ $user->id }}" data-name="{{ $user->name }}"
-                                                    data-toggle="modal" href="#modaldemo9" title="Delete">
+                                                    data-toggle="modal" href="#modaldemo8" title="Delete">
                                                     <i class="las la-trash"></i>
                                                 </a>
                                             @endcan
@@ -151,12 +151,12 @@
                     <div class="modal-body">
                         <p>{{__('Dashboard/users.aresureofthedeleting')}}</p><br>
                         <input type="hidden" value="3" name="page_id">
-                        <input type="hidden" name="user_id" id="user_id" value="">
-                        <input class="form-control" name="username" id="username" type="text" readonly>
+                        <input type="hidden" name="id" id="id" value="">
+                        <input class="form-control" name="name" id="name" type="text" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Dashboard/users.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger">{{__('Dashboard/users.save')}}</button>
+                        <button type="submit" class="btn btn-danger">{{__('Dashboard/messages.deletee')}}</button>
                     </div>
             </div>
             </form>
@@ -236,11 +236,11 @@
     <script>
         $('#modaldemo8').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
-            var user_id = button.data('user_id')
-            var username = button.data('username')
+            var id = button.data('id')
+            var name = button.data('name')
             var modal = $(this)
-            modal.find('.modal-body #user_id').val(user_id);
-            modal.find('.modal-body #username').val(username);
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
         })
 
     </script>

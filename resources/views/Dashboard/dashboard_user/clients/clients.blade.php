@@ -100,7 +100,7 @@
                                                 <td> {{ $client->updated_at->diffForHumans() }} </td>
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$client->id}}"><i class="las la-pen"></i></a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$client->id}}"><i class="las la-trash"></i></a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$client->id}}"><i class="las la-trash"></i></a>
                                                 </td>
                                             </tr>
 

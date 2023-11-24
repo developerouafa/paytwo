@@ -194,14 +194,14 @@ class UserController extends Controller
                     unlink(public_path('storage/'.$image));
                 }
                 DB::beginTransaction();
-                    invoice::onlyTrashed()->find($request->id)->forcedelete();
+                    User::onlyTrashed()->find($request->id)->forcedelete();
                 DB::commit();
                 toastr()->success(__('Dashboard/messages.delete'));
-                return redirect()->route('users.softdeleteusers');
+                return redirect()->route('Users.softdeleteusers');
             }catch(\Exception $execption){
                 DB::rollBack();
                 toastr()->error(__('Dashboard/messages.error'));
-                return redirect()->route('users.softdeleteusers');
+                return redirect()->route('Users.softdeleteusers');
             }
         }
         //! Delete Group SoftDelete

@@ -150,6 +150,7 @@ class PermissionTableSeeder extends Seeder
             'Delete Receipt softdelete',
             'Create Receipt',
             'Delete All Receipt',
+            'Delete All Receipt softdelete',
             'Delete Group Receipt',
             'Show Receipt',
             'Edit Receipt',

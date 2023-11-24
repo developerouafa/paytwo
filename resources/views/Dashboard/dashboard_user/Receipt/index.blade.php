@@ -22,6 +22,10 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
+                            @can('Delete All Receipt')
+                                <a class="btn btn-danger" href="{{route('Receipt.deleteallrc')}}">{{__('Dashboard/messages.Deleteall')}}</a>
+                            @endcan
+
                             @can('Delete Group Receipt')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan

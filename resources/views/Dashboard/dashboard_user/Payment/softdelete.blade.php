@@ -47,22 +47,22 @@
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap">
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        @can('Delete Group Catch Payment softdelete')
-                                            <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                        @endcan
-                                        @can('Restore Group Catch Payment')
-                                            <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
-                                        @endcan
-                                        <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
-                                        <th> {{__('Dashboard/payment_trans.price')}} </th>
-                                        <th> {{__('Dashboard/payment_trans.descr')}} </th>
-                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th> {{__('Dashboard/payment_trans.Processes')}} </th>
-                                    </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            @can('Delete Group Catch Payment softdelete')
+                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
+                                            @can('Restore Group Catch Payment')
+                                                <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
+                                            @endcan
+                                            <th> {{__('Dashboard/payment_trans.nameclient')}} </th>
+                                            <th> {{__('Dashboard/payment_trans.price')}} </th>
+                                            <th> {{__('Dashboard/payment_trans.descr')}} </th>
+                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th> {{__('Dashboard/payment_trans.Processes')}} </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($payments as $payment)

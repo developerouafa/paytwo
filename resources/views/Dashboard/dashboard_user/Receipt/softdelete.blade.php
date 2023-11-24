@@ -1,6 +1,6 @@
 @extends('Dashboard.layouts.master')
 @section('title')
-    {{__('Dashboard/receipt_trans.receipt')}}
+    {{__('Dashboard/main-sidebar_trans.deletedreceipt')}}
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -9,15 +9,14 @@
     <link href="{{URL::asset('dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="my-auto">
-                <div class="d-flex">
-                    <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/receipt_trans.receipt')}} </span>
-                </div>
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('Dashboard/receipt_trans.theaccounts')}}</h4>
+                <span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Dashboard/main-sidebar_trans.deletedreceipt')}} </span>
             </div>
         </div>
-    <!-- breadcrumb -->
+    </div>
 @endsection
 @section('content')
 
@@ -49,57 +48,57 @@
                             <div class="table-responsive">
                                 <table id="example" class="table key-buttons text-md-nowrap">
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        @can('Delete Group Receipt softdelete')
-                                            <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
-                                        @endcan
-                                        @can('Restore Group Receipt')
-                                            <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
-                                        @endcan
-                                        <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
-                                        <th> {{__('Dashboard/receipt_trans.price')}} </th>
-                                        <th> {{__('Dashboard/receipt_trans.descr')}} </th>
-                                        <th>{{__('Dashboard/users.createdbyuser')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.created_at')}}</th>
-                                        <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
-                                        <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($receipts as $receipt)
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
+                                            <th>#</th>
                                             @can('Delete Group Receipt softdelete')
-                                                <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
-                                                </td>
+                                                <th> {{__('Dashboard/messages.Deletegroup')}} <input name="select_all"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
                                             @can('Restore Group Receipt')
-                                                <td>
-                                                    <input type="checkbox" name="restore" value="{{$receipt->id}}" class="delete_select">
-                                                </td>
+                                                <th> {{__('Dashboard/messages.RestoreGroup')}} <input name="select_allrestore"  id="example-select-all" type="checkbox"/></th>
                                             @endcan
-                                            <td>{{ $receipt->clients->name }}</td>
-                                            <td>{{ number_format($receipt->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($receipt->description, 50) }}</td>
-                                            <td><a href="#">{{$receipt->user->name}}</a> </td>
-                                            <td> {{ $receipt->created_at->diffForHumans() }} </td>
-                                            <td> {{ $receipt->updated_at->diffForHumans() }} </td>
-                                            <td>
-                                                @can('Restore One Receipt')
-                                                    <a href="{{route('restorerc', $receipt->id)}}">{{__('Dashboard/messages.restore')}}</a>
-                                                @endcan
-                                                @can('Delete Receipt softdelete')
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                        data-id="{{ $receipt->id }}" data-name="{{ $receipt->amount }}"
-                                                        data-toggle="modal" href="#modaldemo8" title="Delete">
-                                                        <i class="las la-trash"></i>
-                                                    </a>
-                                                @endcan
-                                            </td>
+                                            <th> {{__('Dashboard/receipt_trans.nameclient')}} </th>
+                                            <th> {{__('Dashboard/receipt_trans.price')}} </th>
+                                            <th> {{__('Dashboard/receipt_trans.descr')}} </th>
+                                            <th>{{__('Dashboard/users.createdbyuser')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.created_at')}}</th>
+                                            <th>{{__('Dashboard/sections_trans.updated_at')}}</th>
+                                            <th> {{__('Dashboard/receipt_trans.Processes')}} </th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach($receipts as $receipt)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                @can('Delete Group Receipt softdelete')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$receipt->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
+                                                @can('Restore Group Receipt')
+                                                    <td>
+                                                        <input type="checkbox" name="restore" value="{{$receipt->id}}" class="delete_select">
+                                                    </td>
+                                                @endcan
+                                                <td>{{ $receipt->clients->name }}</td>
+                                                <td>{{ number_format($receipt->amount, 2) }}</td>
+                                                <td>{{ \Str::limit($receipt->description, 50) }}</td>
+                                                <td><a href="#">{{$receipt->user->name}}</a> </td>
+                                                <td> {{ $receipt->created_at->diffForHumans() }} </td>
+                                                <td> {{ $receipt->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Restore One Receipt')
+                                                        <a href="{{route('restorerc', $receipt->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                    @endcan
+                                                    @can('Delete Receipt softdelete')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                            data-id="{{ $receipt->id }}" data-name="{{ $receipt->amount }}"
+                                                            data-toggle="modal" href="#modaldemo8" title="Delete">
+                                                            <i class="las la-trash"></i>
+                                                        </a>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

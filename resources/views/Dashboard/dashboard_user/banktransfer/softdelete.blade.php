@@ -63,39 +63,39 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($banktransfers as $banktransfer)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            @can('Delete Group Bank Tranktransfer softdelete')
-                                                <td>
-                                                    <input type="checkbox" name="delete_select" value="{{$banktransfer->id}}" class="delete_select">
-                                                </td>
-                                            @endcan
-                                            @can('Restore Group Bank Tranktransfer')
-                                                <td>
-                                                    <input type="checkbox" name="restore" value="{{$banktransfer->id}}" class="delete_select">
-                                                </td>
-                                            @endcan
-                                            <td>{{ $banktransfer->clients->name }}</td>
-                                            <td>{{ number_format($banktransfer->amount, 2) }}</td>
-                                            <td>{{ \Str::limit($banktransfer->description, 50) }}</td>
-                                            <td><a href="#">{{$banktransfer->user->name}}</a> </td>
-                                            <td> {{ $banktransfer->created_at->diffForHumans() }} </td>
-                                            <td> {{ $banktransfer->updated_at->diffForHumans() }} </td>
-                                            <td>
-                                                @can('Restore One Bank Tranktransfer')
-                                                    <a href="{{route('restorebt', $banktransfer->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                        @foreach($banktransfers as $banktransfer)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                @can('Delete Group Bank Tranktransfer softdelete')
+                                                    <td>
+                                                        <input type="checkbox" name="delete_select" value="{{$banktransfer->id}}" class="delete_select">
+                                                    </td>
                                                 @endcan
-                                                @can('Delete Bank Tranktransfer softdelete')
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                        data-id="{{ $banktransfer->id }}" data-name="{{ $banktransfer->amount }}"
-                                                        data-toggle="modal" href="#modaldemo8" title="Delete">
-                                                        <i class="las la-trash"></i>
-                                                    </a>
+                                                @can('Restore Group Bank Tranktransfer')
+                                                    <td>
+                                                        <input type="checkbox" name="restore" value="{{$banktransfer->id}}" class="delete_select">
+                                                    </td>
                                                 @endcan
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                <td>{{ $banktransfer->clients->name }}</td>
+                                                <td>{{ number_format($banktransfer->amount, 2) }}</td>
+                                                <td>{{ \Str::limit($banktransfer->description, 50) }}</td>
+                                                <td><a href="#">{{$banktransfer->user->name}}</a> </td>
+                                                <td> {{ $banktransfer->created_at->diffForHumans() }} </td>
+                                                <td> {{ $banktransfer->updated_at->diffForHumans() }} </td>
+                                                <td>
+                                                    @can('Restore One Bank Tranktransfer')
+                                                        <a href="{{route('restorebt', $banktransfer->id)}}">{{__('Dashboard/messages.restore')}}</a>
+                                                    @endcan
+                                                    @can('Delete Bank Tranktransfer softdelete')
+                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                            data-id="{{ $banktransfer->id }}" data-name="{{ $banktransfer->amount }}"
+                                                            data-toggle="modal" href="#modaldemo8" title="Delete">
+                                                            <i class="las la-trash"></i>
+                                                        </a>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

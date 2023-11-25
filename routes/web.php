@@ -44,7 +44,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         return redirect()->back();
     });
 
-//* To access these pages, you must log in first
+    //* To access these pages, you must log in first
     Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'auth', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'xss', 'UserStatus']], function(){
 
         Route::get('/', function () {

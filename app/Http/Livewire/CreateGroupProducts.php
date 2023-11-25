@@ -155,7 +155,7 @@ class CreateGroupProducts extends Component
 
             // حفظ العلاقة
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->product_group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
+                $Groups->product_group->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
             }
 
             $this->reset('GroupsItems', 'name_group_en', 'name_group_ar', 'notes_en', 'notes_ar');

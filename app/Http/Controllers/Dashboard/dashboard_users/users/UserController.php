@@ -347,7 +347,7 @@ class UserController extends Controller
         $receiptdocument = receiptdocument::where('invoice_id', $id)->where('client_id', $invoice->client_id)->with('Client')->with('Invoice')->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\clienttouser')->first();
         DB::table('notifications')->where('id', $getID->id)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
+        return view('Dashboard.dashboard_user.PrintInvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
     }
 
     public function clienttouserinvoice($id)
@@ -356,7 +356,7 @@ class UserController extends Controller
         $receiptdocument = receiptdocument::where('invoice_id', $id)->where('client_id', $invoice->client_id)->with('Client')->with('Invoice')->first();
         $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\clienttouserinvoice')->pluck('id');
         DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-        return view('Dashboard.dashboard_user.Printinvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
+        return view('Dashboard.dashboard_user.PrintInvoice.Paidinvoice',compact('invoice', 'receiptdocument'));
     }
 
     //* Confirm Payment

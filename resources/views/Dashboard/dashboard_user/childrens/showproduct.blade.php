@@ -27,6 +27,11 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        <div class="pull-right">
+                            <a class="btn btn-primary btn-sm" href="{{ route('Children_index') }}">{{__('Dashboard/permissions.back')}}</a>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped mg-b-0 text-md-nowrap table-hover">
                             <thead>

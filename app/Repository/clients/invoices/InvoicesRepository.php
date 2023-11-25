@@ -85,7 +85,6 @@ class InvoicesRepository implements InvoiceRepositoryInterface
         return view('Dashboard.dashboard_client.invoices.showinvoice', ['invoice' => $invoice]);
     }
 
-
     public function Complete($request){
         try{
             $id = $request->profileclientid;
@@ -323,30 +322,35 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     public function showinvoicent($id)
     {
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
+        $fund_accountrcaccount = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->first();
+        $fund_accountpyaccount = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->first();
+        $fund_accountbanktransfer = fund_account::whereNotNull('bank_id')->where('invoice_id', $id)->with('invoice')->with('banktransfer')->first();
+        $fund_accountpaymentgateway = fund_account::whereNotNull('Gateway_id')->where('invoice_id', $id)->with('invoice')->with('paymentgateway')->first();
+
         if($invoice->type == '0'){
             $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\invoicent')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
         }
         if($invoice->type == '1'){
             $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\montaryinvoice')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
         }
         if($invoice->type == '2'){
             $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\postpaidbillinvoice')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
         }
         if($invoice->type == '3'){
             $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\App\Notifications\banktransferntf')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
         }
         if($invoice->type == '4'){
             $getID = DB::table('notifications')->where('data->invoice_id', $id)->where('type', 'App\Notifications\paymentgateways')->pluck('id');
             DB::table('notifications')->where('id', $getID)->update(['read_at'=>now()]);
-            return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+            return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
         }
     }
 

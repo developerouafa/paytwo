@@ -25,7 +25,7 @@ class groupprodcut extends Model
 
     public function product_group()
     {
-        return $this->belongsToMany(product::class,'product_group')->withPivot('quantity');
+        return $this->belongsToMany(product::class,'Product_Group')->withPivot('quantity');
     }
 
 }

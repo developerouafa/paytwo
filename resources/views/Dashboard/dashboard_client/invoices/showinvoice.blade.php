@@ -148,7 +148,7 @@
                                                 </div>
 
                                                 <div class="form-group ">
-                                                    <div class="row"></div>
+                                                    <div class="row">
                                                         <div class="col-md-3">
                                                             <label class="form-label">{{__('Dashboard/profile.nationalIdNumber')}}</label>
                                                         </div>

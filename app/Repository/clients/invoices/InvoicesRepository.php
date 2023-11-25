@@ -76,7 +76,11 @@ class InvoicesRepository implements InvoiceRepositoryInterface
 
     public function print($id){
         $invoice = invoice::where('id', $id)->where('client_id', Auth::user()->id)->first();
-        return view('Dashboard.dashboard_client.invoices.print',compact('invoice'));
+        $fund_accountrcaccount = fund_account::whereNotNull('receipt_id')->where('invoice_id', $id)->with('invoice')->with('receiptaccount')->first();
+        $fund_accountpyaccount = fund_account::whereNotNull('Payment_id')->where('invoice_id', $id)->with('invoice')->with('paymentaccount')->first();
+        $fund_accountbanktransfer = fund_account::whereNotNull('bank_id')->where('invoice_id', $id)->with('invoice')->with('banktransfer')->first();
+        $fund_accountpaymentgateway = fund_account::whereNotNull('Gateway_id')->where('invoice_id', $id)->with('invoice')->with('paymentgateway')->first();
+        return view('Dashboard.dashboard_client.invoices.print',compact('invoice', 'fund_accountrcaccount', 'fund_accountpyaccount', 'fund_accountbanktransfer', 'fund_accountpaymentgateway'));
     }
 
     public function showinvoice($id)

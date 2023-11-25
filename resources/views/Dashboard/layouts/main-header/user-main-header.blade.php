@@ -162,7 +162,7 @@
 											</div>
 										</div>
 									</div>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user-circle"></i>Profile</a>
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bx bx-user-circle"></i>{{__('Dashboard/profile.Update Profile')}}</a>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();"><i class="bx bx-log-out"></i>{{__('Dashboard/login_trans.logout')}}</a>

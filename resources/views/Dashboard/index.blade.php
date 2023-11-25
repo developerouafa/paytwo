@@ -17,7 +17,7 @@
                 <p class="mg-b-0">{{__('Dashboard/clients_trans.Salesmonitoringdashb')}}</p>
             </div>
         </div>
-        @can('Header Page Dashboard')
+        {{-- @can('Header Page Dashboard') --}}
             <div class="main-dashboard-header-right">
                 <?php use App\Models\invoice; ?>
                 <?php use App\Models\product; ?>
@@ -41,13 +41,13 @@
                     <h5>{{ invoice::where('type', 2)->count()}}</h5>
                 </div>
             </div>
-        @endcan
+        {{-- @endcan --}}
 
     </div>
 @endsection
 @section('content')
 
-    @can('Content Page Dashboard')
+    {{-- @can('Content Page Dashboard') --}}
         <!-- row -->
             <div class="row row-sm">
                 <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
@@ -497,7 +497,7 @@
                 </div>
             </div>
         <!-- /row -->
-    @endcan
+    {{-- @endcan --}}
 
 @endsection
 @section('js')

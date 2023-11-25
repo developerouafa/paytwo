@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        //* create User
         $user = User::create([
             'name' => ['en' => 'ouafa', 'ar' => 'وفاء'],
             'phone' => '0582201021',
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'Status' => '1'
         ]);
 
+        //* Create Client
         $user_id = User::latest()->first()->id;
         Client::create([
             'name' => 'client',
@@ -43,18 +45,21 @@ class UserSeeder extends Seeder
             'client_id' => $client_id
         ]);
 
+        //* Create section
         section::create([
             'name' => ['en' => 'sectionen1', 'ar' => 'sectionar1'],
             'user_id' => $user_id,
         ]);
         $section_id = section::latest()->first()->id;
 
+        //* Create children section
         section::create([
             'name' => ['en' => 'childen1', 'ar' => 'childar1'],
             'parent_id' => $section_id,
             'user_id' => $user_id,
         ]);
 
+        //* Create product
         product::create([
             'name' => ['en' => 'producten1', 'ar' => 'productar1'],
             'description' => ['en' => 'descriptionen1', 'ar' => 'descriptionar1'],
@@ -62,12 +67,14 @@ class UserSeeder extends Seeder
             'user_id' => $user_id,
         ]);
 
+        //* Create stockproduct
         $product_id = product::latest()->first()->id;
         stockproduct::create([
             'product_id'=> $product_id,
             'user_id' => $user_id,
         ]);
 
+        //* Create Role Permissions
         $role = Role::create(['name' => 'owner']);
 
         $permissions = Permission::pluck('id','id')->all();

@@ -78,7 +78,6 @@
                                                 @can('View Invoices Client')
                                                     <td><a href="{{route('Clients.showinvoice',$client->id)}}">{{$client->name}}</a> </td>
                                                 @endcan
-                                                <td>{{$client->name}}</td>
                                                 <td>{{$client->email}}</td>
                                                 <td>{{$client->phone}}</td>
                                                 <td>

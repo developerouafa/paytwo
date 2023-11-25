@@ -285,7 +285,7 @@ class InvoicesRepository implements InvoiceRepositoryInterface
     }
 
     public function modifypymethod($request){
-        // try{
+        try{
             $modifypymethodinvoice = invoice::findorFail($request->invoice_id);
             DB::beginTransaction();
                 $modifypymethodinvoice->update([
@@ -298,19 +298,19 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                     $message = __('Dashboard/users.pyupdatent');
                     Notification::send($user, new clienttouser($invoice_id, $message));
 
-                    $mailuser = User::findorFail($modifypymethodinvoice->user_id);
-                    $nameuser = $mailuser->name;
-                    $url = url('en/showpinvoicent/'.$invoice_id);
-                    Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
+                    // $mailuser = User::findorFail($modifypymethodinvoice->user_id);
+                    // $nameuser = $mailuser->name;
+                    // $url = url('en/showpinvoicent/'.$invoice_id);
+                    // Mail::to($mailuser->email)->send(new clienttouserMailMarkdown($message, $nameuser, $url));
 
-        //     DB::commit();
-        //     toastr()->success(trans('Dashboard/messages.edit'));
-        //     return redirect()->back();
-        // }catch(\Exception $exception){
-        //     DB::rollBack();
-        //     toastr()->error(trans('Dashboard/messages.error'));
-        //     return redirect()->back();
-        // }
+            DB::commit();
+            toastr()->success(trans('Dashboard/messages.edit'));
+            return redirect()->back();
+        }catch(\Exception $exception){
+            DB::rollBack();
+            toastr()->error(trans('Dashboard/messages.error'));
+            return redirect()->back();
+        }
     }
 
     public function receipt($id){

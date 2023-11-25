@@ -28,7 +28,7 @@ class productRepository implements productRepositoryInterface
         $childrens = section::latest()->selectchildrens()->withchildrens()->child()->get();
         $sections = section::latest()->selectsections()->withsections()->parent()->get();
         $stockproduct = stockproduct::selectstock()->get();
-        return view('Dashboard/dashboard_user/Products.Show',compact('product', 'childrens', 'sections', 'stockproduct'));
+        return view('Dashboard/dashboard_user/products.Show',compact('product', 'childrens', 'sections', 'stockproduct'));
     }
 
     public function softdelete()

@@ -117,9 +117,9 @@ class CreateGroupProducts extends Component
             $Groups->notes= ['en' => $this->notes_en, 'ar' => $this->notes_ar];
             $Groups->save();
             // حفظ العلاقة
-            $Groups->Product_Group()->detach();
+            $Groups->pivot_product_group()->detach();
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->Product_Group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
+                $Groups->pivot_product_group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
             }
             $this->ServiceSaved = false;
             $this->ServiceUpdated = true;
@@ -155,7 +155,7 @@ class CreateGroupProducts extends Component
 
             // حفظ العلاقة
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->Product_Group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
+                $Groups->pivot_product_group()->attach($GroupsItem['id'],['quantity' => $GroupsItem['quantity']]);
             }
 
             $this->reset('GroupsItems', 'name_group_en', 'name_group_ar', 'notes_en', 'notes_ar');

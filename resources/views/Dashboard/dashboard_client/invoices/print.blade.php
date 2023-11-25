@@ -61,7 +61,7 @@
                                     <th class="wd-40p"> {{__('Dashboard/services.nameservice')}} </th>
                                     @if ($invoice->invoice_type == 2)
                                         <th class="wd-40p" style="color: red">{{__('Dashboard/services.Paid')}}</th>
-                                    @elseif ($single_invoice->invoice_type == 3)
+                                    @elseif ($invoice->invoice_type == 3)
                                         <th class="wd-40p" style="color: red">{{__('Dashboard/services.Canceled')}}</th>
                                     @endif
                                     <th class="wd-40p"> {{__('Dashboard/services.priceservice')}} </th>

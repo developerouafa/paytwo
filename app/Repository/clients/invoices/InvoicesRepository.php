@@ -222,10 +222,10 @@ class InvoicesRepository implements InvoiceRepositoryInterface
                             $message = __('Dashboard/users.billpaid');
                             Notification::send($user, new clienttouserinvoice($invoice_id, $message));
 
-                            $mailuser = User::findorFail($completepyinvoice->user_id);
-                            $nameuser = $mailuser->name;
-                            $url = url('en/showpinvoicent/'.$invoice_id);
-                            Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
+                            // $mailuser = User::findorFail($completepyinvoice->user_id);
+                            // $nameuser = $mailuser->name;
+                            // $url = url('en/showpinvoicent/'.$invoice_id);
+                            // Mail::to($mailuser->email)->send(new clienttouserinvoiceMailMarkdown($message, $nameuser, $url));
 
                         DB::commit();
                         toastr()->success(trans('Dashboard/messages.add'));

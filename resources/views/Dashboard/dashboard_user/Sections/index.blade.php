@@ -47,6 +47,10 @@
                             @can('Delete Group Section')
                                 <button type="button" class="btn btn-danger" id="btn_delete_all">{{trans('Dashboard/messages.Deletegroup')}}</button>
                             @endcan
+
+                            <form action="{{ route('Sections.export') }}">
+                                <input type="submit" value="Export to excel" />
+                            </form>
                         </div>
                     </div>
                     @can('Show Section')

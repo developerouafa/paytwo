@@ -8,6 +8,9 @@ interface SectionRepositoryInterface
     //* get All Sections
     public function index();
 
+    //* Export Excel
+    public function export();
+
     //* get All Softdelete
     public function softdelete();
 

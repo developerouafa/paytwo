@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+use App\Events\MyEvent;
+use App\Http\Controllers\ChatController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -194,6 +197,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             return view('Dashboard/index', ['linechart' => $linechart, 'chartBar1' => $chartBar1]);
         })->name('dashboard');
 
+        // Start Test Pusher
+            Route::controller(ChatController::class)->group(function() {
+                Route::get('/chat/{user_id}', 'ChatForm');
+                Route::post('/chat/{user_id}', 'sendMessage');
+            });
+        // End Test Pusher
+
         //############################# Start Partie User|permissions|Roles route ##########################################
             Route::resource('users', UserController::class);
             Route::resource('roles', RolesController::class);
@@ -234,6 +244,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             Route::group(['prefix' => 'Sections'], function(){
                 Route::controller(SectionController::class)->group(function() {
                     Route::get('/index', 'index')->name('Sections.index');
+                    Route::get('/export', 'export')->name('Sections.export');
                     Route::get('/Deleted_Section', 'softdelete')->name('Sections.softdelete');
                     Route::get('/Show_by_Section/{id}', 'showsection')->name('Sections.showsection');
                     Route::post('/create', 'store')->name('Sections.store');

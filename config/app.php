@@ -165,7 +165,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -186,6 +186,8 @@ return [
         // Repository
         App\Providers\RepositoryServiceProvider::class,
 
+        // Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -210,6 +212,8 @@ return [
         // jwt
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
 
+        // Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

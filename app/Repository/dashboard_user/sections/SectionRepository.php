@@ -6,13 +6,19 @@ use App\Models\product;
 use App\Models\section;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-
+use App\Exports\SectionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 class SectionRepository implements SectionRepositoryInterface
 {
     public function index()
     {
       $sections = section::latest()->selectsections()->withsections()->parent()->get();
       return view('Dashboard/dashboard_user.Sections.index',compact('sections'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new SectionsExport, 'sections.xlsx');
     }
 
     public function softdelete()

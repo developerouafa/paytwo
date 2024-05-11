@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "barryvdh/laravel-dompdf": "^2.1",
         "fx3costa/laravelchartjs": "^3.0",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/cashier": "^14.12",
@@ -17,7 +18,10 @@
         "laravel/vonage-notification-channel": "^3.2",
         "laravelcollective/html": "^6.4",
         "livewire/livewire": "^2.12",
+        "maatwebsite/excel": "^3.1",
         "mcamara/laravel-localization": "^1.8",
+        "psr/simple-cache": "1.0",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.11",
         "spatie/laravel-stripe-webhooks": "^3.6",
         "spatie/laravel-translatable": "^6.5",

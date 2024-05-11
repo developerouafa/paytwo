@@ -22,6 +22,11 @@ class SectionController extends Controller
       return  $this->Sections->index();
     }
 
+    public function export()
+    {
+      return  $this->Sections->export();
+    }
+
     public function softdelete()
     {
       return  $this->Sections->softdelete();
